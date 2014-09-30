@@ -43,12 +43,9 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right" id="main-nav">
-            {% if g.user.is_authenticated() %}
               <li><a href="{{url_for('settings')}}"><span class="glyphicon glyphicon-user"></span> {{g.user.nickname}}</a></li>
               <li><a href="{{url_for('logout', next=request.path)}}"><span class="glyphicon glyphicon-log-out"></span> {{_('Logout')}} </a></li>
-            {% else %}
               <li><a href="{{url_for('login', next=request.path)}}"><span class="glyphicon glyphicon-log-in"></span> {{_('Login')}} </a></li>
-            {% endif %}
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -72,7 +69,6 @@
     {% endfor %}
     <div class="container-fluid">
       {% block body %}{% endblock %}
-      <img src=" {{ url_for('static', filename=helper.playerImage('iOS') ) }} " />
 
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

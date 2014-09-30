@@ -5,9 +5,9 @@
   <div class="col-sm-12">
   <div class="stats">
     <ul class="list-unstyled list-inline">
-{% for section in stats["MediaContainer"]["Directory"] %}
-    <li><h1>{{ section["extra"]["@size"] }}</h1><h5>{{ section["@title"] }}</h5></li>
-{% endfor %}
+        {%- for section in stats["MediaContainer"]["Directory"] %}
+        <li class="col-sm-2"><h1>{{ section["extra"]["@size"] }}</h1><h5>{{ section["@title"] }}</h5></li>
+        {%- endfor %}
     </ul>
   </div>
 </div>
@@ -16,43 +16,45 @@
 
 {% if activity %}
 <div class="row">
-  <div class="col-sm-12">
   <div class="stats">
     <div class="wrapper">
       {% for play in activity["MediaContainer"]["Video"] %}
+          <div class="col-sm-3">
       <div class="poster"><div class="poster-activity">
-          <img src="{{ g.plex.getThumb(play['@thumb']) }}" />
+          <a href="{{ url_for('info', id=play["@ratingKey"]) }}" >
+            <img class="img-responsive" src="{{ g.plex.getThumb(play['@thumb']) }}" />
+           </a>
       </div></div>
-      <div class="progress progress-warning"><div class="bar" style="width: {{ helper.getPercentage(play["@viewOffset"], play["@duration"]) }}%">{{ helper.getPercentage(play["@viewOffset"], play["@duration"]) }}%</div></div>
-        <div class="platform-activity">
-          <img src="{{ url_for('static', filename=helper.playerImage(play['Player']['@platform']) ) }}" />
+      <div class="progress progress-warning">
+          <div class="bar" style="width: {{ helper.getPercentage(play["@viewOffset"], play["@duration"]) }}%">{{ helper.getPercentage(play["@viewOffset"], play["@duration"]) }}%</div>
+      </div>
+        <div class="platform-activity pull-right col-sm-3">
+          <img class="img-responsive" src="{{ url_for('static', filename=helper.playerImage(play['Player']['@platform']) ) }}" />
         </div>
         <div class="user-activity">
-          {% if play["Player"]["@state"] == "playing" %}
-            {{ _('%(user)s is watching', user=play["User"]["@title"]) }}
-          {% elif play["@state"] == "paused" %}
-            {{ _('%(user)s has paused', user=play["User"]["@title"]) }}
-          {% elif play["@state"] == "buffering" %}
-            {{ _('%(user)s is buffering', user=play["User"]["@title"]) }}
-          {% endif %}
+          {%- if play["Player"]["@state"] == "playing" %}
+            {{ _( '%(user)s is watching', user=play["User"]["@title"]) }}
+          {%- elif play["Player"]["@state"] == "paused" %}
+            {{ _( '%(user)s has paused', user=play["User"]["@title"]) }}
+          {%- elif play["Player"]["@state"] == "buffering" %}
+            {{ _( '%(user)s is buffering', user=play["User"]["@title"]) }}
+          {%- endif %}
         </div>
         <div class="title-activity">
-          {% if play["@type"] == "episode" %}
+          {%- if play["@type"] == "episode" %}
           {{ play["@grandparentTitle"] }} - {{ play["@title"] }}
-          {% else %}
+          {%- else %}
           {{ play["@title"] }}
-          {% endif %}
+          {%- endif %}
         </div>
       </div>
       <div class="info-wrapper">
 
       </div>
-{{ play }}
-
+</div>
 {% endfor %}
     </div>
   </div>
-</div>
 </div>
 {% else %}
 <div class="row">

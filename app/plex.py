@@ -53,7 +53,6 @@ class Server(object):
 
     def currentlyPlaying(self):
         server = self._request("status/sessions")
-        response = dict()
         if server and int(server["MediaContainer"]["@size"]) == 1:
             server["MediaContainer"]["Video"] = [server["MediaContainer"]["Video"]]
             response = server
@@ -70,25 +69,14 @@ class Server(object):
     def recentlyAdded(self):
         pass
 
+    def getInfo(self, mediaId):
+        return self._request("library/metadata/%s" % mediaId)
+
     def libraryStats(self):
         sections = self.getSections()
 
         if sections and sections["MediaContainer"]["@size"] > 1:
             for section in sections["MediaContainer"]["Directory"]:
-                if section["@type"] == "movie":
-                    args = {
-                        "type": 1,
-                        "sort": "addedAt:desc",
-                        "X-Plex-Container-Start": 0,
-                        "X-Plex-Container-Size": 1
-                    }
-                elif section["@type"] == "show":
-                    args = {
-                        "type": 2,
-                        "sort": "addedAt:desc",
-                        "X-Plex-Container-Start": 0,
-                        "X-Plex-Container-Size": 1
-                    }
                 section["extra"] = self._request("library/sections/%s/all" % section["@key"])["MediaContainer"]
 
         return sections

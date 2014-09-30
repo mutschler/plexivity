@@ -1,0 +1,31 @@
+body {
+  background: #1f1f1f;
+  color: #eee;
+}
+a {
+  color: #faa732;
+}
+.progress {
+  height: 5px;
+  background: #1f1f1f;
+}
+.progress .bar {
+  background: #faa732;
+}
+.stats {
+  padding: 50px 0;
+}
+.stats h1 {
+  color: #faa732;
+}
+.stats li {
+  text-align: center;
+}
+.platform-activity img {
+  border-radius: 5px;
+}
+.title-activity {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 80%;
+}

@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
+from app import config, plex
+
 
 from flask import Flask, g, request
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -14,7 +17,7 @@ app.debug = True
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 # app.config.from_object('config')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///plexivity.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///%s' % os.path.join(config.DATA_DIR, "plexivity.db")
 
 db = SQLAlchemy(app)
 babel = Babel(app)
@@ -65,6 +68,8 @@ def get_timezone():
 @app.before_request
 def before_request():
     g.user = current_user
+    g.plex = plex.Server(config.PMS_HOST, config.PMS_PORT)
+
 
 
 from app import models, views

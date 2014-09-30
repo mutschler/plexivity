@@ -43,14 +43,15 @@ def check_setting_int(config, cfg_name, item_name, def_val):
     return my_val
 
 CheckSection('General')
-DB_ROOT = check_setting_str(CFG, 'General', 'DB_ROOT', os.path.join(os.getcwd(), "Calibre Library"))
-TEMPLATEDIR = check_setting_str(CFG, 'General', 'TEMPLATEDIR', os.path.join(os.getcwd(), "views"))
-MAIN_DIR = check_setting_str(CFG, 'General', 'MAIN_DIR', os.getcwd())
+DATA_DIR = check_setting_str(CFG, 'General', 'DATA_DIR', os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PORT = check_setting_int(CFG, 'General', 'PORT', 8083)
-NEWEST_BOOKS = check_setting_str(CFG, 'General', 'NEWEST_BOOKS', 60)
-RANDOM_BOOKS = check_setting_int(CFG, 'General', 'RANDOM_BOOKS', 6)
-ALL_BOOKS = check_setting_str(CFG, 'General', 'ALL_BOOKS', 100)
-USE_DL_PASS = bool(check_setting_int(CFG, 'General', 'USE_DL_PASS', 1))
+
+CheckSection('PMS')
+PMS_HOST = check_setting_str(CFG, 'PMS', 'PMS_HOST', 'localhost')
+PMS_PORT = check_setting_int(CFG, 'PMS', 'PMS_PORT', 32400)
+PMS_USER = check_setting_str(CFG, 'PMS', 'PMS_USER', 'username')
+PMS_PASS = check_setting_str(CFG, 'PMS', 'PMS_PASS', 'password')
+PMS_SSL = check_setting_int(CFG, 'PMS', 'PMS_SSL', 0)
 
 CheckSection('Mail')
 MAIL_SERVER = check_setting_str(CFG, 'Mail', 'MAIL_SERVER', 'mail.example.com')
@@ -59,51 +60,41 @@ MAIL_PASSWORD = check_setting_str(CFG, 'Mail', 'MAIL_PASSWORD', "mypassword")
 MAIL_PORT = check_setting_int(CFG, 'Mail', 'MAIL_PORT', 25)
 MAIL_FROM = check_setting_str(CFG, 'Mail', 'MAIL_FROM', "library automailer <mail@example.com>")
 
-CheckSection('Advanced')
-TITLE_REGEX = check_setting_str(CFG, 'Advanced', 'TITLE_REGEX', '^(Der|Die|Das|Ein|Eine)\s+')
-DEVELOPMENT = bool(check_setting_int(CFG, 'Advanced', 'DEVELOPMENT', 0))
-FIRST_RUN = bool(check_setting_int(CFG, 'Advanced', 'FIRST_RUN', 1))
 
 SYS_ENCODING="UTF-8"
 
 configval={}
-configval["DB_ROOT"] = DB_ROOT
-configval["TEMPLATEDIR"] = TEMPLATEDIR
-configval["MAIN_DIR"] = MAIN_DIR
+configval["DATA_DIR"] = DATA_DIR
 configval["PORT"] = PORT
-configval["NEWEST_BOOKS"] = NEWEST_BOOKS
-configval["ALL_BOOKS"] = ALL_BOOKS
-configval["DEVELOPMENT"] = DEVELOPMENT
 configval["MAIL_SERVER"] = MAIL_SERVER
 configval["MAIL_FROM"] = MAIL_FROM
 configval["MAIL_PORT"] = MAIL_PORT
 configval["MAIL_LOGIN"] = MAIL_LOGIN
 configval["MAIL_PASSWORD"] = MAIL_PASSWORD
-configval["TITLE_REGEX"] = TITLE_REGEX
-configval["FIRST_RUN"] = FIRST_RUN
-configval["USE_DL_PASS"] = USE_DL_PASS
+configval["PMS_HOST"] = PMS_HOST
+configval["PMS_PORT"] = PMS_PORT
+configval["PMS_USER"] = PMS_USER
+configval["PMS_PASS"] = PMS_PASS
+configval["PMS_SSL"] = PMS_SSL
 
 def save_config(configval):
     new_config = ConfigObj()
     new_config.filename = CONFIG_FILE
     new_config['General'] = {}
-    new_config['General']['DB_ROOT'] = configval["DB_ROOT"]
-    new_config['General']['TEMPLATEDIR'] = configval["TEMPLATEDIR"]
-    new_config['General']['MAIN_DIR'] = configval["MAIN_DIR"]
+    new_config['General']['DATA_DIR'] = configval["DATA_DIR"]
     new_config['General']['PORT'] = configval["PORT"]
-    new_config['General']['NEWEST_BOOKS'] = configval["NEWEST_BOOKS"]
-    new_config['General']['ALL_BOOKS'] = configval["ALL_BOOKS"]
-    new_config['General']['USE_DL_PASS'] = int(configval["USE_DL_PASS"])
     new_config['Mail'] = {}
     new_config['Mail']['MAIL_PORT'] = int(configval["MAIL_PORT"])
     new_config['Mail']['MAIL_SERVER'] = configval["MAIL_SERVER"]
     new_config['Mail']['MAIL_FROM'] = configval["MAIL_FROM"]
     new_config['Mail']['MAIL_LOGIN'] = configval["MAIL_LOGIN"]
     new_config['Mail']['MAIL_PASSWORD'] = configval["MAIL_PASSWORD"]
-    new_config['Advanced'] = {}
-    new_config['Advanced']['TITLE_REGEX'] = configval["TITLE_REGEX"]
-    new_config['Advanced']['DEVELOPMENT'] = int(configval["DEVELOPMENT"])
-    new_config['Advanced']['FIRST_RUN'] = int(configval["FIRST_RUN"])
+    new_config['PMS'] = {}
+    new_config['PMS']['PMS_HOST'] = configval["PMS_HOST"]
+    new_config['PMS']['PMS_PORT'] = int(configval["PMS_PORT"])
+    new_config['PMS']['PMS_USER'] = configval["PMS_USER"]
+    new_config['PMS']['PMS_PASS'] = configval["PMS_PASS"]
+    new_config['PMS']['PMS_SSL'] = int(configval["PMS_SSL"])
     new_config.write()
     return "Saved"
 

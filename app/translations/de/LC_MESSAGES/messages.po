@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-30 15:58+0200\n"
-"PO-Revision-Date: 2014-09-30 16:05+0100\n"
+"POT-Creation-Date: 2014-09-30 18:52+0200\n"
+"PO-Revision-Date: 2014-09-30 18:52+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -42,3 +42,18 @@ msgstr "Abmelden"
 #: app/templates/layout.html:50
 msgid "Login"
 msgstr "Anmelden"
+
+#: app/templates/stats.html:32
+#, python-format
+msgid "%(user)s is watching"
+msgstr "%(user)s sieht gerade"
+
+#: app/templates/stats.html:34
+#, python-format
+msgid "%(user)s has paused"
+msgstr "%(user)s hat pausiert"
+
+#: app/templates/stats.html:36
+#, python-format
+msgid "%(user)s is buffering"
+msgstr "%(user)s buffert gerade"

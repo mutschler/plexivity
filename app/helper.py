@@ -6,6 +6,13 @@ from app import db, models
 def statistics():
 	pass
 
+def getPercentage(viewed, duration):
+	percent = "%2d" % ( ( float(viewed) / float(duration) ) * 100 )
+
+	if int(percent) >= 90:
+		return 100
+	return percent
+
 def playerImage(platform):
 	if platform == "Roku":
 		return "images/platforms/roku.png"

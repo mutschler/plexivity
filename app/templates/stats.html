@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if stats %}
+<div class="row">
+  <div class="col-sm-12">
+  <div class="stats">
+    <ul class="list-unstyled list-inline">
+{% for section in stats["MediaContainer"]["Directory"] %}
+    <li><h1>{{ section["extra"]["@size"] }}</h1><h5>{{ section["@title"] }}</h5></li>
+{% endfor %}
+    </ul>
+  </div>
+</div>
+</div>
+{% endif %}
+
+{% if activity %}
+<div class="row">
+  <div class="col-sm-12">
+  <div class="stats">
+    <div class="wrapper">
+      {% for play in activity["MediaContainer"]["Video"] %}
+      <div class="poster"><div class="poster-activity">
+          <img src="{{ g.plex.getThumb(play['@thumb']) }}" />
+      </div></div>
+      <div class="progress progress-warning"><div class="bar" style="width: {{ helper.getPercentage(play["@viewOffset"], play["@duration"]) }}%">{{ helper.getPercentage(play["@viewOffset"], play["@duration"]) }}%</div></div>
+        <div class="platform-activity">
+          <img src="{{ url_for('static', filename=helper.playerImage(play['Player']['@platform']) ) }}" />
+        </div>
+        <div class="user-activity">
+          {% if play["Player"]["@state"] == "playing" %}
+            {{ _('%(user)s is watching', user=play["User"]["@title"]) }}
+          {% elif play["@state"] == "paused" %}
+            {{ _('%(user)s has paused', user=play["User"]["@title"]) }}
+          {% elif play["@state"] == "buffering" %}
+            {{ _('%(user)s is buffering', user=play["User"]["@title"]) }}
+          {% endif %}
+        </div>
+        <div class="title-activity">
+          {% if play["@type"] == "episode" %}
+          {{ play["@grandparentTitle"] }} - {{ play["@title"] }}
+          {% else %}
+          {{ play["@title"] }}
+          {% endif %}
+        </div>
+      </div>
+      <div class="info-wrapper">
+
+      </div>
+{{ play }}
+
+{% endfor %}
+    </div>
+  </div>
+</div>
+</div>
+{% else %}
+<div class="row">
+  <h1>Nothing playing</h1>
+</div>
+{% endif %}
+
+
+{% endblock %}

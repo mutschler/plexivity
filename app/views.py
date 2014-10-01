@@ -15,20 +15,19 @@ def index():
 
 @app.route("/stats")
 def stats():
-    p = g.plex
     #return url_for('static', filename=helper.playerImage("iPhone"))
-    return render_template('stats.html', stats=p.libraryStats(), activity=p.currentlyPlaying(), new=p.recentlyAdded())
+    return render_template('stats.html', stats=g.plex.libraryStats(), activity=g.plex.currentlyPlaying(), new=g.plex.recentlyAdded())
 
 
 @app.route("/stats/activity")
 def activity():
-    p = g.plex
     #return url_for('static', filename=helper.playerImage("iPhone"))
-    return render_template('activity.html', activity=p.currentlyPlaying())
+    return render_template('activity.html', activity=g.plex.currentlyPlaying())
 
 
 @app.route("/info/<id>")
 def info(id):
+    return render_template('info.html', info=g.plex.getInfo(id))
     return json.dumps(g.plex.getInfo(id))
 
 @app.route("/login")

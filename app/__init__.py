@@ -3,7 +3,7 @@
 import os
 from app import config, plex
 
-
+p = plex.Server(config.PMS_HOST, config.PMS_PORT)
 from flask import Flask, g, request
 from flask.ext.sqlalchemy import SQLAlchemy
 
@@ -68,7 +68,7 @@ def get_timezone():
 @app.before_request
 def before_request():
     g.user = current_user
-    g.plex = plex.Server(config.PMS_HOST, config.PMS_PORT)
+    g.plex = p
 
 
 

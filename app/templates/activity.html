@@ -1,21 +1,4 @@
-{% extends "layout.html" %}
-{% block body %}
-{% if stats %}
-<div class="row">
-  <div class="col-sm-12">
-  <div class="stats">
-    <ul class="list-unstyled list-inline">
-        {%- for section in stats["MediaContainer"]["Directory"] %}
-        <li class="col-sm-2"><h1>{{ section["extra"]["@size"] }}</h1><h5>{{ section["@title"] }}</h5></li>
-        {%- endfor %}
-    </ul>
-  </div>
-</div>
-</div>
-{% endif %}
-
-<section id="activity">
-{% if activity %}
+{% if activity["MediaContainer"]["@size"]|int >= 1 %}
 <div class="row">
   <div class="stats">
     <div class="wrapper">
@@ -62,26 +45,3 @@
   <h1>Nothing playing</h1>
 </div>
 {% endif %}
-</section>
-
-<section id="recentlyAdded">
-<h2>Recently Added</h2>
-<div class="row">
-
-    {% for object in new["MediaContainer"]["Directory"] %}
-    <div class="col-lg-2 col-sm-2">
-        <img src="{{ g.plex.getThumb(object['@thumb']) }}" class="img-responsive" />
-        {{ object["@title"] }}
-    </div>
-    {% endfor %}
-    {% for object in new["MediaContainer"]["Video"] %}
-    <div class="col-lg-2 col-sm-2">
-        <img src="{{ g.plex.getThumb(object['@thumb']) }}" class="img-responsive" />
-        {{ object["@title"] }}
-    </div>
-    {% endfor %}
-</div>
-
-</section>
-
-{% endblock %}

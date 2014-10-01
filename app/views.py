@@ -19,6 +19,14 @@ def stats():
     #return url_for('static', filename=helper.playerImage("iPhone"))
     return render_template('stats.html', stats=p.libraryStats(), activity=p.currentlyPlaying(), new=p.recentlyAdded())
 
+
+@app.route("/stats/activity")
+def activity():
+    p = g.plex
+    #return url_for('static', filename=helper.playerImage("iPhone"))
+    return render_template('activity.html', activity=p.currentlyPlaying())
+
+
 @app.route("/info/<id>")
 def info(id):
     return json.dumps(g.plex.getInfo(id))

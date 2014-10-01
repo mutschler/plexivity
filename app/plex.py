@@ -47,7 +47,8 @@ class Server(object):
 
     def getThumb(self, url):
         if self.token:
-            return "http://%(host)s:%(port)s%(url)s?X-Plex-Token=%(token)s" % {"host": self.host, "port": self.port, "url": url, "token": self.token}
+            return "http://%(host)s:%(port)s%(url)s?X-Plex-Token=%(token)s" % {"host": self.host, "port": self.port,
+                                                                               "url": url, "token": self.token}
         else:
             return "http://%(host)s:%(port)s%(url)s" % {"host": self.host, "port": self.port, "url": url}
 
@@ -66,8 +67,9 @@ class Server(object):
     def getSections(self):
         return self._request("library/sections")
 
-    def recentlyAdded(self):
-        pass
+    def recentlyAdded(self, count=6):
+        args = {"X-Plex-Container-Start": 0, "X-Plex-Container-Size": count}
+        return self._request("library/recentlyAdded", args)
 
     def getInfo(self, mediaId):
         return self._request("library/metadata/%s" % mediaId)

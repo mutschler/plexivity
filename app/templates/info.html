@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if info %}
+
+
+{% for child in info %}
+<div class="info-image-wrapper">
+  <img class="img-responsive" src="{{ g.plex.getThumb(child.get('art')) }}" />
+</div>
+<div class="overlay">
+  <div class="info-poster-wrapper col-sm-2">
+    <img class="img-responsive" src="{{ g.plex.getThumb(child.get('thumb')) }}" />
+  </div>
+  <div class="title">
+    <h2>{{child.get('title')}}</h2>
+  </div>
+  <div class="overview">
+    {{child.get('summary')}}
+  </div>
+</div>
+  <!-- {{child.items()}}
+  {{child.get('art')}} -->
+{% endfor %}
+
+{% endif %}
+{% endblock %}

@@ -42,10 +42,14 @@ class Server(object):
                 result = self.session.get("%s%s" % (self.url, url), params=args)
 
         if result:
+            #import xml.etree.ElementTree as ET
             json = xml2json(result.content, strip_ns=False)
+            #json = ET.fromstring(result.content)
             return json
 
     def getThumb(self, url):
+        print dir(self)
+        print self.token
         if self.token:
             return "http://%(host)s:%(port)s%(url)s?X-Plex-Token=%(token)s" % {"host": self.host, "port": self.port,
                                                                                "url": url, "token": self.token}

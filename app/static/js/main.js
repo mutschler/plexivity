@@ -1,4 +1,4 @@
 function currentActivity() {
-			$('#activity').load('/stats/activity');
+			$('#activity').load('/load/activity');
 		}
 		setInterval('currentActivity()', 15000);

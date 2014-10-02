@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from app import config
+from app.logger import logger
 import requests
 from xml2json import xml2json
 
@@ -15,18 +16,27 @@ class Server(object):
         self.session = requests.session()
         self.url = "http://%s:%d/" % (host, port)
         self.token = False
+        self.status = 0
+
+
+    def test(self):
+        status = self._request("status")
+        if status:
+            self.status = 1
+        else:
+            self.status = 0
+
+        return self.status
 
 
     def _request(self, url, args=dict()):
-        print "request... %s" % url
         if self.token:
             args["X-Plex-Token"] = self.token
-        print args
         result = self.session.get("%s%s" % (self.url, url), params=args)
-        print result.url
+        logger.debug(u"requested url: %(url)s" % {"url": url})
 
-        if result.status_code == 401:
-            print "doung auth"
+        if result.status_code == 401 and config.PMS_USER != "username" and config.PMS_PASS != "password":
+            logger.debug(u"request failed, trying with auth")
             self.session.headers.update({'X-Plex-Client-Identifier': 'plexivity'})
             self.session.headers.update({'Content-Length': 0})
 
@@ -36,20 +46,18 @@ class Server(object):
                 json = xml2json(x.content, strip_ns=False)
                 self.token = json["user"]["authentication-token"]
                 args["X-Plex-Token"] = self.token
-
-                print "request again"
-                print args
+                logger.debug(u"auth successfull, requesting url %(url)s again" % {"url": url})
                 result = self.session.get("%s%s" % (self.url, url), params=args)
+            else:
+                return False
 
         if result:
-            #import xml.etree.ElementTree as ET
-            json = xml2json(result.content, strip_ns=False)
-            #json = ET.fromstring(result.content)
+            import xml.etree.ElementTree as ET
+            #json = xml2json(result.content, strip_ns=False)
+            json = ET.fromstring(result.content)
             return json
 
     def getThumb(self, url):
-        print dir(self)
-        print self.token
         if self.token:
             return "http://%(host)s:%(port)s%(url)s?X-Plex-Token=%(token)s" % {"host": self.host, "port": self.port,
                                                                                "url": url, "token": self.token}
@@ -57,16 +65,7 @@ class Server(object):
             return "http://%(host)s:%(port)s%(url)s" % {"host": self.host, "port": self.port, "url": url}
 
     def currentlyPlaying(self):
-        server = self._request("status/sessions")
-        if server and int(server["MediaContainer"]["@size"]) == 1:
-            server["MediaContainer"]["Video"] = [server["MediaContainer"]["Video"]]
-            response = server
-        elif server:
-            response = server
-        else:
-            return False
-
-        return response
+        return self._request("status/sessions")
 
     def getSections(self):
         return self._request("library/sections")
@@ -80,9 +79,7 @@ class Server(object):
 
     def libraryStats(self):
         sections = self.getSections()
-
-        if sections and sections["MediaContainer"]["@size"] > 1:
-            for section in sections["MediaContainer"]["Directory"]:
-                section["extra"] = self._request("library/sections/%s/all" % section["@key"])["MediaContainer"]
+        for section in sections:
+            section.set("extra", self._request("library/sections/%s/all" % section.get("key")))
 
         return sections

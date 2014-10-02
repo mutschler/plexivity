@@ -1,8 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from app import db, models
+from app.logger import logger
+from apscheduler.schedulers.background import BackgroundScheduler
+scheduler = BackgroundScheduler()
 
+def currentlyPlaying():
+    print "job fired"
+    logger.info("running job")
+
+def startScheduler():
+    scheduler.add_job(currentlyPlaying, 'interval', seconds=10)
+    scheduler.start()
 
 def statistics():
     pass

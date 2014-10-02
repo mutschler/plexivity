@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-from app import config, plex
+
+from app import config, plex, helper
 
 p = plex.Server(config.PMS_HOST, config.PMS_PORT)
 from flask import Flask, g, request
@@ -10,7 +11,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.babel import Babel
 from flask.ext.login import LoginManager, current_user
 
-from flask.ext.babel import gettext as _
+
 
 app = Flask(__name__)
 app.debug = True
@@ -25,6 +26,8 @@ babel = Babel(app)
 lm = LoginManager(app)
 lm.init_app(app)
 lm.login_view = 'login'
+
+helper.startScheduler()
 
 class MyAnonymousUser(object):
     def __init__(self):

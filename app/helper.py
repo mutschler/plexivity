@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 from app.logger import logger
+from flask.ext.babel import gettext as _
+
 from apscheduler.schedulers.background import BackgroundScheduler
 scheduler = BackgroundScheduler()
 
@@ -23,6 +25,50 @@ def getPercentage(viewed, duration):
     if int(percent) >= 90:
         return 100
     return percent
+
+def pretty_date(time=False):
+    """
+    Get a datetime object or a int() Epoch timestamp and return a
+    pretty string like 'an hour ago', 'Yesterday', '3 months ago',
+    'just now', etc
+    """
+    from datetime import datetime
+    now = datetime.now()
+    if float(time):
+        diff = now - datetime.fromtimestamp(time)
+    elif isinstance(time, datetime):
+        diff = now - time
+    else:
+        diff = now - now
+
+    second_diff = diff.seconds
+    day_diff = diff.days
+
+    if day_diff < 0:
+        return ''
+
+    if day_diff == 0:
+        if second_diff < 10:
+            return _("just now")
+        if second_diff < 60:
+            return _("%(int)s seconds ago", int=second_diff)
+        if second_diff < 120:
+            return "a minute ago"
+        if second_diff < 3600:
+            return _("%(int)s minuten ago", int=second_diff / 60)
+        if second_diff < 7200:
+            return _("an hour ago")
+        if second_diff < 86400:
+            return _("%(int)s hours ago", int=second_diff / 3600)
+    if day_diff == 1:
+        return _("Yesterday")
+    if day_diff < 7:
+        return _("%(int)s days ago", int=day_diff)
+    if day_diff < 31:
+        return _("%(int)s weeks ago", int=day_diff / 7)
+    if day_diff < 365:
+        return _("%(int)s months ago", int=day_diff / 30)
+    return _("%(int)s years ago", int=day_diff / 365)
 
 
 def playerImage(platform):

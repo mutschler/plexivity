@@ -3,15 +3,16 @@ from app import helper, plex, config
 
 from flask import url_for, render_template, g, redirect, flash
 from flask.ext.babel import gettext as _
+from babel.dates import format_timedelta
 import json
 
 app.jinja_env.globals.update(helper=helper)
-
+app.jinja_env.filters['timeago'] = helper.pretty_date
 
 @app.route("/")
 def index():
     #check for plex connection else redirect to settings page and show a error message!
-    if not g.plex.status:
+    if not g.plex.test():
         flash(_("Unable to connect to PMS. Please check your settings"), "error")
         return redirect("settings")
 

@@ -28,7 +28,11 @@
                                 <div class="poster">
                                     <div class="poster-activity">
                                         <a href="{{ url_for('info', id=play.get("ratingKey")) }}">
+                                            {%- if play.get("type") == "movie" %}
+                                            <img class="img-responsive" src="{{ g.plex.getThumb(play.get('art')) }}"/>
+                                            {%- else %}
                                             <img class="img-responsive" src="{{ g.plex.getThumb(play.get('thumb')) }}"/>
+                                            {%- endif %}
                                         </a>
                                     </div>
                                 </div>

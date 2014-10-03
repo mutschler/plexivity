@@ -45,6 +45,7 @@ def check_setting_int(config, cfg_name, item_name, def_val):
 CheckSection('General')
 DATA_DIR = check_setting_str(CFG, 'General', 'DATA_DIR', os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PORT = check_setting_int(CFG, 'General', 'PORT', 8083)
+START_MESSAGE = check_setting_str(CFG, 'General', 'START_MESSAGE', '%(username)s is watching %(title)s on %(player_title)s... %(offset)s Minutes in')
 
 CheckSection('PMS')
 PMS_HOST = check_setting_str(CFG, 'PMS', 'PMS_HOST', 'localhost')
@@ -60,12 +61,17 @@ MAIL_PASSWORD = check_setting_str(CFG, 'Mail', 'MAIL_PASSWORD', "mypassword")
 MAIL_PORT = check_setting_int(CFG, 'Mail', 'MAIL_PORT', 25)
 MAIL_FROM = check_setting_str(CFG, 'Mail', 'MAIL_FROM', "library automailer <mail@example.com>")
 
+CheckSection('Pushover')
+NOTIFY_PUSHOVER = check_setting_int(CFG, 'Pushover', 'NOTIFY_PUSHOVER', 1)
+PUSHOVER_USER = check_setting_str(CFG, 'Pushover', 'PUSHOVER_USER', "")
+PUSHOVER_TOKEN = check_setting_str(CFG, 'Pushover', 'PUSHOVER_TOKEN', "")
 
 SYS_ENCODING="UTF-8"
 
 configval={}
 configval["DATA_DIR"] = DATA_DIR
 configval["PORT"] = PORT
+configval["START_MESSAGE"] = START_MESSAGE
 configval["MAIL_SERVER"] = MAIL_SERVER
 configval["MAIL_FROM"] = MAIL_FROM
 configval["MAIL_PORT"] = MAIL_PORT
@@ -76,6 +82,10 @@ configval["PMS_PORT"] = PMS_PORT
 configval["PMS_USER"] = PMS_USER
 configval["PMS_PASS"] = PMS_PASS
 configval["PMS_SSL"] = PMS_SSL
+configval["PUSHOVER_USER"] = PUSHOVER_USER
+configval["PUSHOVER_TOKEN"] = PUSHOVER_TOKEN
+configval["NOTIFY_PUSHOVER"] = NOTIFY_PUSHOVER
+
 
 def save_config(configval):
     new_config = ConfigObj()
@@ -83,6 +93,7 @@ def save_config(configval):
     new_config['General'] = {}
     new_config['General']['DATA_DIR'] = configval["DATA_DIR"]
     new_config['General']['PORT'] = configval["PORT"]
+    new_config['General']['START_MESSAGE'] = configval["START_MESSAGE"]
     new_config['Mail'] = {}
     new_config['Mail']['MAIL_PORT'] = int(configval["MAIL_PORT"])
     new_config['Mail']['MAIL_SERVER'] = configval["MAIL_SERVER"]
@@ -95,6 +106,10 @@ def save_config(configval):
     new_config['PMS']['PMS_USER'] = configval["PMS_USER"]
     new_config['PMS']['PMS_PASS'] = configval["PMS_PASS"]
     new_config['PMS']['PMS_SSL'] = int(configval["PMS_SSL"])
+    new_config['Pushover'] = {}
+    new_config['Pushover']['NOTIFY_PUSHOVER'] = int(configval["NOTIFY_PUSHOVER"])
+    new_config['Pushover']['PUSHOVER_USER'] = configval["PUSHOVER_USER"]
+    new_config['Pushover']['PUSHOVER_TOKEN'] = configval["PUSHOVER_TOKEN"]
     new_config.write()
     return "Saved"
 

@@ -27,7 +27,7 @@ lm = LoginManager(app)
 lm.init_app(app)
 lm.login_view = 'login'
 
-helper.startScheduler()
+
 
 class MyAnonymousUser(object):
     def __init__(self):
@@ -73,6 +73,10 @@ def before_request():
     g.user = current_user
     g.plex = p
 
+#workaround to load scheduler only once through debug time
+#TODO: remove this
+@app.before_first_request
+def initialize():
+    helper.startScheduler()
 
-
-from app import models, views
+from app import views

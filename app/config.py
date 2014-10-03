@@ -6,7 +6,7 @@ from configobj import ConfigObj
 
 
 CONFIG_FILE= os.path.join(os.getcwd(), "config.ini")
-CFG = ConfigObj(CONFIG_FILE)
+CFG = ConfigObj(CONFIG_FILE, interpolation=False)
 
 def CheckSection(sec):
     """ Check if INI section exists, if not create it """
@@ -20,7 +20,7 @@ def CheckSection(sec):
 def check_setting_str(config, cfg_name, item_name, def_val, log=True):
     try:
         my_val = config[cfg_name][item_name]
-    except:
+    except Exception, e:
         my_val = def_val
         try:
             config[cfg_name][item_name] = my_val
@@ -45,7 +45,7 @@ def check_setting_int(config, cfg_name, item_name, def_val):
 CheckSection('General')
 DATA_DIR = check_setting_str(CFG, 'General', 'DATA_DIR', os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PORT = check_setting_int(CFG, 'General', 'PORT', 8083)
-START_MESSAGE = check_setting_str(CFG, 'General', 'START_MESSAGE', '%(username)s is watching %(title)s on %(player_title)s... %(offset)s Minutes in')
+START_MESSAGE = check_setting_str(CFG, 'General', 'START_MESSAGE', "%(username)s is currently watching %(title)s")
 
 CheckSection('PMS')
 PMS_HOST = check_setting_str(CFG, 'PMS', 'PMS_HOST', 'localhost')
@@ -88,7 +88,7 @@ configval["NOTIFY_PUSHOVER"] = NOTIFY_PUSHOVER
 
 
 def save_config(configval):
-    new_config = ConfigObj()
+    new_config = ConfigObj(interpolation=False)
     new_config.filename = CONFIG_FILE
     new_config['General'] = {}
     new_config['General']['DATA_DIR'] = configval["DATA_DIR"]

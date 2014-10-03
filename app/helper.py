@@ -3,16 +3,20 @@
 
 from app.logger import logger
 from flask.ext.babel import gettext as _
+from app import config, plex
 
 from apscheduler.schedulers.background import BackgroundScheduler
-scheduler = BackgroundScheduler()
 
 def currentlyPlaying():
     print "job fired"
     logger.info("running job")
 
 def startScheduler():
-    scheduler.add_job(currentlyPlaying, 'interval', seconds=10)
+    #in debug mode this is executed twice :(
+    #DONT run flask in auto reload mode when testing this!
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(notifyer, 'interval', seconds=10, max_instances=1)
+    print scheduler.get_jobs()
     scheduler.start()
 
 def statistics():
@@ -69,6 +73,31 @@ def pretty_date(time=False):
     if day_diff < 365:
         return _("%(int)s months ago", int=day_diff / 30)
     return _("%(int)s years ago", int=day_diff / 365)
+
+def notifyer():
+    ### onyl basic tests here
+    # TODO: move this to a extra file and include DB support!
+    p = plex.Server(config.PMS_HOST, config.PMS_PORT)
+    sessions = p.currentlyPlaying()
+    print "start shit"
+    print sessions.items()
+    for session in sessions:
+        if session.get("type") == "episode":
+            title = '%s - "%s"' % (session.get("grandparentTitle"), session.get("title"))
+        else:
+            title = session.get("title")
+
+        offset = int(session.get("viewOffset")) / 1000 / 60
+        username = session.find("User").get("title")
+        platform = session.find("Player").get("platform")
+        product = session.find("Player").get("product")
+        player_title = session.find("Player").get("product")
+
+        message = config.START_MESSAGE % {"username": username, "platform": platform, "title": title, "product": product, "player_title": player_title, "offset": offset}
+        print config.NOTIFY_PUSHOVER
+        if config.NOTIFY_PUSHOVER:
+            from app.providers import pushover
+            pushover.send_notification(message)
 
 
 def playerImage(platform):

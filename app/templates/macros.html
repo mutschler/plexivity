@@ -87,7 +87,7 @@
                     {{ render_checkbox_field(f) }}
                 {% elif f.type == 'RadioField' %}
                     {{ render_radio_field(f) }}
-                {% else %}
+                {% elif f.type != "CSRFTokenField" %}
                     {{ render_field(f) }}
                 {% endif %}
             {% endfor %}

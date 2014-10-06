@@ -46,7 +46,7 @@ def setup():
         user = models.User(password=generate_password_hash(form.password.data), email=form.email.data)
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('settings'))
     if not db.session.query(models.User).first():
         return render_template('setup.html', form=form)
     else:

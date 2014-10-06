@@ -7,15 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-10-06 19:26+0200\n"
-"PO-Revision-Date: 2014-10-06 19:26+0100\n"
+"POT-Creation-Date: 2014-10-06 19:51+0200\n"
+"PO-Revision-Date: 2014-10-06 19:51+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
+"Language: de\n"
+"X-Generator: Poedit 1.6.5\n"
 
 #: app/helper.py:56
 msgid "just now"
@@ -64,19 +66,35 @@ msgstr "vor %(int)s Monaten"
 msgid "%(int)s years ago"
 msgstr "vor %(int)s Jahren"
 
-#: app/views.py:17 app/templates/login.html:11
+#: app/views.py:33 app/views.py:38 app/templates/login.html:11
 msgid "Username"
 msgstr "Benutzername"
 
-#: app/views.py:18 app/templates/login.html:15
+#: app/views.py:34 app/views.py:39 app/templates/login.html:15
 msgid "Password"
 msgstr "Passwort"
 
-#: app/views.py:19 app/templates/login.html:20
+#: app/views.py:35 app/templates/login.html:20
 msgid "Remember password"
 msgstr "Passwort merken"
 
-#: app/views.py:25
+#: app/views.py:40
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: app/views.py:43
+msgid "use pushover for notifications"
+msgstr "Pushover aktivieren"
+
+#: app/views.py:44
+msgid "Pushover User-Token"
+msgstr "Pushover Benutzer-Token"
+
+#: app/views.py:45
+msgid "Pushover App-Token"
+msgstr "Pushover Anwendungs-Token"
+
+#: app/views.py:51
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr "Verbindung zum PMS nicht möglich. Bitte Einstellungen überprüfen."
 
@@ -142,7 +160,3 @@ msgstr "Kürzlich hinzugefügt"
 
 #~ msgid "Submit"
 #~ msgstr "Suchen"
-
-#~ msgid "Discover (Random Books)"
-#~ msgstr ""
-

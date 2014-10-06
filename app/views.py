@@ -17,8 +17,6 @@ app.jinja_env.filters['timeago'] = helper.pretty_date
 @login_required
 def index():
     #check for plex connection else redirect to settings page and show a error message!
-    if not db.session.query(models.User).first():
-        return redirect(url_for("setup"))
     if not g.plex.test():
         flash(_("Unable to connect to PMS. Please check your settings"), "error")
         return redirect(url_for("settings"))
@@ -42,10 +40,10 @@ def setup():
     form = forms.RegisterForm()
     if form.validate_on_submit():
         flash(_("User %(username)s created", username=form.email.data), "success")
-        print dir(form.password)
         user = models.User(password=generate_password_hash(form.password.data), email=form.email.data)
         db.session.add(user)
         db.session.commit()
+        login_user(user)
         return redirect(url_for('settings'))
     if not db.session.query(models.User).first():
         return render_template('setup.html', form=form)
@@ -60,6 +58,8 @@ def info(id):
 
 @app.route("/login", methods=("GET", "POST"))
 def login():
+    if not db.session.query(models.User).first():
+        return redirect(url_for("setup"))
     form = forms.Login()
     if form.validate_on_submit():
         user = db.session.query(models.User).filter(models.User.email == form.email.data).first()

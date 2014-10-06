@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-10-06 20:24+0200\n"
-"PO-Revision-Date: 2014-10-06 20:25+0100\n"
+"POT-Creation-Date: 2014-10-06 23:48+0200\n"
+"PO-Revision-Date: 2014-10-06 23:49+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -66,37 +66,61 @@ msgstr "vor %(int)s Monaten"
 msgid "%(int)s years ago"
 msgstr "vor %(int)s Jahren"
 
-#: app/views.py:33 app/views.py:38 app/templates/login.html:11
-msgid "Username"
-msgstr "Benutzername"
-
-#: app/views.py:34 app/views.py:39 app/templates/login.html:15
-msgid "Password"
-msgstr "Passwort"
-
-#: app/views.py:35 app/templates/login.html:20
-msgid "Remember password"
-msgstr "Passwort merken"
-
-#: app/views.py:40
+#: app/views.py:35 app/views.py:42 app/views.py:50
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: app/views.py:43
+#: app/views.py:36 app/views.py:41 app/views.py:51 app/templates/login.html:15
+msgid "Password"
+msgstr "Passwort"
+
+#: app/views.py:37 app/templates/login.html:20
+msgid "Remember password"
+msgstr "Passwort merken"
+
+#: app/views.py:40 app/templates/login.html:11
+msgid "Username"
+msgstr "Benutzername"
+
+#: app/views.py:45
 msgid "use pushover for notifications"
 msgstr "Pushover aktivieren"
 
-#: app/views.py:44
+#: app/views.py:46
 msgid "Pushover User-Token"
 msgstr "Pushover Benutzer-Token"
 
-#: app/views.py:45
+#: app/views.py:47
 msgid "Pushover App-Token"
 msgstr "Pushover Anwendungs-Token"
 
-#: app/views.py:51
+#: app/views.py:52
+msgid "Retype password"
+msgstr "Passwort wiederholen"
+
+#: app/views.py:62
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr "Verbindung zum PMS nicht möglich. Bitte Einstellungen überprüfen."
+
+#: app/views.py:83
+#, python-format
+msgid "User %(username)s created"
+msgstr "Benutzer %(username)s angelegt"
+
+#: app/views.py:108
+#, python-format
+msgid "you are now logged in as: '%(username)s'"
+msgstr "Eingeloggt als: '%(username)s'"
+
+#: app/views.py:111
+msgid "username/password missmatch or no such user in database"
+msgstr ""
+"Benutzername/Passwort stimmt nicht überein oder ist nicht in der Datenbank "
+"vorhanden"
+
+#: app/views.py:125
+msgid "Logged out"
+msgstr "Abgemeldet"
 
 #: app/templates/activity.html:1 app/templates/stats.html:21
 msgid "Currently playing"
@@ -170,30 +194,34 @@ msgstr "plexivity"
 msgid "Toggle navigation"
 msgstr "Navigation anzeigen"
 
-#: app/templates/layout.html:36
+#: app/templates/layout.html:37
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: app/templates/layout.html:37
+#: app/templates/layout.html:38
 msgid "History"
 msgstr "Verlauf"
 
-#: app/templates/layout.html:38
+#: app/templates/layout.html:39
 msgid "Users"
 msgstr "Benutzer"
 
-#: app/templates/layout.html:39
+#: app/templates/layout.html:40
 msgid "Statistics"
 msgstr "Statistik"
 
-#: app/templates/layout.html:40
+#: app/templates/layout.html:41
 msgid "Logout"
 msgstr "Abmelden"
 
-#: app/templates/layout.html:41 app/templates/login.html:23
+#: app/templates/layout.html:43 app/templates/login.html:23
 #: app/templates/login.html:26
 msgid "Login"
 msgstr "Anmelden"
+
+#: app/templates/setup.html:9
+msgid "Create Account"
+msgstr "Account erstellen"
 
 #: app/templates/stats.html:81
 msgid "Recently Added"

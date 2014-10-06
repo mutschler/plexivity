@@ -1,92 +1,93 @@
-from app import app
+from app import app, db, models, forms
 from app import helper, plex, config
 
-from flask import url_for, render_template, g, redirect, flash
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask.ext.login import login_required, current_user, logout_user, login_user
+from flask import url_for, render_template, g, redirect, flash, request
 from flask.ext.babel import gettext as _
-from flask.ext.babel import lazy_gettext
 from babel.dates import format_timedelta
 import json
 
-from flask_wtf import Form
-from wtforms import StringField, PasswordField, BooleanField
-from wtforms.validators import DataRequired, Email
 
 app.jinja_env.globals.update(helper=helper)
 app.jinja_env.filters['timeago'] = helper.pretty_date
 
-class RequiredIf(DataRequired):
-    # a validator which makes a field required if
-    # another field is set and has a truthy value
-
-    def __init__(self, other_field_name, *args, **kwargs):
-        self.other_field_name = other_field_name
-        super(RequiredIf, self).__init__(*args, **kwargs)
-
-    def __call__(self, form, field):
-        other_field = form._fields.get(self.other_field_name)
-        if other_field is None:
-            raise Exception('no field named "%s" in form' % self.other_field_name)
-        if bool(other_field.data):
-            super(RequiredIf, self).__call__(form, field)
-
-class Login(Form):
-    username = StringField(lazy_gettext('Username'), validators=[DataRequired()])
-    password = PasswordField(lazy_gettext('Password'), validators=[DataRequired()])
-    remember_me = BooleanField(lazy_gettext('Remember password'))
-
-class Register(Form):
-    username = StringField(lazy_gettext('Username'), validators=[DataRequired()])
-    password = PasswordField(lazy_gettext('Password'), validators=[DataRequired()])
-    email = StringField(lazy_gettext('E-Mail'), validators=[DataRequired(), Email()])
-
-class Settings(Form):
-    use_pushover = BooleanField(lazy_gettext('use pushover for notifications'))
-    pushover_user = StringField(lazy_gettext('Pushover User-Token'), validators=[RequiredIf("use_pushover")])
-    pushover_app = StringField(lazy_gettext('Pushover App-Token'), validators=[RequiredIf("use_pushover")])
 
 @app.route("/")
+@login_required
 def index():
     #check for plex connection else redirect to settings page and show a error message!
+    if not db.session.query(models.User).first():
+        return redirect(url_for("setup"))
     if not g.plex.test():
         flash(_("Unable to connect to PMS. Please check your settings"), "error")
-        return redirect("settings")
+        return redirect(url_for("settings"))
 
     return render_template('stats.html', stats=g.plex.libraryStats(), activity=g.plex.currentlyPlaying(), new=g.plex.recentlyAdded())
 
 #reload stuff
 @app.route("/load/activity")
+@login_required
 def activity():
     return render_template('activity.html', activity=g.plex.currentlyPlaying())
 
 @app.route("/stats")
+@login_required
 def stats():
     return render_template('stats.html', stats=g.plex.libraryStats(), activity=g.plex.currentlyPlaying(), new=g.plex.recentlyAdded())
 
 
-
+@app.route("/setup", methods=("GET", "POST"))
+def setup():
+    form = forms.RegisterForm()
+    if form.validate_on_submit():
+        flash(_("User %(username)s created", username=form.email.data), "success")
+        print dir(form.password)
+        user = models.User(password=generate_password_hash(form.password.data), email=form.email.data)
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('index'))
+    if not db.session.query(models.User).first():
+        return render_template('setup.html', form=form)
+    else:
+        return redirect(url_for("index"))
 
 
 @app.route("/info/<id>")
+@login_required
 def info(id):
     return render_template('info.html', info=g.plex.getInfo(id))
 
 @app.route("/login", methods=("GET", "POST"))
 def login():
-    form = Login()
+    form = forms.Login()
     if form.validate_on_submit():
-        return redirect(url_for('index'))
+        user = db.session.query(models.User).filter(models.User.email == form.email.data).first()
+        print form.remember_me.data
+        if user and check_password_hash(user.password, form.password.data):
+            login_user(user, remember = form.remember_me.data)
+            flash(_("you are now logged in as: '%(username)s'", username=user.email), category="success")
+            return redirect(request.args.get("next") or url_for("index"))
+        else:
+            flash(_("username/password missmatch or no such user in database"), "error")
     return render_template('login.html', form=form)
 
 
 @app.route("/history")
+@login_required
 def history():
     return render_template('history.html')
 
-@app.route("/logout")
+@app.route('/logout')
+@login_required
 def logout():
-    pass
+    if current_user is not None and current_user.is_authenticated():
+        logout_user()
+        flash(_("Logged out"), "success")
+    return redirect(request.args.get("next") or url_for("index"))
 
 
 @app.route("/settings")
+@login_required
 def settings():
     return render_template('settings.html')

@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<section id="history">
+    <table class="table" id="globalHistory">
+        <thead>
+            <tr>
+                <th align='left'><i class='glyphicon glyphicon-sort icon-white'></i> {{_('Date')}}</th>
+                <th align='left'><i class='glyphicon glyphicon-sort icon-white'></i> {{_('User')}} </th>
+                <th align='left'><i class='glyphicon glyphicon-sort icon-white'></i> {{_('Platform')}}</th>
+                <th align='left'><i class='glyphicon glyphicon-sort icon-white'></i> {{_('Title')}}</th>
+                <th align='center'><i class='glyphicon glyphicon-sort icon-white'></i> {{_('Stream Info')}}</th>
+                <th align='center'><i class='glyphicon glyphicon-sort icon-white'></i> {{_('Started')}}</th>
+                <th align='center'><i class='glyphicon glyphicon-sort icon-white'></i> {{_('Paused')}}</th>
+                <th align='center'><i class='glyphicon glyphicon-sort icon-white'></i> {{_('Stopped')}}</th>
+                <th align='center'><i class='glyphicon glyphicon-sort icon-white'></i> {{_('Duration')}}</th>
+                <th align='center'><i class='glyphicon glyphicon-sort icon-white'></i> {{_('Completed')}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-order="20140927" class="currentlyWatching " align="left">Currently watching...</td>
+                <td align="left" class=" "><a href="user.php?user=ruffy">ruffy</a></td>
+                <td align="left" class=" ">Plex Web (Chrome)</td>
+                <td class="title " align="left"><a href="{{ url_for('info', id='7951') }}">Antisocial</a></td>
+                <td align="center" class=" "><a href="#streamDetailsModal1" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a></td>
+                <td align="center" class=" ">4:33</td><td align="center" class=" ">0 min</td>
+                <td align="center" class=" ">n/a</td><td align="center" class=" ">n/a</td>
+                <td align="center" class=" "><span class="badge badge-warning">13%</span></td>
+            </tr>
+            <tr>
+                <td data-order="20140927" align="left" class=" ">27/09/2014</td>
+                <td align="left" class=" "><a href="user.php?user=ruffy">ruffy</a></td>
+                <td align="left" class=" ">Plex Web (Chrome)</td>
+                <td class="title " align="left"><a href="{{ url_for('info', id='7951') }}">Antisocial</a>
+                </td><td align="center" class=" "><a href="#streamDetailsModal2" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a></td>
+                <td align="center" class=" ">4:23</td><td align="center" class=" ">2.6 min</td>
+                <td align="center" class=" ">4:31</td><td align="center" class=" ">6 min</td>
+                <td align="center" class=" "><span class="badge badge-warning">11%</span></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</section>
+
+{% endblock %}

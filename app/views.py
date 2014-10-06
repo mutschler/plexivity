@@ -78,6 +78,10 @@ def login():
     return render_template('login.html', form=form)
 
 
+@app.route("/history")
+def history():
+    return render_template('history.html')
+
 @app.route("/logout")
 def logout():
     pass
@@ -85,4 +89,4 @@ def logout():
 
 @app.route("/settings")
 def settings():
-    return render_template('index.html')
+    return render_template('settings.html')

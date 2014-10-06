@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-10-06 19:51+0200\n"
-"PO-Revision-Date: 2014-10-06 19:51+0100\n"
+"POT-Creation-Date: 2014-10-06 20:24+0200\n"
+"PO-Revision-Date: 2014-10-06 20:25+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -120,6 +120,47 @@ msgstr "%(user)s buffert gerade"
 #: app/templates/activity.html:50 app/templates/stats.html:74
 msgid "Nothing is currently playing"
 msgstr "Zur zeit wird nichts wiedergegeben"
+
+#: app/templates/history.html:8
+msgid "Date"
+msgstr "Datum"
+
+#: app/templates/history.html:9
+#, fuzzy
+msgid "User"
+msgstr "Benutzer"
+
+#: app/templates/history.html:10
+msgid "Platform"
+msgstr "Platform"
+
+#: app/templates/history.html:11
+msgid "Title"
+msgstr "Titel"
+
+#: app/templates/history.html:12
+msgid "Stream Info"
+msgstr "Stream Info"
+
+#: app/templates/history.html:13
+msgid "Started"
+msgstr "Start Datum"
+
+#: app/templates/history.html:14
+msgid "Paused"
+msgstr "Pausiert"
+
+#: app/templates/history.html:15
+msgid "Stopped"
+msgstr "Angehalten"
+
+#: app/templates/history.html:16
+msgid "Duration"
+msgstr "Dauer"
+
+#: app/templates/history.html:17
+msgid "Completed"
+msgstr "Vollendet"
 
 #: app/templates/layout.html:4
 msgid "plexivity"

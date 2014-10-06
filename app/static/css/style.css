@@ -1,4 +1,6 @@
-body{background:#1f1f1f;color:#eee}body .navbar{background:#000;border-color:#000}body .navbar a:hover{color:#fff}
+body{background:#1f1f1f;color:#eee}body .navbar{background:#000;border-color:#000}body .navbar .logo{max-height:30px}
+body .navbar a:hover{color:#fff}
+.login-wrapper{margin-top:50px}
 section{border:solid 1px #3c3c3c;box-shadow:inset 0 0 20px 0 rgba(0,0,0,0.2);padding:50px;margin-bottom:50px;background:#1a1a1a}section .title{margin-top:0;border-bottom:1px solid #3c3c3c;box-shadow:inset 0 -1px 0 #000;padding-bottom:10px;color:#fff;font-weight:normal}
 a{color:#faa732}
 .progress{height:5px;background:#1f1f1f}.progress .bar{background:#faa732}
@@ -7,3 +9,4 @@ a{color:#faa732}
 .platform-activity img{border-radius:5px}
 .title-activity{white-space:nowrap;text-overflow:ellipsis;width:80%}
 .recently-added-cover a{display:block}.recently-added-cover a:hover{border-style:inset;box-sizeing:border-box;border:2px solid #faa732}
+.btn-plex{background:#faa732}

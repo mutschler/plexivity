@@ -9,7 +9,7 @@ from flask import Flask, g, request
 from flask.ext.sqlalchemy import SQLAlchemy
 
 from flask.ext.babel import Babel
-from flask.ext.login import LoginManager, current_user
+from flask.ext.login import LoginManager, login_user, logout_user, current_user
 
 
 
@@ -27,6 +27,7 @@ lm = LoginManager(app)
 lm.init_app(app)
 lm.login_view = 'login'
 
+from app import views, models
 
 
 class MyAnonymousUser(object):
@@ -34,10 +35,10 @@ class MyAnonymousUser(object):
         self.random_books = 1
 
     def is_active(self):
-        return True
+        return False
 
     def is_authenticated(self):
-        return True
+        return False
 
     def is_anonymous(self):
         return True
@@ -49,7 +50,7 @@ lm.anonymous_user = MyAnonymousUser
 
 @lm.user_loader
 def load_user(id):
-    return lm.anonymous_user
+    return db.session.query(models.User).filter(models.User.id == int(id)).first()
 
 @babel.localeselector
 def get_locale():
@@ -79,4 +80,3 @@ def before_request():
 def initialize():
     helper.startScheduler()
 
-from app import views

@@ -3,11 +3,21 @@ from app import helper, plex, config
 
 from flask import url_for, render_template, g, redirect, flash
 from flask.ext.babel import gettext as _
+from flask.ext.babel import lazy_gettext
 from babel.dates import format_timedelta
 import json
 
+from flask_wtf import Form
+from wtforms import StringField, PasswordField, BooleanField
+from wtforms.validators import DataRequired
+
 app.jinja_env.globals.update(helper=helper)
 app.jinja_env.filters['timeago'] = helper.pretty_date
+
+class Login(Form):
+    username = StringField(lazy_gettext('Username'), validators=[DataRequired()])
+    password = PasswordField(lazy_gettext('Password'), validators=[DataRequired()])
+    remember_me = BooleanField(lazy_gettext('Remember password'))
 
 @app.route("/")
 def index():
@@ -35,9 +45,12 @@ def stats():
 def info(id):
     return render_template('info.html', info=g.plex.getInfo(id))
 
-@app.route("/login")
+@app.route("/login", methods=("GET", "POST"))
 def login():
-    pass
+    form = Login()
+    if form.validate_on_submit():
+        return redirect(url_for('index'))
+    return render_template('login.html', form=form)
 
 
 @app.route("/logout")

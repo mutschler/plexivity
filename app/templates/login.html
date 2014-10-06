@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block body %}
+{% from 'macros.html' import render_form %}
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4">
+    <div class="login-wrapper">
+        <img src="{{ url_for('static', filename='images/plexivity.png') }}" class="img-responsive">
+
+        <!-- <form role="form" method="POST">
+  <div class="form-group">
+    <label for="exampleInputEmail1">{{ _('Username') }}</label>
+    <input type="username" class="form-control" id="exampleInputEmail1" placeholder="">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">{{ _('Password') }}</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> {{ _('Remember password') }}
+    </label>
+  </div>
+  <button type="submit" class="btn btn-plex">{{ _('Login') }}</button>
+
+</form> -->
+  {{ render_form(form, action_url='/login', action_text=_('Login'), btn_class='btn btn-plex') }}
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

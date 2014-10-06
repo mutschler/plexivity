@@ -2,12 +2,12 @@
 
 Install virtualenvwrapper: http://virtualenvwrapper.readthedocs.org/en/latest/index.html
 
-``
-mkvirtualenv plexivity
-pip install -r requirements.txt
-python manage.py db upgrade
-python manage.py runserver
-```
+
+    mkvirtualenv plexivity
+    pip install -r requirements.txt
+    python manage.py db upgrade
+    python manage.py runserver
+
 
 #plexivity
 

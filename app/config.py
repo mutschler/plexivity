@@ -46,6 +46,8 @@ CheckSection('General')
 DATA_DIR = check_setting_str(CFG, 'General', 'DATA_DIR', os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PORT = check_setting_int(CFG, 'General', 'PORT', 8083)
 START_MESSAGE = check_setting_str(CFG, 'General', 'START_MESSAGE', "%(username)s is currently watching %(title)s")
+PAUSE_MESSAGE = check_setting_str(CFG, 'General', 'PAUSE_MESSAGE', "%(username)s paused %(title)s")
+STOP_MESSAGE = check_setting_str(CFG, 'General', 'STOP_MESSAGE', "%(username)s has stopped watching %(title)s")
 
 CheckSection('PMS')
 PMS_HOST = check_setting_str(CFG, 'PMS', 'PMS_HOST', 'localhost')
@@ -59,7 +61,7 @@ MAIL_SERVER = check_setting_str(CFG, 'Mail', 'MAIL_SERVER', 'mail.example.com')
 MAIL_LOGIN = check_setting_str(CFG, 'Mail', 'MAIL_LOGIN', "mail@example.com")
 MAIL_PASSWORD = check_setting_str(CFG, 'Mail', 'MAIL_PASSWORD', "mypassword")
 MAIL_PORT = check_setting_int(CFG, 'Mail', 'MAIL_PORT', 25)
-MAIL_FROM = check_setting_str(CFG, 'Mail', 'MAIL_FROM', "library automailer <mail@example.com>")
+MAIL_FROM = check_setting_str(CFG, 'Mail', 'MAIL_FROM', "plexivity <mail@example.com>")
 
 CheckSection('Pushover')
 NOTIFY_PUSHOVER = check_setting_int(CFG, 'Pushover', 'NOTIFY_PUSHOVER', 1)
@@ -72,6 +74,8 @@ configval={}
 configval["DATA_DIR"] = DATA_DIR
 configval["PORT"] = PORT
 configval["START_MESSAGE"] = START_MESSAGE
+configval["STOP_MESSAGE"] = STOP_MESSAGE
+configval["PAUSE_MESSAGE"] = PAUSE_MESSAGE
 configval["MAIL_SERVER"] = MAIL_SERVER
 configval["MAIL_FROM"] = MAIL_FROM
 configval["MAIL_PORT"] = MAIL_PORT
@@ -94,6 +98,8 @@ def save_config(configval):
     new_config['General']['DATA_DIR'] = configval["DATA_DIR"]
     new_config['General']['PORT'] = configval["PORT"]
     new_config['General']['START_MESSAGE'] = configval["START_MESSAGE"]
+    new_config['General']['STOP_MESSAGE'] = configval["STOP_MESSAGE"]
+    new_config['General']['PAUSE_MESSAGE'] = configval["PAUSE_MESSAGE"]
     new_config['Mail'] = {}
     new_config['Mail']['MAIL_PORT'] = int(configval["MAIL_PORT"])
     new_config['Mail']['MAIL_SERVER'] = configval["MAIL_SERVER"]

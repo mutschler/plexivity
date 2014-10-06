@@ -79,8 +79,7 @@ def notifyer():
     # TODO: move this to a extra file and include DB support!
     p = plex.Server(config.PMS_HOST, config.PMS_PORT)
     sessions = p.currentlyPlaying()
-    print "start shit"
-    print sessions.items()
+
     for session in sessions:
         if session.get("type") == "episode":
             title = '%s - "%s"' % (session.get("grandparentTitle"), session.get("title"))
@@ -93,9 +92,14 @@ def notifyer():
         product = session.find("Player").get("product")
         player_title = session.find("Player").get("product")
 
-        message = config.START_MESSAGE % {"username": username, "platform": platform, "title": title, "product": product, "player_title": player_title, "offset": offset}
-        print config.NOTIFY_PUSHOVER
-        if config.NOTIFY_PUSHOVER:
+        if session.find("Player").get("state") == "paused":
+            message = config.PAUSE_MESSAGE % {"username": username, "platform": platform, "title": title, "product": product, "player_title": player_title, "offset": offset}
+        elif session.find("Player").get("state") == "playing":
+            message = config.START_MESSAGE % {"username": username, "platform": platform, "title": title, "product": product, "player_title": player_title, "offset": offset}
+        else:
+            message = config.STOP_MESSAGE % {"username": username, "platform": platform, "title": title, "product": product, "player_title": player_title, "offset": offset}
+
+        if config.NOTIFY_PUSHOVER and message:
             from app.providers import pushover
             pushover.send_notification(message)
 

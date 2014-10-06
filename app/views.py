@@ -41,8 +41,8 @@ class Register(Form):
 
 class Settings(Form):
     use_pushover = BooleanField(lazy_gettext('use pushover for notifications'))
-    pushover_user = StringField(lazy_gettext('Pushover User-Token'), validators=[RequiredIf(use_pushover)])
-    pushover_app = StringField(lazy_gettext('Pushover App-Token'), validators=[RequiredIf(use_pushover)])
+    pushover_user = StringField(lazy_gettext('Pushover User-Token'), validators=[RequiredIf("use_pushover")])
+    pushover_app = StringField(lazy_gettext('Pushover App-Token'), validators=[RequiredIf("use_pushover")])
 
 @app.route("/")
 def index():

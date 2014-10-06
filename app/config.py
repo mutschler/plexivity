@@ -57,6 +57,7 @@ PMS_PASS = check_setting_str(CFG, 'PMS', 'PMS_PASS', 'password')
 PMS_SSL = check_setting_int(CFG, 'PMS', 'PMS_SSL', 0)
 
 CheckSection('Mail')
+NOTIFY_MAIL = check_setting_int(CFG, 'Mail', 'NOTIFY_MAIL', 0)
 MAIL_SERVER = check_setting_str(CFG, 'Mail', 'MAIL_SERVER', 'mail.example.com')
 MAIL_LOGIN = check_setting_str(CFG, 'Mail', 'MAIL_LOGIN', "mail@example.com")
 MAIL_PASSWORD = check_setting_str(CFG, 'Mail', 'MAIL_PASSWORD', "mypassword")
@@ -81,6 +82,7 @@ configval["MAIL_FROM"] = MAIL_FROM
 configval["MAIL_PORT"] = MAIL_PORT
 configval["MAIL_LOGIN"] = MAIL_LOGIN
 configval["MAIL_PASSWORD"] = MAIL_PASSWORD
+configval["NOTIFY_MAIL"] = NOTIFY_MAIL
 configval["PMS_HOST"] = PMS_HOST
 configval["PMS_PORT"] = PMS_PORT
 configval["PMS_USER"] = PMS_USER
@@ -106,6 +108,7 @@ def save_config(configval):
     new_config['Mail']['MAIL_FROM'] = configval["MAIL_FROM"]
     new_config['Mail']['MAIL_LOGIN'] = configval["MAIL_LOGIN"]
     new_config['Mail']['MAIL_PASSWORD'] = configval["MAIL_PASSWORD"]
+    new_config['Mail']['NOTIFY_MAIL'] = int(configval["NOTIFY_MAIL"])
     new_config['PMS'] = {}
     new_config['PMS']['PMS_HOST'] = configval["PMS_HOST"]
     new_config['PMS']['PMS_PORT'] = int(configval["PMS_PORT"])
@@ -117,6 +120,5 @@ def save_config(configval):
     new_config['Pushover']['PUSHOVER_USER'] = configval["PUSHOVER_USER"]
     new_config['Pushover']['PUSHOVER_TOKEN'] = configval["PUSHOVER_TOKEN"]
     new_config.write()
-    return "Saved"
 
 save_config(configval)

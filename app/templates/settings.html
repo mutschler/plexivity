@@ -1,5 +1,13 @@
 {% extends "layout.html" %}
+{% from 'macros.html' import render_form %}
 {% block body %}
 
+    {% if form %}
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+            {{ render_form(form, action_url='/settings', action_text=_('Save settings'), btn_class='btn btn-plex') }}
+            </div>
+        </div>
+    {% endif %}
 
 {% endblock %}

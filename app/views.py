@@ -63,7 +63,6 @@ def login():
     form = forms.Login()
     if form.validate_on_submit():
         user = db.session.query(models.User).filter(models.User.email == form.email.data).first()
-        print form.remember_me.data
         if user and check_password_hash(user.password, form.password.data):
             login_user(user, remember = form.remember_me.data)
             flash(_("you are now logged in as: '%(username)s'", username=user.email), category="success")
@@ -87,7 +86,21 @@ def logout():
     return redirect(request.args.get("next") or url_for("index"))
 
 
-@app.route("/settings")
+@app.route("/settings", methods=("GET", "POST"))
 @login_required
 def settings():
-    return render_template('settings.html')
+    form = forms.Settings()
+    if form.validate_on_submit():
+        for x in form._fields:
+            if x != "csrf_token":
+                config.configval[x] = form[x].data
+                setattr(config, x, form[x].data)
+        config.save_config(config.configval)
+        flash(_('Settings saved!'), "success")
+
+    #update form values with latest config vals always!
+    for x in form._fields:
+        if x != "csrf_token":
+            form[x].data = config.configval[x]
+
+    return render_template('settings.html', form=form)

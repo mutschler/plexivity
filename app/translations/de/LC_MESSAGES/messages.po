@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-10-06 23:48+0200\n"
-"PO-Revision-Date: 2014-10-06 23:49+0100\n"
+"POT-Creation-Date: 2014-10-07 11:47+0200\n"
+"PO-Revision-Date: 2014-10-07 11:51+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -19,170 +19,237 @@ msgstr ""
 "Language: de\n"
 "X-Generator: Poedit 1.6.5\n"
 
-#: app/helper.py:56
+#: app/forms.py:27 app/forms.py:35 app/forms.py:65
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: app/forms.py:28 app/forms.py:34 app/forms.py:66 app/templates/login.html:15
+msgid "Password"
+msgstr "Passwort"
+
+#: app/forms.py:29 app/templates/login.html:20
+msgid "Remember password"
+msgstr "Passwort merken"
+
+#: app/forms.py:33 app/templates/login.html:11
+msgid "Username"
+msgstr "Benutzername"
+
+#: app/forms.py:39
+msgid "use pushover for notifications"
+msgstr "Pushover aktivieren"
+
+#: app/forms.py:40
+msgid "Pushover User-Token"
+msgstr "Pushover Benutzer-Token"
+
+#: app/forms.py:41
+msgid "Pushover App-Token"
+msgstr "Pushover Anwendungs-Token"
+
+#: app/forms.py:43
+msgid "use mail for notifications"
+msgstr "E-Mail benachrichtigung aktivieren"
+
+#: app/forms.py:44
+msgid "SMTP Mail Server"
+msgstr "SMTP Server"
+
+#: app/forms.py:45
+msgid "SMTP Server login"
+msgstr "SMTP Server Benutzer"
+
+#: app/forms.py:46
+msgid "SMTP Server password"
+msgstr "SMTP Server Passwort"
+
+#: app/forms.py:47
+msgid "SMTP Mail Port"
+msgstr "SMTP Mail Port"
+
+#: app/forms.py:48
+msgid "Sender Mail Information"
+msgstr "Absender Informationen"
+
+#: app/forms.py:50
+msgid "Plex Media Server Host"
+msgstr "Plex Media Server Host"
+
+#: app/forms.py:51
+msgid "Plex Media Server Port"
+msgstr "Plex Media Server Port"
+
+#: app/forms.py:52
+msgid "Plex Username"
+msgstr "Plex Benutzername"
+
+#: app/forms.py:53
+msgid "Plex Password"
+msgstr "Plex Passwort"
+
+#: app/forms.py:54
+msgid "Use SSL encryption"
+msgstr "SSL Verschlüsselung nutzen"
+
+#: app/forms.py:56
+msgid "plexivity data directory"
+msgstr "plexivity Daten Verzeichnis"
+
+#: app/forms.py:57
+msgid "plexivity port"
+msgstr "plexivity Port"
+
+#: app/forms.py:58
+msgid "String for watching notification"
+msgstr "Nachricht beim starten der Wiedergabe"
+
+#: app/forms.py:59
+msgid "String for stoped watching notification"
+msgstr "Nachricht beim stoppen der Wiedergabe"
+
+#: app/forms.py:60
+msgid "String for paused notification"
+msgstr "Nachricht beim pausieren der Wiedergabe"
+
+#: app/forms.py:67
+msgid "Retype password"
+msgstr "Passwort wiederholen"
+
+#: app/helper.py:66
 msgid "just now"
 msgstr "gerade eben"
 
-#: app/helper.py:58
+#: app/helper.py:68
 #, python-format
 msgid "%(int)s seconds ago"
 msgstr "vor %(int)s Sekunden"
 
-#: app/helper.py:62
+#: app/helper.py:72
 #, python-format
 msgid "%(int)s minuten ago"
 msgstr "vor %(int)s Minuten"
 
-#: app/helper.py:64
+#: app/helper.py:74
 msgid "an hour ago"
 msgstr "vor 1 Stunde"
 
-#: app/helper.py:66
+#: app/helper.py:76
 #, python-format
 msgid "%(int)s hours ago"
 msgstr "vor %(int)s Stunden"
 
-#: app/helper.py:68
+#: app/helper.py:78
 msgid "Yesterday"
 msgstr "Gestern"
 
-#: app/helper.py:70
+#: app/helper.py:80
 #, python-format
 msgid "%(int)s days ago"
 msgstr "vor %(int)s Tagen"
 
-#: app/helper.py:72
+#: app/helper.py:82
 #, python-format
 msgid "%(int)s weeks ago"
 msgstr "vor %(int)s Wochen"
 
-#: app/helper.py:74
+#: app/helper.py:84
 #, python-format
 msgid "%(int)s months ago"
 msgstr "vor %(int)s Monaten"
 
-#: app/helper.py:75
+#: app/helper.py:85
 #, python-format
 msgid "%(int)s years ago"
 msgstr "vor %(int)s Jahren"
 
-#: app/views.py:35 app/views.py:42 app/views.py:50
-msgid "E-Mail"
-msgstr "E-Mail"
-
-#: app/views.py:36 app/views.py:41 app/views.py:51 app/templates/login.html:15
-msgid "Password"
-msgstr "Passwort"
-
-#: app/views.py:37 app/templates/login.html:20
-msgid "Remember password"
-msgstr "Passwort merken"
-
-#: app/views.py:40 app/templates/login.html:11
-msgid "Username"
-msgstr "Benutzername"
-
-#: app/views.py:45
-msgid "use pushover for notifications"
-msgstr "Pushover aktivieren"
-
-#: app/views.py:46
-msgid "Pushover User-Token"
-msgstr "Pushover Benutzer-Token"
-
-#: app/views.py:47
-msgid "Pushover App-Token"
-msgstr "Pushover Anwendungs-Token"
-
-#: app/views.py:52
-msgid "Retype password"
-msgstr "Passwort wiederholen"
-
-#: app/views.py:62
+#: app/views.py:28
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr "Verbindung zum PMS nicht möglich. Bitte Einstellungen überprüfen."
 
-#: app/views.py:83
+#: app/views.py:49
 #, python-format
 msgid "User %(username)s created"
 msgstr "Benutzer %(username)s angelegt"
 
-#: app/views.py:108
+#: app/views.py:75
 #, python-format
 msgid "you are now logged in as: '%(username)s'"
 msgstr "Eingeloggt als: '%(username)s'"
 
-#: app/views.py:111
+#: app/views.py:78
 msgid "username/password missmatch or no such user in database"
 msgstr ""
 "Benutzername/Passwort stimmt nicht überein oder ist nicht in der Datenbank "
 "vorhanden"
 
-#: app/views.py:125
+#: app/views.py:93
 msgid "Logged out"
 msgstr "Abgemeldet"
+
+#: app/views.py:113
+msgid "Settings saved!"
+msgstr "Einstellungen gespeichert!"
 
 #: app/templates/activity.html:1 app/templates/stats.html:21
 msgid "Currently playing"
 msgstr "Momentan abgespielt"
 
-#: app/templates/activity.html:23 app/templates/stats.html:47
+#: app/templates/activity.html:27 app/templates/stats.html:47
 #, python-format
 msgid "%(user)s is watching"
 msgstr "%(user)s sieht gerade"
 
-#: app/templates/activity.html:25 app/templates/stats.html:49
+#: app/templates/activity.html:29 app/templates/stats.html:49
 #, python-format
 msgid "%(user)s has paused"
 msgstr "%(user)s hat pausiert"
 
-#: app/templates/activity.html:27 app/templates/stats.html:51
+#: app/templates/activity.html:31 app/templates/stats.html:51
 #, python-format
 msgid "%(user)s is buffering"
 msgstr "%(user)s buffert gerade"
 
-#: app/templates/activity.html:50 app/templates/stats.html:74
+#: app/templates/activity.html:54 app/templates/stats.html:74
 msgid "Nothing is currently playing"
 msgstr "Zur zeit wird nichts wiedergegeben"
 
-#: app/templates/history.html:8
+#: app/templates/history.html:10
 msgid "Date"
 msgstr "Datum"
 
-#: app/templates/history.html:9
-#, fuzzy
+#: app/templates/history.html:11 app/templates/users.html:9
 msgid "User"
 msgstr "Benutzer"
 
-#: app/templates/history.html:10
+#: app/templates/history.html:12
 msgid "Platform"
 msgstr "Platform"
 
-#: app/templates/history.html:11
+#: app/templates/history.html:13
 msgid "Title"
 msgstr "Titel"
 
-#: app/templates/history.html:12
+#: app/templates/history.html:14
 msgid "Stream Info"
 msgstr "Stream Info"
 
-#: app/templates/history.html:13
+#: app/templates/history.html:15
 msgid "Started"
 msgstr "Start Datum"
 
-#: app/templates/history.html:14
+#: app/templates/history.html:16
 msgid "Paused"
 msgstr "Pausiert"
 
-#: app/templates/history.html:15
+#: app/templates/history.html:17
 msgid "Stopped"
 msgstr "Angehalten"
 
-#: app/templates/history.html:16
+#: app/templates/history.html:18
 msgid "Duration"
 msgstr "Dauer"
 
-#: app/templates/history.html:17
+#: app/templates/history.html:19
 msgid "Completed"
 msgstr "Vollendet"
 
@@ -219,6 +286,10 @@ msgstr "Abmelden"
 msgid "Login"
 msgstr "Anmelden"
 
+#: app/templates/settings.html:8
+msgid "Save settings"
+msgstr "Einstellungen speichern"
+
 #: app/templates/setup.html:9
 msgid "Create Account"
 msgstr "Account erstellen"
@@ -226,6 +297,14 @@ msgstr "Account erstellen"
 #: app/templates/stats.html:81
 msgid "Recently Added"
 msgstr "Kürzlich hinzugefügt"
+
+#: app/templates/users.html:10
+msgid "Last Seen"
+msgstr "Zuletzt gesehen"
+
+#: app/templates/users.html:11
+msgid "Total Plays"
+msgstr "gesamt Wiedergaben"
 
 #~ msgid "Submit"
 #~ msgstr "Suchen"

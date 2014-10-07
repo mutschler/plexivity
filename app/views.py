@@ -94,6 +94,12 @@ def logout():
     return redirect(request.args.get("next") or url_for("index"))
 
 
+@app.route('/users')
+@login_required
+def users():
+    users = db.session.query(models.Processed).group_by(models.Processed.user).all()
+    return render_template('users.html', users=users)
+
 @app.route("/settings", methods=("GET", "POST"))
 @login_required
 def settings():

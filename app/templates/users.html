@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+<table id='usersTable' class='table'>
+  <thead>
+    <tr>
+      <th align='right'></th>
+      <th align='left'>{{ _('User') }} </th>
+      <th align='left'>{{ _('Last Seen') }}</th>
+      <th align='left'>{{ _('Total Plays') }}</th>
+    </tr>
+  </thead>
+<tbody>
+{% for user in users %}
+<tr>
+  <td></td>
+  <td>{{ user.user }}</td>
+  <td>{{ user.time|timestamp|timeago }}</td>
+  <td>{{ user.title|length }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

@@ -26,6 +26,36 @@ body{
   margin-top: 50px;
 }
 
+.modal{
+  color: #999;
+  strong{
+        color: #eee;
+      }
+
+  h4{
+    color: @orange;
+  }
+  h3{
+    margin: 0;
+    line-height: 30px;
+    font-size: 20px;
+  }
+  h5{
+    color: #eee;
+  }
+
+  .modal-content{
+    background: lighten(@dark, 5%);
+
+    .modal-body{
+
+      background: darken(@dark, 2%);
+
+
+    }
+  }
+}
+
 section{
   border: solid 1px #3c3c3c;
   box-shadow: inset 0 0 20px 0 rgba(0,0,0,0.2);

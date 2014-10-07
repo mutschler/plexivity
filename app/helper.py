@@ -4,6 +4,7 @@
 from app.logger import logger
 from flask.ext.babel import gettext as _
 from app import config, plex, notify
+import xml.etree.ElementTree as ET
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -21,8 +22,18 @@ def startScheduler():
 def statistics():
     pass
 
+def date_timestamp(date):
+    import time
+    return time.mktime(date.timetuple())
+
+def load_xml(string):
+    xml = ET.fromstring(string)
+    return xml
 
 def getPercentage(viewed, duration):
+    if not viewed or not duration:
+        return 0
+
     percent = "%2d" % ((float(viewed) / float(duration)) * 100)
 
     if int(percent) >= 90:

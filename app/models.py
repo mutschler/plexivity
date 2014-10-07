@@ -63,7 +63,9 @@ class Processed(db.Model):
     paused_counter = db.Column(db.Integer)
     xml = db.Column(db.Text)
     ip_address = db.Column(db.Text)
-
+    duration = db.Column(db.Integer)
+    view_offset = db.Column(db.Integer)
+    progress = db.Column(db.Integer) # (view_offset / duration) * 100 helper.getPercentage()
 
 class RecentlyAdded(db.Model):
     __tablename__ = "recently_added"

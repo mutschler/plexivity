@@ -31,11 +31,13 @@ def getSessions():
                     current.time = datetime.datetime.now()
                     current.user = username
                     current.platform = player_title
-                    current.xml = ET.tostring(sessions)
+                    current.xml = ET.tostring(session)
                     current.notified = 1
                     current.summary = session.get("summary")
                     current.rating = session.get("contentRating")
                     current.year = session.get("year")
+                    current.duration = session.get("duration")
+                    current.view_offset = session.get("view_offset")
                     current.title = title
 
                     if session.get("type") == "episode":

@@ -11,6 +11,7 @@ import json
 
 app.jinja_env.globals.update(helper=helper)
 app.jinja_env.filters['timeago'] = helper.pretty_date
+app.jinja_env.filters['timestamp'] = helper.date_timestamp
 
 #workaround to load scheduler only once through debug time
 #TODO: remove this

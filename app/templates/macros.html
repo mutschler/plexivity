@@ -95,3 +95,139 @@
         <button type="submit" class="{{ btn_class }}">{{ action_text }} </button>
     </form>
 {%- endmacro %}
+
+
+{% macro render_stream_info(xml, row_count=1) -%}
+    <div id="streamDetailsModal{{row_count}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" >
+        <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove"></i></button>
+            <h3 id="myModalLabel">
+                <i class="glyphicon glyphicon-info-sign icon-white"></i> Stream Info:
+                {% if xml.get('type') == "episode" %}
+                <strong>{{ xml.get('grandparentTitle') }} - {{ xml.get('title') }} - s{{ xml.get('parentIndex') }}e{{ xml.get('index') }} ({{xml.find('User').get('title')}})</strong>
+                {% else %}
+                <strong>{{ xml.get('title') }} ({{xml.find('User').get('title')}})</strong>
+                {% endif %}
+            </h3>
+                                </div>
+
+                                <div class="modal-body clearfix">
+
+                                        {% if xml.find('TranscodeSession') != None %}
+                                        <div class="col-sm-4">
+                                            <h4>Stream Details</h4>
+                                            <ul class="list-unstyled">
+                                            <h5>Video</h5>
+                                            <li>Stream Type: <strong>{{ xml.find('TranscodeSession').get('videoDecision') }}</strong></li>
+                                            <li>Video Resolution: <strong>{{ xml.find('TranscodeSession').get('height') }}</strong></li>
+                                            <li>Video Codec: <strong>{{ xml.find('TranscodeSession').get('videoCodec') }}</strong></li>
+                                            <li>Video Width: <strong>{{ xml.find('TranscodeSession').get('width') }}</strong></li>
+                                            <li>Video Height: <strong>{{ xml.find('TranscodeSession').get('height') }}</strong></li>
+                                            </ul>
+
+                                            <h5>Audio</h5>
+                                            <ul class="list-unstyled">
+                                            <li>Stream Type: <strong>{{ xml.find('TranscodeSession').get('audioDecision') }}</strong></li>
+                                            {%- if xml.find('TranscodeSession').get('audioCodec') == "dca" %}
+                                             <li>Audio Codec: <strong>dts</strong></li>
+                                             {%- else %}
+                                             <li>Audio Codec: <strong>{{xml.find('TranscodeSession').get('audioCodec')}}</strong></li>
+                                             {%- endif %}
+                                             <li>Audio Channels: <strong>{{xml.find('TranscodeSession').get('audioChannels')}}</strong></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-4">
+
+                                            <h4>Media Source Details</h4>
+                                            <ul class="list-unstyled">
+                                            <li>Container: <strong>{{xml.find('Media').get('container')}}</strong></li>
+                                            <li>Resolution: <strong>{{xml.find('Media').get('videoResolution')}}</strong></li>
+                                            <li>Bitrate: <strong>{{xml.find('Media').get('bitrate')}}</strong></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <h4>Video Source Details</h4>
+                                            <ul class="list-unstyled">
+                                                <li>Width: <strong>{{xml.find('Media').get('width')}}</strong></li>
+                                                <li>Height: <strong>{{xml.find('Media').get('height')}}</strong></li>
+                                                <li>Aspect Ratio: <strong>{{xml.find('Media').get('aspectRatio')}}</strong></li>
+                                                <li>Video Frame Rate: <strong>{{xml.find('Media').get('videoFrameRate')}}</strong></li>
+                                                <li>Video Codec: <strong>{{xml.find('Media').get('videoCodec')}}</strong></li>
+                                            </ul>
+
+                                            <h4>Audio Source Details</h4>
+                                            <ul class="list-unstyled">
+                                             {%- if xml.find('Media').get('audioCodec') == "dca" %}
+                                             <li>Audio Codec: <strong>dts</strong></li>
+                                             {%- else %}
+                                             <li>Audio Codec: <strong>{{xml.find('Media').get('audioCodec')}}</strong></li>
+                                             {%- endif %}
+                                             <li>Audio Channels: <strong>{{xml.find('Media').get('audioChannels')}}</strong></li>
+                                            </ul>
+                                        </div>
+                                        {% else %}
+                                        <div class="col-sm-4">
+                                            <h4>Stream Details</h4>
+                                            <ul class="list-unstyled">
+                                            <h5>Video</h5>
+                                            <li>Stream Type: <strong>Direct Play</strong></li>
+                                            <li>Video Resolution: <strong>{{ xml.find('Media').get('height') }}</strong></li>
+                                            <li>Video Codec: <strong>{{ xml.find('Media').get('videoCodec') }}</strong></li>
+                                            <li>Video Width: <strong>{{ xml.find('Media').get('width') }}</strong></li>
+                                            <li>Video Height: <strong>{{ xml.find('Media').get('height') }}</strong></li>
+                                            </ul>
+
+                                            <h5>Audio</h5>
+                                            <ul class="list-unstyled">
+                                            <li>Stream Type: <strong>Direct Play</strong></li>
+                                            {%- if xml.find('Media').get('audioCodec') == "dca" %}
+                                             <li>Audio Codec: <strong>dts</strong></li>
+                                             {%- else %}
+                                             <li>Audio Codec: <strong>{{xml.find('Media').get('audioCodec')}}</strong></li>
+                                             {%- endif %}
+                                             <li>Audio Channels: <strong>{{xml.find('Media').get('audioChannels')}}</strong></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <h4>Media Source Details</h4>
+                                            <ul class="list-unstyled">
+                                            <li>Container: <strong>{{xml.find('Media').get('container')}}</strong></li>
+                                            <li>Resolution: <strong>{{xml.find('Media').get('videoResolution')}}</strong></li>
+                                            <li>Bitrate: <strong>{{xml.find('Media').get('bitrate')}}</strong></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <h4>Video Source Details</h4>
+                                            <ul class="list-unstyled">
+                                                <li>Width: <strong>{{xml.find('Media').get('width')}}</strong></li>
+                                                <li>Height: <strong>{{xml.find('Media').get('height')}}</strong></li>
+                                                <li>Aspect Ratio: <strong>{{xml.find('Media').get('aspectRatio')}}</strong></li>
+                                                <li>Video Frame Rate: <strong>{{xml.find('Media').get('videoFrameRate')}}</strong></li>
+                                                <li>Video Codec: <strong>{{xml.find('Media').get('videoCodec')}}</strong></li>
+                                            </ul>
+                                            <h4>Audio Source Details</h4>
+                                            <ul class="list-unstyled">
+                                             {%- if xml.find('Media').get('audioCodec') == "dca" %}
+                                             <li>Audio Codec: <strong>dts</strong></li>
+                                             {%- else %}
+                                             <li>Audio Codec: <strong>{{xml.find('Media').get('audioCodec')}}</strong></li>
+                                             {%- endif %}
+                                             <li>Audio Channels: <strong>{{xml.find('Media').get('audioChannels')}}</strong></li>
+                                            </ul>
+                                        </div>
+                                        {% endif %}
+
+
+
+
+
+
+                                </div>
+
+                                <div class="modal-footer">
+                                </div>
+</div></div>
+                            </div>
+{%- endmacro %}

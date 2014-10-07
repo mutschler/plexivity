@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
+{% from 'macros.html' import render_stream_info %}
 {% block body %}
 
 <section id="history">
+
     <table class="table" id="globalHistory">
         <thead>
             <tr>
@@ -19,40 +21,20 @@
         </thead>
         <tbody>
             {% for entry in history %}
+            {{ render_stream_info(helper.load_xml(entry.xml), entry.id) }}
                 <tr>
-                    <td align="left" data-order="{{ time.mktime(entry.time.timetuple()) }}">{{ entry.time.strftime('%Y/%M/%D') }}</td>
+                    <td align="left" data-order="{{ entry.time|timestamp|int }}">{{ entry.time.strftime('%Y/%m/%d') }}</td>
                     <td align="left">{{ entry.user }}</td>
                     <td align="left">{{ entry.platform }}</td>
                     <td align="left">{{ entry.title }}</td>
-                    <td align="center" class=" "><a href="#streamDetailsModal1" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a></td>
-                    <td align="center">{{ entry.time.strftime('%H:%m') }}</td>
-                    <td align="center">na </td>
+                    <td align="center" class=" "><a href="#streamDetailsModal{{entry.id}}" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a></td>
+                    <td align="center">{{ entry.time.strftime('%H:%M') }}</td>
+                    <td align="center">{{ entry.paused }} </td>
                     <td align="center">na</td>
                     <td align="center">na</td>
                     <td align="center"><span class="badge badge-warning">13%</span></td>
                 </tr>
             {% endfor %}
-            <tr>
-                <td data-order="20140927" class="currentlyWatching " align="left">Currently watching...</td>
-                <td align="left" class=" "><a href="user.php?user=ruffy">ruffy</a></td>
-                <td align="left" class=" ">Plex Web (Chrome)</td>
-                <td class="title " align="left"><a href="{{ url_for('info', id='7951') }}">Antisocial</a></td>
-                <td align="center" class=" "><a href="#streamDetailsModal1" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a></td>
-                <td align="center" class=" ">4:33</td><td align="center" class=" ">0 min</td>
-                <td align="center" class=" ">n/a</td><td align="center" class=" ">n/a</td>
-                <td align="center" class=" "><span class="badge badge-warning">13%</span></td>
-            </tr>
-            <tr>
-                <td data-order="20140927" align="left" class=" ">27/09/2014</td>
-                <td align="left" class=" "><a href="user.php?user=ruffy">ruffy</a></td>
-                <td align="left" class=" ">Plex Web (Chrome)</td>
-                <td class="title " align="left"><a href="{{ url_for('info', id='7951') }}">Antisocial</a>
-                </td><td align="center" class=" "><a href="#streamDetailsModal2" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a></td>
-                <td align="center" class=" ">4:23</td><td align="center" class=" ">2.6 min</td>
-                <td align="center" class=" ">4:31</td><td align="center" class=" ">6 min</td>
-                <td align="center" class=" "><span class="badge badge-warning">11%</span></td>
-            </tr>
-
         </tbody>
     </table>
 

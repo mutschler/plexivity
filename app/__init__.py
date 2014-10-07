@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 
-from app import config, plex, helper
+from app import config, plex
 
 p = plex.Server(config.PMS_HOST, config.PMS_PORT)
 from flask import Flask, g, request
@@ -74,9 +74,4 @@ def before_request():
     g.user = current_user
     g.plex = p
 
-#workaround to load scheduler only once through debug time
-#TODO: remove this
-@app.before_first_request
-def initialize():
-    helper.startScheduler()
 

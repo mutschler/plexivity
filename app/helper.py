@@ -3,7 +3,7 @@
 
 from app.logger import logger
 from flask.ext.babel import gettext as _
-from app import config, plex
+from app import config, plex, notify
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -15,8 +15,7 @@ def startScheduler():
     #in debug mode this is executed twice :(
     #DONT run flask in auto reload mode when testing this!
     scheduler = BackgroundScheduler()
-    scheduler.add_job(notifyer, 'interval', seconds=10, max_instances=1)
-    print scheduler.get_jobs()
+    scheduler.add_job(notify.getSessions, 'interval', seconds=10, max_instances=1)
     scheduler.start()
 
 def statistics():

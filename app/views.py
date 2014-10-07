@@ -12,6 +12,12 @@ import json
 app.jinja_env.globals.update(helper=helper)
 app.jinja_env.filters['timeago'] = helper.pretty_date
 
+#workaround to load scheduler only once through debug time
+#TODO: remove this
+@app.before_first_request
+def initialize():
+    helper.startScheduler()
+
 
 @app.route("/")
 @login_required

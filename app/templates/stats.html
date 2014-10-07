@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-    {% if stats %}
+    {% if stats != None %}
         <section id="overview">
             <div class="row">
                 <div class="col-sm-12">
@@ -19,7 +19,7 @@
 
     <section id="activity">
         <h2 class="title">{{ _('Currently playing') }}</h2>
-        {% if activity and activity.get('size') >= 1 %}
+        {% if activity|length and activity.get('size') >= 1 %}
             <div class="row">
                 <div class="stats">
                     <div class="wrapper">

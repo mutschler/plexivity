@@ -21,7 +21,7 @@ class Server(object):
 
     def test(self):
         status = self._request("status")
-        if status:
+        if len(status):
             self.status = 1
         else:
             self.status = 0

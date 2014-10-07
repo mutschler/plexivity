@@ -81,7 +81,8 @@ def login():
 @app.route("/history")
 @login_required
 def history():
-    return render_template('history.html')
+    history = db.session.query(models.Processed).all()
+    return render_template('history.html', history=history)
 
 @app.route('/logout')
 @login_required

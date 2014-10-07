@@ -1,5 +1,5 @@
 from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.script import Manager, Command
+from flask.ext.script import Manager
 from flask.ext.migrate import Migrate, MigrateCommand
 
 from app import app, models
@@ -11,8 +11,8 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, models.db)
 manager = Manager(app)
 
+#Translation Manager
 Translation = Manager(usage="Manage Translations")
-
 pybabel = 'pybabel'
 
 @Translation.command
@@ -34,6 +34,7 @@ def compile():
     "compile translations"
     os.system(pybabel + ' compile -d app/translations')
 
+#run with ssl certs
 @manager.command
 def ssl():
     from OpenSSL import SSL
@@ -44,8 +45,6 @@ def ssl():
 
 manager.add_command('db', MigrateCommand)
 manager.add_command('tr', Translation)
-
-
 
 
 if __name__ == "__main__":

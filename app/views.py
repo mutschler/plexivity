@@ -1,6 +1,6 @@
 import os
 
-from app import app, db, models, forms
+from app import app, db, models, forms, lm, babel
 from app import helper, plex, config
 
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -10,6 +10,7 @@ from flask.ext.babel import gettext as _
 from babel.dates import format_timedelta
 import json
 
+p = plex.Server(config.PMS_HOST, config.PMS_PORT)
 
 app.jinja_env.globals.update(helper=helper)
 app.jinja_env.filters['timeago'] = helper.pretty_date
@@ -21,6 +22,49 @@ app.jinja_env.filters['timestamp'] = helper.date_timestamp
 def initialize():
     helper.startScheduler()
 
+class MyAnonymousUser(object):
+    def __init__(self):
+        self.random_books = 1
+
+    def is_active(self):
+        return False
+
+    def is_authenticated(self):
+        return False
+
+    def is_anonymous(self):
+        return True
+
+    def get_id(self):
+        return unicode(self.id)
+
+lm.anonymous_user = MyAnonymousUser
+
+@lm.user_loader
+def load_user(id):
+    return db.session.query(models.User).filter(models.User.id == int(id)).first()
+
+@babel.localeselector
+def get_locale():
+    # if a user is logged in, use the locale from the user settings
+    user = getattr(g, 'user', None)
+    if user is not None and hasattr(user, "locale"):
+         return user.locale
+    # otherwise try to guess the language from the user accept
+    # header the browser transmits.  We support de/fr/en in this
+    # example.  The best match wins.
+    return request.accept_languages.best_match(['de', "en"])
+
+@babel.timezoneselector
+def get_timezone():
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.timezone
+
+@app.before_request
+def before_request():
+    g.user = current_user
+    g.plex = p
 
 @app.route("/")
 @login_required
@@ -118,6 +162,8 @@ def users():
 @login_required
 def settings():
     form = forms.Settings()
+    old_host = config.PMS_HOST
+    old_port = config.PMS_PORT
     if form.validate_on_submit():
         for x in form._fields:
             if x != "csrf_token":
@@ -127,6 +173,12 @@ def settings():
         flash(_('Settings saved!'), "success")
 
     #update form values with latest config vals always!
+    if config.PMS_PORT != old_port or config.PMS_HOST != old_host:
+        print "reload plex server!"
+        g.plex.update_settings(config.PMS_HOST, int(config.PMS_PORT))
+        print g.plex.test()
+   # p = False
+
     for x in form._fields:
         if x != "csrf_token":
             form[x].data = config.configval[x]

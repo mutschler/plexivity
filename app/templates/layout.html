@@ -36,7 +36,7 @@
               {% if g.user.is_authenticated() %}
               <li><a href="{{url_for('settings')}}"><span class="glyphicon glyphicon-wrench"></span> {{ _('Settings') }}</a></li>
               <li><a href="{{url_for('history')}}"><span class="glyphicon glyphicon-calendar"></span> {{ _('History') }}</a></li>
-              <li><a href="{{url_for('settings')}}"><span class="glyphicon glyphicon-user"></span> {{ _('Users') }}</a></li>
+              <li><a href="{{url_for('users')}}"><span class="glyphicon glyphicon-user"></span> {{ _('Users') }}</a></li>
               <li><a href="{{url_for('stats')}}"><span class="glyphicon glyphicon-stats"></span> {{ _('Statistics') }}</a></li>
               <li><a href="{{url_for('logout', next=request.path)}}"><span class="glyphicon glyphicon-log-out"></span> {{_('Logout')}} </a></li>
               {% else %}

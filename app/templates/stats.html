@@ -83,7 +83,7 @@
         <div class="row">
 
             {% for object in new %}
-                <div class="col-lg-2 col-sm-2 recently-added-cover">
+                <div class="col-xs-6 col-lg-2 col-sm-2 recently-added-cover">
                     <a href="{{ url_for('info', id=object.get("ratingKey")) }}">
                         <img src="{{ url_for('cache', filename=object.get('thumb')|replace('/','', 1)) }}" class="img-responsive"/>
                     </a>

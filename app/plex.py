@@ -34,9 +34,10 @@ class Server(object):
             args["X-Plex-Token"] = self.token
         result = self.session.get("%s%s" % (self.url, url), params=args)
         logger.debug(u"PLEX => requested url: %(url)s" % {"url": url})
+        logger.debug(u"PLEX => requests args: %s" % args)
 
         if result.status_code == 401 and config.PMS_USER != "username" and config.PMS_PASS != "password":
-            logger.debug(u"request failed, trying with auth")
+            logger.debug(u"PLEX => request failed, trying with auth")
             self.session.headers.update({'X-Plex-Client-Identifier': 'plexivity'})
             self.session.headers.update({'Content-Length': 0})
 
@@ -46,7 +47,7 @@ class Server(object):
                 json = xml2json(x.content, strip_ns=False)
                 self.token = json["user"]["authentication-token"]
                 args["X-Plex-Token"] = self.token
-                logger.debug(u"auth successfull, requesting url %(url)s again" % {"url": url})
+                logger.debug(u"PLEX => auth successfull, requesting url %(url)s again" % {"url": url})
                 result = self.session.get("%s%s" % (self.url, url), params=args)
             else:
                 return False
@@ -56,8 +57,10 @@ class Server(object):
             #json = xml2json(result.content, strip_ns=False)
             json = ET.fromstring(result.content)
             return json
-        else:
+        elif result.ok:
             return result.content
+        else:
+            logger.error(u"PLEX => there was an error with the request")
 
     def getThumb(self, url):
         if self.token:
@@ -67,7 +70,20 @@ class Server(object):
             return "http://%(host)s:%(port)s%(url)s" % {"host": self.host, "port": self.port, "url": url}
 
     def get_thumb_data(self, url):
-        return self._request(url)
+        #/photo/:/transcode?url=http://127.0.0.1:".$plexWatch['pmsHttpPort']."".$xml->Video['art']."&width=1920&height=1080";
+        args = {
+            "url" : "http://127.0.0.1:%(port)s/%(url)s" % {"port": self.port,"url": url}
+        }
+        if "/art/" in url:
+            args["width"] = 1920
+            args["height"] = 1080
+        else:
+            args["width"] = 480
+            args["height"] = 694
+        transcode_url = "photo/:/transcode" #?url=http://127.0.0.1:%(port)s/%(url)s" % {"port": self.port,"url": url}
+
+        #?url=http://127.0.0.1:%(port)s/%(url)s&width=%(width)s&height=%(height)s" % {"port": self.port,"url": url, "width": width, "height": height}
+        return self._request(transcode_url, args)
 
     def currentlyPlaying(self):
         return self._request("status/sessions")

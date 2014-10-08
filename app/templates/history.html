@@ -21,12 +21,13 @@
         </thead>
         <tbody>
             {% for entry in history %}
-            {{ render_stream_info(helper.load_xml(entry.xml), entry.id) }}
+                {% set xml = helper.load_xml(entry.xml) %}
+                {{ render_stream_info(xml, entry.id) }}
                 <tr>
                     <td align="left" data-order="{{ entry.time|timestamp|int }}">{{ entry.time.strftime('%Y/%m/%d') }}</td>
                     <td align="left">{{ entry.user }}</td>
                     <td align="left">{{ entry.platform }}</td>
-                    <td align="left">{{ entry.title }}</td>
+                    <td align="left"><a href="{{ url_for('info', id=xml.get('ratingKey')) }}">{{ entry.title }}</a></td>
                     <td align="center" class=" "><a href="#streamDetailsModal{{entry.id}}" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a></td>
                     <td align="center">{{ entry.time.strftime('%H:%M') }}</td>
                     <td align="center">{{ entry.paused }} </td>

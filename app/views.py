@@ -1,9 +1,11 @@
+import os
+
 from app import app, db, models, forms
 from app import helper, plex, config
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask.ext.login import login_required, current_user, logout_user, login_user
-from flask import url_for, render_template, g, redirect, flash, request
+from flask import url_for, render_template, g, redirect, flash, request, send_from_directory
 from flask.ext.babel import gettext as _
 from babel.dates import format_timedelta
 import json
@@ -93,6 +95,18 @@ def logout():
         flash(_("Logged out"), "success")
     return redirect(request.args.get("next") or url_for("index"))
 
+@app.route('/cache/<path:filename>', strict_slashes=False)
+@login_required
+def cache(filename):
+    cache_dir = os.path.join(config.DATA_DIR, "cache")
+    cache_file = os.path.join(cache_dir, filename)
+    if not os.path.exists(cache_file + ".jpg"):
+        if helper.cache_file(filename, g.plex):
+            return send_from_directory(cache_dir, filename + ".jpg")
+        else:
+            return app.send_static_file('images/fallback_cover.png')
+    else:
+        return send_from_directory(cache_dir, filename + ".jpg")
 
 @app.route('/users')
 @login_required

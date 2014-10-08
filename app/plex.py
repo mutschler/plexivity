@@ -33,7 +33,7 @@ class Server(object):
         if self.token:
             args["X-Plex-Token"] = self.token
         result = self.session.get("%s%s" % (self.url, url), params=args)
-        logger.debug(u"requested url: %(url)s" % {"url": url})
+        logger.debug(u"PLEX => requested url: %(url)s" % {"url": url})
 
         if result.status_code == 401 and config.PMS_USER != "username" and config.PMS_PASS != "password":
             logger.debug(u"request failed, trying with auth")
@@ -51,11 +51,13 @@ class Server(object):
             else:
                 return False
 
-        if result:
+        if result and "xml" in result.headers['content-type']:
             import xml.etree.ElementTree as ET
             #json = xml2json(result.content, strip_ns=False)
             json = ET.fromstring(result.content)
             return json
+        else:
+            return result.content
 
     def getThumb(self, url):
         if self.token:
@@ -63,6 +65,9 @@ class Server(object):
                                                                                "url": url, "token": self.token}
         else:
             return "http://%(host)s:%(port)s%(url)s" % {"host": self.host, "port": self.port, "url": url}
+
+    def get_thumb_data(self, url):
+        return self._request(url)
 
     def currentlyPlaying(self):
         return self._request("status/sessions")

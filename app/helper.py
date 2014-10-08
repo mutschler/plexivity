@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
 
 from app.logger import logger
 from flask.ext.babel import gettext as _
@@ -39,6 +40,22 @@ def getPercentage(viewed, duration):
     if int(percent) >= 90:
         return 100
     return percent
+
+def cache_file(filename, plex):
+    cache_dir = os.path.join(config.DATA_DIR, "cache")
+    if not os.path.exists(cache_dir):
+        os.mkdir(cache_dir)
+    cache_file = os.path.join(cache_dir, filename)
+    if not os.path.exists(os.path.split(cache_file)[0]):
+        os.makedirs(os.path.split(cache_file)[0])
+    img_data = plex.get_thumb_data(filename)
+    if img_data:
+        f = open(cache_file + ".jpg", "wb")
+        f.write(img_data)
+        f.close()
+        return True
+
+    return False
 
 def pretty_date(time=False):
     """

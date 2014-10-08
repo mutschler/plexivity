@@ -1,11 +1,17 @@
 function currentActivity() {
-			$('#activity').load('/load/activity');
-		}
-		setInterval('currentActivity()', 15000);
+	$('#activity').load('/load/activity');
+}
+
 
 
 
 $(document).ready(function() {
+
+	//only set the interval if we are on a page that contains activity feed
+	if($('#activity').length){
+		setInterval('currentActivity()', 15000);
+	}
+
 			$('#globalHistory').dataTable( {
 				"bPaginate": true,
 				"bLengthChange": true,

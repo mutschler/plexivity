@@ -21,7 +21,7 @@ class Server(object):
 
     def test(self):
         status = self._request("status")
-        if len(status):
+        if status != False:
             self.status = 1
         else:
             self.status = 0
@@ -32,35 +32,42 @@ class Server(object):
     def _request(self, url, args=dict()):
         if self.token:
             args["X-Plex-Token"] = self.token
-        result = self.session.get("%s%s" % (self.url, url), params=args)
-        logger.debug(u"PLEX => requested url: %(url)s" % {"url": url})
-        logger.debug(u"PLEX => requests args: %s" % args)
 
-        if result.status_code == 401 and config.PMS_USER != "username" and config.PMS_PASS != "password":
-            logger.debug(u"PLEX => request failed, trying with auth")
-            self.session.headers.update({'X-Plex-Client-Identifier': 'plexivity'})
-            self.session.headers.update({'Content-Length': 0})
+        try:
+            result = self.session.get("%s%s" % (self.url, url), params=args)
+            logger.debug(u"PLEX => requested url: %(url)s" % {"url": url})
+            logger.debug(u"PLEX => requests args: %s" % args)
 
-            self.session.auth = (config.PMS_USER, config.PMS_PASS)
-            x = self.session.post("https://my.plexapp.com/users/sign_in.xml")
-            if x.ok:
-                json = xml2json(x.content, strip_ns=False)
-                self.token = json["user"]["authentication-token"]
-                args["X-Plex-Token"] = self.token
-                logger.debug(u"PLEX => auth successfull, requesting url %(url)s again" % {"url": url})
-                result = self.session.get("%s%s" % (self.url, url), params=args)
+            if result.status_code == 401 and config.PMS_USER != "username" and config.PMS_PASS != "password":
+                logger.debug(u"PLEX => request failed, trying with auth")
+                self.session.headers.update({'X-Plex-Client-Identifier': 'plexivity'})
+                self.session.headers.update({'Content-Length': 0})
+
+                self.session.auth = (config.PMS_USER, config.PMS_PASS)
+                x = self.session.post("https://my.plexapp.com/users/sign_in.xml")
+                if x.ok:
+                    json = xml2json(x.content, strip_ns=False)
+                    self.token = json["user"]["authentication-token"]
+                    args["X-Plex-Token"] = self.token
+                    logger.debug(u"PLEX => auth successfull, requesting url %(url)s again" % {"url": url})
+                    result = self.session.get("%s%s" % (self.url, url), params=args)
+                else:
+                    return False
+
+            if result and "xml" in result.headers['content-type']:
+                import xml.etree.ElementTree as ET
+                #json = xml2json(result.content, strip_ns=False)
+                json = ET.fromstring(result.content)
+                return json
+            elif result.ok:
+                return result.content
             else:
+                logger.error(u"PLEX => there was an error with the request")
                 return False
 
-        if result and "xml" in result.headers['content-type']:
-            import xml.etree.ElementTree as ET
-            #json = xml2json(result.content, strip_ns=False)
-            json = ET.fromstring(result.content)
-            return json
-        elif result.ok:
-            return result.content
-        else:
-            logger.error(u"PLEX => there was an error with the request")
+        except requests.ConnectionError:
+            logger.error(u"PLEX => could not connect to Server!!!")
+            return False
 
     def getThumb(self, url):
         if self.token:
@@ -97,6 +104,13 @@ class Server(object):
 
     def getInfo(self, mediaId):
         return self._request("library/metadata/%s" % mediaId)
+
+    def update_settings(self, host, port):
+        self.host = host
+        self.port = port
+        self.session = requests.session()
+        self.url = "http://%s:%d/" % (host, port)
+        return True
 
     def libraryStats(self):
         sections = self.getSections()

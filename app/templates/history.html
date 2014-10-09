@@ -30,9 +30,9 @@
                     <td align="left"><a href="{{ url_for('info', id=xml.get('ratingKey')) }}">{{ entry.title }}</a></td>
                     <td align="center" class=" "><a href="#streamDetailsModal{{entry.id}}" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a></td>
                     <td align="center">{{ entry.time.strftime('%H:%M') }}</td>
-                    <td align="center">{{ entry.paused }} </td>
+                    <td align="center">{{ entry.paused_counter }} </td>
                     <td align="center">{{ entry.stopped }}</td>
-                    <td align="center">{{ entry.stopped - entry.time }}</td>
+                    <td align="center">{% if entry.stopped %} {{ entry.stopped - entry.time }}{% endif %}</td>
                     <td align="center"><span class="badge badge-warning">13%</span></td>
                 </tr>
             {% endfor %}

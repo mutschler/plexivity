@@ -46,8 +46,11 @@ CheckSection('General')
 DATA_DIR = check_setting_str(CFG, 'General', 'DATA_DIR', os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PORT = check_setting_int(CFG, 'General', 'PORT', 8083)
 START_MESSAGE = check_setting_str(CFG, 'General', 'START_MESSAGE', "%(username)s is currently watching %(title)s")
+NOTIFY_START = check_setting_int(CFG, 'General', 'NOTIFY_START', 1)
 PAUSE_MESSAGE = check_setting_str(CFG, 'General', 'PAUSE_MESSAGE', "%(username)s paused %(title)s")
+NOTIFY_PAUSE = check_setting_int(CFG, 'General', 'NOTIFY_PAUSE', 1)
 STOP_MESSAGE = check_setting_str(CFG, 'General', 'STOP_MESSAGE', "%(username)s has stopped watching %(title)s")
+NOTIFY_STOP = check_setting_int(CFG, 'General', 'NOTIFY_STOP', 1)
 
 CheckSection('PMS')
 PMS_HOST = check_setting_str(CFG, 'PMS', 'PMS_HOST', 'localhost')
@@ -75,8 +78,11 @@ configval={}
 configval["DATA_DIR"] = DATA_DIR
 configval["PORT"] = PORT
 configval["START_MESSAGE"] = START_MESSAGE
+configval["NOTIFY_START"] = NOTIFY_START
 configval["STOP_MESSAGE"] = STOP_MESSAGE
+configval["NOTIFY_STOP"] = NOTIFY_STOP
 configval["PAUSE_MESSAGE"] = PAUSE_MESSAGE
+configval["NOTIFY_PAUSE"] = NOTIFY_PAUSE
 configval["MAIL_SERVER"] = MAIL_SERVER
 configval["MAIL_FROM"] = MAIL_FROM
 configval["MAIL_PORT"] = MAIL_PORT
@@ -102,6 +108,9 @@ def save_config(configval):
     new_config['General']['START_MESSAGE'] = configval["START_MESSAGE"]
     new_config['General']['STOP_MESSAGE'] = configval["STOP_MESSAGE"]
     new_config['General']['PAUSE_MESSAGE'] = configval["PAUSE_MESSAGE"]
+    new_config['General']['NOTIFY_START'] = configval["NOTIFY_START"]
+    new_config['General']['NOTIFY_STOP'] = configval["NOTIFY_STOP"]
+    new_config['General']['NOTIFY_PAUSE'] = configval["NOTIFY_PAUSE"]
     new_config['Mail'] = {}
     new_config['Mail']['MAIL_PORT'] = int(configval["MAIL_PORT"])
     new_config['Mail']['MAIL_SERVER'] = configval["MAIL_SERVER"]

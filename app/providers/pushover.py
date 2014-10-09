@@ -3,7 +3,7 @@ from app import config
 from app.logger import logger
 
 def send_notification(message):
-    logger.info(u"sending notification to Pushover")
+    logger.info(u"sending notification to Pushover: %s" % message)
     args = {"token": config.PUSHOVER_TOKEN, "user": config.PUSHOVER_USER, "message": message}
     status = requests.post("https://api.pushover.net/1/messages.json", data=args)
     if status.ok:

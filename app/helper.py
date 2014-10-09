@@ -20,10 +20,10 @@ def startScheduler():
     # logging.getLogger("apscheduler").setLevel(logging.DEBUG)
     #in debug mode this is executed twice :(
     #DONT run flask in auto reload mode when testing this!
-    # scheduler = BackgroundScheduler()
-    # scheduler.add_job(notify.task, 'interval', seconds=10, max_instances=1)
-    # scheduler.start()
-    notify.task()
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(notify.task, 'interval', seconds=120, max_instances=1)
+    scheduler.start()
+    #notify.task()
 
 def statistics():
     pass

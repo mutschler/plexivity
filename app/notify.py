@@ -104,12 +104,11 @@ def task():
 
         if started:
             for x in started:
-                logger.debug(x)
                 if x.session_id == db_key:
                     state_change = process_update(k, db_key)
 
                 if state_change:
-                    logger.debug("%s: %s: state change [%s] notify called" % (info["user"], info["title"], info["state"]))
+                    logger.debug("%s: %s: state changed [%s] notify called" % (info["user"], info["title"], info["state"]))
                     notify(info)
         else:
             #unnotified insert to db and notify
@@ -152,7 +151,7 @@ def set_stopped(session_id, stop_epoch):
         time = datetime.datetime.now()
         res = db.session.query(models.Processed).filter(models.Processed.session_id == session_id).first()
         res.stopped = time
-        res.paused = False
+        res.paused = None
         res.notified = 0
         db.session.commit()
     #https://github.com/ljunkie/plexWatch/blob/master/plexWatch.pl#L1636
@@ -163,7 +162,7 @@ def get_sec_paused(session_id):
     if result:
         total = result.paused_counter
         if result.paused and not result.stopped:
-            total = datetime.datetime.now() + result.paused
+            total = datetime.datetime.now() + datetime.timedelta(seconds=result.paused)
 
     return total
 
@@ -195,6 +194,9 @@ def process_update(xml, session_id):
 
         p = db.session.query(models.Processed).filter(models.Processed.session_id == session_id).first()
         p_counter = p.paused_counter
+        if not p_counter:
+            p_counter = 0
+
         p_epoch = p.paused
         if p_epoch:
             prev_state = "paused"
@@ -202,47 +204,58 @@ def process_update(xml, session_id):
             prev_state = "playing"
 
         if state and prev_state != state:
-            state_change = 1
+            status_change = 1
             logger.debug("Video State: %s [prev: %s]" % (state, prev_state))
 
-        if "buffering" in state:
-            status_change = 0
+        cur = db.session.query(models.Processed).filter(models.Processed.session_id == session_id).first()
 
         now = datetime.datetime.now()
         if state and "paused" in state:
             if not p_epoch:
                 extra = "%s, paused = %s" % (extra, now)
                 logger.debug("Marking as Paused on %s [%s]" % (now, now))
+                status_change = 1
+                cur.paused = now
             else:
-                p_counter += now-p_epoch #debug display no update!
+                p_counter += (now - p_epoch).total_seconds() #debug display no update!
                 logger.debug("Already marked as Paused on %s" % p_epoch)
 
         else:
             if p_epoch:
-                sec = now - p_epoch
+                sec = (now - p_epoch).total_seconds()
                 p_counter += sec
                 extra = "%s,paused = null" % extra
-                extra = "%s,paused_counter = %s" % p_counter
+                extra = "%s,paused_counter = %s" % (extra, p_counter)
                 logger.debug("removeing Paused state and setting paused counter to %s seconds [this duration %s sec]" % ( p_counter, sec ) )
+                status_change = 1
+                cur.paused = None
+                cur.paused_counter = p_counter
 
         logger.debug("total paused duration: %s [p_counter seconds]" % p_counter)
-        cur = db.session.query(models.Processed).filter(models.Processed.session_id == session_id).first()
+
         cur.xml = ET.tostring(xml)
         db.session.merge(cur)
         db.session.commit()
 
-        return status_change
+    return status_change
 
 def notify(info):
     #notify all providers with the given stuff...
     logger.debug("IMPLEMENT NOTIFY STUFF HERE")
 
-    if info["state"] == "playing":
-        logger.info(config.START_MESSAGE % info)
-    elif info["state"] == "stopped":
-        logger.info(config.STOP_MESSAGE % info)
-    elif info["state"] == "paused":
-        logger.info(config.PAUSE_MESSAGE % info)
+    if info["state"] == "playing" and config.NOTIFY_START:
+        message = config.START_MESSAGE % info
+    elif info["state"] == "stopped" and config.NOTIFY_STOP:
+        message = config.STOP_MESSAGE % info
+    elif info["state"] == "paused" and config.NOTIFY_PAUSE:
+        message = config.PAUSE_MESSAGE % info
+    else:
+        message = False
+
+    if message:
+        if config.NOTIFY_PUSHOVER:
+            from app.providers import pushover
+            pushover.send_notification(message)
 
     return False
 
@@ -263,7 +276,7 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
     parentRatingKey = xml.get("parentRatingKey")
 
     viewOffset = 0
-    if int(xml.get('viewOffset')):
+    if xml.get('viewOffset'):
         if int(xml.get('viewOffset'))/1000 < 90:
             viewOffset = 0
         else:
@@ -274,7 +287,7 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
     transInfo = ''
     streamType = 'D'
     streamTypeExtended = "Direct Play"
-    if xml.find("TranscodeSession"):
+    if xml.find("TranscodeSession") != None:
         isTranscoded = 1
         transInfo = xml.find("TranscodeSession")
         streamType = "T"
@@ -293,18 +306,18 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
 
     duration_raw = ""
     if time and stop_epoch:
-        duration = stop_epoch-time
+        duration = stop_epoch - time
     else:
-        duration = datetime.datetime.now()-time
+        duration = datetime.datetime.now() - time
 
     #set duration
     duration_raw = duration
 
     #exclude paused time
     if paused:
-        duration = duration - paused
+        duration = duration - datetime.timedelta(seconds=paused)
 
-    percent_complete = 12 #int(duration_raw) / int(duration) * 100
+    percent_complete = "%.0f" % float( float(xml.get("viewOffset")) / float(xml.get("duration")) * 100 )
 
     title = xml.get("title")
     if xml.find("Player").get("title"):

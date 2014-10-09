@@ -46,8 +46,9 @@ def task():
 
             logger.debug("sending notification for: %s : %s" % (info["user"], info["orig_title_ep"]))
 
-            if notify(info):
-                set_notified(k.session_id)
+            #TODO: fix this.... for now just dont notify again!
+            #if notify(info):
+            #    set_notified(k.session_id)
 
     else:
         did_unnotify = 1
@@ -115,6 +116,7 @@ def task():
             set_notified(db_key)
 
 def set_notified(db_key):
+    logger.debug("setting %s to notified" % db_key)
     res = get_from_db(db_key)
     res.notified = 1
     db.session.merge(res)
@@ -262,6 +264,8 @@ def notify(info):
         if config.NOTIFY_MAIL:
             from app.providers import mail
             mail.send_notification(message)
+
+        return True
 
     return False
 

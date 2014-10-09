@@ -8,3 +8,4 @@ def send_notification(message):
     status = requests.post("https://api.pushbullet.com/v2/pushes", auth=(config.PUSHBULLET_KEY, ""), data=args)
     if status.ok:
         logger.info(u"Notification to Pushbullet successfully send")
+        return True

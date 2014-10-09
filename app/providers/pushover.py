@@ -8,3 +8,4 @@ def send_notification(message):
     status = requests.post("https://api.pushover.net/1/messages.json", data=args)
     if status.ok:
         logger.info(u"Notification to Pushover successfully send")
+        return True

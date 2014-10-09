@@ -68,9 +68,13 @@ MAIL_PORT = check_setting_int(CFG, 'Mail', 'MAIL_PORT', 25)
 MAIL_FROM = check_setting_str(CFG, 'Mail', 'MAIL_FROM', "plexivity <mail@example.com>")
 
 CheckSection('Pushover')
-NOTIFY_PUSHOVER = check_setting_int(CFG, 'Pushover', 'NOTIFY_PUSHOVER', 1)
+NOTIFY_PUSHOVER = check_setting_int(CFG, 'Pushover', 'NOTIFY_PUSHOVER', 0)
 PUSHOVER_USER = check_setting_str(CFG, 'Pushover', 'PUSHOVER_USER', "")
 PUSHOVER_TOKEN = check_setting_str(CFG, 'Pushover', 'PUSHOVER_TOKEN', "")
+
+CheckSection('Pushbullet')
+NOTIFY_PUSHBULLET = check_setting_int(CFG, 'Pushbullet', 'NOTIFY_PUSHBULLET', 0)
+PUSHBULLET_KEY = check_setting_str(CFG, 'Pushbullet', 'PUSHBULLET_KEY', "")
 
 SYS_ENCODING="UTF-8"
 
@@ -97,6 +101,8 @@ configval["PMS_SSL"] = PMS_SSL
 configval["PUSHOVER_USER"] = PUSHOVER_USER
 configval["PUSHOVER_TOKEN"] = PUSHOVER_TOKEN
 configval["NOTIFY_PUSHOVER"] = NOTIFY_PUSHOVER
+configval["NOTIFY_PUSHBULLET"] = NOTIFY_PUSHBULLET
+configval["PUSHBULLET_KEY"] = PUSHBULLET_KEY
 
 
 def save_config(configval):
@@ -128,6 +134,9 @@ def save_config(configval):
     new_config['Pushover']['NOTIFY_PUSHOVER'] = int(configval["NOTIFY_PUSHOVER"])
     new_config['Pushover']['PUSHOVER_USER'] = configval["PUSHOVER_USER"]
     new_config['Pushover']['PUSHOVER_TOKEN'] = configval["PUSHOVER_TOKEN"]
+    new_config['Pushbullet'] = {}
+    new_config['Pushbullet']['NOTIFY_PUSHBULLET'] = int(configval["NOTIFY_PUSHBULLET"])
+    new_config['Pushbullet']['PUSHBULLET_KEY'] = configval["PUSHBULLET_KEY"]
     new_config.write()
 
 save_config(configval)

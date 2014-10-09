@@ -257,7 +257,12 @@ def notify(info):
             from app.providers import pushover
             pushover.send_notification(message)
 
+        if config.NOTIFY_PUSHBULLET:
+            from app.providers import pushbullet
+            pushbullet.send_notification(message)
+
     return False
+
 
 def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
     if not type(xml).__module__ == "xml.etree.ElementTree":

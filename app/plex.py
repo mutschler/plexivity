@@ -5,6 +5,7 @@ from app.logger import logger
 import requests
 from xml2json import xml2json
 
+logger = logger.getChild('plex')
 
 class Server(object):
     def __init__(self, host, port):

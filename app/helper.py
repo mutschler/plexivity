@@ -9,16 +9,21 @@ import xml.etree.ElementTree as ET
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
+logger = logger.getChild('helper')
+
 def currentlyPlaying():
     print "job fired"
     logger.info("running job")
 
 def startScheduler():
+    # import logging
+    # logging.getLogger("apscheduler").setLevel(logging.DEBUG)
     #in debug mode this is executed twice :(
     #DONT run flask in auto reload mode when testing this!
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(notify.getSessions, 'interval', seconds=10, max_instances=1)
-    scheduler.start()
+    # scheduler = BackgroundScheduler()
+    # scheduler.add_job(notify.task, 'interval', seconds=10, max_instances=1)
+    # scheduler.start()
+    notify.task()
 
 def statistics():
     pass
@@ -30,6 +35,12 @@ def date_timestamp(date):
 def load_xml(string):
     xml = ET.fromstring(string)
     return xml
+
+def xml_to_string(xml):
+    try:
+        return xml.tostring()
+    except:
+        return ET.tostring(xml)
 
 def getPercentage(viewed, duration):
     if not viewed or not duration:

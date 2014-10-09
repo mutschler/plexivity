@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-10-07 11:47+0200\n"
-"PO-Revision-Date: 2014-10-07 11:51+0100\n"
+"PO-Revision-Date: 2014-10-09 19:27+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -235,7 +235,7 @@ msgstr "Stream Info"
 
 #: app/templates/history.html:15
 msgid "Started"
-msgstr "Start Datum"
+msgstr "Start"
 
 #: app/templates/history.html:16
 msgid "Paused"
@@ -243,7 +243,7 @@ msgstr "Pausiert"
 
 #: app/templates/history.html:17
 msgid "Stopped"
-msgstr "Angehalten"
+msgstr "Stop"
 
 #: app/templates/history.html:18
 msgid "Duration"

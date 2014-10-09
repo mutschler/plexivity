@@ -31,8 +31,8 @@
                     <td align="center" class=" "><a href="#streamDetailsModal{{entry.id}}" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a></td>
                     <td align="center">{{ entry.time.strftime('%H:%M') }}</td>
                     <td align="center">{{ entry.paused }} </td>
-                    <td align="center">na</td>
-                    <td align="center">na</td>
+                    <td align="center">{{ entry.stopped }}</td>
+                    <td align="center">{{ entry.stopped - entry.time }}</td>
                     <td align="center"><span class="badge badge-warning">13%</span></td>
                 </tr>
             {% endfor %}

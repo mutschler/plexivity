@@ -47,10 +47,8 @@ def task():
             logger.debug("sending notification for: %s : %s" % (info["user"], info["orig_title_ep"]))
 
             if notify(info):
-                k.notified = 1
-                did_unnotify = 1
-                db.session.merge(k)
-                db.session.commit()
+                set_notified(k.session_id)
+
     else:
         did_unnotify = 1
 
@@ -426,11 +424,8 @@ def get_paused(session_id):
 
 def get_unnotified():
     logger.info(u"getting unnotified entrys from database")
-    result = db.session.query(models.Processed).filter( db.or_(models.Processed.notified != 1, models.Processed.notified == False) ).all()
-    if result:
-        return result
-    else:
-        return False
+    result = db.session.query(models.Processed).filter(models.Processed.notified == None ).all()
+    return result
 
 def get_started():
     logger.info(u"getting recently started entrys from database")

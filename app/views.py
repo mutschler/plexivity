@@ -103,6 +103,14 @@ def setup():
     else:
         return redirect(url_for("index"))
 
+@app.route("/charts")
+@login_required
+def charts():
+    #all10 = db.session.query(models.Processed.count as count, models.Processed).group_by(models.Processed.title).order_by(db.func.count(models.Processed.title).desc()).limit(10)
+    all10 = db.session.query(db.func.count(models.Processed.title), models.Processed).group_by(models.Processed.title).having(db.func.count(models.Processed.title) > 0).order_by(db.func.count(models.Processed.title).desc(), models.Processed.time.desc()).limit(10)
+    movie10 = db.session.query(db.func.count(models.Processed.title), models.Processed).group_by(models.Processed.title).having(db.func.count(models.Processed.title) > 0).order_by(db.func.count(models.Processed.title).desc(), models.Processed.time.desc()).limit(10)
+    show_top10 = db.session.query(db.func.count(models.Processed.orig_title), models.Processed).group_by(models.Processed.orig_title).having(db.func.count(models.Processed.orig_title) > 0).order_by(db.func.count(models.Processed.orig_title).desc(), models.Processed.time.desc()).limit(10)
+    return render_template('charts.html', all_top10=all10, movie_top10=movie10, show_top10=show_top10, ep_top10=movie10)
 
 @app.route("/info/<id>")
 @login_required

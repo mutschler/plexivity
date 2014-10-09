@@ -261,6 +261,10 @@ def notify(info):
             from app.providers import pushbullet
             pushbullet.send_notification(message)
 
+        if config.NOTIFY_MAIL:
+            from app.providers import mail
+            mail.send_notification(message)
+
     return False
 
 
@@ -343,6 +347,12 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
     rating = xml.get("contentRating")
     summary = xml.get("summary")
 
+    genres = list()
+    for x in xml.findall("Genre"):
+        genres.append(x.get("tag"))
+
+    genre = "|".join(genres)
+
     orig_title = title
     orig_title_ep = ""
     episode = ""
@@ -361,6 +371,8 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
 
     info = {
         "user": orig_user,
+        "type": xml.get("type"),
+        "genre": genre,
         "userID": userID,
         "orig_user": orig_user,
         "title": title,

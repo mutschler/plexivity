@@ -65,7 +65,8 @@ MAIL_SERVER = check_setting_str(CFG, 'Mail', 'MAIL_SERVER', 'mail.example.com')
 MAIL_LOGIN = check_setting_str(CFG, 'Mail', 'MAIL_LOGIN', "mail@example.com")
 MAIL_PASSWORD = check_setting_str(CFG, 'Mail', 'MAIL_PASSWORD', "mypassword")
 MAIL_PORT = check_setting_int(CFG, 'Mail', 'MAIL_PORT', 25)
-MAIL_FROM = check_setting_str(CFG, 'Mail', 'MAIL_FROM', "plexivity <mail@example.com>")
+MAIL_FROM = check_setting_str(CFG, 'Mail', 'MAIL_FROM', "mail@example.com")
+MAIL_RECIPIENT = check_setting_str(CFG, 'Mail', 'MAIL_RECIPIENT', "mail@example.com")
 
 CheckSection('Pushover')
 NOTIFY_PUSHOVER = check_setting_int(CFG, 'Pushover', 'NOTIFY_PUSHOVER', 0)
@@ -75,6 +76,7 @@ PUSHOVER_TOKEN = check_setting_str(CFG, 'Pushover', 'PUSHOVER_TOKEN', "")
 CheckSection('Pushbullet')
 NOTIFY_PUSHBULLET = check_setting_int(CFG, 'Pushbullet', 'NOTIFY_PUSHBULLET', 0)
 PUSHBULLET_KEY = check_setting_str(CFG, 'Pushbullet', 'PUSHBULLET_KEY', "")
+
 
 SYS_ENCODING="UTF-8"
 
@@ -92,6 +94,7 @@ configval["MAIL_FROM"] = MAIL_FROM
 configval["MAIL_PORT"] = MAIL_PORT
 configval["MAIL_LOGIN"] = MAIL_LOGIN
 configval["MAIL_PASSWORD"] = MAIL_PASSWORD
+configval["MAIL_RECIPIENT"] = MAIL_RECIPIENT
 configval["NOTIFY_MAIL"] = NOTIFY_MAIL
 configval["PMS_HOST"] = PMS_HOST
 configval["PMS_PORT"] = PMS_PORT
@@ -124,6 +127,7 @@ def save_config(configval):
     new_config['Mail']['MAIL_LOGIN'] = configval["MAIL_LOGIN"]
     new_config['Mail']['MAIL_PASSWORD'] = configval["MAIL_PASSWORD"]
     new_config['Mail']['NOTIFY_MAIL'] = int(configval["NOTIFY_MAIL"])
+    new_config['Mail']['MAIL_RECIPIENT'] = configval["MAIL_RECIPIENT"]
     new_config['PMS'] = {}
     new_config['PMS']['PMS_HOST'] = configval["PMS_HOST"]
     new_config['PMS']['PMS_PORT'] = int(configval["PMS_PORT"])

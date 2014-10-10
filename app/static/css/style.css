@@ -17,6 +17,11 @@ table tbody tr{background:transparent}table tbody tr:last-child td{border-bottom
 table tbody tr:nth-child(even){background:#1f1f1f}
 table tbody tr td{border-top:1px solid #666 !important}
 table tbody tr.even{background:#1f1f1f}
+.dataTables_wrapper:after{content:".";clear:both;display:block;visibility:hidden;height:0}
+.dataTables_wrapper .dataTables_info{float:left;margin-left:20px}
+.dataTables_wrapper .dataTables_paginate{float:right}.dataTables_wrapper .dataTables_paginate ul.pagination{margin:0 20px 20px 0}.dataTables_wrapper .dataTables_paginate ul.pagination li a{background:#1f1f1f;border-color:#666;color:#eee}.dataTables_wrapper .dataTables_paginate ul.pagination li a:hover{color:#faa732}
+.dataTables_wrapper .dataTables_paginate ul.pagination li.active a{background:#faa732;border-color:#faa732;color:#000}
+.dataTables_wrapper .dataTables_paginate ul.pagination li.disabled a{color:#999}.dataTables_wrapper .dataTables_paginate ul.pagination li.disabled a a:hover{color:#999}
 .dataTables_length{float:left;padding:20px;font-size:16px !important}.dataTables_length select{margin-top:5px;border:2px solid #444;background:#333;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;color:#999}
 .dataTables_filter{float:right;padding:20px;font-size:16px !important}.dataTables_filter input{margin-top:5px;margin-left:5px;color:#f9aa03;border:2px solid #444;background:#333;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);-webkit-transition:border linear .2s,box-shadow linear .2s;-moz-transition:border linear .2s,box-shadow linear .2s;-o-transition:border linear .2s,box-shadow linear .2s;transition:border linear .2s,box-shadow linear .2s;border-radius:4px;display:inline-block;padding:4px 6px;margin-bottom:10px;font-size:14px;line-height:20px}
 .well-bg{border:solid 1px #3c3c3c;box-shadow:inset 0 0 20px 0 rgba(0,0,0,0.2);padding:20px;margin-bottom:50px;background:#1a1a1a}.well-bg .title{margin-top:0;border-bottom:1px solid #3c3c3c;box-shadow:inset 0 -1px 0 #000;padding-bottom:10px;color:#fff;font-weight:normal}.well-bg .title.small{font-size:18px !important}

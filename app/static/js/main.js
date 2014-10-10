@@ -18,6 +18,7 @@ $(document).ready(function() {
 				"sPaginationType": "bootstrap",
 				"iDisplayLength": 25,
 				"bAutoWidth": true,
-				"aaSorting": [[ 0, "desc" ]]
+				"aaSorting": [[ 0, "desc" ]],
+				"language": tableLanguage
 			} );
 		} );

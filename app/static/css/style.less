@@ -142,7 +142,57 @@ span.orange{
     }
   }
 
+.dataTables_wrapper{
+  &:after{
+    content: ".";
+    clear: both;
+    display: block;
+    visibility: hidden;
+    height: 0px;
+  }
+  .dataTables_info{
+    float: left;
+    margin-left: 20px;
+  }
+  .dataTables_paginate{
+    float: right;
 
+    ul.pagination{
+      margin: 0 20px 20px 0;
+
+      li{
+
+        a{
+          background: @dark;
+          border-color: darken(@grey, 20%);
+          color: @white;
+          &:hover{
+            color: @orange;
+          }
+        }
+
+        &.active{
+          a{
+            background: @orange;
+            border-color: @orange;
+            color: #000
+          }
+        }
+
+
+
+        &.disabled a{
+          color: @grey;
+
+          a:hover{
+            color: @grey;
+          }
+        }
+
+      }
+    }
+  }
+}
 .dataTables_length{
   float: left;
   padding: 20px;

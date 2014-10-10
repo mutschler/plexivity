@@ -75,6 +75,32 @@
     <script src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.dataTables.date_sorting.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.dataTables.bootstrap_pagination.js') }}"></script>
+
+    <script type="text/javascript">
+    var tableLanguage = {
+        "sEmptyTable":     '{{_("No data available in table")}}',
+        "sInfo":           '{{_("Showing _START_ to _END_ of _TOTAL_ entries")}}',
+        "sInfoEmpty":      '{{_("Showing 0 to 0 of 0 entries")}}',
+        "sInfoFiltered":   '{{_("(filtered from _MAX_ total entries)")}}',
+        "sInfoPostFix":    "",
+        "sInfoThousands":  ",",
+        "sLengthMenu":     '{{_("Show _MENU_ entries")}}',
+        "sLoadingRecords": '{{_("Loading...")}}',
+        "sProcessing":     '{{_("Processing...")}}',
+        "sSearch":         '{{_("Search:")}}',
+        "sZeroRecords":    '{{_("No matching records found")}}',
+        "oPaginate": {
+            "sFirst":    '{{_("First")}}',
+            "sLast":    '{{_( "Last")}}',
+            "sNext":    '{{_( "Next")}}',
+            "sPrevious": '{{_("Previous")}}'
+        },
+        "oAria": {
+            "sSortAscending": '{{_(": activate to sort column ascending")}}',
+            "sSortDescending": '{{_(": activate to sort column descending")}}'
+        }
+    }
+    </script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   </body>
 </html>

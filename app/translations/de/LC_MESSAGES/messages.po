@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-10-10 18:24+0200\n"
-"PO-Revision-Date: 2014-10-10 18:25+0100\n"
+"POT-Creation-Date: 2014-10-10 19:00+0200\n"
+"PO-Revision-Date: 2014-10-10 19:02+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -325,6 +325,66 @@ msgstr "Abmelden"
 msgid "Login"
 msgstr "Anmelden"
 
+#: app/templates/layout.html:81
+msgid "No data available in table"
+msgstr "Keine Daten in der Tabelle vorhanden"
+
+#: app/templates/layout.html:82
+msgid "Showing _START_ to _END_ of _TOTAL_ entries"
+msgstr "_START_ bis _END_ von _TOTAL_ Einträgen"
+
+#: app/templates/layout.html:83
+msgid "Showing 0 to 0 of 0 entries"
+msgstr "0 bis 0 von 0 Einträgen"
+
+#: app/templates/layout.html:84
+msgid "(filtered from _MAX_ total entries)"
+msgstr "(gefiltert von _MAX_ Einträgen)"
+
+#: app/templates/layout.html:87
+msgid "Show _MENU_ entries"
+msgstr "_MENU_ Einträge anzeigen"
+
+#: app/templates/layout.html:88
+msgid "Loading..."
+msgstr "Wird geladen..."
+
+#: app/templates/layout.html:89
+msgid "Processing..."
+msgstr "Bitte warten..."
+
+#: app/templates/layout.html:90
+msgid "Search:"
+msgstr "Suchen"
+
+#: app/templates/layout.html:91
+msgid "No matching records found"
+msgstr "Keine Einträge vorhanden"
+
+#: app/templates/layout.html:93
+msgid "First"
+msgstr "Erste"
+
+#: app/templates/layout.html:94
+msgid "Last"
+msgstr "Letzte"
+
+#: app/templates/layout.html:95
+msgid "Next"
+msgstr "Nächste"
+
+#: app/templates/layout.html:96
+msgid "Previous"
+msgstr "Zurück"
+
+#: app/templates/layout.html:99
+msgid ": activate to sort column ascending"
+msgstr ": aktivieren, um Spalte aufsteigend zu sortieren"
+
+#: app/templates/layout.html:100
+msgid ": activate to sort column descending"
+msgstr ": aktivieren, um Spalte absteigend zu sortieren"
+
 #: app/templates/settings.html:8
 msgid "Save settings"
 msgstr "Einstellungen speichern"
@@ -343,3 +403,15 @@ msgstr "gesamt Wiedergaben"
 
 #~ msgid "Submit"
 #~ msgstr "Suchen"
+
+#~ msgid "Display _MENU_ records per page"
+#~ msgstr "Zeige _MENU_ Einträge pro Seite"
+
+#~ msgid "Nothing found - sorry"
+#~ msgstr "Nichts gefunden - Tut mir leid"
+
+#~ msgid "Showing page _PAGE_ of _PAGES_"
+#~ msgstr "zeige Seite _PAGE_ von _PAGES_"
+
+#~ msgid "No records available"
+#~ msgstr "Keine Einträge vorhanden"

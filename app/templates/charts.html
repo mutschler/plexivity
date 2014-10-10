@@ -17,7 +17,7 @@
                                     <img src='{{ url_for("cache", filename=xml.get("thumb")|replace('/','', 1)) }}' class="img-responsive" />
 								</div>
                                 <div class='charts-instance-position-title'>
-							        <li><h4><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].title }} ({{ entry[1].year }}) </a></h4><h5> ({{ entry[0] }} views)<h5></li>
+							        <li><h4><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].title }} ({{ entry[1].year }}) </a></h4><h5>({{ _( '%(count)s views', count=entry[0]) }})<h5></li>
 								</div>
                             </div>
                         {% else %}
@@ -27,7 +27,7 @@
                                     <img src='{{ url_for("cache", filename=xml.get("grandparentThumb")|replace('/','', 1)) }}' class="img-responsive" />
 								</div>
                                 <div class='charts-instance-position-title'>
-							        <li><h4><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].orig_title }} - Season {{ entry[1].season }}, Episode {{ entry[1].episode }} </a></h4><h5> ({{ entry[0] }} views)<h5></li>
+							        <li><h4><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].orig_title }} - Season {{ entry[1].season }}, Episode {{ entry[1].episode }} </a></h4><h5>({{ _( '%(count)s views', count=entry[0]) }})<h5></li>
 								</div>
                             </div>
                         {% endif %}
@@ -50,7 +50,7 @@
                                     <img src='{{ url_for("cache", filename=xml.get("thumb")|replace('/','', 1)) }}' class="img-responsive" />
 								</div>
                                 <div class='charts-instance-position-title'>
-							        <li><h4><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].title }} ({{ entry[1].year }}) </a></h4><h5> ({{ entry[0] }} views)<h5></li>
+							        <li><h4><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].title }} ({{ entry[1].year }}) </a></h4><h5>({{ _( '%(count)s views', count=entry[0]) }})<h5></li>
 								</div>
                             </div>
                     {% endfor %}
@@ -72,7 +72,7 @@
                                     <img src='{{ url_for("cache", filename=xml.get("grandparentThumb")|replace('/','', 1)) }}' class="img-responsive" />
 								</div>
                                 <div class='charts-instance-position-title'>
-							        <li><h4><a href='{{ url_for('info', id=xml.get("grandparentRatingKey")) }}'> {{ entry[1].orig_title }}</a></h4><h5> ({{ entry[0] }} views)<h5></li>
+							        <li><h4><a href='{{ url_for('info', id=xml.get("grandparentRatingKey")) }}'> {{ entry[1].orig_title }}</a></h4><h5>({{ _( '%(count)s views', count=entry[0]) }})<h5></li>
 								</div>
                             </div>
                     {% endfor %}
@@ -94,7 +94,7 @@
                                     <img src='{{ url_for("cache", filename=xml.get("parentThumb")|replace('/','', 1)) }}' class="img-responsive" />
 								</div>
                                 <div class='charts-instance-position-title'>
-							        <li><h4><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].title }} ({{ entry[1].year }}) </a></h4><h5> ({{ entry[0] }} views)<h5></li>
+							        <li><h4><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].title }} ({{ entry[1].year }}) </a></h4><h5> ({{ _( '%(count)s views', count=entry[0]) }})<h5></li>
 								</div>
                             </div>
                     {% endfor %}

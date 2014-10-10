@@ -2,8 +2,8 @@
 {% from 'macros.html' import render_stream_info %}
 {% block body %}
 
-<section id="history">
-
+<section id="history" class="no-padding history-wrapper">
+    <div class="table-responsive">
     <table class="table" id="globalHistory">
         <thead>
             <tr>
@@ -24,21 +24,21 @@
                 {% set xml = helper.load_xml(entry.xml) %}
                 {{ render_stream_info(xml, entry.id) }}
                 <tr>
-                    <td align="left" data-order="{{ entry.time|timestamp|int }}">{{ entry.time.strftime('%Y/%m/%d') }}</td>
-                    <td align="left">{{ entry.user }}</td>
+                    <td align="left" data-order="{{ entry.time|timestamp|int }}">{% if not entry.stopped %} <span class="orange">{{ _('Currently watching...') }}</span> {% else %} {{ entry.time.strftime('%Y/%m/%d') }} {% endif %}</td>
+                    <td align="left"><a href="{{ url_for('user', name=entry.user) }}" class="invert-link">{{ entry.user }}</a></td>
                     <td align="left">{{ entry.platform }}</td>
-                    <td align="left"><a href="{{ url_for('info', id=xml.get('ratingKey')) }}">{{ entry.title }}</a></td>
+                    <td align="left"><a class="invert-link" href="{{ url_for('info', id=xml.get('ratingKey')) }}">{{ entry.title }}</a></td>
                     <td align="center" class=" "><a href="#streamDetailsModal{{entry.id}}" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a></td>
                     <td align="center">{{ entry.time.strftime('%H:%M') }}</td>
-                    <td align="center">{{ entry.paused_counter }} </td>
-                    <td align="center">{{ entry.stopped }}</td>
-                    <td align="center">{% if entry.stopped %} {{ entry.stopped - entry.time }}{% endif %}</td>
-                    <td align="center"><span class="badge badge-warning">13%</span></td>
+                    <td align="center">{{ (entry.paused_counter|int/60)|round|int }} min </td>
+                    <td align="center">{% if entry.stopped %} {{ entry.stopped.strftime('%H:%M') }} {% else %} n/a {% endif %}</td>
+                    <td align="center">{% if entry.stopped %} {{ (((entry.stopped - entry.time).total_seconds() - (entry.paused_counter|int)) /60)|round|int }} min {% endif %}</td>
+                    <td align="center"><span class="badge badge-warning">{{ helper.getPercentage(xml.get("viewOffset"), xml.get("duration")) }}%</span></td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-
+    </div>
 </section>
 
 {% endblock %}

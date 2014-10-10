@@ -18,9 +18,16 @@ def currentlyPlaying():
 def startScheduler():
     # import logging
     # logging.getLogger("apscheduler").setLevel(logging.DEBUG)
+    try:
+        import tzlocal
+        tz = tzlocal.get_localzone().zone
+        logger.info("local timezone: %s" % tz)
+    except:
+        logger.error("Unable to find locale timezone useing Europe/Berlin as Fallback!")
+        tz = 'Europe/Berlin'
     #in debug mode this is executed twice :(
     #DONT run flask in auto reload mode when testing this!
-    scheduler = BackgroundScheduler()
+    scheduler = BackgroundScheduler(timezone=tz)
     scheduler.add_job(notify.task, 'interval', seconds=120, max_instances=1)
     scheduler.start()
     #notify.task()

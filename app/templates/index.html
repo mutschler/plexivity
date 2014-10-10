@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% if stats != None %}
+        <section id="overview">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row stats-wrapper">
+                        <ul class="list-unstyled list-inline">
+                            {%- for section in stats %}
+                                <li class="col-sm-2"><h1>{{ section.get("extra").get("size") }}</h1>
+                                    <h5>{{ section.get("title") }}</h5></li>
+                            {%- endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    <section id="activity">
+        <h2 class="title">{{ _('Currently playing') }}</h2>
+        {% if activity|length and activity.get('size') >= 1 %}
+            <div class="row">
+                <div class="stats">
+                    <div class="wrapper">
+                        {% for play in activity %}
+                            <div class="col-sm-3">
+                                <div class="poster">
+                                    <div class="poster-activity">
+                                        <a href="{{ url_for('info', id=play.get("ratingKey")) }}">
+                                            {%- if play.get("type") == "movie" %}
+                                            <img class="img-responsive" src="{{ url_for('cache', filename=play.get('art')|replace('/','', 1)) }}"/>
+                                            {%- else %}
+                                            <img class="img-responsive" src="{{ url_for('cache', filename=play.get('thumb')|replace('/','', 1)) }}"/>
+                                            {%- endif %}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="progress progress-warning">
+                                    <div class="bar"
+                                         style="width: {{ helper.getPercentage(play.get("viewOffset"), play.get("duration")) }}%">{{ helper.getPercentage(play.get("viewOffset"), play.get("duration")) }}</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="user-activity col-sm-9">
+                                        {%- if play.find("Player").get("state") == "playing" %}
+                                            {{ _( '%(user)s is watching', user=play.find("User").get("title")) }}
+                                        {%- elif play.find("Player").get("state") == "paused" %}
+                                            {{ _( '%(user)s has paused', user=play.find("User").get("title")) }}
+                                        {%- elif play.find("Player").get("state") == "buffering" %}
+                                            {{ _( '%(user)s is buffering', user=play.find("User").get("title")) }}
+                                        {%- endif %}
+                                        <div class="title-activity">
+                                            {%- if play.get("type") == "episode" %}
+                                                {{ play.get("grandparentTitle") }} - {{ play.get("title") }}
+                                            {%- else %}
+                                                {{ play.get("title") }}
+                                            {%- endif %}
+                                        </div>
+                                    </div>
+                                    <div class="platform-activity pull-right col-sm-3">
+                                        <img class="img-responsive"
+                                             src="{{ url_for('static', filename=helper.playerImage(play.find('Player').get('platform')) ) }}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>{{ _('Nothing is currently playing') }}</h2>
+                </div>
+            </div>
+        {% endif %}
+    </section>
+
+    <section id="recentlyAdded">
+        <h2 class="title">{{ _('Recently Added') }}</h2>
+
+        <div class="row">
+
+            {% for object in new %}
+                <div class="col-xs-6 col-lg-2 col-sm-2 recently-added-cover">
+                    <a href="{{ url_for('info', id=object.get("ratingKey")) }}">
+                        <img src="{{ url_for('cache', filename=object.get('thumb')|replace('/','', 1)) }}" class="img-responsive"/>
+                    </a>
+                    {{ object.get("title") }}<br />
+                {{ object.get("addedAt")|int|timeago }}
+                </div>
+            {% endfor %}
+        </div>
+
+    </section>
+
+{% endblock %}

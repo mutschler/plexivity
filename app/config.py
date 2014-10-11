@@ -51,6 +51,7 @@ PAUSE_MESSAGE = check_setting_str(CFG, 'General', 'PAUSE_MESSAGE', "%(username)s
 NOTIFY_PAUSE = check_setting_int(CFG, 'General', 'NOTIFY_PAUSE', 1)
 STOP_MESSAGE = check_setting_str(CFG, 'General', 'STOP_MESSAGE', "%(username)s has stopped watching %(title)s")
 NOTIFY_STOP = check_setting_int(CFG, 'General', 'NOTIFY_STOP', 1)
+SCAN_INTERVAL = check_setting_int(CFG, 'General', 'SCAN_INTERVAL', 120)
 
 CheckSection('PMS')
 PMS_HOST = check_setting_str(CFG, 'PMS', 'PMS_HOST', 'localhost')
@@ -94,6 +95,7 @@ configval["STOP_MESSAGE"] = STOP_MESSAGE
 configval["NOTIFY_STOP"] = NOTIFY_STOP
 configval["PAUSE_MESSAGE"] = PAUSE_MESSAGE
 configval["NOTIFY_PAUSE"] = NOTIFY_PAUSE
+configval["SCAN_INTERVAL"] = SCAN_INTERVAL
 configval["MAIL_SERVER"] = MAIL_SERVER
 configval["MAIL_FROM"] = MAIL_FROM
 configval["MAIL_PORT"] = MAIL_PORT
@@ -128,6 +130,7 @@ def save_config(configval):
     new_config['General']['NOTIFY_START'] = configval["NOTIFY_START"]
     new_config['General']['NOTIFY_STOP'] = configval["NOTIFY_STOP"]
     new_config['General']['NOTIFY_PAUSE'] = configval["NOTIFY_PAUSE"]
+    new_config['General']['SCAN_INTERVAL'] = int(configval["SCAN_INTERVAL"])
     new_config['Mail'] = {}
     new_config['Mail']['MAIL_PORT'] = int(configval["MAIL_PORT"])
     new_config['Mail']['MAIL_SERVER'] = configval["MAIL_SERVER"]

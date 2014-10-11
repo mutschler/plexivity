@@ -7,8 +7,11 @@ from flask.ext.babel import gettext as _
 from app import config, plex, notify
 import xml.etree.ElementTree as ET
 
+import datetime
+
 from apscheduler.schedulers.background import BackgroundScheduler
 
+sched_logger = logger.getChild("scheduler")
 logger = logger.getChild('helper')
 
 def currentlyPlaying():
@@ -27,8 +30,8 @@ def startScheduler():
         tz = 'Europe/Berlin'
     #in debug mode this is executed twice :(
     #DONT run flask in auto reload mode when testing this!
-    scheduler = BackgroundScheduler(timezone=tz)
-    scheduler.add_job(notify.task, 'interval', seconds=120, max_instances=1)
+    scheduler = BackgroundScheduler(logger=sched_logger, timezone=tz)
+    scheduler.add_job(notify.task, 'interval', seconds=config.SCAN_INTERVAL, max_instances=1, start_date=datetime.datetime.now() + datetime.timedelta(seconds=2) )
     scheduler.start()
     #notify.task()
 

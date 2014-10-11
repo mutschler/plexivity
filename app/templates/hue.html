@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% from 'macros.html' import render_form %}
+{% block body %}
+
+    {% if form %}
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+            {{ render_form(form, action_url='/hue', action_text=_('Connect to Hue'), btn_class='btn btn-plex') }}
+            </div>
+        </div>
+    {% else %}
+    <div class="row">
+    	<div class="col-sm-4 col-sm-offset-4">
+    		<div class="text-center">
+    			<img src="{{url_for('static', filename='images/hue_bridge.png')}}" class="img-responsive inline-block" style="display: inline-block" />
+    		</div>
+    		<p class="lead">{{_('Please press the Push Button on your Hue Bridge and press the button below')}}</p>
+    		<div class="button button-default"><a class="btn btn-block btn-plex" href="{{ url_for('hue_push') }}">{{_('Push Button Pressed')}}</a></div>
+    	</div>
+    </div>
+    {% endif %}
+
+{% endblock %}

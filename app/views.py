@@ -117,15 +117,22 @@ def hue():
             config.BRIDGE_IP = check_hue
             config.configval["BRIDGE_IP"] = check_hue
             config.save_config(config.configval)
-            flash(_('Successfully connected to Hue with ip %(ip)s' % {"ip": check_hue}), "success")
-            return redirect(url_for('hue_push'))
+            flash(_('Successfully connected to Hue Bridge with ip %(ip)s' % {"ip": check_hue}), "success")
+            return redirect(url_for('index'))
         else:
-            return redirect(url_for('hue_push'))
+            return render_template('hue.html')
     return render_template('hue.html', form=form)
 
 @app.route("/hue/push", methods=("GET", "POST"))
 @login_required
 def hue_push():
+    from app.providers import hue
+    check_hue = hue.register_bridge(config.BRIDGE_IP)
+    if check_hue:
+        flash(_('Successfully connected to Hue Bridge with ip %(ip)s' % {"ip": check_hue}), "success")
+        return redirect(url_for('index'))
+    else:
+        return redirect(url_for('hue'))
     return render_template('hue.html')
 
 

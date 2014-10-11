@@ -1,11 +1,14 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from flask_wtf import Form
 from wtforms import StringField, PasswordField, BooleanField, IntegerField
-from wtforms.validators import DataRequired, Email, EqualTo, NumberRange
+from wtforms.validators import DataRequired, Email, EqualTo, NumberRange, IPAddress
 
 from flask.ext.babel import lazy_gettext
 
 from app import config
-
+import requests
 
 class RequiredIf(DataRequired):
     # a validator which makes a field required if
@@ -22,6 +25,16 @@ class RequiredIf(DataRequired):
         if bool(other_field.data):
             super(RequiredIf, self).__call__(form, field)
 
+class HueForm(Form):
+    if config.BRIDGE_IP == "":
+        default_ip = requests.get("https://www.meethue.com/api/nupnp")
+        if default_ip.ok:
+            ip = default_ip.json()[0]["internalipaddress"]
+        else:
+            ip = ""
+    else:
+        ip = config.BRIDGE_IP
+    HUE_IP = StringField(lazy_gettext('Hue Bridge IP'), validators=[IPAddress()], default=ip)
 
 class Login(Form):
     email = StringField(lazy_gettext('E-Mail'), validators=[DataRequired(), Email()])

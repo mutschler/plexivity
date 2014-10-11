@@ -3,3 +3,4 @@ config.ini
 *.log
 plexivity.db
 cache
+hue.conf

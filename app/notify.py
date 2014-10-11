@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from app.logger import logger
 from app import config, plex, models, db
 
@@ -254,6 +257,10 @@ def notify(info):
     else:
         message = False
 
+    if config.NOTIFY_HUE:
+        from app.providers import hue
+        hue.send_notification(info)
+
     if message:
         if config.NOTIFY_PUSHOVER:
             from app.providers import pushover
@@ -268,6 +275,8 @@ def notify(info):
             mail.send_notification(message)
 
         return True
+
+
 
     return False
 
@@ -420,11 +429,18 @@ def get_paused(session_id):
     logger.info("getting paused time for %s" % session_id)
     result = db.session.query(models.Processed).filter(models.Processed.session_id == session_id).first()
     total = result.paused_counter
+
     if result.paused and not result.stopped:
-        total += datetime.datetime.now() - result.paused
+        if total:
+            total = datetime.timedelta(seconds=total)
+            total += datetime.datetime.now() - result.paused
+        else:
+            total = datetime.datetime.now() - result.paused
 
     if not total:
         total = 0
+    elif type(total) == datetime.timedelta:
+        total = total.total_seconds()
 
     return total
 

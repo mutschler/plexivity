@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3cd8de1-d6e7-4a5b-a54c-6bc0a418c693" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helper.py" afterPath="$PROJECT_DIR$/app/helper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/layout.html" afterPath="$PROJECT_DIR$/app/templates/layout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="plexivity.iws" />
@@ -31,7 +28,7 @@
       <file leaf-file-name="logger.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/logger.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="491" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="405">
+            <state line="16" column="0" selection-start="491" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
               <folding />
             </state>
           </provider>
@@ -40,7 +37,16 @@
       <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="0" selection-start="2098" selection-end="2098" vertical-scroll-proportion="0.0" vertical-offset="1185" max-vertical-offset="1395">
+            <state line="79" column="0" selection-start="2098" selection-end="2098" vertical-scroll-proportion="0.0" vertical-offset="318" max-vertical-offset="1245">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="history.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/templates/history.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="94" selection-start="2359" selection-end="2359" vertical-scroll-proportion="0.5730337" vertical-offset="0" max-vertical-offset="890">
               <folding />
             </state>
           </provider>
@@ -49,18 +55,7 @@
       <file leaf-file-name="pushbullet.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/providers/pushbullet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="61" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.ini" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.ini">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="65" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="540">
+            <state line="10" column="19" selection-start="452" selection-end="452" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
               <folding />
             </state>
           </provider>
@@ -69,7 +64,7 @@
       <file leaf-file-name="pushover.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/providers/pushover.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="70" selection-end="429" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="225">
+            <state line="10" column="19" selection-start="449" selection-end="449" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="240">
               <folding />
             </state>
           </provider>
@@ -78,7 +73,7 @@
       <file leaf-file-name="stats.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/stats.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="140" selection-start="1482" selection-end="1501" vertical-scroll-proportion="-19.375" vertical-offset="0" max-vertical-offset="1560">
+            <state line="31" column="140" selection-start="1482" selection-end="1501" vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="1560">
               <folding />
             </state>
           </provider>
@@ -87,7 +82,7 @@
       <file leaf-file-name="charts.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/charts.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="89" column="95" selection-start="4879" selection-end="4879" vertical-scroll-proportion="-25.0" vertical-offset="735" max-vertical-offset="1635">
+            <state line="89" column="95" selection-start="4879" selection-end="4879" vertical-scroll-proportion="0.0" vertical-offset="1335" max-vertical-offset="1635">
               <folding />
             </state>
           </provider>
@@ -96,16 +91,16 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="112" column="119" selection-start="4451" selection-end="4451" vertical-scroll-proportion="0.0" vertical-offset="975" max-vertical-offset="2835">
+            <state line="112" column="119" selection-start="4451" selection-end="4451" vertical-scroll-proportion="0.0" vertical-offset="1680" max-vertical-offset="2985">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="layout.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/layout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="44" selection-start="2212" selection-end="2212" vertical-scroll-proportion="0.26245847" vertical-offset="348" max-vertical-offset="1275">
+            <state line="39" column="44" selection-start="2212" selection-end="2212" vertical-scroll-proportion="0.0" vertical-offset="348" max-vertical-offset="1275">
               <folding />
             </state>
           </provider>
@@ -114,7 +109,7 @@
       <file leaf-file-name="activity.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/activity.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="31" selection-start="501" selection-end="501" vertical-scroll-proportion="-5.125" vertical-offset="27" max-vertical-offset="930">
+            <state line="10" column="31" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="27" max-vertical-offset="930">
               <folding />
             </state>
           </provider>
@@ -137,7 +132,6 @@
         <option value="$PROJECT_DIR$/app/logger.py" />
         <option value="$PROJECT_DIR$/app/static/js/main.js" />
         <option value="$PROJECT_DIR$/app/templates/info.html" />
-        <option value="$PROJECT_DIR$/app/providers/pushover.py" />
         <option value="$PROJECT_DIR$/app/templates/setup.html" />
         <option value="$PROJECT_DIR$/app/models.py" />
         <option value="$PROJECT_DIR$/app/templates/macros.html" />
@@ -149,15 +143,16 @@
         <option value="$PROJECT_DIR$/app/plex.py" />
         <option value="$PROJECT_DIR$/app/templates/stats.html" />
         <option value="$PROJECT_DIR$/app/templates/activity.html" />
-        <option value="$PROJECT_DIR$/app/templates/history.html" />
         <option value="$PROJECT_DIR$/app/config.py" />
-        <option value="$PROJECT_DIR$/app/notify.py" />
         <option value="$PROJECT_DIR$/config.ini" />
-        <option value="$PROJECT_DIR$/app/providers/pushbullet.py" />
         <option value="$PROJECT_DIR$/app/templates/charts.html" />
-        <option value="$PROJECT_DIR$/app/helper.py" />
         <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/app/templates/layout.html" />
+        <option value="$PROJECT_DIR$/app/providers/pushover.py" />
+        <option value="$PROJECT_DIR$/app/providers/pushbullet.py" />
+        <option value="$PROJECT_DIR$/app/helper.py" />
+        <option value="$PROJECT_DIR$/app/notify.py" />
+        <option value="$PROJECT_DIR$/app/templates/history.html" />
       </list>
     </option>
   </component>
@@ -373,6 +368,9 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -394,9 +392,6 @@
       <option name="PUREUNITTEST" value="true" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -471,7 +466,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1680" height="1024" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -486,11 +481,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -514,9 +509,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/plex.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="46" selection-start="1848" selection-end="1882" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1350">
-          <folding />
-        </state>
+        <state line="54" column="46" selection-start="1848" selection-end="1882" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1350" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
@@ -609,9 +602,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/plex.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="35" selection-start="2422" selection-end="2422" vertical-scroll-proportion="0.0" vertical-offset="1035" max-vertical-offset="1335">
-          <folding />
-        </state>
+        <state line="69" column="35" selection-start="2422" selection-end="2422" vertical-scroll-proportion="0.0" vertical-offset="1035" max-vertical-offset="1335" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/__init__.py">
@@ -683,13 +674,6 @@
         <state line="6" column="50" selection-start="184" selection-end="184" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="285" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/logger.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="491" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="405">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/readme.md">
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
@@ -717,9 +701,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/plex.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="23" selection-start="626" selection-end="626" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1890">
-          <folding />
-        </state>
+        <state line="24" column="23" selection-start="626" selection-end="626" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1890" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/setup.html">
@@ -729,77 +711,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="72" selection-start="5802" selection-end="5802" vertical-scroll-proportion="0.0" vertical-offset="2070" max-vertical-offset="2280">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/providers/pushover.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="70" selection-end="429" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/notify.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="259" column="36" selection-start="8350" selection-end="8350" vertical-scroll-proportion="0.0" vertical-offset="3885" max-vertical-offset="7380">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/history.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="0" selection-start="2570" selection-end="2570" vertical-scroll-proportion="0.74157304" vertical-offset="0" max-vertical-offset="890" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="0" selection-start="2098" selection-end="2098" vertical-scroll-proportion="0.0" vertical-offset="1185" max-vertical-offset="1395">
-          <folding />
-        </state>
+        <state line="138" column="72" selection-start="5802" selection-end="5802" vertical-scroll-proportion="0.0" vertical-offset="2070" max-vertical-offset="2280" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config.ini">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="65" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/providers/pushbullet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="61" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="3" column="65" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/stats.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="140" selection-start="1482" selection-end="1501" vertical-scroll-proportion="-19.375" vertical-offset="0" max-vertical-offset="1560">
+        <state line="31" column="140" selection-start="1482" selection-end="1501" vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="1560">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/activity.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="31" selection-start="501" selection-end="501" vertical-scroll-proportion="-5.125" vertical-offset="27" max-vertical-offset="930">
+        <state line="10" column="31" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="27" max-vertical-offset="930">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/charts.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="95" selection-start="4879" selection-end="4879" vertical-scroll-proportion="-25.0" vertical-offset="735" max-vertical-offset="1635">
+        <state line="89" column="95" selection-start="4879" selection-end="4879" vertical-scroll-proportion="0.0" vertical-offset="1335" max-vertical-offset="1635">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/helper.py">
+    <entry file="file://$PROJECT_DIR$/app/templates/layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="57" selection-start="687" selection-end="687" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2670">
+        <state line="39" column="44" selection-start="2212" selection-end="2212" vertical-scroll-proportion="0.0" vertical-offset="348" max-vertical-offset="1275">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/providers/pushover.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="19" selection-start="449" selection-end="449" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
           <folding />
         </state>
       </provider>
@@ -811,9 +761,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/layout.html">
+    <entry file="file://$PROJECT_DIR$/app/helper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="44" selection-start="2212" selection-end="2212" vertical-scroll-proportion="0.26245847" vertical-offset="348" max-vertical-offset="1275">
+        <state line="28" column="58" selection-start="842" selection-end="842" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="2775">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/logger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="491" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="405">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="0" selection-start="2098" selection-end="2098" vertical-scroll-proportion="0.0" vertical-offset="318" max-vertical-offset="1245">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/providers/pushbullet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="19" selection-start="452" selection-end="452" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/notify.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="133" column="40" selection-start="4186" selection-end="4186" vertical-scroll-proportion="0.5236486" vertical-offset="1455" max-vertical-offset="7320">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/history.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="94" selection-start="2359" selection-end="2359" vertical-scroll-proportion="0.5730337" vertical-offset="0" max-vertical-offset="890">
           <folding />
         </state>
       </provider>

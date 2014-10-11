@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% from 'macros.html' import render_form %}
+{% block body %}
+
+    {% if log %}
+        <div class="row">
+            <div class="col-sm-12">
+            <pre>
+{%- for line in log %}
+{{ line.decode("utf-8")|replace("\n", "", 1) }}
+{%- endfor %}
+            </pre>
+            </div>
+        </div>
+    {% endif %}
+
+
+{% endblock %}

@@ -206,6 +206,16 @@ def user(name):
     users = db.session.query(models.Processed).group_by(models.Processed.user).all()
     return render_template('users.html', users=users)
 
+@app.route('/logs')
+@login_required
+def logs():
+    f = open(os.path.join(config.DATA_DIR, "plexivity.log"), "r")
+    content = f.readlines()
+    f.close()
+    print content
+    log_content = reversed(content[-200:])
+    return render_template('logs.html', log=log_content)
+
 @app.route("/settings", methods=("GET", "POST"))
 @login_required
 def settings():

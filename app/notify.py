@@ -23,7 +23,7 @@ def task():
         if not userID:
             userID = "Local"
 
-        db_key = "%(id)s_%(key)s_%(userid)s" % { "id": session.get('id'), "key": session.get('key'), "userid": userID }
+        db_key = "%(id)s_%(key)s_%(userid)s" % { "id": session.get('sessionKey'), "key": session.get('key'), "userid": userID }
         playing[db_key] = 1
 
     did_unnotify = 0
@@ -109,7 +109,7 @@ def task():
         if not userID:
             userID = "Local"
 
-        db_key = "%(id)s_%(key)s_%(userid)s" % { "id": k.get('id'), "key": k.get('key'), "userid": userID }
+        db_key = "%(id)s_%(key)s_%(userid)s" % { "id": k.get('sessionKey'), "key": k.get('key'), "userid": userID }
 
         logger.debug("plex returned a live element: %s " % db_key)
         ## ignore content already been notified

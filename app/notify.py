@@ -51,7 +51,10 @@ def task():
 
             #TODO: fix this.... for now just dont notify again!
             k.notified = 1
-            k.stopped = stop_epoch
+
+            #make sure we have a stop time if we are not playing this anymore!
+            if ntype == "stop":
+                k.stopped = stop_epoch
             db.session.merge(k)
             set_notified(k.session_id)
 
@@ -61,8 +64,10 @@ def task():
     ## notify stopped
     ## redo this! currently everything started is set to stopped?
     if did_unnotify:
+        logger.info("processing recently started and checking for stopped")
         started = get_started()
         for k in started:
+            logger.debug("checking if %s is in playling list" % k.session_id)
             if not k.session_id in playing:
                 logger.debug("%s is stopped!" % k.session_id)
                 start_epoch = k.time
@@ -89,7 +94,9 @@ def task():
 
     ## notify start/now playing
     logger.debug("processing live content")
+    was_started = dict()
     for k in live:
+
         start_epoch = datetime.datetime.now()
         stop_epoch = "" #not stopped yet
         xml_string = ET.tostring(k)
@@ -104,18 +111,33 @@ def task():
 
         db_key = "%(id)s_%(key)s_%(userid)s" % { "id": k.get('id'), "key": k.get('key'), "userid": userID }
 
+        logger.debug("plex returned a live element: %s " % db_key)
         ## ignore content already been notified
 
+        #TODO: get_startet should return a dict accessable by db_key 
+        #so we can check: if x in startet: check for change, if not mark as started now
+        
+        #first go through all started stuff and check for status change
         if started:
+            logger.debug("we still have not stopped entrys in our database")
             for x in started:
+                logger.debug("processing entry %s " % x.session_id)
                 state_change = False
                 if x.session_id == db_key:
+                    logger.debug("that was a match! check for status changes")
+                    #already in database only check for status changes!
                     state_change = process_update(k, db_key)
+                    was_started[db_key] = x
+
 
                 if state_change:
                     logger.debug("%s: %s: state changed [%s] notify called" % (info["user"], info["title"], info["state"]))
                     notify(info)
-        else:
+
+        #if still not processed till now, its a new play!
+        logger.debug("we got those entrys which already where in the database: %s " % was_started)
+        if not db_key in was_started:
+            logger.info("seems like this is a new entry: %s" % db_key)
             #unnotified insert to db and notify
             process_start(xml_string, db_key, info)
             notify(info)

@@ -26,10 +26,10 @@ $.extend( $.fn.dataTableExt.oPagination, {
                 }
             };
 
-            $(nPaging).addClass('pagination').append(
-                '<ul>'+
-                    '<li class="prev disabled"><a href="#">&larr; '+oLang.sPrevious+'</a></li>'+
-                    '<li class="next disabled"><a href="#">'+oLang.sNext+' &rarr; </a></li>'+
+            $(nPaging).append(
+                '<ul class="pagination">'+
+                    '<li class="prev disabled"><a href="#"><i class="glyphicon glyphicon-chevron-left"></i> '+oLang.sPrevious+'</a></li>'+
+                    '<li class="next disabled"><a href="#">'+oLang.sNext+' <i class="glyphicon glyphicon-chevron-right"></i></a></li>'+
                 '</ul>'
             );
             var els = $('a', nPaging);
@@ -91,3 +91,27 @@ $.extend( $.fn.dataTableExt.oPagination, {
     }
 } );
 
+$(function(){
+    $('.datatable').each(function(){
+        var datatable = $(this);
+        // SEARCH - Add the placeholder for Search and Turn this into in-line formcontrol
+        var search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
+        search_input.attr('placeholder', 'Search')
+        search_input.addClass('form-control input-small')
+        search_input.css('width', '250px')
+
+        // SEARCH CLEAR - Use an Icon
+        var clear_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] a');
+        clear_input.html('<i class="glyphicon glyphicon-remove-circle icon-large"></i>')
+        clear_input.css('margin-left', '5px')
+
+        // LENGTH - Inline-Form control
+        var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
+        length_sel.addClass('form-control input-small')
+        length_sel.css('width', '75px')
+
+        // LENGTH - Info adjust location
+        var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_info]');
+        length_sel.css('margin-top', '18px')
+    });
+});

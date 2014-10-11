@@ -3,30 +3,31 @@
 
     <div class="row">
         <div class="col-sm-3">
-            <h4 class="title">{{ _('Top 10 (All Time)') }}</h4>
 
-            <div class="charts-wrapper">
-                <ul>
+
+            <div class="charts-wrapper well-bg">
+                <h2 class="title small">{{ _('Top 10 (All Time)') }}</h2>
+                <ul class="list-unstyled">
                     {% for entry in all_top10 %}
                         {% set xml = helper.load_xml(entry[1].xml) %}
                         {% if xml.get("type") == "movie" %}
-                            <div class="charts-instance-wrapper">
-                                <div class='charts-instance-position-circle'><h1>{{ loop.index }}</h1></div>
+                            <div class="charts-instance-wrapper clearfix">
+                                <div class='charts-instance-position-circle'><h3>{{ loop.index }}</h3></div>
                                 <div class='charts-instance-poster'>
                                     <img src='{{ url_for("cache", filename=xml.get("thumb")|replace('/','', 1)) }}' class="img-responsive" />
 								</div>
-                                <div class='charts-instance-position-title'>";
-							        <li><h3><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].title }} ({{ entry[1].year }}) </a></h3><h5> ({{ entry[0] }} views)<h5></li>";
+                                <div class='charts-instance-position-title'>
+							        <li><h4><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].title }} ({{ entry[1].year }}) </a></h4><h5>({{ _( '%(count)s views', count=entry[0]) }})<h5></li>
 								</div>
                             </div>
                         {% else %}
-                            <div class="charts-instance-wrapper">
-                                <div class='charts-instance-position-circle'><h1>{{ loop.index }}</h1></div>
+                            <div class="charts-instance-wrapper clearfix">
+                                <div class='charts-instance-position-circle'><h3>{{ loop.index }}</h3></div>
                                 <div class='charts-instance-poster'>
                                     <img src='{{ url_for("cache", filename=xml.get("grandparentThumb")|replace('/','', 1)) }}' class="img-responsive" />
 								</div>
-                                <div class='charts-instance-position-title'>";
-							        <li><h3><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].orig_title }} - Season {{ entry[1].season }}, Episode {{ entry[1].episode }} </a></h3><h5> ({{ entry[0] }} views)<h5></li>";
+                                <div class='charts-instance-position-title'>
+							        <li><h4><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].orig_title }} - Season {{ entry[1].season }}, Episode {{ entry[1].episode }} </a></h4><h5>({{ _( '%(count)s views', count=entry[0]) }})<h5></li>
 								</div>
                             </div>
                         {% endif %}
@@ -36,19 +37,20 @@
         </div>
 
         <div class="col-sm-3">
-            <h4 class="title">{{ _('Top 10 Movies (All Time)') }}</h4>
 
-            <div class="charts-wrapper">
-                <ul>
+
+            <div class="charts-wrapper well-bg">
+                <h2 class="title small">{{ _('Top 10 Movies (All Time)') }}</h2>
+                <ul class="list-unstyled">
                     {% for entry in movie_top10 if not entry[1].episode %}
                         {% set xml = helper.load_xml(entry[1].xml) %}
-                            <div class="charts-instance-wrapper">
-                                <div class='charts-instance-position-circle'><h1>{{ loop.index }}</h1></div>
+                            <div class="charts-instance-wrapper clearfix">
+                                <div class='charts-instance-position-circle'><h3>{{ loop.index }}</h3></div>
                                 <div class='charts-instance-poster'>
                                     <img src='{{ url_for("cache", filename=xml.get("thumb")|replace('/','', 1)) }}' class="img-responsive" />
 								</div>
-                                <div class='charts-instance-position-title'>";
-							        <li><h3><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].title }} ({{ entry[1].year }}) </a></h3><h5> ({{ entry[0] }} views)<h5></li>";
+                                <div class='charts-instance-position-title'>
+							        <li><h4><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].title }} ({{ entry[1].year }}) </a></h4><h5>({{ _( '%(count)s views', count=entry[0]) }})<h5></li>
 								</div>
                             </div>
                     {% endfor %}
@@ -57,19 +59,20 @@
         </div>
 
         <div class="col-sm-3">
-            <h4 class="title">{{ _('Top 10 TV-Shows (All Time)') }}</h4>
 
-            <div class="charts-wrapper">
-                <ul>
+
+            <div class="charts-wrapper well-bg">
+                <h2 class="title small">{{ _('Top 10 TV-Shows (All Time)') }}</h2>
+                <ul class="list-unstyled">
                     {% for entry in show_top10 if entry[1].episode %}
                         {% set xml = helper.load_xml(entry[1].xml) %}
-                            <div class="charts-instance-wrapper">
-                                <div class='charts-instance-position-circle'><h1>{{ loop.index }}</h1></div>
+                            <div class="charts-instance-wrapper clearfix" >
+                                <div class='charts-instance-position-circle'><h3>{{ loop.index }}</h3></div>
                                 <div class='charts-instance-poster'>
                                     <img src='{{ url_for("cache", filename=xml.get("grandparentThumb")|replace('/','', 1)) }}' class="img-responsive" />
 								</div>
-                                <div class='charts-instance-position-title'>";
-							        <li><h3><a href='{{ url_for('info', id=xml.get("grandparentRatingKey")) }}'> {{ entry[1].orig_title }}</a></h3><h5> ({{ entry[0] }} views)<h5></li>";
+                                <div class='charts-instance-position-title'>
+							        <li><h4><a href='{{ url_for('info', id=xml.get("grandparentRatingKey")) }}'> {{ entry[1].orig_title }}</a></h4><h5>({{ _( '%(count)s views', count=entry[0]) }})<h5></li>
 								</div>
                             </div>
                     {% endfor %}
@@ -78,19 +81,20 @@
         </div>
 
         <div class="col-sm-3">
-            <h4 class="title">{{ _('Top 10 TV-Episodes (All Time)') }}</h4>
 
-            <div class="charts-wrapper">
-                <ul>
+
+            <div class="charts-wrapper well-bg">
+                <h2 class="title small">{{ _('Top 10 TV-Episodes (All Time)') }}</h2>
+                <ul class="list-unstyled">
                     {% for entry in ep_top10 if entry[1].episode %}
                         {% set xml = helper.load_xml(entry[1].xml) %}
-                            <div class="charts-instance-wrapper">
-                                <div class='charts-instance-position-circle'><h1>{{ loop.index }}</h1></div>
+                            <div class="charts-instance-wrapper clearfix">
+                                <div class='charts-instance-position-circle'><h3>{{ loop.index }}</h3></div>
                                 <div class='charts-instance-poster'>
                                     <img src='{{ url_for("cache", filename=xml.get("parentThumb")|replace('/','', 1)) }}' class="img-responsive" />
 								</div>
-                                <div class='charts-instance-position-title'>";
-							        <li><h3><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].title }} ({{ entry[1].year }}) </a></h3><h5> ({{ entry[0] }} views)<h5></li>";
+                                <div class='charts-instance-position-title'>
+							        <li><h4><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].title }} ({{ entry[1].year }}) </a></h4><h5> ({{ _( '%(count)s views', count=entry[0]) }})<h5></li>
 								</div>
                             </div>
                     {% endfor %}

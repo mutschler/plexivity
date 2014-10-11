@@ -77,7 +77,7 @@ def index():
         flash(_("Unable to connect to PMS. Please check your settings"), "error")
         return redirect(url_for("settings"))
 
-    return render_template('stats.html', stats=g.plex.libraryStats(), activity=g.plex.currentlyPlaying(), new=g.plex.recentlyAdded())
+    return render_template('index.html', stats=g.plex.libraryStats(), activity=g.plex.currentlyPlaying(), new=g.plex.recentlyAdded())
 
 #reload stuff
 @app.route("/load/activity")
@@ -88,7 +88,7 @@ def activity():
 @app.route("/stats")
 @login_required
 def stats():
-    return render_template('stats.html', stats=g.plex.libraryStats(), activity=g.plex.currentlyPlaying(), new=g.plex.recentlyAdded())
+    return render_template('stats.html')
 
 
 @app.route("/setup", methods=("GET", "POST"))
@@ -162,7 +162,7 @@ def login():
 @app.route("/history")
 @login_required
 def history():
-    history = db.session.query(models.Processed).all()
+    history = db.session.query(models.Processed).order_by(models.Processed.time.desc()).all()
     return render_template('history.html', history=history)
 
 @app.route('/logout')
@@ -189,6 +189,13 @@ def cache(filename):
 @app.route('/users')
 @login_required
 def users():
+    users = db.session.query(models.Processed).group_by(models.Processed.user).all()
+    return render_template('users.html', users=users)
+
+
+@app.route('/user/<name>')
+@login_required
+def user(name):
     users = db.session.query(models.Processed).group_by(models.Processed.user).all()
     return render_template('users.html', users=users)
 

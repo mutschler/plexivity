@@ -2,17 +2,19 @@
 # -*- coding: utf-8 -*-
 import os
 
-from app.logger import logger
+from app import logger
 from flask.ext.babel import gettext as _
 from app import config, plex, notify
 import xml.etree.ElementTree as ET
-
+import logging 
 import datetime
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
-sched_logger = logger.getChild("scheduler")
-logger = logger.getChild('helper')
+sched_logger = logging.getLogger("apscheduler")
+sched_logger.addHandler(logger.console)
+sched_logger.setLevel(logging.DEBUG)
+logger = logger.logger.getChild('helper')
 
 def currentlyPlaying():
     print "job fired"

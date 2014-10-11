@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os
 
 from app import app, db, models, forms, lm, babel
@@ -102,6 +105,29 @@ def setup():
         return render_template('setup.html', form=form)
     else:
         return redirect(url_for("index"))
+
+@app.route("/hue", methods=("GET", "POST"))
+@login_required
+def hue():
+    form = forms.HueForm()
+    if form.validate_on_submit():
+        from app.providers import hue
+        check_hue = hue.register_bridge(form.HUE_IP.data)
+        if check_hue:
+            config.BRIDGE_IP = check_hue
+            config.configval["BRIDGE_IP"] = check_hue
+            config.save_config(config.configval)
+            flash(_('Successfully connected to Hue with ip %(ip)s' % {"ip": check_hue}), "success")
+            return redirect(url_for('hue_push'))
+        else:
+            return redirect(url_for('hue_push'))
+    return render_template('hue.html', form=form)
+
+@app.route("/hue/push", methods=("GET", "POST"))
+@login_required
+def hue_push():
+    return render_template('hue.html')
+
 
 @app.route("/charts")
 @login_required

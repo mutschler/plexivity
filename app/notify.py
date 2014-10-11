@@ -50,8 +50,10 @@ def task():
             logger.debug("sending notification for: %s : %s" % (info["user"], info["orig_title_ep"]))
 
             #TODO: fix this.... for now just dont notify again!
-            #if notify(info):
-            #    set_notified(k.session_id)
+            k.notified = 1
+            k.stopped = stop_epoch
+            db.session.merge(k)
+            set_notified(k.session_id)
 
     else:
         did_unnotify = 1
@@ -106,6 +108,7 @@ def task():
 
         if started:
             for x in started:
+                state_change = False
                 if x.session_id == db_key:
                     state_change = process_update(k, db_key)
 

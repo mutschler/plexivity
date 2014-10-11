@@ -39,7 +39,7 @@ def task():
                 stop_epoch = datetime.datetime.now()
 
             ntype = "stop"
-            if playing[k.session_id]:
+            if k.session_id in playing:
                 ntype = "start"
 
             paused = get_paused(k.session_id)

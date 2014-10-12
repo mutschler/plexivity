@@ -2,7 +2,7 @@
 {% block body %}
 
 
-<table id='usersTable' class='table'>
+<table id='usersTable' class='table table-middle'>
   <thead>
     <tr>
       <th align='right'></th>
@@ -13,9 +13,19 @@
   </thead>
 <tbody>
 {% for user in users %}
+  {% set xml = helper.load_xml(user.xml) %}
+
 <tr>
-  <td></td>
-  <td>{{ user.user }}</td>
+  <td width="50">
+    <div class="users-poster-face">
+    {% if xml.find("User").get("thumb") and not "404" in xml.find("User").get("thumb") %}
+    <img onerror=\"this.src='{{ url_for('static' , filename="images/gravatar-default-80x80.png") }}'\" src="{{ xml.find("User").get("thumb") }}" />
+    {% else %}
+    <img src="{{ url_for('static' , filename='images/gravatar-default-80x80.png') }}" />
+    {% endif %}
+  </div>
+</td>
+  <td><a href="{{ url_for('user', name=user.user) }}">{{ user.user }}</a></td>
   <td>{{ user.time|timestamp|timeago }}</td>
   <td>{{ user.title|length }}</td>
 </tr>

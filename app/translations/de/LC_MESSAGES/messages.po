@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-10-10 19:00+0200\n"
-"PO-Revision-Date: 2014-10-10 19:02+0100\n"
+"POT-Creation-Date: 2014-10-12 02:26+0200\n"
+"PO-Revision-Date: 2014-10-12 02:29+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -19,178 +19,191 @@ msgstr ""
 "Language: de\n"
 "X-Generator: Poedit 1.6.5\n"
 
-#: app/forms.py:27 app/forms.py:35 app/forms.py:67
+#: app/forms.py:37
+msgid "Hue Bridge IP"
+msgstr "Hue Bridge IP"
+
+#: app/forms.py:40 app/forms.py:48 app/forms.py:80
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: app/forms.py:28 app/forms.py:34 app/forms.py:68 app/templates/login.html:15
+#: app/forms.py:41 app/forms.py:47 app/forms.py:81 app/templates/login.html:15
 msgid "Password"
 msgstr "Passwort"
 
-#: app/forms.py:29 app/templates/login.html:20
+#: app/forms.py:42 app/templates/login.html:20
 msgid "Remember password"
 msgstr "Passwort merken"
 
-#: app/forms.py:33 app/templates/login.html:11
+#: app/forms.py:46 app/templates/login.html:11
 msgid "Username"
 msgstr "Benutzername"
 
-#: app/forms.py:39
+#: app/forms.py:52
 msgid "Plex Media Server Settings"
 msgstr "Plex Media Server Einstellungen"
 
-#: app/forms.py:41
+#: app/forms.py:54
 msgid "Plex Media Server Host"
 msgstr "Plex Media Server Host"
 
-#: app/forms.py:42
+#: app/forms.py:55
 msgid "Plex Media Server Port"
 msgstr "Plex Media Server Port"
 
-#: app/forms.py:43
+#: app/forms.py:56
 msgid "Plex Username"
 msgstr "Plex Benutzername"
 
-#: app/forms.py:44
+#: app/forms.py:57
 msgid "Plex Password"
 msgstr "Plex Passwort"
 
-#: app/forms.py:45
+#: app/forms.py:58
 msgid "Use SSL encryption"
 msgstr "SSL Verschlüsselung nutzen"
 
-#: app/forms.py:47
+#: app/forms.py:60
 msgid "use pushover for notifications"
 msgstr "Pushover aktivieren"
 
-#: app/forms.py:48
+#: app/forms.py:61
 msgid "Pushover User-Token"
 msgstr "Pushover Benutzer-Token"
 
-#: app/forms.py:49
+#: app/forms.py:62
 msgid "Pushover App-Token"
 msgstr "Pushover Anwendungs-Token"
 
-#: app/forms.py:51
+#: app/forms.py:64
 msgid "use mail for notifications"
 msgstr "E-Mail benachrichtigung aktivieren"
 
-#: app/forms.py:52
+#: app/forms.py:65
 msgid "SMTP Mail Server"
 msgstr "SMTP Server"
 
-#: app/forms.py:53
+#: app/forms.py:66
 msgid "SMTP Server login"
 msgstr "SMTP Server Benutzer"
 
-#: app/forms.py:54
+#: app/forms.py:67
 msgid "SMTP Server password"
 msgstr "SMTP Server Passwort"
 
-#: app/forms.py:55
+#: app/forms.py:68
 msgid "SMTP Mail Port"
 msgstr "SMTP Mail Port"
 
-#: app/forms.py:56
+#: app/forms.py:69
 msgid "Sender Mail Information"
 msgstr "Absender Informationen"
 
-#: app/forms.py:58
+#: app/forms.py:71
 msgid "plexivity data directory"
 msgstr "plexivity Daten Verzeichnis"
 
-#: app/forms.py:59
+#: app/forms.py:72
 msgid "plexivity port"
 msgstr "plexivity Port"
 
-#: app/forms.py:60
+#: app/forms.py:73
 msgid "String for watching notification"
 msgstr "Nachricht beim starten der Wiedergabe"
 
-#: app/forms.py:61
+#: app/forms.py:74
 msgid "String for stoped watching notification"
 msgstr "Nachricht beim stoppen der Wiedergabe"
 
-#: app/forms.py:62
+#: app/forms.py:75
 msgid "String for paused notification"
 msgstr "Nachricht beim pausieren der Wiedergabe"
 
-#: app/forms.py:69
+#: app/forms.py:82
 msgid "Retype password"
 msgstr "Passwort wiederholen"
 
-#: app/helper.py:101
+#: app/helper.py:106
 msgid "just now"
 msgstr "gerade eben"
 
-#: app/helper.py:103
+#: app/helper.py:108
 #, python-format
 msgid "%(int)s seconds ago"
 msgstr "vor %(int)s Sekunden"
 
-#: app/helper.py:107
+#: app/helper.py:112
 #, python-format
 msgid "%(int)s minuten ago"
 msgstr "vor %(int)s Minuten"
 
-#: app/helper.py:109
+#: app/helper.py:114
 msgid "an hour ago"
 msgstr "vor 1 Stunde"
 
-#: app/helper.py:111
+#: app/helper.py:116
 #, python-format
 msgid "%(int)s hours ago"
 msgstr "vor %(int)s Stunden"
 
-#: app/helper.py:113
+#: app/helper.py:118
 msgid "Yesterday"
 msgstr "Gestern"
 
-#: app/helper.py:115
+#: app/helper.py:120
 #, python-format
 msgid "%(int)s days ago"
 msgstr "vor %(int)s Tagen"
 
-#: app/helper.py:117
+#: app/helper.py:122
 #, python-format
 msgid "%(int)s weeks ago"
 msgstr "vor %(int)s Wochen"
 
-#: app/helper.py:119
+#: app/helper.py:124
 #, python-format
 msgid "%(int)s months ago"
 msgstr "vor %(int)s Monaten"
 
-#: app/helper.py:120
+#: app/helper.py:125
 #, python-format
 msgid "%(int)s years ago"
 msgstr "vor %(int)s Jahren"
 
-#: app/views.py:74
+#: app/views.py:77
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr "Verbindung zum PMS nicht möglich. Bitte Einstellungen überprüfen."
 
-#: app/views.py:95
+#: app/views.py:98
 #, python-format
 msgid "User %(username)s created"
 msgstr "Benutzer %(username)s angelegt"
 
-#: app/views.py:129
+#: app/views.py:125 app/views.py:147
+#, python-format
+msgid "Successfully connected to Hue Bridge with ip %(ip)s"
+msgstr "Verbindung zur Bridge hergestellt: %(ip)s"
+
+#: app/views.py:137
+msgid "Successfully disconnected from Hue Bridge"
+msgstr "Verbindung von Hue Bridge getrennt"
+
+#: app/views.py:177
 #, python-format
 msgid "you are now logged in as: '%(username)s'"
 msgstr "Eingeloggt als: '%(username)s'"
 
-#: app/views.py:132
+#: app/views.py:180
 msgid "username/password missmatch or no such user in database"
 msgstr ""
 "Benutzername/Passwort stimmt nicht überein oder ist nicht in der Datenbank "
 "vorhanden"
 
-#: app/views.py:147
+#: app/views.py:195
 msgid "Logged out"
 msgstr "Abgemeldet"
 
-#: app/views.py:188
+#: app/views.py:246
 msgid "Settings saved!"
 msgstr "Einstellungen gespeichert!"
 
@@ -283,6 +296,30 @@ msgstr "Vollendet"
 #: app/templates/history.html:27
 msgid "Currently watching..."
 msgstr "Momentan abgespielt..."
+
+#: app/templates/hue.html:8
+msgid "Connect to Hue"
+msgstr "Mit Hue verbinden"
+
+#: app/templates/hue.html:17
+msgid ""
+"Please press the Push Button on your Hue Bridge and press the button below"
+msgstr ""
+"Bitte drücken sie den Push Button an ihrer Hue Bridge und im Anschluss den "
+"Knopf unten"
+
+#: app/templates/hue.html:18
+msgid "Push Button Pressed"
+msgstr "Push Button gedrückt"
+
+#: app/templates/hue.html:27
+#, python-format
+msgid "Already linked to Hue Bridge at \"%(bridge_ip)s\"."
+msgstr "Es besteht eine Verbindung zur Hue Bridge unter \"%(bridge_ip)s\"."
+
+#: app/templates/hue.html:28
+msgid "Reset Hue Connection"
+msgstr "Hue Verbindung zurücksetzen"
 
 #: app/templates/index.html:81
 msgid "Recently Added"
@@ -388,6 +425,10 @@ msgstr ": aktivieren, um Spalte absteigend zu sortieren"
 #: app/templates/settings.html:8
 msgid "Save settings"
 msgstr "Einstellungen speichern"
+
+#: app/templates/settings.html:15
+msgid "Connect Hue"
+msgstr "Mit Hue verbinden"
 
 #: app/templates/setup.html:9
 msgid "Create Account"

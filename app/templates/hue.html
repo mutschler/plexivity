@@ -8,7 +8,7 @@
             {{ render_form(form, action_url='/hue', action_text=_('Connect to Hue'), btn_class='btn btn-plex') }}
             </div>
         </div>
-    {% else %}
+    {% elif not bridge_ip %}
     <div class="row">
     	<div class="col-sm-4 col-sm-offset-4">
     		<div class="text-center">
@@ -17,6 +17,16 @@
     		<p class="lead">{{_('Please press the Push Button on your Hue Bridge and press the button below')}}</p>
     		<div class="button button-default"><a class="btn btn-block btn-plex" href="{{ url_for('hue_push') }}">{{_('Push Button Pressed')}}</a></div>
     	</div>
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+            <div class="text-center">
+                <img src="{{url_for('static', filename='images/hue_bridge.png')}}" class="img-responsive inline-block" style="display: inline-block" />
+            </div>
+            <p class="lead">{{_('Already linked to Hue Bridge at "%(bridge_ip)s".', bridge_ip=bridge_ip)}}</p>
+            <div class="button button-default"><a class="btn btn-block btn-plex" href="{{ url_for('hue_unlink') }}">{{_('Reset Hue Connection')}}</a></div>
+        </div>
     </div>
     {% endif %}
 

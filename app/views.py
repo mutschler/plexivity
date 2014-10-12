@@ -108,20 +108,35 @@ def setup():
 
 @app.route("/hue", methods=("GET", "POST"))
 @login_required
-def hue():
+def hue(args=False):
+    from app.providers import hue
+
+    if config.BRIDGE_IP and hue.register_bridge(config.BRIDGE_IP):
+        return render_template('hue.html', form=False, bridge_ip=config.BRIDGE_IP)
+
     form = forms.HueForm()
     if form.validate_on_submit():
-        from app.providers import hue
+        
         check_hue = hue.register_bridge(form.HUE_IP.data)
         if check_hue:
             config.BRIDGE_IP = check_hue
             config.configval["BRIDGE_IP"] = check_hue
             config.save_config(config.configval)
-            flash(_('Successfully connected to Hue Bridge with ip %(ip)s' % {"ip": check_hue}), "success")
+            flash(_('Successfully connected to Hue Bridge with ip %(ip)s', ip=check_hue) , "success")
             return redirect(url_for('index'))
         else:
             return render_template('hue.html')
     return render_template('hue.html', form=form)
+
+@app.route("/hue/unlink")
+@login_required
+def hue_unlink():
+    config.BRIDGE_IP = ""
+    config.configval["BRIDGE_IP"] = ""
+    #TODO: Final unlinking, save config remove hue.conf file!
+    flash(_('Successfully disconnected from Hue Bridge'), "success")
+    #return render_template('hue.html')
+    return redirect(url_for("hue"))
 
 @app.route("/hue/push", methods=("GET", "POST"))
 @login_required
@@ -129,7 +144,7 @@ def hue_push():
     from app.providers import hue
     check_hue = hue.register_bridge(config.BRIDGE_IP)
     if check_hue:
-        flash(_('Successfully connected to Hue Bridge with ip %(ip)s' % {"ip": check_hue}), "success")
+        flash(_('Successfully connected to Hue Bridge with ip %(ip)s', ip=check_hue), "success")
         return redirect(url_for('index'))
     else:
         return redirect(url_for('hue'))

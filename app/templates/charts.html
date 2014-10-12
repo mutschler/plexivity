@@ -27,7 +27,7 @@
                                     <img src='{{ url_for("cache", filename=xml.get("grandparentThumb")|replace('/','', 1)) }}' class="img-responsive" />
 								</div>
                                 <div class='charts-instance-position-title'>
-							        <li><h4><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].orig_title }} - Season {{ entry[1].season }}, Episode {{ entry[1].episode }} </a></h4><h5>({{ _( '%(count)s views', count=entry[0]) }})<h5></li>
+							        <li><h4><a href='{{ url_for('info', id=xml.get("ratingKey")) }}'> {{ entry[1].orig_title }} - {{_('Season %(sn)s, Episode %(ep)s', sn=entry[1].season, ep=entry[1].episode)}}</a></h4><h5>({{ _( '%(count)s views', count=entry[0]) }})<h5></li>
 								</div>
                             </div>
                         {% endif %}

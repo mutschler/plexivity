@@ -128,6 +128,13 @@ def hue(args=False):
             return render_template('hue.html')
     return render_template('hue.html', form=form)
 
+@app.route("/hue/settings")
+@login_required
+def hue_settings():
+    from app.providers import hue
+    lights = hue.get_available_lights()
+    return render_template("hue_settings.html", lights=lights)
+
 @app.route("/hue/unlink")
 @login_required
 def hue_unlink():
@@ -218,8 +225,9 @@ def users():
 @app.route('/user/<name>')
 @login_required
 def user(name):
-    users = db.session.query(models.Processed).group_by(models.Processed.user).all()
-    return render_template('users.html', users=users)
+    platform_plays = db.session.query(db.func.count(models.Processed.platform), models.Processed).filter(models.Processed.user == name).group_by(models.Processed.platform).all()
+    recent = db.session.query(models.Processed).filter(models.Processed.user == name).order_by(models.Processed.time.desc()).limit(12)
+    return render_template('user.html', username=name, platforms=platform_plays, recently=recent)
 
 @app.route('/logs')
 @login_required

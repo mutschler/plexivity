@@ -48,6 +48,14 @@ def send_notification(info_object):
 	else:
 		return decider(info_object)
 
+def get_bridge():
+	try:
+		b = Bridge(config_file_path=os.path.join(os.path.dirname(os.path.abspath(__file__)), "hue.conf"))
+		return b
+	except PhueRegistrationException:
+		# print "Please press link Button on your hue! and try again"
+		return False
+
 def register_bridge(ip=None):
 	
 	try:
@@ -68,6 +76,25 @@ def flash(device, options):
 
 	time.sleep(1)
 	b.set_light(device, "xy", xy)
+
+def get_available_lights():
+	to_return = list()
+	print "tesing bridge"
+	if config.BRIDGE_IP and register_bridge(config.BRIDGE_IP):
+		b = get_bridge()
+		lights = b.get_light_objects()
+		for l in lights:
+			print dir(l)
+			current = {
+				"id": l.light_id,
+				"name": l.name
+			}
+			to_return.append(current)
+		return to_return
+	else:
+		return False
+
+	
 
 def decider(info_object):
 	"""

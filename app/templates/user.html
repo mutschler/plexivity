@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h2>{{username}}</h2>
+
+{% if platforms %}
+<section class="platforms" id="platforms">
+  <h2 class="title">{{_('Platform Stats')}}</h2>
+  <div class="row">
+    {% for stat in platforms %}
+    <div class="col-sm-2">
+      {% set xml = helper.load_xml(stat[1].xml) %}
+      <img style="float: left; margin-right: 10px; width: 70px" class=" img-responsive" src="{{ url_for('static', filename=helper.playerImage(xml.find('Player').get('platform')) ) }}"/>
+      <p>{{ stat[1].platform }}</p>
+      <p><span class="orange">{{ stat[0] }}</span> plays</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if recently %}
+<section class="platforms" id="platforms">
+  <h2 class="title">{{_('Recently watched')}}</h2>
+  <div class="row">
+    {% for row in recently %}
+    <div class="col-xs-6 col-sm-4 col-md-2">
+      {% set xml = helper.load_xml(row.xml) %}
+      {% if xml.get("type") == "episode" %}
+        <img class=" img-responsive" src="{{ url_for('cache', filename=xml.get('parentThumb')|replace('/','', 1) ) }}"/>
+        {{_('Season %(sn)s, Episode %(ep)s', sn=row.season, ep=row.episode)}}
+      {% elif xml.get("type") == "movie" %}
+        <img class=" img-responsive" src="{{ url_for('cache', filename=xml.get('thumb')|replace('/','', 1) ) }}"/>
+        {{row.title}} ({{row.year}})
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

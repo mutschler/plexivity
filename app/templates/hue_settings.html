@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% from 'macros.html' import render_form %}
+{% block body %}
+
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <form class="form">
+                    <label for="">Select an Action</label>
+                    <div class="form-group">
+                        <select name="ntype" class="form-control">
+                            <option value="start">Start playing</option>
+                            <option value="stop">Stop playing</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Select a Light</label>
+                        <select name="light_source" class="form-control">
+                            <option></option>
+                            <option value="all">{{_('All available lights')}}</option>
+                            {% for light in lights %}
+                            <option value="{{ light['id'] }}">{{ light["name"] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="action">Disabled select menu</label>
+                        <select name="" class="form-control">
+                            <option value="on">Turn on</option>
+                            <option value="off">Turn off</option>
+                            <option value="colorloop">Set on colorloop</option>
+                            <option value="flash">Flash light (turn off/on)</option>
+                            <option value="set_options">Set custom Options</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                    <label for="">Custom options</label>
+                    <textarea name="custom_options" id="custom_options" class="form-control" rows="10">
+{
+    'color': '#ff0000', 
+    'transitiontime': 10
+}
+                    </textarea>
+                </div>
+
+                <button class="btn btn-plex">Save settings</button>
+                </form>
+            </div>
+        </div>
+    
+
+{% endblock %}

@@ -28,7 +28,7 @@ class RequiredIf(DataRequired):
 class HueForm(Form):
     if config.BRIDGE_IP == "":
         default_ip = requests.get("https://www.meethue.com/api/nupnp")
-        if default_ip.ok:
+        if default_ip.ok and default_ip.json():
             ip = default_ip.json()[0]["internalipaddress"]
         else:
             ip = ""

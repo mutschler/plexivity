@@ -8,7 +8,7 @@ from app import helper, plex, config
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask.ext.login import login_required, current_user, logout_user, login_user
-from flask import url_for, render_template, g, redirect, flash, request, send_from_directory, send_static_file
+from flask import url_for, render_template, g, redirect, flash, request, send_from_directory, send_file
 from flask.ext.babel import gettext as _
 from babel.dates import format_timedelta
 import json
@@ -211,7 +211,7 @@ def cache(filename):
         if helper.cache_file(filename, g.plex):
             return send_from_directory(cache_dir, filename + ".jpg")
         else:
-            return send_static_file('images/cover.png')
+            return send_file('images/cover.png')
     else:
         return send_from_directory(cache_dir, filename + ".jpg")
 

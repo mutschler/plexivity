@@ -8,7 +8,7 @@ from app import helper, plex, config
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask.ext.login import login_required, current_user, logout_user, login_user
-from flask import url_for, render_template, g, redirect, flash, request, send_from_directory
+from flask import url_for, render_template, g, redirect, flash, request, send_from_directory, send_static_file
 from flask.ext.babel import gettext as _
 from babel.dates import format_timedelta
 import json
@@ -116,7 +116,7 @@ def hue(args=False):
 
     form = forms.HueForm()
     if form.validate_on_submit():
-        
+
         check_hue = hue.register_bridge(form.HUE_IP.data)
         if check_hue:
             config.BRIDGE_IP = check_hue
@@ -211,7 +211,7 @@ def cache(filename):
         if helper.cache_file(filename, g.plex):
             return send_from_directory(cache_dir, filename + ".jpg")
         else:
-            return app.send_static_file('images/fallback_cover.png')
+            return send_static_file('images/cover.png')
     else:
         return send_from_directory(cache_dir, filename + ".jpg")
 

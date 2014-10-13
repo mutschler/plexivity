@@ -161,15 +161,17 @@ $(document).ready(function() {
 		setInterval('currentActivity()', 15000);
 	}
 
-			// $('#globalHistory').dataTable( {
-			// 	"paging": true,
-			// 	"responsive": true,
-			// 	"sPaginationType": "bootstrap",
-			// 	"iDisplayLength": 25,
-			// 	"bAutoWidth": true,
-			// 	"aaSorting": [[ 0, "desc" ]],
-			// 	"language": tableLanguage
-			// } );
+            if($('#globalHistory').length){
+                $('#globalHistory').dataTable( {
+            	"paging": true,
+            	"responsive": true,
+            	"sPaginationType": "bootstrap",
+            	"iDisplayLength": 25,
+            	"bAutoWidth": true,
+            	"aaSorting": [[ 0, "desc" ]],
+            	"language": tableLanguage
+	   } );
+            }
 
         if($('#history-charts-wrapper').length){
         renderCharts()

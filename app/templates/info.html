@@ -4,10 +4,11 @@
 
 
 {% for child in info %}
+<div class="info-wrapper">
 <div class="info-image-wrapper">
   <img class="img-responsive" src="{{ url_for('cache', filename=child.get('art')|replace('/','', 1)) }}" />
 </div>
-<div class="overlay">
+<div class="info-overlay-wrapper">
   <div class="info-poster-wrapper col-sm-2">
     <img class="img-responsive" src="{{ url_for('cache', filename=child.get('thumb')|replace('/','', 1)) }}" />
   </div>
@@ -17,6 +18,7 @@
   <div class="overview">
     {{child.get('summary')}}
   </div>
+</div>
 </div>
   <!-- {{child.items()}}
   {{child.get('art')}} -->

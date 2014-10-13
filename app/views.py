@@ -13,6 +13,8 @@ from flask.ext.babel import gettext as _
 from babel.dates import format_timedelta
 import json
 
+import datetime
+
 p = plex.Server(config.PMS_HOST, config.PMS_PORT)
 
 app.jinja_env.globals.update(helper=helper)
@@ -83,12 +85,35 @@ def index():
 @app.route("/load/activity")
 @login_required
 def activity():
-    return render_template('activity.html', activity=g.plex.currentlyPlaying())
+    return render_template('include/activity.html', activity=g.plex.currentlyPlaying())
 
 @app.route("/stats")
 @login_required
 def stats():
-    return render_template('stats.html')
+
+    daily = db.session.query(db.func.count(models.Processed.title), models.Processed).group_by(db.extract('day', models.Processed.time)).order_by(models.Processed.time.desc()).all()
+    dailyJSON = list()
+    for day in daily:
+        dailyJSON.append({"y": day[0], "x": day[1].time.date().strftime("%Y-%m-%d")})
+
+    monthly = db.session.query(db.func.count(models.Processed.title), models.Processed).filter(models.Processed.time >= datetime.datetime.now() - datetime.timedelta(weeks=53)).group_by(db.extract('month', models.Processed.time)).order_by(models.Processed.time.desc()).all()
+    monthlyJSON = list()
+    for monthly in monthly:
+        monthlyJSON.append({"y": monthly[0], "x": monthly[1].time.date().strftime("%Y-%m")})
+
+    hourly = db.session.query(db.func.count(db.extract('hour', models.Processed.time)), models.Processed).filter(models.Processed.time >= datetime.datetime.now() - datetime.timedelta(hours=24)).group_by(db.extract('hour', models.Processed.time)).order_by(models.Processed.time.asc()).all()
+    hourlyJSON = list()
+    for hour in hourly:
+        hourlyJSON.append({"y": hour[0], "x": hour[1].time.strftime("%Y-%m-%d %H")})
+
+
+
+    maxhourly = db.session.query(db.func.count(db.extract('hour', models.Processed.time)), models.Processed).group_by(db.extract('hour', models.Processed.time)).order_by(models.Processed.time.asc()).all()
+    maxhourlyJSON = list()
+    for hour in maxhourly:
+        maxhourlyJSON.append({"y": hour[0], "x": hour[1].time.strftime("%Y-%m-%d %H")})
+
+    return render_template('stats.html', hourly=hourlyJSON, daily=dailyJSON, monthly=monthlyJSON, maxhourly=maxhourlyJSON)
 
 
 @app.route("/setup", methods=("GET", "POST"))

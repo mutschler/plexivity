@@ -24,6 +24,136 @@ function currentActivity() {
         })(document,window.navigator,'standalone');
 
 
+function renderCharts(){
+
+    var tt = document.createElement('div'),
+      leftOffset = -(~~$('html').css('padding-left').replace('px', '') + ~~$('body').css('margin-left').replace('px', '')),
+      topOffset = -35;
+    tt.className = 'ex-tooltip';
+    document.body.appendChild(tt);
+
+    var data = {
+      "xScale": "ordinal",
+      "yScale": "linear",
+
+      "main": [
+        {
+          "className": ".playChartHourly",
+          "data": hourlyPlayFinal
+        }
+      ]
+    };
+    var opts = {
+      "dataFormatX": function (x) { return d3.time.format('%Y-%m-%d %H').parse(x); },
+      "tickFormatX": function (x) { return d3.time.format('%-I:00 %p')(x); },
+      "paddingLeft": ('35'),
+      "paddingRight": ('35'),
+      "paddingTop": ('10'),
+      "tickHintY": ('5'),
+      "mouseover": function (d, i) {
+        var pos = $(this).offset();
+        $(tt).text(d3.time.format('%-I:00 %p')(d.x) + ': ' + d.y + ' play(s)')
+          .css({top: topOffset + pos.top, left: pos.left + leftOffset})
+          .show();
+      },
+      "mouseout": function (x) {
+        $(tt).hide();
+      }
+    };
+    var myChart = new xChart('line-dotted', data, '#playChartHourly', opts);
+
+
+    var data = {
+      "xScale": "ordinal",
+      "yScale": "linear",
+
+      "main": [
+        {
+          "className": ".maxplayChartHourly",
+          "data": maxhourlyPlayFinal
+        }
+      ]
+    };
+    var opts = {
+      "dataFormatX": function (x) { return d3.time.format('%Y-%m-%d %H').parse(x); },
+      "tickFormatX": function (x) { return d3.time.format('%b %e')(x); },
+      "paddingLeft": ('35'),
+      "paddingRight": ('35'),
+      "paddingTop": ('10'),
+      "tickHintY": ('5'),
+      "mouseover": function (d, i) {
+        var pos = $(this).offset();
+        $(tt).text(d3.time.format('%-I:00 %p')(d.x) + ': ' + d.y + ' play(s)')
+          .css({top: topOffset + pos.top, left: pos.left + leftOffset})
+          .show();
+      },
+      "mouseout": function (x) {
+        $(tt).hide();
+      }
+    };
+    var myChart = new xChart('bar', data, '#playChartMaxHourly', opts);
+
+
+    var data = {
+      "xScale": "ordinal",
+      "yScale": "linear",
+      "main": [
+        {
+          "className": ".playcount",
+          "data": dailyPlayFinal
+        }
+      ]
+    };
+    var opts = {
+      "dataFormatX": function (x) { return d3.time.format('%Y-%m-%d').parse(x); },
+      "tickFormatX": function (x) { return d3.time.format('%b %e')(x); },
+      "paddingLeft": ('35'),
+      "paddingRight": ('35'),
+      "paddingTop": ('10'),
+      "tickHintY": ('5'),
+      "mouseover": function (d, i) {
+        var pos = $(this).offset();
+        $(tt).text(d3.time.format('%b %e')(d.x) + ': ' + d.y + ' play(s)')
+          .css({top: topOffset + pos.top, left: pos.left + leftOffset})
+          .show();
+      },
+      "mouseout": function (x) {
+        $(tt).hide();
+      }
+    };
+    var myChart = new xChart('bar', data, '#playChartDaily', opts);
+
+     var data = {
+      "xScale": "ordinal",
+      "yScale": "linear",
+      "main": [
+        {
+          "className": ".playcount",
+          "data": monthlyPlayFinal
+        }
+      ]
+    };
+    var opts = {
+      "dataFormatX": function (x) { return d3.time.format('%Y-%m').parse(x); },
+      "tickFormatX": function (x) { return d3.time.format('%b')(x); },
+      "paddingLeft": ('35'),
+      "paddingRight": ('35'),
+      "paddingTop": ('10'),
+      "tickHintY": ('5'),
+      "mouseover": function (d, i) {
+        var pos = $(this).offset();
+        $(tt).text(d3.time.format('%b')(d.x) + ': ' + d.y + ' play(s)')
+          .css({top: topOffset + pos.top, left: pos.left + leftOffset})
+          .show();
+      },
+      "mouseout": function (x) {
+        $(tt).hide();
+      }
+    };
+    var myChart = new xChart('line-dotted', data, '#playChartMonthly', opts);
+}
+
+
 $(document).ready(function() {
 
 	//only set the interval if we are on a page that contains activity feed
@@ -31,13 +161,17 @@ $(document).ready(function() {
 		setInterval('currentActivity()', 15000);
 	}
 
-			$('#globalHistory').dataTable( {
-				"paging": true,
-				"responsive": true,
-				"sPaginationType": "bootstrap",
-				"iDisplayLength": 25,
-				"bAutoWidth": true,
-				"aaSorting": [[ 0, "desc" ]],
-				"language": tableLanguage
-			} );
-		} );
+			// $('#globalHistory').dataTable( {
+			// 	"paging": true,
+			// 	"responsive": true,
+			// 	"sPaginationType": "bootstrap",
+			// 	"iDisplayLength": 25,
+			// 	"bAutoWidth": true,
+			// 	"aaSorting": [[ 0, "desc" ]],
+			// 	"language": tableLanguage
+			// } );
+
+        if($('#history-charts-wrapper').length){
+        renderCharts()
+        }
+} );

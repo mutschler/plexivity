@@ -408,6 +408,44 @@ height: 40px;
   }
 }
 
+.info-wrapper{
+  position: relative;
+  .info-image-wrapper{
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-top: -20px;
+  }
+  .info-overlay-wrapper{
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.xchart .color0 rect, .xchart .color0 circle {
+fill: @orange;
+}
+
+.xchart .axis .tick line {
+stroke: #444;
+stroke-width: 1px;
+}
+
+.xchart .color0 .line {
+stroke: @orange;
+}
+
+.xchart .color0 .fill {
+fill: fade(@orange, 10%);
+}
+
+.ex-tooltip{
+  background: #000;
+  border-radius: 5px;
+  position: absolute;
+  padding: 5px;
+}
+
+
 //fix zoomin for mobile devices
 input[type='text'],
 input[type='number'],

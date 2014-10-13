@@ -1,26 +1,51 @@
 {% extends "layout.html" %}
 {% block body %}
-{% if info %}
 
-
-{% for child in info %}
-<div class="info-image-wrapper">
-  <img class="img-responsive" src="{{ url_for('cache', filename=child.get('art')|replace('/','', 1)) }}" />
+<div id="history-charts-wrapper">
+<div class="row">
+  <div class="col-sm-6">
+    <section class='wellbg'>
+      <div class='history-charts-header'>
+        <strong>Hourly Plays </strong>(Last 24 Hours)<br>
+      </div>
+      <div class='history-charts-instance-chart' id='playChartHourly' style="height: 200px"></div>
+    </section>
+  </div>
+  <div class="col-sm-6">
+    <section>
+    <div class='history-charts-header'>
+        <strong>Max Hourly Plays<br>
+      </div>
+      <div class='history-charts-instance-chart' id='playChartMaxHourly' style="height: 200px"></div>
+      </section>
+  </div>
 </div>
-<div class="overlay">
-  <div class="info-poster-wrapper col-sm-2">
-    <img class="img-responsive" src="{{ url_for('cache', filename=child.get('thumb')|replace('/','', 1)) }}" />
+
+<div class="row">
+  <div class="col-sm-6">
+    <section>
+    <div class='history-charts-header'>
+        <strong>Daily Plays<br>
+      </div>
+      <div class='history-charts-instance-chart' id='playChartDaily' style="height: 200px"></div>
+      </section>
   </div>
-  <div class="title">
-    <h2>{{child.get('title')}}</h2>
-  </div>
-  <div class="overview">
-    {{child.get('summary')}}
+
+  <div class="col-sm-6">
+    <section>
+    <div class='history-charts-header'>
+        <strong>Monthly Plays<br>
+      </div>
+      <div class='history-charts-instance-chart' id='playChartMonthly' style="height: 200px"></div>
+      </section>
   </div>
 </div>
-  <!-- {{child.items()}}
-  {{child.get('art')}} -->
-{% endfor %}
+</div>
+<script type="text/javascript">
+var dailyPlayFinal = {{daily|tojson|safe}}
+var monthlyPlayFinal = {{monthly|tojson|safe}}
+var maxhourlyPlayFinal = {{maxhourly|tojson|safe}}
+var hourlyPlayFinal = {{hourly|tojson|safe}}
+</script>
 
-{% endif %}
 {% endblock %}

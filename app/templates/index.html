@@ -18,63 +18,7 @@
     {% endif %}
 
     <section id="activity">
-        <h2 class="title">{{ _('Currently playing') }}</h2>
-        {% if activity|length and activity.get('size') >= 1 %}
-            <div class="row">
-                <div class="stats">
-                    <div class="wrapper">
-                        {% for play in activity %}
-                            <div class="col-sm-3">
-                                <div class="poster">
-                                    <div class="poster-activity">
-                                        <a href="{{ url_for('info', id=play.get("ratingKey")) }}">
-                                            {%- if play.get("type") == "movie" %}
-                                            <img class="img-responsive" src="{{ url_for('cache', filename=play.get('art')|replace('/','', 1)) }}"/>
-                                            {%- else %}
-                                            <img class="img-responsive" src="{{ url_for('cache', filename=play.get('thumb')|replace('/','', 1)) }}"/>
-                                            {%- endif %}
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="progress progress-warning">
-                                    <div class="bar"
-                                         style="width: {{ helper.getPercentage(play.get("viewOffset"), play.get("duration")) }}%">{{ helper.getPercentage(play.get("viewOffset"), play.get("duration")) }}</div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="user-activity col-sm-9">
-                                        {%- if play.find("Player").get("state") == "playing" %}
-                                            {{ _( '%(user)s is watching', user=play.find("User").get("title")) }}
-                                        {%- elif play.find("Player").get("state") == "paused" %}
-                                            {{ _( '%(user)s has paused', user=play.find("User").get("title")) }}
-                                        {%- elif play.find("Player").get("state") == "buffering" %}
-                                            {{ _( '%(user)s is buffering', user=play.find("User").get("title")) }}
-                                        {%- endif %}
-                                        <div class="title-activity">
-                                            {%- if play.get("type") == "episode" %}
-                                                {{ play.get("grandparentTitle") }} - {{ play.get("title") }}
-                                            {%- else %}
-                                                {{ play.get("title") }}
-                                            {%- endif %}
-                                        </div>
-                                    </div>
-                                    <div class="platform-activity pull-right col-sm-3">
-                                        <img class="img-responsive"
-                                             src="{{ url_for('static', filename=helper.playerImage(play.find('Player').get('platform')) ) }}"/>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        {% else %}
-            <div class="row">
-                <div class="col-sm-12">
-                    <h2>{{ _('Nothing is currently playing') }}</h2>
-                </div>
-            </div>
-        {% endif %}
+        {% include 'activity.html' %}
     </section>
 
     <section id="recentlyAdded">

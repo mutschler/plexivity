@@ -227,7 +227,10 @@ def users():
 def user(name):
     platform_plays = db.session.query(db.func.count(models.Processed.platform), models.Processed).filter(models.Processed.user == name).group_by(models.Processed.platform).all()
     recent = db.session.query(models.Processed).filter(models.Processed.user == name).order_by(models.Processed.time.desc()).limit(12)
-    return render_template('user.html', username=name, platforms=platform_plays, recently=recent)
+    stats = helper.calculate_plays(db, models, name)
+
+    allstuff = db.session.query(models.Processed).filter(models.Processed.user == name).order_by(models.Processed.time.desc()).all()
+    return render_template('user.html', stats=stats, username=name, platforms=platform_plays, recently=recent, allstuff=allstuff)
 
 @app.route('/logs')
 @login_required

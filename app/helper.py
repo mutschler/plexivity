@@ -37,6 +37,50 @@ def startScheduler():
     scheduler.start()
     #notify.task()
 
+def calculate_plays(db, models, username):
+    to_return = list()
+    today = db.session.query(models.Processed).filter(models.Processed.user == username).filter(models.Processed.stopped >= datetime.datetime.now() - datetime.timedelta(hours=7))
+    week = db.session.query(models.Processed).filter(models.Processed.user == username).filter(models.Processed.stopped >= datetime.datetime.now() - datetime.timedelta(days=1))
+    month = db.session.query(models.Processed).filter(models.Processed.user == username).filter(models.Processed.stopped >= datetime.datetime.now() - datetime.timedelta(days=30))
+    alltime = db.session.query(models.Processed).filter(models.Processed.user == username)
+
+    today_time = datetime.timedelta()
+    for row in today.all():
+        if row.paused_counter:
+            today_time += row.stopped - row.time - datetime.timedelta(seconds=row.paused_counter)
+        else:
+            today_time += row.stopped - row.time
+
+    week_time = datetime.timedelta()
+    for row in week.all():
+        if row.paused_counter:
+            week_time += row.stopped - row.time - datetime.timedelta(seconds=row.paused_counter)
+        else:
+            week_time += row.stopped - row.time
+
+    month_time = datetime.timedelta()
+    for row in month.all():
+        if row.paused_counter:
+            month_time += row.stopped - row.time - datetime.timedelta(seconds=row.paused_counter)
+        else:
+            month_time += row.stopped - row.time
+
+    alltime_time = datetime.timedelta()
+    for row in alltime.all():
+        if row.paused_counter:
+            alltime_time += row.stopped - row.time - datetime.timedelta(seconds=row.paused_counter)
+        else:
+            alltime_time += row.stopped - row.time
+
+    to_return.append({"plays": today.count(), "time": today_time, "name": "Today"})
+    to_return.append({"plays": week.count(), "time": week_time, "name": "Last Week"})
+    to_return.append({"plays": month.count(), "time": month_time, "name": "Last Month"})
+    to_return.append({"plays": alltime.count(), "time": alltime_time, "name": "All Time"})
+    # to_return["weekly"] = {"plays": week.count(), "time": week_time}
+    # to_return["monthly"] = {"plays": month.count(), "time": month_time}
+    # to_return["all"] = {"plays": alltime.count(), "time": alltime_time}
+    return to_return
+
 def statistics():
     pass
 

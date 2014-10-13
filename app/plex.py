@@ -99,6 +99,9 @@ class Server(object):
     def getSections(self):
         return self._request("library/sections")
 
+    def episodes(self, mediaId):
+        return self._request("library/metadata/%s/children" % mediaId)
+
     def recentlyAdded(self, count=6):
         args = {"X-Plex-Container-Start": 0, "X-Plex-Container-Size": count}
         return self._request("library/recentlyAdded", args)

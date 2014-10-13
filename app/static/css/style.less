@@ -1,5 +1,6 @@
 
-@orange: #faa732;
+//@orange: #faa732;
+@orange: #F9AA03;
 @dark: #1f1f1f;
 @white: #eee;
 @grey: #999;
@@ -330,7 +331,11 @@ color: #999;
 
 
 a{
-  color: @orange;
+  color: @white;
+  &:hover{
+    color: @orange;
+    text-decoration: none
+  }
 }
 
 .progress{
@@ -389,6 +394,10 @@ a{
   }
 }
 
+.grey{
+  color: @grey;
+}
+
 .users-poster-face{
 
   img{
@@ -410,6 +419,7 @@ height: 40px;
 
 .info-wrapper{
   position: relative;
+  margin-bottom: 20px;
   .info-image-wrapper{
     margin-left: -15px;
     margin-right: -15px;
@@ -418,6 +428,61 @@ height: 40px;
   .info-overlay-wrapper{
     position: absolute;
     bottom: 0;
+    background: fade(#000, 80%);
+    padding-bottom: 20px;
+    color: @white;
+
+    h2{
+      color: @orange;
+      margin-bottom: 0;
+      font-weight: normal;
+    }
+
+    .info-meta-wrapper{
+      margin-bottom: 10px;
+    }
+
+    .people-info-wrapper{
+      margin-top: 20px;
+
+      ul{
+        margin-left: 20px;
+      }
+    }
+
+
+  }
+  .info-poster-wrapper{
+    margin-top: -20px;
+    padding-bottom: 20px;
+    img{
+      border: 1px solid @dark;
+      border-radius: 5px;
+    }
+  }
+
+
+}
+
+.episode-list{
+  .season-episodes-poster{
+    position: relative;
+    margin-bottom: 5px;
+    margin-top: 20px;
+  }
+
+  .season-episodes-card-overlay{
+    position: absolute;
+    bottom: 0;
+    background: fade(#000, 80);
+    width: 100%;
+    padding: 5px;
+  }
+
+  .season-episodes-title{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 

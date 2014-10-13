@@ -195,7 +195,17 @@ def charts():
 @app.route("/info/<id>")
 @login_required
 def info(id):
-    return render_template('info.html', info=g.plex.getInfo(id))
+    info = g.plex.getInfo(id)
+    views = None
+    parent = None
+    episodes = None
+    if info.getchildren()[0].get("type") == "movie":
+        views = db.session.query(models.Processed).filter(models.Processed.title == info.find("Video").get("title")).all()
+    elif info.getchildren()[0].get("type") == "season":
+        parent = g.plex.getInfo(info.getchildren()[0].get("parentRatingKey")).getchildren()[0]
+        episodes = g.plex.episodes(id)
+
+    return render_template('info.html', info=g.plex.getInfo(id), history=views, parent=parent, episodes=episodes)
 
 @app.route("/login", methods=("GET", "POST"))
 def login():
@@ -236,7 +246,7 @@ def cache(filename):
         if helper.cache_file(filename, g.plex):
             return send_from_directory(cache_dir, filename + ".jpg")
         else:
-            return send_file('images/cover.png')
+            return send_file('static/images/poster.png')
     else:
         return send_from_directory(cache_dir, filename + ".jpg")
 

@@ -123,6 +123,8 @@
 <section class="clearfix most-viewd-episodes episode-list">
   <h2 class="title">{{_('The most watched episodes of "%(showname)s" are', showname=child.get("title"))}}</h2>
     {% for group in episodes|batch(6) %}
+      {% set outer_loop = loop %}
+
   <div class="row">
   {% for ep in group %}
   {% set xml = helper.load_xml(ep[1].xml) %}
@@ -130,7 +132,7 @@
   <div class="col-sm-2">
   <div class='season-episodes-poster'>                           
     <div class='season-episodes-poster-face'>
-      <div class='instance-position-circle'><h3>{{ loop.index }}</h3></div>
+      <div class='instance-position-circle'><h3>{{ loop.index + (6 * outer_loop.index0) }}</h3></div>
       <a href="{{ url_for('info', id=xml.get('ratingKey')) }}">
         <img src="{{ url_for('cache', filename=xml.get('thumb')|replace('/','', 1)) }}" class='img-responsive' />
       </a>

@@ -32,7 +32,7 @@ function renderCharts(){
     tt.className = 'ex-tooltip';
     document.body.appendChild(tt);
 
-    var data = {
+    var hdata = {
       "xScale": "ordinal",
       "yScale": "linear",
 
@@ -43,7 +43,7 @@ function renderCharts(){
         }
       ]
     };
-    var opts = {
+    var hopts = {
       "dataFormatX": function (x) { return d3.time.format('%Y-%m-%d %H').parse(x); },
       "tickFormatX": function (x) { return d3.time.format('%-I:00 %p')(x); },
       "paddingLeft": ('35'),
@@ -60,10 +60,10 @@ function renderCharts(){
         $(tt).hide();
       }
     };
-    var myChart = new xChart('line-dotted', data, '#playChartHourly', opts);
+    var myChart = new xChart('line-dotted', hdata, '#playChartHourly', hopts);
 
 
-    var data = {
+    var mhdata = {
       "xScale": "ordinal",
       "yScale": "linear",
 
@@ -74,9 +74,9 @@ function renderCharts(){
         }
       ]
     };
-    var opts = {
+    var mhopts = {
       "dataFormatX": function (x) { return d3.time.format('%Y-%m-%d %H').parse(x); },
-      "tickFormatX": function (x) { return d3.time.format('%b %e')(x); },
+      "tickFormatX": function (x) { return d3.time.format('%-I:00 %p')(x); },
       "paddingLeft": ('35'),
       "paddingRight": ('35'),
       "paddingTop": ('10'),
@@ -91,10 +91,10 @@ function renderCharts(){
         $(tt).hide();
       }
     };
-    var myChart = new xChart('bar', data, '#playChartMaxHourly', opts);
+    var myChart = new xChart('bar', mhdata, '#playChartMaxHourly', mhopts);
 
 
-    var data = {
+    var ddata = {
       "xScale": "ordinal",
       "yScale": "linear",
       "main": [
@@ -104,7 +104,7 @@ function renderCharts(){
         }
       ]
     };
-    var opts = {
+    var dopts = {
       "dataFormatX": function (x) { return d3.time.format('%Y-%m-%d').parse(x); },
       "tickFormatX": function (x) { return d3.time.format('%b %e')(x); },
       "paddingLeft": ('35'),
@@ -121,9 +121,9 @@ function renderCharts(){
         $(tt).hide();
       }
     };
-    var myChart = new xChart('bar', data, '#playChartDaily', opts);
+    var myChart = new xChart('bar', ddata, '#playChartDaily', dopts);
 
-     var data = {
+     var mdata = {
       "xScale": "ordinal",
       "yScale": "linear",
       "main": [
@@ -133,7 +133,7 @@ function renderCharts(){
         }
       ]
     };
-    var opts = {
+    var mopts = {
       "dataFormatX": function (x) { return d3.time.format('%Y-%m').parse(x); },
       "tickFormatX": function (x) { return d3.time.format('%b')(x); },
       "paddingLeft": ('35'),
@@ -150,7 +150,7 @@ function renderCharts(){
         $(tt).hide();
       }
     };
-    var myChart = new xChart('line-dotted', data, '#playChartMonthly', opts);
+    var myChart = new xChart('line-dotted', mdata, '#playChartMonthly', mopts);
 }
 
 

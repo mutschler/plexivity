@@ -98,7 +98,7 @@
   <div class="row">
   {% for ep in group %}
   
-  <div class="col-sm-2">
+  <div class="col-sm-4 col-lg-2">
   <div class='season-episodes-poster'>                           
     <div class='season-episodes-poster-face'>
       <a href="{{ url_for('info', id=ep.get('ratingKey')) }}">
@@ -129,7 +129,7 @@
   {% for ep in group %}
   {% set xml = helper.load_xml(ep[1].xml) %}
   
-  <div class="col-sm-2">
+  <div class="col-sm-4 col-lg-2">
   <div class='season-episodes-poster'>                           
     <div class='season-episodes-poster-face'>
       <div class='instance-position-circle'><h3>{{ loop.index + (6 * outer_loop.index0) }}</h3></div>

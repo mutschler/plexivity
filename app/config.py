@@ -83,6 +83,9 @@ NOTIFY_HUE = check_setting_int(CFG, 'Hue', 'NOTIFY_HUE', 0)
 BRIDGE_IP = check_setting_str(CFG, 'Hue', 'BRIDGE_IP', "")
 HUE_USERNAME = check_setting_str(CFG, 'Hue', 'HUE_USERNAME', "")
 
+CheckSection('Boxcar')
+NOTIFY_BOXCAR = check_setting_int(CFG, 'Boxcar', 'NOTIFY_BOXCAR', 0)
+BOXCAR_TOKEN = check_setting_str(CFG, 'Boxcar', 'BOXCAR_TOKEN', "")
 
 SYS_ENCODING="UTF-8"
 
@@ -116,7 +119,8 @@ configval["PUSHBULLET_KEY"] = PUSHBULLET_KEY
 configval["BRIDGE_IP"] = BRIDGE_IP
 configval["HUE_USERNAME"] = HUE_USERNAME
 configval["NOTIFY_HUE"] = NOTIFY_HUE
-
+configval["BOXCAR_TOKEN"] = BOXCAR_TOKEN
+configval["NOTIFY_BOXCAR"] = NOTIFY_BOXCAR
 
 def save_config(configval):
     new_config = ConfigObj(interpolation=False)
@@ -156,6 +160,9 @@ def save_config(configval):
     new_config['Hue']['BRIDGE_IP'] = configval["BRIDGE_IP"]
     new_config['Hue']['HUE_USERNAME'] = configval["HUE_USERNAME"]
     new_config['Hue']['NOTIFY_HUE'] = configval["NOTIFY_HUE"]
+    new_config['Boxcar'] = {}
+    new_config['Boxcar']['BOXCAR_TOKEN'] = configval["BOXCAR_TOKEN"]
+    new_config['Boxcar']['NOTIFY_BOXCAR'] = int(configval["NOTIFY_BOXCAR"])
 
     new_config.write()
 

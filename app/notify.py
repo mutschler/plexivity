@@ -50,7 +50,8 @@ def task():
             logger.debug("sending notification for: %s : %s" % (info["user"], info["orig_title_ep"]))
 
             #TODO: fix this.... for now just dont notify again!
-            k.notified = 1
+            notify(info)
+            #k.notified = 1
 
             #make sure we have a stop time if we are not playing this anymore!
             if ntype == "stop":
@@ -299,6 +300,10 @@ def notify(info):
             from app.providers import mail
             mail.send_notification(message)
 
+        if config.NOTIFY_BOXCAR:
+            from app.providers import boxcar
+            boxcar.send_notification(message)
+
         return True
 
 
@@ -471,7 +476,7 @@ def get_paused(session_id):
 
 def get_unnotified():
     logger.info(u"getting unnotified entrys from database")
-    result = db.session.query(models.Processed).filter(models.Processed.notified == None ).all()
+    result = db.session.query(models.Processed).filter(db.or_(models.Processed.notified == None, models.Processed.notified != 1)).all()
     return result
 
 def get_started():

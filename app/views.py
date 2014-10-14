@@ -199,11 +199,17 @@ def info(id):
     views = None
     parent = None
     episodes = None
-    if info.getchildren()[0].get("type") == "movie":
+    cur_el = info.getchildren()[0]
+    cur_type = cur_el.get("type")
+    if cur_type == "movie":
         views = db.session.query(models.Processed).filter(models.Processed.title == info.find("Video").get("title")).all()
-    elif info.getchildren()[0].get("type") == "season":
+    elif cur_type == "season":
         parent = g.plex.getInfo(info.getchildren()[0].get("parentRatingKey")).getchildren()[0]
         episodes = g.plex.episodes(id)
+    elif cur_type == "episode":
+        views = db.session.query(models.Processed).filter(models.Processed.session_id.like("%/metadata/" + cur_el.get("ratingKey") + "_%")).all()
+    elif cur_type == "show":
+        episodes = db.session.query(db.func.count(models.Processed.title), models.Processed).filter(models.Processed.orig_title.like(cur_el.get("title"))).group_by(models.Processed.title).having(db.func.count(models.Processed.orig_title) > 0).order_by(db.func.count(models.Processed.orig_title).desc(), models.Processed.time.desc()).all()
 
     return render_template('info.html', info=g.plex.getInfo(id), history=views, parent=parent, episodes=episodes)
 

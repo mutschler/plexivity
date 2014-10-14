@@ -11,12 +11,20 @@
 </div>
 <div class="info-overlay-wrapper row">
   <div class="info-poster-wrapper col-sm-2">
+    {% if type == "episode" %}
+    <img class="img-responsive" src="{{ url_for('cache', filename=child.get('parentThumb')|replace('/','', 1)) }}" />
+    {% else %}
     <img class="img-responsive" src="{{ url_for('cache', filename=child.get('thumb')|replace('/','', 1)) }}" />
+    {% endif %}
   </div>
   <div class="col-sm-7">
   <div class="title">
     {% if type == "season" %}
       <h2>{{child.get("parentTitle")}} ({{child.get('title')}})</h2>
+    {% elif type == "episode" %}
+      <h2>{{child.get("grandparentTitle")}} - {{_('Season %(sn)s, Episode %(ep)s', sn=child.get("parentIndex"), ep=child.get("index"))}} - {{ child.get("title") }}</h2>
+    {% elif type == "show" %}
+      <h2>{{child.get('title')}}</h2>
     {% elif type == "movie" %}
       <h2>{{child.get("title")}} ({{child.get("year")}})</h2>
     {% endif %}
@@ -25,23 +33,36 @@
         <span class="grey">{{_('Directed by')}}</span> <strong>{{child.find("Director").get("tag")}}</strong>
         <span class="grey">{{_('Rated')}}</span> <strong>{{child.get("contentRating")}}</strong>
         <span class="grey">{{_('Runtime')}}</span> <strong>{{(child.get("duration")|int / 1000 / 60)|int}} {{_('Minutes')}}</strong>
+      {% elif type == "episode" %}
+        <span class="grey">{{_('Directed by')}}</span> <strong>{{child.find("Director").get("tag")}}</strong>
+        <span class="grey">{{_('Rated')}}</span> <strong>{{child.get("contentRating")}}</strong>
+        <span class="grey">{{_('Runtime')}}</span> <strong>{{(child.get("duration")|int / 1000 / 60)|int}} {{_('Minutes')}}</strong>
       {% elif type == "season" %}
         <span class="grey">{{_('Studio')}}</span> <strong>{{parent.get("studio")}}</strong>
         <span class="grey">{{_('Rated')}}</span> <strong>{{parent.get("contentRating")}}</strong>
         <span class="grey">{{_('Runtime')}}</span> <strong>{{(parent.get("duration")|int / 1000 / 60)|int}} {{_('Minutes')}}</strong>
+      {% elif type == "show" %}
+        <span class="grey">{{_('Studio')}}</span> <strong>{{child.get("studio")}}</strong>
+        <span class="grey">{{_('Rated')}}</span> <strong>{{child.get("contentRating")}}</strong>
+        <span class="grey">{{_('Runtime')}}</span> <strong>{{(child.get("duration")|int / 1000 / 60)|int}} {{_('Minutes')}}</strong>
       {% endif %}
     </div>
   </div>
   <div class="overview">
     {% if type == "movie" %}
       {{child.get('summary')}}
+    {% elif type == "episode" %}
+      {{child.get("summary")}}
+    {% elif type == "show" %}
+      {{child.get("summary")}}
     {% elif type == "season" %}
       {{parent.get("summary")}}
     {% endif %}
   </div>
 </div>
-{% if child.get("type") == "movie" %}
+
 <div class="col-sm-3 people-info-wrapper">
+{% if child.get("type") == "movie" %}
   <strong class="grey">Genres</strong>
   <ul class="list-unstyled">
     {% for genre in child.findall("Genre") %}
@@ -54,12 +75,20 @@
     <li>{{actor.get("tag")}}</li>
     {% endfor %}
   </ul>
-</div>
+{% elif type == "episode" %}
+<strong class="grey">Written by</strong>
+  <ul class="list-unstyled">
+    {% for writer in child.findall("Writer") %}
+    <li>{{writer.get("tag")}}</li>
+    {% endfor %}
+  </ul>
 {% endif %}
+</div>
+
 </div>
 </div>
 
-{% if type == "movie" %}
+{% if type == "movie" or type == "episode" %}
 {% include "include/history.html" %}
 {% elif type == "season" %}
 <section class="clearfix episode-list">
@@ -89,6 +118,35 @@
 </div>
   {% endfor %}
 
+</section>
+{% elif type == "show" %}
+<section class="clearfix most-viewd-episodes episode-list">
+  <h2 class="title">{{_('The most watched episodes of "%(showname)s" are', showname=child.get("title"))}}</h2>
+    {% for group in episodes|batch(6) %}
+  <div class="row">
+  {% for ep in group %}
+  {% set xml = helper.load_xml(ep[1].xml) %}
+  
+  <div class="col-sm-2">
+  <div class='season-episodes-poster'>                           
+    <div class='season-episodes-poster-face'>
+      <div class='instance-position-circle'><h3>{{ loop.index }}</h3></div>
+      <a href="{{ url_for('info', id=xml.get('ratingKey')) }}">
+        <img src="{{ url_for('cache', filename=xml.get('thumb')|replace('/','', 1)) }}" class='img-responsive' />
+      </a>
+    </div>
+    <div class='season-episodes-card-overlay'>
+      <div class='season-episodes-season'>{{_('Season %(sn)s, Episode %(ep)s', sn=ep[1].season, ep=ep[1].episode)}}<span class="pull-right"><span class="orange">{{ep[0]}}</span> views</span></div>
+    </div>
+  </div>
+  <div class='season-episodes-instance-text-wrapper'>
+    <div class='season-episodes-title'><a href="{{ url_for('info', id=xml.get('ratingKey')) }}">"{{xml.get("title")}}"</a></div>
+  </div>  
+</div>
+
+{% endfor %}
+</div>
+  {% endfor %}
 </section>
 {% endif %}
   <!-- {{child.__dict__}} -->

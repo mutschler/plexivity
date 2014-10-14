@@ -259,7 +259,7 @@ def cache(filename):
 @app.route('/users')
 @login_required
 def users():
-    users = db.session.query(models.Processed).group_by(models.Processed.user).all()
+    users = db.session.query(db.func.count(models.Processed.user), models.Processed).group_by(models.Processed.user).all()
     return render_template('users.html', users=users)
 
 

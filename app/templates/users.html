@@ -13,7 +13,7 @@
   </thead>
 <tbody>
 {% for user in users %}
-  {% set xml = helper.load_xml(user.xml) %}
+  {% set xml = helper.load_xml(user[1].xml) %}
 
 <tr>
   <td width="50">
@@ -25,9 +25,9 @@
     {% endif %}
   </div>
 </td>
-  <td><a href="{{ url_for('user', name=user.user) }}">{{ user.user }}</a></td>
-  <td>{{ user.time|timestamp|timeago }}</td>
-  <td>{{ user.title|length }}</td>
+  <td><a href="{{ url_for('user', name=user[1].user) }}">{{ user[1].user }}</a></td>
+  <td>{{ user[1].time|timestamp|timeago }}</td>
+  <td>{{ user[0] }}</td>
 </tr>
 {% endfor %}
 </tbody>

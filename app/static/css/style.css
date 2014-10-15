@@ -1,6 +1,9 @@
 body{background:#1f1f1f;color:#bbb}body .navbar{background:#000;border-color:#000}body .navbar .logo{max-height:50px}
 body .navbar .navbar-brand{padding:0 15px}
 body .navbar a:hover{color:#fff}
+.navbar-default .navbar-collapse,.navbar-default .navbar-form{border-color:#3c3c3c}
+.navbar-default .navbar-toggle{border-color:#3c3c3c}
+.navbar-default .navbar-toggle:hover,.navbar-default .navbar-toggle:focus{background-color:#3c3c3c}
 a.orange{color:#f9aa03}a.orange:hover{color:#eee}
 .badge-warning{background:#f9aa03;color:#000}
 .login-wrapper{margin-top:50px}

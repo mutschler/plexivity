@@ -30,11 +30,11 @@
     {% endif %}
     <div class="info-meta-wrapper">
       {% if type == "movie" %}
-        <span class="grey">{{_('Directed by')}}</span> <strong>{{child.find("Director").get("tag")}}</strong>
+        <span class="grey">{{_('Directed by')}}</span> <strong>{% if child.find("Director") is not none %}{{child.find("Director").get("tag")}}{% else %}{{ _('n/a') }}{% endif %}</strong>
         <span class="grey">{{_('Rated')}}</span> <strong>{{child.get("contentRating")}}</strong>
         <span class="grey">{{_('Runtime')}}</span> <strong>{{(child.get("duration")|int / 1000 / 60)|int}} {{_('Minutes')}}</strong>
       {% elif type == "episode" %}
-        <span class="grey">{{_('Directed by')}}</span> <strong>{{child.find("Director").get("tag")}}</strong>
+        <span class="grey">{{_('Directed by')}}</span> <strong>{% if child.find("Director") is not none %}{{child.find("Director").get("tag")}}{% else %}{{ _('n/a') }}{% endif %}</strong>
         <span class="grey">{{_('Rated')}}</span> <strong>{{child.get("contentRating")}}</strong>
         <span class="grey">{{_('Runtime')}}</span> <strong>{{(child.get("duration")|int / 1000 / 60)|int}} {{_('Minutes')}}</strong>
       {% elif type == "season" %}
@@ -65,23 +65,37 @@
 {% if child.get("type") == "movie" %}
   <strong class="grey">Genres</strong>
   <ul class="list-unstyled">
+    {% if child.find("Genre") is not none %}
     {% for genre in child.findall("Genre") %}
     <li>{{genre.get("tag")}}</li>
     {% endfor %}
+    {% else %}
+    <li>{{ _('n/a') }}</li>
+    {% endif %}
   </ul>
   <strong class="grey">Starring</strong>
   <ul class="list-unstyled">
+    {% if child.find("Role") is not none %}
     {% for actor in child.findall("Role")[:5] %}
     <li>{{actor.get("tag")}}</li>
     {% endfor %}
+    {% else %}
+    <li>{{ _('n/a') }}</li>
+    {% endif %}
   </ul>
 {% elif type == "episode" %}
 <strong class="grey">Written by</strong>
+
   <ul class="list-unstyled">
-    {% for writer in child.findall("Writer") %}
-    <li>{{writer.get("tag")}}</li>
-    {% endfor %}
+     {% if child.find("Writer") is not none %}
+      {% for writer in child.findall("Writer") %}
+        <li>{{writer.get("tag")}}</li>
+      {% endfor %}
+      {% else %}
+        <li>{{ _('n/a') }}</li>
+      {% endif %}
   </ul>
+
 {% endif %}
 </div>
 

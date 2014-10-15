@@ -26,7 +26,7 @@
                     <td align="left"><a href="{{ url_for('user', name=entry.user) }}" class="invert-link">{{ entry.user }}</a></td>
                     <td align="left">{{ entry.platform }}</td>
                     <td align="left"><a class="invert-link" href="{{ url_for('info', id=xml.get('ratingKey')) }}">{{ entry.title }}</a></td>
-                    <td align="center" class=" "><a href="#streamDetailsModal{{entry.id}}" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a></td>
+                    <td align="center" class=" "><a href="#streamDetailsModal{{entry.id}}" class="orange" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a></td>
                     <td align="center">{{ entry.time.strftime('%H:%M') }}</td>
                     <td align="center">{{ (entry.paused_counter|int/60)|round|int }} min </td>
                     <td align="center">{% if entry.stopped %} {{ entry.stopped.strftime('%H:%M') }} {% else %} n/a {% endif %}</td>

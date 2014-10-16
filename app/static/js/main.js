@@ -78,8 +78,9 @@ function renderCharts(){
         }
       ]
     };
+
     var mhopts = {
-      "dataFormatX": function (x) { return d3.time.format('%Y-%m-%d %H').parse(x); },
+      "dataFormatX": function (x) { return d3.time.format('%H').parse(x); },
       "tickFormatX": function (x) { return d3.time.format('%-I:00 %p')(x); },
       "paddingLeft": ('35'),
       "paddingRight": ('35'),

@@ -118,10 +118,10 @@ def stats():
 
 
 
-    maxhourly = db.session.query(db.func.count(db.extract('hour', models.Processed.time)), models.Processed).group_by(db.extract('hour', models.Processed.time)).order_by(models.Processed.time.asc()).all()
+    maxhourly = db.session.query(db.func.count(db.extract('hour', models.Processed.time)), models.Processed).group_by(db.extract('hour', models.Processed.time)).order_by(db.extract('hour', models.Processed.time).desc()).all()
     maxhourlyJSON = list()
     for hour in maxhourly:
-        maxhourlyJSON.append({"y": hour[0], "x": hour[1].time.strftime("%Y-%m-%d %H")})
+        maxhourlyJSON.append({"y": hour[0], "x": hour[1].time.strftime("%H")})
 
     return render_template('stats.html', hourly=hourlyJSON, daily=dailyJSON, monthly=monthlyJSON, maxhourly=maxhourlyJSON)
 

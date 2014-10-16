@@ -1,0 +1,14 @@
+{% if stats != None %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="stats-wrapper">
+            <ul class="list-unstyled list-inline">
+                {%- for section in stats %}
+                    <li class="col-sm-2"><h1>{{ section.get("extra").get("size") }}</h1>
+                        <h5>{{ section.get("title") }}</h5></li>
+                {%- endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endif %}

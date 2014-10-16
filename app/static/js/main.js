@@ -2,6 +2,10 @@ function currentActivity() {
 	$('#activity').load('/load/activity');
 }
 
+function recentlyAdded(){
+  $('#recentlyAdded').load('/load/recentlyAdded');
+}
+
 
 (function(document,navigator,standalone) {
             // prevents links from apps from oppening in mobile safari
@@ -160,6 +164,9 @@ $(document).ready(function() {
 	if($('#activity').length){
 		setInterval('currentActivity()', 15000);
 	}
+  if($('#recentlyAdded').length){
+    setInterval('recentlyAdded()', 300000);
+  }
 
             if($('#globalHistory').length){
                 $('#globalHistory').dataTable( {

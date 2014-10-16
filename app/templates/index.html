@@ -1,42 +1,17 @@
 {% extends "layout.html" %}
 {% block body %}
-    {% if stats != None %}
+    
         <section id="overview">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="row stats-wrapper">
-                        <ul class="list-unstyled list-inline">
-                            {%- for section in stats %}
-                                <li class="col-sm-2"><h1>{{ section.get("extra").get("size") }}</h1>
-                                    <h5>{{ section.get("title") }}</h5></li>
-                            {%- endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            {% include 'include/overview.html' %}
         </section>
-    {% endif %}
+    
 
     <section id="activity">
         {% include 'include/activity.html' %}
     </section>
 
     <section id="recentlyAdded">
-        <h2 class="title">{{ _('Recently Added') }}</h2>
-
-        <div class="row">
-
-            {% for object in new %}
-                <div class="col-xs-6 col-lg-2 col-sm-2 recently-added-cover">
-                    <a href="{{ url_for('info', id=object.get("ratingKey")) }}">
-                        <img src="{{ url_for('cache', filename=object.get('thumb')|replace('/','', 1)) }}" class="img-responsive"/>
-                    </a>
-                    {{ object.get("title") }}<br />
-                {{ object.get("addedAt")|int|timeago }}
-                </div>
-            {% endfor %}
-        </div>
-
+        {% include 'include/recently_added.html' %}
     </section>
 
 {% endblock %}

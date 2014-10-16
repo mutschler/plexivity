@@ -3,6 +3,7 @@
             <div class="row">
                 <div class="stats">
                     <div class="wrapper">
+
                         {% for play in activity %}
                             <div class="col-sm-3">
                                 <div class="poster">
@@ -23,13 +24,15 @@
 
                                 <div class="row">
                                     <div class="user-activity col-sm-9">
+                                        {% autoescape false %}
                                         {%- if play.find("Player").get("state") == "playing" %}
-                                            {{ _( '%(user)s is watching', user=play.find("User").get("title")) }}
+                                            {{ _( '%(user)s is watching', user='<a class="orange" href="%s">%s</a>' % (url_for('user', name=play.find("User").get("title")), play.find("User").get("title"))) }}
                                         {%- elif play.find("Player").get("state") == "paused" %}
-                                            {{ _( '%(user)s has paused', user=play.find("User").get("title")) }}
+                                            {{ _( '%(user)s has paused', user='<a class="orange" href="%s">%s</a>' % (url_for('user', name=play.find("User").get("title")), play.find("User").get("title"))) }}
                                         {%- elif play.find("Player").get("state") == "buffering" %}
-                                            {{ _( '%(user)s is buffering', user=play.find("User").get("title")) }}
+                                            {{ _( '%(user)s is buffering', user='<a class="orange" href="%s">%s</a>' % (url_for('user', name=play.find("User").get("title")), play.find("User").get("title"))) }}
                                         {%- endif %}
+                                        {% endautoescape %}
                                         <div class="title-activity">
                                             {%- if play.get("type") == "episode" %}
                                                 {{ play.get("grandparentTitle") }} - {{ play.get("title") }}

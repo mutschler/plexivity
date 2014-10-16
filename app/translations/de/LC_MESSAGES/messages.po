@@ -1,23 +1,24 @@
-# German translations for PROJECT.
+# English translations for PROJECT.
 # Copyright (C) 2014 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
-#
+# 
+# Translators:
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# Raphael, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
+"Project-Id-Version: plexivity\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-10-12 23:13+0200\n"
-"PO-Revision-Date: 2014-10-12 23:14+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: de <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: 2014-10-16 03:26+0200\n"
+"PO-Revision-Date: 2014-10-16 02:14+0000\n"
+"Last-Translator: Raphael\n"
+"Language-Team: German (http://www.transifex.com/projects/p/plexivity/language/de/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 "Language: de\n"
-"X-Generator: Poedit 1.6.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/forms.py:37
 msgid "Hue Bridge IP"
@@ -89,15 +90,15 @@ msgstr "SMTP Server Benutzer"
 
 #: app/forms.py:67
 msgid "SMTP Server password"
-msgstr "SMTP Server Passwort"
+msgstr "SMTP Passwort"
 
 #: app/forms.py:68
 msgid "SMTP Mail Port"
-msgstr "SMTP Mail Port"
+msgstr "SMTP Port"
 
 #: app/forms.py:69
 msgid "Sender Mail Information"
-msgstr "Absender Informationen"
+msgstr "Absender E-Mail Informationen"
 
 #: app/forms.py:71
 msgid "plexivity data directory"
@@ -123,112 +124,87 @@ msgstr "Nachricht beim pausieren der Wiedergabe"
 msgid "Retype password"
 msgstr "Passwort wiederholen"
 
-#: app/helper.py:106
+#: app/helper.py:165
 msgid "just now"
 msgstr "gerade eben"
 
-#: app/helper.py:108
+#: app/helper.py:167
 #, python-format
 msgid "%(int)s seconds ago"
 msgstr "vor %(int)s Sekunden"
 
-#: app/helper.py:112
+#: app/helper.py:171
 #, python-format
 msgid "%(int)s minuten ago"
 msgstr "vor %(int)s Minuten"
 
-#: app/helper.py:114
+#: app/helper.py:173
 msgid "an hour ago"
 msgstr "vor 1 Stunde"
 
-#: app/helper.py:116
+#: app/helper.py:175
 #, python-format
 msgid "%(int)s hours ago"
 msgstr "vor %(int)s Stunden"
 
-#: app/helper.py:118
+#: app/helper.py:177
 msgid "Yesterday"
 msgstr "Gestern"
 
-#: app/helper.py:120
+#: app/helper.py:179
 #, python-format
 msgid "%(int)s days ago"
 msgstr "vor %(int)s Tagen"
 
-#: app/helper.py:122
+#: app/helper.py:181
 #, python-format
 msgid "%(int)s weeks ago"
 msgstr "vor %(int)s Wochen"
 
-#: app/helper.py:124
+#: app/helper.py:183
 #, python-format
 msgid "%(int)s months ago"
 msgstr "vor %(int)s Monaten"
 
-#: app/helper.py:125
+#: app/helper.py:184
 #, python-format
 msgid "%(int)s years ago"
 msgstr "vor %(int)s Jahren"
 
-#: app/views.py:77
+#: app/views.py:79
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr "Verbindung zum PMS nicht möglich. Bitte Einstellungen überprüfen."
 
-#: app/views.py:98
+#: app/views.py:133
 #, python-format
 msgid "User %(username)s created"
 msgstr "Benutzer %(username)s angelegt"
 
-#: app/views.py:125 app/views.py:154
+#: app/views.py:160 app/views.py:189
 #, python-format
 msgid "Successfully connected to Hue Bridge with ip %(ip)s"
 msgstr "Verbindung zur Bridge hergestellt: %(ip)s"
 
-#: app/views.py:144
+#: app/views.py:179
 msgid "Successfully disconnected from Hue Bridge"
 msgstr "Verbindung von Hue Bridge getrennt"
 
-#: app/views.py:184
+#: app/views.py:237
 #, python-format
 msgid "you are now logged in as: '%(username)s'"
 msgstr "Eingeloggt als: '%(username)s'"
 
-#: app/views.py:187
+#: app/views.py:240
 msgid "username/password missmatch or no such user in database"
-msgstr ""
-"Benutzername/Passwort stimmt nicht überein oder ist nicht in der Datenbank "
-"vorhanden"
+msgstr "Benutzername/Passwort stimmt nicht überein oder ist nicht in der Datenbank vorhanden"
 
-#: app/views.py:202
+#: app/views.py:255
 msgid "Logged out"
 msgstr "Abgemeldet"
 
-#: app/views.py:254
+#: app/views.py:310
 msgid "Settings saved!"
 msgstr "Einstellungen gespeichert!"
-
-#: app/templates/activity.html:1 app/templates/index.html:21
-msgid "Currently playing"
-msgstr "Momentan abgespielt"
-
-#: app/templates/activity.html:27 app/templates/index.html:47
-#, python-format
-msgid "%(user)s is watching"
-msgstr "%(user)s sieht gerade"
-
-#: app/templates/activity.html:29 app/templates/index.html:49
-#, python-format
-msgid "%(user)s has paused"
-msgstr "%(user)s hat pausiert"
-
-#: app/templates/activity.html:31 app/templates/index.html:51
-#, python-format
-msgid "%(user)s is buffering"
-msgstr "%(user)s buffert gerade"
-
-#: app/templates/activity.html:54 app/templates/index.html:74
-msgid "Nothing is currently playing"
-msgstr "Zur zeit wird nichts wiedergegeben"
 
 #: app/templates/charts.html:9
 msgid "Top 10 (All Time)"
@@ -240,6 +216,12 @@ msgstr "Top 10 (Ewig)"
 #, python-format
 msgid "%(count)s views"
 msgstr "%(count)s mal angesehen"
+
+#: app/templates/charts.html:30 app/templates/info.html:25
+#: app/templates/info.html:155 app/templates/user.html:52
+#, python-format
+msgid "Season %(sn)s, Episode %(ep)s"
+msgstr "Staffel %(sn)s, Episode %(ep)s"
 
 #: app/templates/charts.html:43
 msgid "Top 10 Movies (All Time)"
@@ -253,50 +235,6 @@ msgstr "Top 10 TV-Sendungen (Ewig)"
 msgid "Top 10 TV-Episodes (All Time)"
 msgstr "Top 10 TV-Episoden (Ewig)"
 
-#: app/templates/history.html:10
-msgid "Date"
-msgstr "Datum"
-
-#: app/templates/history.html:11 app/templates/users.html:9
-msgid "User"
-msgstr "Benutzer"
-
-#: app/templates/history.html:12
-msgid "Platform"
-msgstr "Platform"
-
-#: app/templates/history.html:13
-msgid "Title"
-msgstr "Titel"
-
-#: app/templates/history.html:14
-msgid "Stream Info"
-msgstr "Stream Info"
-
-#: app/templates/history.html:15
-msgid "Started"
-msgstr "Start"
-
-#: app/templates/history.html:16
-msgid "Paused"
-msgstr "Pausiert"
-
-#: app/templates/history.html:17
-msgid "Stopped"
-msgstr "Stop"
-
-#: app/templates/history.html:18
-msgid "Duration"
-msgstr "Dauer"
-
-#: app/templates/history.html:19
-msgid "Completed"
-msgstr "Vollendet"
-
-#: app/templates/history.html:27
-msgid "Currently watching..."
-msgstr "Momentan abgespielt..."
-
 #: app/templates/hue.html:8
 msgid "Connect to Hue"
 msgstr "Mit Hue verbinden"
@@ -304,9 +242,7 @@ msgstr "Mit Hue verbinden"
 #: app/templates/hue.html:17
 msgid ""
 "Please press the Push Button on your Hue Bridge and press the button below"
-msgstr ""
-"Bitte drücken sie den Push Button an ihrer Hue Bridge und im Anschluss den "
-"Knopf unten"
+msgstr "Bitte drücken sie den Push Button an ihrer Hue Bridge und im Anschluss den Knopf unten"
 
 #: app/templates/hue.html:18
 msgid "Push Button Pressed"
@@ -325,104 +261,139 @@ msgstr "Hue Verbindung zurücksetzen"
 msgid "All available lights"
 msgstr "Alle Lampen"
 
-#: app/templates/index.html:81
-msgid "Recently Added"
-msgstr "Kürzlich hinzugefügt"
+#: app/templates/info.html:33 app/templates/info.html:37
+msgid "Directed by"
+msgstr "Regie"
+
+#: app/templates/info.html:33 app/templates/info.html:37
+#: app/templates/info.html:73 app/templates/info.html:83
+#: app/templates/info.html:95
+msgid "n/a"
+msgstr "n/v"
+
+#: app/templates/info.html:34 app/templates/info.html:38
+#: app/templates/info.html:42 app/templates/info.html:46
+msgid "Rated"
+msgstr "FSK"
+
+#: app/templates/info.html:35 app/templates/info.html:39
+#: app/templates/info.html:43 app/templates/info.html:47
+msgid "Runtime"
+msgstr "Laufzeit"
+
+#: app/templates/info.html:35 app/templates/info.html:39
+#: app/templates/info.html:43 app/templates/info.html:47
+msgid "Minutes"
+msgstr "Minuten"
+
+#: app/templates/info.html:41 app/templates/info.html:45
+msgid "Studio"
+msgstr "Studio"
+
+#: app/templates/info.html:123
+#, python-format
+msgid "Episode %(ep)s"
+msgstr "Episode %(ep)s"
+
+#: app/templates/info.html:138
+#, python-format
+msgid "The most watched episodes of \"%(showname)s\" are"
+msgstr "Die meist gesehenen Episoden von \"%(showname)s\""
 
 #: app/templates/layout.html:4
 msgid "plexivity"
 msgstr "plexivity"
 
-#: app/templates/layout.html:29
+#: app/templates/layout.html:49
 msgid "Toggle navigation"
 msgstr "Navigation anzeigen"
 
-#: app/templates/layout.html:39
+#: app/templates/layout.html:59
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: app/templates/layout.html:40
+#: app/templates/layout.html:60
 msgid "History"
 msgstr "Verlauf"
 
-#: app/templates/layout.html:41
+#: app/templates/layout.html:61
 msgid "Statistics"
 msgstr "Statistik"
 
-#: app/templates/layout.html:42
+#: app/templates/layout.html:62
 msgid "Users"
 msgstr "Benutzer"
 
-#: app/templates/layout.html:43
+#: app/templates/layout.html:63
 msgid "Charts"
 msgstr "Charts"
 
-#: app/templates/layout.html:44
+#: app/templates/layout.html:64
 msgid "Logout"
 msgstr "Abmelden"
 
-#: app/templates/layout.html:46 app/templates/login.html:23
+#: app/templates/layout.html:66 app/templates/login.html:23
 #: app/templates/login.html:26
 msgid "Login"
 msgstr "Anmelden"
 
-#: app/templates/layout.html:83
+#: app/templates/layout.html:107
 msgid "No data available in table"
 msgstr "Keine Daten in der Tabelle vorhanden"
 
-#: app/templates/layout.html:84
+#: app/templates/layout.html:108
 msgid "Showing _START_ to _END_ of _TOTAL_ entries"
 msgstr "_START_ bis _END_ von _TOTAL_ Einträgen"
 
-#: app/templates/layout.html:85
+#: app/templates/layout.html:109
 msgid "Showing 0 to 0 of 0 entries"
 msgstr "0 bis 0 von 0 Einträgen"
 
-#: app/templates/layout.html:86
+#: app/templates/layout.html:110
 msgid "(filtered from _MAX_ total entries)"
 msgstr "(gefiltert von _MAX_ Einträgen)"
 
-#: app/templates/layout.html:89
+#: app/templates/layout.html:113
 msgid "Show _MENU_ entries"
 msgstr "_MENU_ Einträge anzeigen"
 
-#: app/templates/layout.html:90
+#: app/templates/layout.html:114
 msgid "Loading..."
 msgstr "Wird geladen..."
 
-#: app/templates/layout.html:91
+#: app/templates/layout.html:115
 msgid "Processing..."
 msgstr "Bitte warten..."
 
-#: app/templates/layout.html:92
+#: app/templates/layout.html:116
 msgid "Search:"
 msgstr "Suchen"
 
-#: app/templates/layout.html:93
+#: app/templates/layout.html:117
 msgid "No matching records found"
 msgstr "Keine Einträge vorhanden"
 
-#: app/templates/layout.html:95
+#: app/templates/layout.html:119
 msgid "First"
 msgstr "Erste"
 
-#: app/templates/layout.html:96
+#: app/templates/layout.html:120
 msgid "Last"
 msgstr "Letzte"
 
-#: app/templates/layout.html:97
+#: app/templates/layout.html:121
 msgid "Next"
 msgstr "Nächste"
 
-#: app/templates/layout.html:98
+#: app/templates/layout.html:122
 msgid "Previous"
 msgstr "Zurück"
 
-#: app/templates/layout.html:101
+#: app/templates/layout.html:125
 msgid ": activate to sort column ascending"
 msgstr ": aktivieren, um Spalte aufsteigend zu sortieren"
 
-#: app/templates/layout.html:102
+#: app/templates/layout.html:126
 msgid ": activate to sort column descending"
 msgstr ": aktivieren, um Spalte absteigend zu sortieren"
 
@@ -438,18 +409,67 @@ msgstr "Mit Hue verbinden"
 msgid "Create Account"
 msgstr "Account erstellen"
 
+#: app/templates/stats.html:9
+msgid "Hourly Plays"
+msgstr "Wiedergaben nach Stunden"
+
+#: app/templates/stats.html:9
+msgid "Last 24 Hours"
+msgstr "Die letzten 24 Stunden"
+
+#: app/templates/stats.html:17
+msgid "Max Hourly Plays"
+msgstr "Wiedergaben nach Stunden"
+
+#: app/templates/stats.html:28
+msgid "Daily Plays"
+msgstr "Wiedergaben nach Tagen"
+
+#: app/templates/stats.html:37
+msgid "Monthly Plays"
+msgstr "Wiedergaben pro Monat"
+
 #: app/templates/user.html:8
+msgid "Global Stats"
+msgstr "Globale Statistik"
+
+#: app/templates/user.html:12
+#, python-format
+msgid "%(num)d plays"
+msgstr "%(num)d wiedergaben"
+
+#: app/templates/user.html:13
+#, python-format
+msgid "%(num)d day"
+msgid_plural "%(num)d days"
+msgstr[0] "%(num)d Tag"
+msgstr[1] "%(num)d Tage"
+
+#: app/templates/user.html:13
+#, python-format
+msgid "%(num)d hour"
+msgid_plural "%(num)d hours"
+msgstr[0] "%(num)d Stunde"
+msgstr[1] "%(num)d Stunden"
+
+#: app/templates/user.html:13
+#, python-format
+msgid "%(num)d min"
+msgid_plural "%(num)d mins"
+msgstr[0] "%(num)d Minute"
+msgstr[1] "%(num)d Minuten"
+
+#: app/templates/user.html:21
 msgid "Platform Stats"
 msgstr "Platform Statistik"
 
-#: app/templates/user.html:24
+#: app/templates/user.html:44
 msgid "Recently watched"
 msgstr "Kürzlich angesehen"
 
-#: app/templates/user.html:31
-#, python-format
-msgid "Season %(sn)s, Episode %(ep)s"
-msgstr "Staffel %(sn)s, Episode %(ep)s"
+#: app/templates/users.html:9 app/templates/include/history.html:9
+msgid "User"
+msgstr "Benutzer"
 
 #: app/templates/users.html:10
 msgid "Last Seen"
@@ -459,17 +479,69 @@ msgstr "Zuletzt gesehen"
 msgid "Total Plays"
 msgstr "gesamt Wiedergaben"
 
-#~ msgid "Submit"
-#~ msgstr "Suchen"
+#: app/templates/include/activity.html:1
+msgid "Currently playing"
+msgstr "Momentan abgespielt"
 
-#~ msgid "Display _MENU_ records per page"
-#~ msgstr "Zeige _MENU_ Einträge pro Seite"
+#: app/templates/include/activity.html:27
+#, python-format
+msgid "%(user)s is watching"
+msgstr "%(user)s sieht gerade"
 
-#~ msgid "Nothing found - sorry"
-#~ msgstr "Nichts gefunden - Tut mir leid"
+#: app/templates/include/activity.html:29
+#, python-format
+msgid "%(user)s has paused"
+msgstr "%(user)s hat pausiert"
 
-#~ msgid "Showing page _PAGE_ of _PAGES_"
-#~ msgstr "zeige Seite _PAGE_ von _PAGES_"
+#: app/templates/include/activity.html:31
+#, python-format
+msgid "%(user)s is buffering"
+msgstr "%(user)s buffert gerade"
 
-#~ msgid "No records available"
-#~ msgstr "Keine Einträge vorhanden"
+#: app/templates/include/activity.html:54
+msgid "Nothing is currently playing"
+msgstr "Zur zeit wird nichts wiedergegeben"
+
+#: app/templates/include/history.html:8
+msgid "Date"
+msgstr "Datum"
+
+#: app/templates/include/history.html:10
+msgid "Platform"
+msgstr "Platform"
+
+#: app/templates/include/history.html:11
+msgid "Title"
+msgstr "Titel"
+
+#: app/templates/include/history.html:12
+msgid "Stream Info"
+msgstr "Stream Info"
+
+#: app/templates/include/history.html:13
+msgid "Started"
+msgstr "Start"
+
+#: app/templates/include/history.html:14
+msgid "Paused"
+msgstr "Pausiert"
+
+#: app/templates/include/history.html:15
+msgid "Stopped"
+msgstr "Stop"
+
+#: app/templates/include/history.html:16
+msgid "Duration"
+msgstr "Dauer"
+
+#: app/templates/include/history.html:17
+msgid "Completed"
+msgstr "Vollendet"
+
+#: app/templates/include/history.html:25
+msgid "Currently watching..."
+msgstr "Momentan abgespielt..."
+
+#: app/templates/include/recently_added.html:1
+msgid "Recently Added"
+msgstr "Kürzlich hinzugefügt"

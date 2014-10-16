@@ -79,7 +79,7 @@ def index():
         flash(_("Unable to connect to PMS. Please check your settings"), "error")
         return redirect(url_for("settings"))
 
-    return render_template('index.html', activity=g.plex.currentlyPlaying(), new=g.plex.recentlyAdded())
+    return render_template('index.html', stats=g.plex.libraryStats(), activity=g.plex.currentlyPlaying(), new=g.plex.recentlyAdded())
 
 #reload stuff
 @app.route("/load/activity")

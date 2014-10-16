@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import requests
+
 from app import config
 from app.logger import logger
-import requests
 from xml2json import xml2json
 
+
 logger = logger.getChild('plex')
+
 
 class Server(object):
     def __init__(self, host, port):
@@ -19,7 +22,6 @@ class Server(object):
         self.token = False
         self.status = 0
 
-
     def test(self):
         status = self._request("status")
         if status != False:
@@ -28,7 +30,6 @@ class Server(object):
             self.status = 0
 
         return self.status
-
 
     def _request(self, url, args=dict()):
         if self.token:
@@ -80,7 +81,7 @@ class Server(object):
     def get_thumb_data(self, url):
         #/photo/:/transcode?url=http://127.0.0.1:".$plexWatch['pmsHttpPort']."".$xml->Video['art']."&width=1920&height=1080";
         args = {
-            "url" : "http://127.0.0.1:%(port)s/%(url)s" % {"port": self.port,"url": url}
+            "url": "http://127.0.0.1:%(port)s/%(url)s" % {"port": self.port, "url": url}
         }
         if "/art/" in url:
             args["width"] = 1920
@@ -88,7 +89,7 @@ class Server(object):
         else:
             args["width"] = 480
             args["height"] = 694
-        transcode_url = "photo/:/transcode" #?url=http://127.0.0.1:%(port)s/%(url)s" % {"port": self.port,"url": url}
+        transcode_url = "photo/:/transcode"  #?url=http://127.0.0.1:%(port)s/%(url)s" % {"port": self.port,"url": url}
 
         #?url=http://127.0.0.1:%(port)s/%(url)s&width=%(width)s&height=%(height)s" % {"port": self.port,"url": url, "width": width, "height": height}
         return self._request(transcode_url, args)

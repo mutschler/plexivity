@@ -1,30 +1,31 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-
-from app import logger
-from flask.ext.babel import gettext as _
-from app import config, plex, notify
 import xml.etree.ElementTree as ET
-import logging 
+import logging
 import datetime
 
+from flask.ext.babel import gettext as _
 from apscheduler.schedulers.background import BackgroundScheduler
+
+from app import logger
+from app import config, plex, notify
 
 sched_logger = logging.getLogger("apscheduler")
 sched_logger.addHandler(logger.console)
 sched_logger.setLevel(logging.DEBUG)
 logger = logger.logger.getChild('helper')
 
+
 def currentlyPlaying():
     print "job fired"
     logger.info("running job")
 
+
 def startScheduler():
-    # import logging
-    # logging.getLogger("apscheduler").setLevel(logging.DEBUG)
     try:
         import tzlocal
+
         tz = tzlocal.get_localzone().zone
         logger.info("local timezone: %s" % tz)
     except:
@@ -33,15 +34,20 @@ def startScheduler():
     #in debug mode this is executed twice :(
     #DONT run flask in auto reload mode when testing this!
     scheduler = BackgroundScheduler(logger=sched_logger, timezone=tz)
-    scheduler.add_job(notify.task, 'interval', seconds=config.SCAN_INTERVAL, max_instances=1, start_date=datetime.datetime.now() + datetime.timedelta(seconds=2) )
+    scheduler.add_job(notify.task, 'interval', seconds=config.SCAN_INTERVAL, max_instances=1,
+                      start_date=datetime.datetime.now() + datetime.timedelta(seconds=2))
     scheduler.start()
     #notify.task()
 
+
 def calculate_plays(db, models, username):
     to_return = list()
-    today = db.session.query(models.Processed).filter(models.Processed.user == username).filter(models.Processed.stopped >= datetime.datetime.now() - datetime.timedelta(hours=7))
-    week = db.session.query(models.Processed).filter(models.Processed.user == username).filter(models.Processed.stopped >= datetime.datetime.now() - datetime.timedelta(days=1))
-    month = db.session.query(models.Processed).filter(models.Processed.user == username).filter(models.Processed.stopped >= datetime.datetime.now() - datetime.timedelta(days=30))
+    today = db.session.query(models.Processed).filter(models.Processed.user == username).filter(
+        models.Processed.stopped >= datetime.datetime.now() - datetime.timedelta(hours=7))
+    week = db.session.query(models.Processed).filter(models.Processed.user == username).filter(
+        models.Processed.stopped >= datetime.datetime.now() - datetime.timedelta(days=1))
+    month = db.session.query(models.Processed).filter(models.Processed.user == username).filter(
+        models.Processed.stopped >= datetime.datetime.now() - datetime.timedelta(days=30))
     alltime = db.session.query(models.Processed).filter(models.Processed.user == username)
 
     today_time = datetime.timedelta()
@@ -81,22 +87,28 @@ def calculate_plays(db, models, username):
     # to_return["all"] = {"plays": alltime.count(), "time": alltime_time}
     return to_return
 
+
 def statistics():
     pass
 
+
 def date_timestamp(date):
     import time
+
     return time.mktime(date.timetuple())
+
 
 def load_xml(string):
     xml = ET.fromstring(string)
     return xml
+
 
 def xml_to_string(xml):
     try:
         return xml.tostring()
     except:
         return ET.tostring(xml)
+
 
 def getPercentage(viewed, duration):
     if not viewed or not duration:
@@ -107,6 +119,7 @@ def getPercentage(viewed, duration):
     if int(percent) >= 90:
         return 100
     return percent
+
 
 def cache_file(filename, plex):
     cache_dir = os.path.join(config.DATA_DIR, "cache")
@@ -124,6 +137,7 @@ def cache_file(filename, plex):
 
     return False
 
+
 def pretty_date(time=False):
     """
     Get a datetime object or a int() Epoch timestamp and return a
@@ -131,6 +145,7 @@ def pretty_date(time=False):
     'just now', etc
     """
     from datetime import datetime
+
     now = datetime.now()
     if float(time):
         diff = now - datetime.fromtimestamp(time)
@@ -168,6 +183,7 @@ def pretty_date(time=False):
         return _("%(int)s months ago", int=day_diff / 30)
     return _("%(int)s years ago", int=day_diff / 365)
 
+
 def notifyer():
     ### onyl basic tests here
     # TODO: move this to a extra file and include DB support!
@@ -187,14 +203,18 @@ def notifyer():
         player_title = session.find("Player").get("product")
 
         if session.find("Player").get("state") == "paused":
-            message = config.PAUSE_MESSAGE % {"username": username, "platform": platform, "title": title, "product": product, "player_title": player_title, "offset": offset}
+            message = config.PAUSE_MESSAGE % {"username": username, "platform": platform, "title": title,
+                                              "product": product, "player_title": player_title, "offset": offset}
         elif session.find("Player").get("state") == "playing":
-            message = config.START_MESSAGE % {"username": username, "platform": platform, "title": title, "product": product, "player_title": player_title, "offset": offset}
+            message = config.START_MESSAGE % {"username": username, "platform": platform, "title": title,
+                                              "product": product, "player_title": player_title, "offset": offset}
         else:
-            message = config.STOP_MESSAGE % {"username": username, "platform": platform, "title": title, "product": product, "player_title": player_title, "offset": offset}
+            message = config.STOP_MESSAGE % {"username": username, "platform": platform, "title": title,
+                                             "product": product, "player_title": player_title, "offset": offset}
 
         if config.NOTIFY_PUSHOVER and message:
             from app.providers import pushover
+
             pushover.send_notification(message)
 
 

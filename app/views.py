@@ -258,6 +258,8 @@ def logout():
 @app.route('/cache/<path:filename>', strict_slashes=False)
 @login_required
 def cache(filename):
+    if not config.CACHE_IMAGES:
+        return g.plex.get_thumb_data(filename)
     cache_dir = os.path.join(config.DATA_DIR, "cache")
     cache_file = os.path.join(cache_dir, filename)
     if not os.path.exists(cache_file + ".jpg"):

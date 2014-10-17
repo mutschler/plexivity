@@ -63,8 +63,8 @@
 			background: #50B300
 		}
 
-		span.badge.chg{
-			background: #50B300
+		span.badge.ext{
+			background: #3FAFD1
 		}
 	</style>
 </head>

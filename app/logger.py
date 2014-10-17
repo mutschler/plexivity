@@ -15,8 +15,9 @@ rotation = logging.handlers.RotatingFileHandler(os.path.join(config.DATA_DIR, "p
 rotation.setFormatter(formatter)
 logger.addHandler(rotation)
 
-console = logging.StreamHandler()
-console.setFormatter(formatter)
-logger.addHandler(console)
+if config.DEBUG:
+    console = logging.StreamHandler()
+    console.setFormatter(formatter)
+    logger.addHandler(console)
 
 logger.setLevel(logging.DEBUG)

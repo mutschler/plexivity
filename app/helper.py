@@ -12,7 +12,7 @@ from app import logger
 from app import config, plex, notify
 
 sched_logger = logging.getLogger("apscheduler")
-sched_logger.addHandler(logger.console)
+sched_logger.addHandler(logger.rotation)
 sched_logger.setLevel(logging.DEBUG)
 logger = logger.logger.getChild('helper')
 

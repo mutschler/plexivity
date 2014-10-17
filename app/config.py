@@ -44,7 +44,7 @@ def check_setting_int(config, cfg_name, item_name, def_val):
 
 CheckSection('General')
 DATA_DIR = check_setting_str(CFG, 'General', 'DATA_DIR', os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-PORT = check_setting_int(CFG, 'General', 'PORT', 8083)
+PORT = check_setting_int(CFG, 'General', 'PORT', 8080)
 START_MESSAGE = check_setting_str(CFG, 'General', 'START_MESSAGE', "%(username)s is currently watching %(title)s")
 NOTIFY_START = check_setting_int(CFG, 'General', 'NOTIFY_START', 1)
 PAUSE_MESSAGE = check_setting_str(CFG, 'General', 'PAUSE_MESSAGE', "%(username)s paused %(title)s")

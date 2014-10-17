@@ -5,19 +5,19 @@ from app import app
 from lib.daemon import Daemon
 
 
-def run_app(port, debug):
+def run_app():
     from subprocess import call
     #make sure database is most recent version!
     call(["python", "manage.py", "db", "upgrade"])
-    app.run(host="0.0.0.0", port=port, debug=debug)
+    app.run(host="0.0.0.0", port=config.PORT, debug=False)
 
 
 class PlexivityDaemon(Daemon):
-    def run(self, port, debug):
+    def run(self):
         # Define your tasks here
         # Anything written in python is permitted
         # For example you can clean up your server logs every hour
-        run_app(port, debug)
+        run_app()
 
 
 if __name__ == "__main__":
@@ -51,7 +51,7 @@ if __name__ == "__main__":
     daemon = PlexivityDaemon(PIDFILE)
 
     if args.daemon:
-        daemon.start(port, False)
+        daemon.start()
 
     if args.stop:
         daemon.stop()
@@ -72,4 +72,4 @@ if __name__ == "__main__":
             print 'plexivity is not running.'
 
     if not args.daemon and not args.status and not args.stop:
-        run_app(port, False)
+        run_app()

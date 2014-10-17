@@ -10,11 +10,11 @@
   <img class="img-responsive" src="{{ url_for('cache', filename=child.get('art')|replace('/','', 1)) }}" />
 </div>
 <div class="info-overlay-wrapper">
-  <div class="info-poster-wrapper col-sm-2">
+  <div class="info-poster-wrapper hidden-xs col-sm-2">
     {% if type == "episode" %}
-    <img class="img-responsive" src="{{ url_for('cache', filename=child.get('parentThumb')|replace('/','', 1)) }}" />
+    <img class="poster-face img-responsive" src="{{ url_for('cache', filename=child.get('parentThumb')|replace('/','', 1)) }}" />
     {% else %}
-    <img class="img-responsive" src="{{ url_for('cache', filename=child.get('thumb')|replace('/','', 1)) }}" />
+    <img class="poster-face img-responsive" src="{{ url_for('cache', filename=child.get('thumb')|replace('/','', 1)) }}" />
     {% endif %}
   </div>
   <div class="col-sm-7">

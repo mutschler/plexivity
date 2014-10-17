@@ -1,27 +1,40 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<h2>{{username}}</h2>
+<div class="user-info-wrapper row">
+<div class="col-sm-12">
+{% set uxml = helper.load_xml(user.xml) %}
+<div class="users-poster-face">
+    {% if uxml.find("User").get("thumb") %}
+    <img class="" onerror=\"this.src='{{ url_for('static' , filename="images/gravatar-default-80x80.png") }}'\" src="{{ uxml.find("User").get("thumb") }}" />
+    {% else %}
+    <img src="{{ url_for('static' , filename='images/gravatar-default-80x80.png') }}" />
+    {% endif %}
+</div>
+<h2>{{ user.user }}</h2>
+</div>
+</div>
 
-{% if stats %}
+{#{% if stats %}
 <section class="platforms" id="platforms">
-  <h2 class="title">{{_('Global Stats')}}</h2>
-  <div class="row">
-    {% for x in stats %}
-      <h3>{{x["name"]}}</h3>
-      {{_('%(num)d plays', num=x["plays"])}} / {{ x["time"] }}
-      {{ ngettext('%(num)d day', '%(num)d days', 0) }} {{ ngettext('%(num)d hour', '%(num)d hours', 1) }} {{ ngettext('%(num)d min', '%(num)d mins', 4) }}
+    <h2 class="title">{{ _('Global Stats') }}</h2>
+
+    <div class="row">
+        {% for x in stats %}
+        <h3>{{ x["name"] }}</h3>
+        {{ _('%(num)d plays', num=x["plays"])}} / {{ x["time"] }}
+        {{ ngettext('%(num)d day', '%(num)d days', 0) }} {{ ngettext('%(num)d hour', '%(num)d hours', 1) }} {{ ngettext('%(num)d min', '%(num)d mins', 4) }}
     {% endfor %}
   </div>
 </section>
-{% endif %}
+{% endif %}#}
 
 {% if platforms %}
 <section class="platforms" id="platforms">
   <h2 class="title">{{_('Platform Stats')}}</h2>
   <div class="row">
     {% for stat in platforms %}
-    <div class="col-sm-2">
+    <div class="col-sm-2 clearfix">
       {% set xml = helper.load_xml(stat[1].xml) %}
       <img style="float: left; margin-right: 10px; width: 70px" class=" img-responsive" src="{{ url_for('static', filename=helper.playerImage(xml.find('Player').get('platform')) ) }}"/>
       <p>{{ stat[1].platform }}</p>
@@ -42,21 +55,25 @@
 {% if recently %}
 <section class="platforms" id="platforms">
   <h2 class="title">{{_('Recently watched')}}</h2>
-  <div class="row">
 
-    {% for row in recently %}
-    <div class="col-xs-6 col-sm-4 col-md-2">
+
+    {% for group in recently|batch(6) %}
+    <div class="row">
+    {% for row in group %}
+    <div class="col-xs-6 col-sm-4 col-md-2 recently-added-cover">
       {% set xml = helper.load_xml(row.xml) %}
       {% if xml.get("type") == "episode" %}
-        <img class=" img-responsive" src="{{ url_for('cache', filename=xml.get('parentThumb')|replace('/','', 1) ) }}"/>
+        <a href="{{ url_for('info', id=xml.get('ratingKey')) }}"><img class="poster-face img-responsive" src="{{ url_for('cache', filename=xml.get('parentThumb')|replace('/','', 1) ) }}"/></a>
         {{_('Season %(sn)s, Episode %(ep)s', sn=row.season, ep=row.episode)}}
       {% elif xml.get("type") == "movie" %}
-        <img class=" img-responsive" src="{{ url_for('cache', filename=xml.get('thumb')|replace('/','', 1) ) }}"/>
+        <a href="{{ url_for('info', id=xml.get('ratingKey')) }}"><img class="poster-face img-responsive" src="{{ url_for('cache', filename=xml.get('thumb')|replace('/','', 1) ) }}"/></a>
         {{row.title}} ({{row.year}})
       {% endif %}
     </div>
     {% endfor %}
-  </div>
+    </div>
+    {% endfor %}
+
 </section>
 {% endif %}
 

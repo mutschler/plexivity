@@ -278,12 +278,12 @@ def users():
 @app.route('/user/<name>')
 @login_required
 def user(name):
+    usr = db.session.query(models.Processed).filter(models.Processed.user == name == name).first()
     platform_plays = db.session.query(db.func.count(models.Processed.platform), models.Processed).filter(models.Processed.user == name).group_by(models.Processed.platform).all()
     recent = db.session.query(models.Processed).filter(models.Processed.user == name).order_by(models.Processed.time.desc()).limit(12)
     stats = helper.calculate_plays(db, models, name)
     history = db.session.query(models.Processed).filter(models.Processed.user == name).order_by(models.Processed.time.desc()).all()
-    allstuff = db.session.query(models.Processed).filter(models.Processed.user == name).order_by(models.Processed.time.desc()).all()
-    return render_template('user.html', stats=stats, username=name, platforms=platform_plays, recently=recent, allstuff=allstuff, history=history)
+    return render_template('user.html', stats=stats, platforms=platform_plays, recently=recent, history=history, user=usr)
 
 @app.route('/logs')
 @login_required

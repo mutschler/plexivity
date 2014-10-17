@@ -1,95 +1,153 @@
+@import "variables";
+@import "mixins";
+
+//media querry variables
+@screen-xs-qry: ~"(min-width: @{screen-xs}) and (max-width: @{screen-xs-max})";
+@screen-sm-qry: ~"(min-width: @{screen-sm}) and (max-width: @{screen-sm-max})";
+@screen-md-qry: ~"(min-width: @{screen-md}) and (max-width: @{screen-md-max})";
+@screen-lg-qry: ~"(min-width: @{screen-lg})";
+@screen-sm-up-qry: ~"(min-width: @{screen-sm})";
 
 //@orange: #faa732;
 @orange: #F9AA03;
 @dark: #1f1f1f;
 @white: #eee;
 @grey: #999;
+@light-grey: #bbb;
+@dark-grey: #3c3c3c;
+@black: #000;
 
 body{
   background: @dark;
-  color: #bbb;
-
-  .navbar{
-    background: #000;
-    border-color: #000;
-
-    .logo{
-      max-height: 50px;
-    }
+  color: @light-grey;
+  
+  //navbar start
+  .navbar-default{
+    background: @black;
+    border-color: @black;
 
     .navbar-brand{
       padding: 0 15px;
+
+      img.logo{
+        max-height: 50px;
+      }
+
+    }
+
+    .navbar-collapse{
+      border-color: @dark-grey;
+    }
+
+    .navbar-toggle{
+      border-color: @dark-grey;
+
+      &:hover{
+        background-color: @dark-grey;
+      }
     }
 
     a{
       &:hover{
-        color: #fff;
+        color: @white;
       }
     }
   }
-}
-
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-border-color: #3c3c3c;
-}
-.navbar-default .navbar-toggle {
-border-color: #3c3c3c;
-}
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-background-color: #3c3c3c;
-}
-
-a{
-  &.orange{
-    color: @orange;
+  //navbar end
+  
+  //default link and headline styles
+  a{
+    color: @white;
 
     &:hover{
-      color: @white;
+      color: @orange;
+      text-decoration: none;
+    }
+
+    &.btn-plex{
+      color: @black;
+
+      &:hover{
+        color: @white;
+      }
+    }
+
+    &.orange{
+      color: @orange;
+  
+      &:hover{
+        color: @white;
+      }
     }
   }
+  
+  //color settings for text etc
+  span.orange{
+    color: @orange;
+  }
+
+  .grey{
+    color: @grey;
+  }
+
+  .badge-warning{
+    background: @orange;
+    color: @black;
+  }
+
+  img.poster-face{
+    border-radius: 3px;
+    border: 1px solid @dark-grey;
+    box-shadow: 0 0 10px rgba(0,0,0,1);
+
+
+    &:hover{
+      box-shadow: 0 0 0 2px @orange;
+    }
+  }
+
 }
 
-.badge-warning{
-  background: @orange;
-  color: #000;
-}
-
-.login-wrapper{
-  margin-top: 50px;
-}
-
+//modal styles
 .modal{
-  color: #999;
+  color: @grey;
   strong{
-        color: #eee;
-      }
+    color: @white;
+  }
 
   h4{
     color: @orange;
   }
+
   h3{
     margin: 0;
     line-height: 30px;
     font-size: 20px;
   }
+
   h5{
-    color: #eee;
+    color: @white;
   }
 
   .modal-content{
     background: lighten(@dark, 5%);
 
     .modal-body{
-
       background: darken(@dark, 2%);
-
-
     }
+
   }
+  
 }
 
+.login-wrapper{
+  margin-top: 50px;
+}
+
+
+
 section{
-  border: solid 1px #3c3c3c;
+  border: solid 1px @dark-grey;
   box-shadow: inset 0 0 20px 0 rgba(0,0,0,0.2);
   padding: 20px;
   margin-bottom: 50px;
@@ -101,11 +159,13 @@ section{
 
   .title {
     margin-top: 0;
-    border-bottom: 1px solid #3c3c3c;
-    box-shadow: inset 0 -1px 0 #000000;
+    border-bottom: 1px solid @dark-grey;
+    box-shadow: inset 0 -1px 0 @black;
     padding-bottom: 10px;
-    color: #fff;
+    margin-bottom: 10px;
+    color: @white;
     font-weight: normal;
+    font-size: 20px;
 
     &.small{
       font-size: 18px !important
@@ -117,27 +177,6 @@ section{
   }
 }
 
-a{
-  &.invert-link{
-    color: @white;
-
-    &:hover{
-      color: @orange;
-      text-decoration: none;
-    }
-  }
-  &.btn-plex{
-    color: #000;
-
-    &:hover{
-      color: @white;
-    }
-  }
-}
-
-span.orange{
-  color: @orange;
-}
 
   table{
     thead{
@@ -389,12 +428,22 @@ a{
 }
 
 .recently-added-cover{
+  text-align: center;
+
   a{
     display: block;
-    &:hover{
-      border-style: inset;
-      box-sizeing: border-box;
-      border: 2px solid @orange;
+  }
+
+  p{
+    margin-top: 10px;
+    margin-bottom: 0;
+
+    &.small{
+      margin-top: 5px;
+    }
+
+    strong{
+      color: @white;
     }
   }
 }
@@ -414,26 +463,28 @@ a{
   }
 }
 
-.grey{
-  color: @grey;
-}
-
 .users-poster-face{
-
   img{
     bottom: 0;
-overflow: hidden;
-float: left;
-background-color: #323232;
-background-position: center;
-background-size: cover;
--webkit-border-radius: 1000px;
--moz-border-radius: 1000px;
-border-radius: 1000px;
--webkit-box-shadow: 0 0 4px rgba(0,0,0,.3),inset 0 0 0 1px rgba(255,255,255,.1);
-box-shadow: 0 0 4px rgba(0,0,0,.3),inset 0 0 0 1px rgba(255,255,255,.1);
-width: 40px;
-height: 40px;
+    overflow: hidden;
+    float: left;
+    background-color: #323232;
+    background-position: center;
+    background-size: cover;
+    -webkit-border-radius: 1000px;
+    -moz-border-radius: 1000px;
+    border-radius: 1000px;
+    -webkit-box-shadow: 0 0 4px rgba(0,0,0,.3),inset 0 0 0 1px rgba(255,255,255,.1);
+    box-shadow: 0 0 4px rgba(0,0,0,.3),inset 0 0 0 1px rgba(255,255,255,.1);
+  }
+}
+
+.user-info-wrapper{
+  margin-bottom: 20px;
+  h2{
+    padding-left: 20px;
+    float: left;
+    color: @white
   }
 }
 
@@ -452,9 +503,12 @@ height: 40px;
     }
   }
   .info-overlay-wrapper{
-    position: absolute;
-    bottom: 0;
-    background: fade(#000, 80%);
+    @media @screen-sm-up-qry {
+      position: absolute;
+      bottom: 0;
+      background: fade(@black, 80%);
+    }
+
     padding-bottom: 20px;
     color: @white;
     width: 100%;
@@ -482,14 +536,12 @@ height: 40px;
   .info-poster-wrapper{
     margin-top: -20px;
     padding-bottom: 20px;
-    img{
-      border: 1px solid @dark;
-      border-radius: 5px;
-    }
   }
 
 
 }
+
+
 
 .episode-list{
   .season-episodes-poster{
@@ -531,25 +583,38 @@ height: 40px;
     }
 }
 
-.xchart .color0 rect, .xchart .color0 circle {
-fill: @orange;
-}
+//chart styles for statistics page
+.xchart {
+  .color0{
+    rect{
+      fill: @orange;
+    }
 
-.xchart .axis .tick line {
-stroke: #444;
-stroke-width: 1px;
-}
+    circle{
+      fill: @orange;
+    }
 
-.xchart .color0 .line {
-stroke: @orange;
-}
+    .line{
+      stroke: @orange;
+    }
 
-.xchart .color0 .fill {
-fill: fade(@orange, 10%);
+    .fill{
+      fill: fade(@orange, 10%);
+    }
+  }
+
+  .axis{
+    .tick{
+      line{
+        stroke: @dark-grey;
+        stroke-width: 1px;
+      }
+    }
+  }
 }
 
 .ex-tooltip{
-  background: #000;
+  background: @black;
   border-radius: 5px;
   position: absolute;
   padding: 5px;

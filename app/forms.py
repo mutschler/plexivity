@@ -49,7 +49,7 @@ class Settings(Form):
     PMS_PORT = IntegerField(lazy_gettext('Plex Media Server Port'), validators=[DataRequired(), NumberRange()], default=config.PMS_PORT)
     PMS_USER = StringField(lazy_gettext('Plex Username'), validators=[DataRequired()], default=config.PMS_USER)
     PMS_PASS = StringField(lazy_gettext('Plex Password'), validators=[DataRequired()], default=config.PMS_PASS)
-    PMS_SSL = BooleanField(lazy_gettext('Use SSL encryption'), default=bool(config.PMS_SSL))
+    #PMS_SSL = BooleanField(lazy_gettext('Use SSL encryption'), default=bool(config.PMS_SSL))
 
     NOTIFY_PUSHOVER = BooleanField(lazy_gettext('use pushover for notifications'), default=config.NOTIFY_PUSHOVER)
     PUSHOVER_USER = StringField(lazy_gettext('Pushover User-Token'), validators=[RequiredIf("NOTIFY_PUSHOVER")], default=config.PUSHOVER_USER)
@@ -63,7 +63,7 @@ class Settings(Form):
     MAIL_FROM = StringField(lazy_gettext('Sender Mail Information'), validators=[RequiredIf("NOTIFY_MAIL")], default=config.MAIL_FROM)
 
     DATA_DIR = StringField(lazy_gettext('plexivity data directory'), validators=[DataRequired()], default=config.DATA_DIR)
-    PORT = IntegerField(lazy_gettext('plexivity port'), validators=[DataRequired(), NumberRange()], default=config.PORT)
+    #PORT = IntegerField(lazy_gettext('plexivity port'), validators=[DataRequired(), NumberRange()], default=config.PORT)
     START_MESSAGE = StringField(lazy_gettext('String for watching notification'), validators=[DataRequired()], default=config.START_MESSAGE)
     STOP_MESSAGE = StringField(lazy_gettext('String for stoped watching notification'), validators=[DataRequired()], default=config.STOP_MESSAGE)
     PAUSE_MESSAGE = StringField(lazy_gettext('String for paused notification'), validators=[DataRequired()], default=config.PAUSE_MESSAGE)

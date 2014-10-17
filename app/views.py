@@ -25,6 +25,7 @@ app.jinja_env.filters['timestamp'] = helper.date_timestamp
 #TODO: remove this
 @app.before_first_request
 def initialize():
+    db.create_all()
     helper.startScheduler()
 
 class MyAnonymousUser(object):
@@ -132,6 +133,7 @@ def setup():
     if form.validate_on_submit():
         flash(_("User %(username)s created", username=form.email.data), "success")
         user = models.User(password=generate_password_hash(form.password.data), email=form.email.data)
+        user.locale = form.locale.data
         db.session.add(user)
         db.session.commit()
         login_user(user)

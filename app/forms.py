@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask_wtf import Form
-from wtforms import StringField, PasswordField, BooleanField, IntegerField
+from wtforms import StringField, PasswordField, BooleanField, IntegerField, SelectField
 from wtforms.validators import DataRequired, Email, EqualTo, NumberRange, IPAddress
 
 from flask.ext.babel import lazy_gettext
@@ -42,12 +42,6 @@ class Login(Form):
     remember_me = BooleanField(lazy_gettext('Remember password'))
 
 
-class Register(Form):
-    username = StringField(lazy_gettext('Username'), validators=[DataRequired()])
-    password = PasswordField(lazy_gettext('Password'), validators=[DataRequired()])
-    email = StringField(lazy_gettext('E-Mail'), validators=[DataRequired(), Email()])
-
-
 class Settings(Form):
     __title__ = lazy_gettext("Plex Media Server Settings")
 
@@ -80,3 +74,4 @@ class RegisterForm(Form):
     email = StringField(lazy_gettext('E-Mail'), validators=[DataRequired(), Email()])
     password = PasswordField(lazy_gettext('Password'), validators=[DataRequired(),EqualTo("password2")])
     password2 = PasswordField(lazy_gettext('Retype password'), validators=[DataRequired(),EqualTo("password")])
+    locale = SelectField(lazy_gettext('Language'), choices=[('en', 'English'), ('de', 'Deutsch')])

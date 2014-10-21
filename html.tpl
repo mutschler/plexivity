@@ -14,6 +14,18 @@
 		h1{
 			margin-left: 150px;
 		}
+		.version{
+			display: block;
+			width: 100%;
+			margin-bottom: 20px;
+		}
+		.version:after {
+			content: ".";
+			clear: both;
+			display: block;
+			visibility: hidden;
+			height: 0px;
+		}
 
 		.version ul{
 			list-style: none;

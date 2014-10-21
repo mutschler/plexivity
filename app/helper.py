@@ -52,30 +52,30 @@ def calculate_plays(db, models, username):
 
     today_time = datetime.timedelta()
     for row in today.all():
-        if row.paused_counter:
+        if row.paused_counter and row.stopped:
             today_time += row.stopped - row.time - datetime.timedelta(seconds=row.paused_counter)
-        else:
+        elif row.stopped:
             today_time += row.stopped - row.time
 
     week_time = datetime.timedelta()
     for row in week.all():
-        if row.paused_counter:
+        if row.paused_counter and row.stopped:
             week_time += row.stopped - row.time - datetime.timedelta(seconds=row.paused_counter)
-        else:
+        elif row.stopped:
             week_time += row.stopped - row.time
 
     month_time = datetime.timedelta()
     for row in month.all():
-        if row.paused_counter:
+        if row.paused_counter and row.stopped:
             month_time += row.stopped - row.time - datetime.timedelta(seconds=row.paused_counter)
-        else:
+        elif row.stopped:
             month_time += row.stopped - row.time
 
     alltime_time = datetime.timedelta()
     for row in alltime.all():
-        if row.paused_counter:
+        if row.paused_counter and row.stopped:
             alltime_time += row.stopped - row.time - datetime.timedelta(seconds=row.paused_counter)
-        else:
+        elif row.stopped:
             alltime_time += row.stopped - row.time
 
     to_return.append({"plays": today.count(), "time": today_time, "name": "Today"})

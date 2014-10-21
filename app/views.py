@@ -79,8 +79,11 @@ def index():
     if not g.plex.test():
         flash(_("Unable to connect to PMS. Please check your settings"), "error")
         return redirect(url_for("settings"))
-
-    return render_template('index.html', stats=g.plex.libraryStats(), activity=g.plex.currentlyPlaying(), new=g.plex.recentlyAdded())
+    if config.SHOW_LIBRARY_STATS:
+        stats=g.plex.libraryStats()
+    else:
+        stats = None
+    return render_template('index.html', stats=stats, activity=g.plex.currentlyPlaying(), new=g.plex.recentlyAdded())
 
 #reload stuff
 @app.route("/load/activity")

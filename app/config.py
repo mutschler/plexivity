@@ -54,6 +54,7 @@ NOTIFY_STOP = check_setting_int(CFG, 'General', 'NOTIFY_STOP', 1)
 SCAN_INTERVAL = check_setting_int(CFG, 'General', 'SCAN_INTERVAL', 120)
 CACHE_IMAGES = check_setting_int(CFG, 'General', 'CACHE_IMAGES', 1)
 DEBUG = check_setting_int(CFG, 'General', 'DEBUG', 0)
+SHOW_LIBRARY_STATS = check_setting_int(CFG, 'General', 'SHOW_LIBRARY_STATS', 1)
 
 CheckSection('PMS')
 PMS_HOST = check_setting_str(CFG, 'PMS', 'PMS_HOST', 'localhost')
@@ -95,6 +96,7 @@ configval={}
 configval["DATA_DIR"] = DATA_DIR
 configval["PORT"] = PORT
 configval["DEBUG"] = DEBUG
+configval["SHOW_LIBRARY_STATS"] = SHOW_LIBRARY_STATS
 configval["CACHE_IMAGES"] = CACHE_IMAGES
 configval["START_MESSAGE"] = START_MESSAGE
 configval["NOTIFY_START"] = NOTIFY_START
@@ -141,6 +143,7 @@ def save_config(configval):
     new_config['General']['SCAN_INTERVAL'] = int(configval["SCAN_INTERVAL"])
     new_config['General']['CACHE_IMAGES'] = int(configval["CACHE_IMAGES"])
     new_config['General']['DEBUG'] = int(configval["DEBUG"])
+    new_config['General']['SHOW_LIBRARY_STATS'] = int(configval["SHOW_LIBRARY_STATS"])
     new_config['Mail'] = {}
     new_config['Mail']['MAIL_PORT'] = int(configval["MAIL_PORT"])
     new_config['Mail']['MAIL_SERVER'] = configval["MAIL_SERVER"]

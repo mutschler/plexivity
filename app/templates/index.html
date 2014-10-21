@@ -1,17 +1,18 @@
 {% extends "layout.html" %}
 {% block body %}
-    
-        <section id="overview">
-            {% include 'include/overview.html' %}
-        </section>
-    
 
-    <section id="activity">
-        {% include 'include/activity.html' %}
-    </section>
+{% if stats != None %}
+<section id="overview">
+    {% include 'include/overview.html' %}
+</section>
+{% endif %}
 
-    <section id="recentlyAdded">
-        {% include 'include/recently_added.html' %}
-    </section>
+<section id="activity">
+    {% include 'include/activity.html' %}
+</section>
+
+<section id="recentlyAdded">
+    {% include 'include/recently_added.html' %}
+</section>
 
 {% endblock %}

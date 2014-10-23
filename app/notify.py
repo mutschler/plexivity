@@ -51,7 +51,7 @@ def task():
 
             #TODO: fix this.... for now just dont notify again!
             notify(info)
-            #k.notified = 1
+            k.notified = 1
 
             #make sure we have a stop time if we are not playing this anymore!
             if ntype == "stop":
@@ -115,9 +115,9 @@ def task():
         logger.debug("plex returned a live element: %s " % db_key)
         ## ignore content already been notified
 
-        #TODO: get_startet should return a dict accessable by db_key 
+        #TODO: get_startet should return a dict accessable by db_key
         #so we can check: if x in startet: check for change, if not mark as started now
-        
+
         #first go through all started stuff and check for status change
         if started:
             logger.debug("we still have not stopped entrys in our database")
@@ -132,6 +132,7 @@ def task():
 
 
                 if state_change:
+                    info["ntype"] = state_change
                     logger.debug("%s: %s: state changed [%s] notify called" % (info["user"], info["title"], info["state"]))
                     notify(info)
 
@@ -211,7 +212,7 @@ def process_update(xml, session_id):
     if not xml.get("key"):
         return False
 
-    status_change = 0
+    status_change = False
 
     if session_id:
 
@@ -235,7 +236,7 @@ def process_update(xml, session_id):
             prev_state = "playing"
 
         if state and prev_state != state:
-            status_change = 1
+            #status_change = 1
             logger.debug("Video State: %s [prev: %s]" % (state, prev_state))
 
         cur = db.session.query(models.Processed).filter(models.Processed.session_id == session_id).first()
@@ -245,7 +246,7 @@ def process_update(xml, session_id):
             if not p_epoch:
                 extra = "%s, paused = %s" % (extra, now)
                 logger.debug("Marking as Paused on %s [%s]" % (now, now))
-                status_change = 1
+                status_change = "pause"
                 cur.paused = now
             else:
                 p_counter += (now - p_epoch).total_seconds() #debug display no update!
@@ -258,7 +259,7 @@ def process_update(xml, session_id):
                 extra = "%s,paused = null" % extra
                 extra = "%s,paused_counter = %s" % (extra, p_counter)
                 logger.debug("removeing Paused state and setting paused counter to %s seconds [this duration %s sec]" % ( p_counter, sec ) )
-                status_change = 1
+                status_change = "resume"
                 cur.paused = None
                 cur.paused_counter = p_counter
 
@@ -272,14 +273,28 @@ def process_update(xml, session_id):
 
 def notify(info):
     #notify all providers with the given stuff...
-    logger.debug("IMPLEMENT NOTIFY STUFF HERE")
+    logger.debug("notify called with args: %s" % info)
 
-    if info["state"] == "playing" and config.NOTIFY_START:
-        message = config.START_MESSAGE % info
-    elif info["state"] == "stopped" and config.NOTIFY_STOP:
-        message = config.STOP_MESSAGE % info
-    elif info["state"] == "paused" and config.NOTIFY_PAUSE:
-        message = config.PAUSE_MESSAGE % info
+    if info["ntype"] == "start" and config.NOTIFY_START:
+        try:
+            message = config.START_MESSAGE % info
+        except KeyError:
+            logger.error("Unable to map info to your start notification string. Please check your settings!")
+    elif info["ntype"] == "stop" and config.NOTIFY_STOP:
+        try:
+            message = config.STOP_MESSAGE % info
+        except KeyError:
+            logger.error("Unable to map info to your stop notification string. Please check your settings!")
+    elif info["ntype"] == "pause" and config.NOTIFY_PAUSE:
+        try:
+            message = config.PAUSE_MESSAGE % info
+        except KeyError:
+            logger.error("Unable to map info to your pause notification string. Please check your settings!")
+    elif info["ntype"] == "resume" and config.NOTIFY_RESUME:
+        try:
+            message = config.RESUME_MESSAGE % info
+        except KeyError:
+            logger.error("Unable to map info to your resume notification string. Please check your settings!")
     else:
         message = False
 

@@ -127,7 +127,7 @@ def stats():
     for hour in maxhourly:
         maxhourlyJSON.append({"y": hour[0], "x": hour[1].time.strftime("%H")})
 
-    return render_template('stats.html', hourly=hourlyJSON, daily=dailyJSON, monthly=monthlyJSON, maxhourly=maxhourlyJSON)
+    return render_template('stats.html', hourly=hourlyJSON, daily=dailyJSON, monthly=monthlyJSON, maxhourly=maxhourlyJSON, title=_('Statistics'))
 
 
 @app.route("/setup", methods=("GET", "POST"))
@@ -142,7 +142,7 @@ def setup():
         login_user(user)
         return redirect(url_for('settings'))
     if not db.session.query(models.User).first():
-        return render_template('setup.html', form=form)
+        return render_template('setup.html', form=form, title=_('Setup'))
     else:
         return redirect(url_for("index"))
 
@@ -207,7 +207,7 @@ def charts():
     show_top10 = db.session.query(db.func.count(models.Processed.orig_title), models.Processed).group_by(models.Processed.orig_title).having(db.func.count(models.Processed.orig_title) > 0).order_by(db.func.count(models.Processed.orig_title).desc(), models.Processed.time.desc()).limit(10)
     ep_top10 = db.session.query(db.func.count(models.Processed.title), models.Processed).group_by(models.Processed.title).having(db.func.count(models.Processed.title) > 0).order_by(db.func.count(models.Processed.title).desc(), models.Processed.time.desc()).limit(10)
 
-    return render_template('charts.html', all_top10=all10, movie_top10=movie10, show_top10=show_top10, ep_top10=ep_top10)
+    return render_template('charts.html', all_top10=all10, movie_top10=movie10, show_top10=show_top10, ep_top10=ep_top10, title=_('Charts'))
 
 @app.route("/info/<id>")
 @login_required
@@ -228,7 +228,7 @@ def info(id):
     elif cur_type == "show":
         episodes = db.session.query(db.func.count(models.Processed.title), models.Processed).filter(models.Processed.orig_title.like(cur_el.get("title"))).group_by(models.Processed.title).having(db.func.count(models.Processed.orig_title) > 0).order_by(db.func.count(models.Processed.orig_title).desc(), models.Processed.time.desc()).all()
 
-    return render_template('info.html', info=g.plex.getInfo(id), history=views, parent=parent, episodes=episodes)
+    return render_template('info.html', info=info, history=views, parent=parent, episodes=episodes, title=_('Info'))
 
 @app.route("/login", methods=("GET", "POST"))
 def login():
@@ -243,14 +243,14 @@ def login():
             return redirect(request.args.get("next") or url_for("index"))
         else:
             flash(_("username/password missmatch or no such user in database"), "error")
-    return render_template('login.html', form=form)
+    return render_template('login.html', form=form, title=_('login'))
 
 
 @app.route("/history")
 @login_required
 def history():
     history = db.session.query(models.Processed).order_by(models.Processed.time.desc()).all()
-    return render_template('history.html', history=history)
+    return render_template('history.html', history=history, title=_('History'))
 
 @app.route('/logout')
 @login_required
@@ -279,7 +279,7 @@ def cache(filename):
 @login_required
 def users():
     users = db.session.query(db.func.count(models.Processed.user), models.Processed).group_by(models.Processed.user).all()
-    return render_template('users.html', users=users)
+    return render_template('users.html', users=users, title=_('Users'))
 
 
 @app.route('/user/<name>')
@@ -290,7 +290,7 @@ def user(name):
     recent = db.session.query(models.Processed).filter(models.Processed.user == name).order_by(models.Processed.time.desc()).limit(12)
     stats = helper.calculate_plays(db, models, name)
     history = db.session.query(models.Processed).filter(models.Processed.user == name).order_by(models.Processed.time.desc()).all()
-    return render_template('user.html', stats=stats, platforms=platform_plays, recently=recent, history=history, user=usr)
+    return render_template('user.html', stats=stats, platforms=platform_plays, recently=recent, history=history, user=usr, title=usr.user)
 
 @app.route('/logs')
 @login_required
@@ -327,4 +327,4 @@ def settings():
         if x != "csrf_token":
             form[x].data = config.configval[x]
 
-    return render_template('settings.html', form=form)
+    return render_template('settings.html', form=form, title=_('Settings'))

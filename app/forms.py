@@ -67,6 +67,7 @@ class Settings(Form):
     START_MESSAGE = StringField(lazy_gettext('String for watching notification'), validators=[DataRequired()], default=config.START_MESSAGE)
     STOP_MESSAGE = StringField(lazy_gettext('String for stoped watching notification'), validators=[DataRequired()], default=config.STOP_MESSAGE)
     PAUSE_MESSAGE = StringField(lazy_gettext('String for paused notification'), validators=[DataRequired()], default=config.PAUSE_MESSAGE)
+    RESUME_MESSAGE = StringField(lazy_gettext('String for resume notification'), validators=[DataRequired()], default=config.RESUME_MESSAGE)
 
 
 

@@ -64,9 +64,13 @@ class Settings(Form):
 
     DATA_DIR = StringField(lazy_gettext('plexivity data directory'), validators=[DataRequired()], default=config.DATA_DIR)
     #PORT = IntegerField(lazy_gettext('plexivity port'), validators=[DataRequired(), NumberRange()], default=config.PORT)
+    NOTIFY_START =  BooleanField(lazy_gettext('Send notification on start'), default=config.NOTIFY_START)
     START_MESSAGE = StringField(lazy_gettext('String for watching notification'), validators=[DataRequired()], default=config.START_MESSAGE)
+    NOTIFY_STOP =  BooleanField(lazy_gettext('Send notification on stop'), default=config.NOTIFY_STOP)
     STOP_MESSAGE = StringField(lazy_gettext('String for stoped watching notification'), validators=[DataRequired()], default=config.STOP_MESSAGE)
+    NOTIFY_PAUSE =  BooleanField(lazy_gettext('Send notification on pause'), default=config.NOTIFY_PAUSE)
     PAUSE_MESSAGE = StringField(lazy_gettext('String for paused notification'), validators=[DataRequired()], default=config.PAUSE_MESSAGE)
+    NOTIFY_RESUME = BooleanField(lazy_gettext('Send notification on resume'), default=config.NOTIFY_RESUME)
     RESUME_MESSAGE = StringField(lazy_gettext('String for resume notification'), validators=[DataRequired()], default=config.RESUME_MESSAGE)
 
 

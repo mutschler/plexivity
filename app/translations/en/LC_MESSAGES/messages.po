@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-10-31 17:00+0100\n"
+"POT-Creation-Date: 2014-10-31 17:07+0100\n"
 "PO-Revision-Date: 2014-10-31 16:50+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -535,7 +535,7 @@ msgid "Audio and Video informations on Transcode else \"Direct Play\""
 msgstr ""
 
 #: app/templates/settings.html:67
-msgid "the machine identifier\""
+msgid "the machine identifier"
 msgstr ""
 
 #: app/templates/settings.html:70
@@ -656,4 +656,7 @@ msgstr ""
 #: app/templates/include/recently_added.html:1
 msgid "Recently Added"
 msgstr ""
+
+#~ msgid "the machine identifier\""
+#~ msgstr ""
 

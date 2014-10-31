@@ -9,6 +9,7 @@
                 <th align='left'><i class='glyphicon glyphicon-sort'></i> {{_('User')}} </th>
                 <th align='left'><i class='glyphicon glyphicon-sort'></i> {{_('Platform')}}</th>
                 <th align='left'><i class='glyphicon glyphicon-sort'></i> {{_('Title')}}</th>
+                <th align='center'><i class='glyphicon glyphicon-sort'></i> {{_('Type')}}</th>
                 <th align='center'><i class='glyphicon glyphicon-sort'></i> {{_('Stream Info')}}</th>
                 <th align='center'><i class='glyphicon glyphicon-sort'></i> {{_('Started')}}</th>
                 <th align='center'><i class='glyphicon glyphicon-sort'></i> {{_('Paused')}}</th>
@@ -26,6 +27,7 @@
                     <td align="left"><a href="{{ url_for('user', name=entry.user) }}" class="invert-link">{{ entry.user }}</a></td>
                     <td align="left">{{ entry.platform }}</td>
                     <td align="left"><a class="invert-link" href="{{ url_for('info', id=xml.get('ratingKey')) }}">{{ entry.title }}</a></td>
+                    <td align="left">{{xml.get("type")}}</td>
                     <td align="center" class=" "><a href="#streamDetailsModal{{entry.id}}" class="orange" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a></td>
                     <td align="center">{{ entry.time.strftime('%H:%M') }}</td>
                     <td align="center" data-order="{{ (entry.paused_counter|int/60)|round|int }}">{{ (entry.paused_counter|int/60)|round|int }} min </td>
@@ -35,6 +37,7 @@
                     {% else %}
                     <td align="center" data-order="0">n/a</td>
                     {%- endif %}
+
                     <td align="center"><span class="badge badge-warning">{{ helper.getPercentage(xml.get("viewOffset"), xml.get("duration")) }}%</span></td>
                 </tr>
             {% endfor %}

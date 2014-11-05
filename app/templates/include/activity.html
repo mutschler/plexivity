@@ -23,7 +23,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="user-activity col-sm-9">
+                                    <div class="user-activity col-xs-9">
                                         {% autoescape false %}
                                         {%- if play.find("Player").get("state") == "playing" %}
                                             {{ _( '%(user)s is watching', user='<a class="orange" href="%s">%s</a>' % (url_for('user', name=play.find("User").get("title")), play.find("User").get("title"))) }}
@@ -41,7 +41,7 @@
                                             {%- endif %}
                                         </div>
                                     </div>
-                                    <div class="platform-activity pull-right col-sm-3">
+                                    <div class="platform-activity pull-right col-xs-3">
                                         <img class="img-responsive"
                                              src="{{ url_for('static', filename=helper.playerImage(play.find('Player').get('platform')) ) }}"/>
                                     </div>

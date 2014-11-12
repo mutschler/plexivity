@@ -1,6 +1,9 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os
 
-from app import config
+
 from app import app
 from lib.daemon import Daemon
 
@@ -8,7 +11,9 @@ from lib.daemon import Daemon
 def run_app():
     from subprocess import call
     #make sure database is most recent version!
-    call(["python", "manage.py", "db", "upgrade"])
+    filedir = os.path.dirname(os.path.abspath(__file__))
+    manage = os.path.join(filedir, "manage.py")
+    call(["env", "python", manage, "db", "upgrade"])
     app.run(host="0.0.0.0", port=config.PORT, debug=False)
 
 
@@ -22,13 +27,12 @@ class PlexivityDaemon(Daemon):
 
 if __name__ == "__main__":
     import argparse
+    from app import config
 
     parser = argparse.ArgumentParser(prog='plexivity.py')
-    #parser.add_argument('--data_dir', dest = 'data_dir', help = 'Absolute or ~/ path of the data dir')
-    #parser.add_argument('--config_file', dest = 'config_file', help = 'Absolute or ~/ path of the settings file (default DATA_DIR/config.ini)')
     parser.add_argument('--daemon', action='store_true',
                         dest='daemon', help='Daemonize the app')
-    parser.add_argument('--pid_file',
+    parser.add_argument('--pid-file',
                         dest='pid_file', help='Path to pidfile needed for daemon')
     parser.add_argument('--stop', action='store_true',
                         dest='stop', help='stop the daemonized app')
@@ -36,14 +40,25 @@ if __name__ == "__main__":
                         dest='status', help='get status of the daemonized app')
     parser.add_argument('--port',
                         dest='port', type=int, help='port to listen on')
+    parser.add_argument('--data-dir',
+                        dest='data_dir', help='Path to plexivity data direcotry')
+    parser.add_argument('--config-file',
+                        dest='config_file', help='Use this config file as default')
 
     args = parser.parse_args()
     PIDFILE = os.path.join(config.DATA_DIR, "plexivity.pid")
 
     if args.port:
         port = args.port
+        config.PORT = args.port
     else:
         port = config.PORT
+
+    if args.config_file:
+        config.CONFIG_FILE = args.config_file
+
+    if args.data_dir:
+        config.DATA_DIR = args.data_dir
 
     if args.pid_file:
         PIDFILE = args.pid_file
@@ -72,4 +87,7 @@ if __name__ == "__main__":
             print 'plexivity is not running.'
 
     if not args.daemon and not args.status and not args.stop:
+        from app import grouped
+        #grouped.updateGrouped()
+        config.initialize()
         run_app()

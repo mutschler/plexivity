@@ -87,7 +87,4 @@ if __name__ == "__main__":
             print 'plexivity is not running.'
 
     if not args.daemon and not args.status and not args.stop:
-        from app import grouped
-        #grouped.updateGrouped()
-        config.initialize()
         run_app()

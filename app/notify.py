@@ -124,17 +124,36 @@ def task():
             for x in started:
                 logger.debug("processing entry %s " % x.session_id)
                 state_change = False
+
                 if x.session_id == db_key:
                     logger.debug("that was a match! check for status changes")
                     #already in database only check for status changes!
                     state_change = process_update(k, db_key)
                     was_started[db_key] = x
 
-
                 if state_change:
                     info["ntype"] = state_change
                     logger.debug("%s: %s: state changed [%s] notify called" % (info["user"], info["title"], info["state"]))
                     notify(info)
+
+        #also check if there is a element in the db which may be a resumed play from up to 24 hours ago
+
+        if not db_key in was_started:
+            logger.debug("trying to search for similar plays which stopped in the last 24 hours")
+            view_offset = k.get("viewOffset")
+            max_time = datetime.datetime.now() - datetime.timedelta(hours=24)
+            like_what = "%" + k.get('key') + "_" + userID
+            restarted = db.session.query(models.Processed).filter(models.Processed.session_id.like(like_what)).filter(models.Processed.time > max_time).filter(models.Processed.view_offset <= view_offset).filter(models.Processed.stopped != None).first()
+
+            if restarted:
+                logger.debug("seems like someone repeated an stopped play, updating db key from %s to %s" % (restarted.session_id, db_key))
+                restarted.session_id = db_key
+                restarted.stopped = None
+                db.session.commit()
+                state_change = process_update(k, db_key)
+                was_started[db_key] = restarted
+                info["ntype"] = "resume"
+                notify(info)
 
         #if still not processed till now, its a new play!
         logger.debug("we got those entrys which already where in the database: %s " % was_started)

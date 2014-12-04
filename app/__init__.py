@@ -74,6 +74,7 @@ try:
     class HistoryView(ModelView):
         can_create = False
         column_list = ('time', 'user', 'title', 'platform', 'notified', 'stopped', 'paused', 'duration', 'view_offset')
+        column_searchable_list = ('user', 'title', 'platform')
 
         def __init__(self, session, **kwargs):
             # You can pass name and other parameters if you want to

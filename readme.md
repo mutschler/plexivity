@@ -1,10 +1,14 @@
 #plexivity
 
-plexivity is a simple alternative for [plexWatch](https://github.com/ljunkie/plexWatch). It connects with your Plex Media Server and is able to notify you on activity. Sadly plexWatch requires some native compiled 3rd Party extensions wich can not easyly be intalled on some systems (like Synology for example) so i decided to build my own app for that purpose.
+plexivity is a simple to use WebApp for your Plex Media Server Statistics. It can be seen as an alternative for [plexWatch](https://github.com/ljunkie/plexWatch) with [plexWatchWeb](https://github.com/ecleese/plexWatchWeb/). It connects with your Plex Media Server and is able to notify you on activity.
+
+Sadly plexWatch requires some native compiled 3rd Party extensions wich can not easyly be intalled on some systems (like Synology for example) so i decided to build my own app for that purpose.
+
+you can find some Screenshots here: http://blog.raphaelmutschler.de/plexivity-0-9/
 
 ##Requirements:
 * PMS 0.9.8.x +
-* PlexPass subscription ( everything but recently added content )
+* PlexPass subscription
 * Python 2.7
 
 ##Features
@@ -40,12 +44,13 @@ plexivity uses the following Projects/Librarys:
 
 ### development install:
 
-plexivity is currently still in early development
+plexivity still in development
 
 Install virtualenvwrapper: http://virtualenvwrapper.readthedocs.org/en/latest/index.html
-
 
     mkvirtualenv plexivity
     pip install -r requirements.txt
     python manage.py db upgrade
     python manage.py runserver
+
+PS: i hardly recommend you to run it in development mode instead of useing the (still littlebit buggy) plexivitiy.py

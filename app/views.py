@@ -299,7 +299,6 @@ def logs():
     f = open(os.path.join(config.DATA_DIR, "plexivity.log"), "r")
     content = f.readlines()
     f.close()
-    print content
     log_content = reversed(content[-200:])
     return render_template('logs.html', log=log_content)
 
@@ -319,9 +318,7 @@ def settings():
 
     #update form values with latest config vals always!
     if config.PMS_PORT != old_port or config.PMS_HOST != old_host:
-        print "reload plex server!"
         g.plex.update_settings(config.PMS_HOST, int(config.PMS_PORT))
-        print g.plex.test()
    # p = False
 
     for x in form._fields:

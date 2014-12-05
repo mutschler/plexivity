@@ -538,7 +538,6 @@ def getSessions():
 
             if session.find("Player").get("state") == "playing":
                 message = config.START_MESSAGE % {"username": username, "platform": platform, "title": title, "product": product, "player_title": player_title, "offset": offset}
-                print message
                 import xml.etree.ElementTree as ET
                 if config.NOTIFY_PUSHOVER:
                     from app.providers import pushover

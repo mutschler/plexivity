@@ -18,11 +18,6 @@ sched_logger.setLevel(logging.DEBUG)
 logger = logger.logger.getChild('helper')
 
 
-def currentlyPlaying():
-    print "job fired"
-    logger.info("running job")
-
-
 def startScheduler():
     try:
         import tzlocal

@@ -1,0 +1,666 @@
+# English translations for PROJECT.
+# Copyright (C) 2014 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# 
+# Translators:
+# Guillaume <petityom@gmail.com>, 2014
+# Raphael, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: plexivity\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-12-05 15:22+0100\n"
+"PO-Revision-Date: 2014-12-05 14:28+0000\n"
+"Last-Translator: Raphael\n"
+"Language-Team: French (http://www.transifex.com/projects/p/plexivity/language/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: app/forms.py:37
+msgid "Hue Bridge IP"
+msgstr "Hue Bridge IP"
+
+#: app/forms.py:40 app/forms.py:79
+msgid "E-Mail"
+msgstr "email"
+
+#: app/forms.py:41 app/forms.py:80 app/templates/login.html:15
+msgid "Password"
+msgstr "mot de passe"
+
+#: app/forms.py:42 app/templates/login.html:20
+msgid "Remember password"
+msgstr "n'oubliez pas le mot de passe"
+
+#: app/forms.py:46
+msgid "Plex Media Server Settings"
+msgstr "Paramètres de Plex Media Serveur"
+
+#: app/forms.py:48
+msgid "Plex Media Server Host"
+msgstr "Host de Plex Media Server"
+
+#: app/forms.py:49
+msgid "Plex Media Server Port"
+msgstr "Port de Plex Media Serveur"
+
+#: app/forms.py:50
+msgid "Plex Username"
+msgstr "Nom d'utilisateur Plex"
+
+#: app/forms.py:51
+msgid "Plex Password"
+msgstr "Mot de passe Plex"
+
+#: app/forms.py:54
+msgid "use pushover for notifications"
+msgstr "Utiliser le pushover pour les notifications"
+
+#: app/forms.py:55
+msgid "Pushover User-Token"
+msgstr ""
+
+#: app/forms.py:56
+msgid "Pushover App-Token"
+msgstr ""
+
+#: app/forms.py:58
+msgid "use mail for notifications"
+msgstr "Utiliser les notifications par email"
+
+#: app/forms.py:59
+msgid "SMTP Mail Server"
+msgstr "Serveur de mail SMTP"
+
+#: app/forms.py:60
+msgid "SMTP Server login"
+msgstr "Login du serveur SMTP"
+
+#: app/forms.py:61
+msgid "SMTP Server password"
+msgstr "Mot de passe du serveur SMTP"
+
+#: app/forms.py:62
+msgid "SMTP Mail Port"
+msgstr "Port du serveur de mail SMTP"
+
+#: app/forms.py:63
+msgid "Sender Mail Information"
+msgstr "Informations sur l'expéditeur du mail"
+
+#: app/forms.py:65
+msgid "plexivity data directory"
+msgstr "répertoire de données plexivity"
+
+#: app/forms.py:67
+msgid "Send notification on start"
+msgstr "Envoyer une notification au démarrage"
+
+#: app/forms.py:68
+msgid "String for watching notification"
+msgstr "Chaîne pour regarder la notification"
+
+#: app/forms.py:69
+msgid "Send notification on stop"
+msgstr "Envoyer une notification à l'arrêt"
+
+#: app/forms.py:70
+msgid "String for stoped watching notification"
+msgstr ""
+
+#: app/forms.py:71
+msgid "Send notification on pause"
+msgstr "Envoyer une notification sur pause"
+
+#: app/forms.py:72
+msgid "String for paused notification"
+msgstr ""
+
+#: app/forms.py:73
+msgid "Send notification on resume"
+msgstr "Envoyer une notification lors de la reprise"
+
+#: app/forms.py:74
+msgid "String for resume notification"
+msgstr ""
+
+#: app/forms.py:81
+msgid "Retype password"
+msgstr "Retaper le mot de passe"
+
+#: app/forms.py:82
+msgid "Language"
+msgstr "Language"
+
+#: app/helper.py:165
+msgid "just now"
+msgstr "à l'instant"
+
+#: app/helper.py:167
+#, python-format
+msgid "%(int)s seconds ago"
+msgstr "Il y a %(int)s secondes"
+
+#: app/helper.py:171
+#, python-format
+msgid "%(int)s minuten ago"
+msgstr "Il y a %(int)s minutes"
+
+#: app/helper.py:173
+msgid "an hour ago"
+msgstr "il y a une heure"
+
+#: app/helper.py:175
+#, python-format
+msgid "%(int)s hours ago"
+msgstr "il y a %(int)s heures"
+
+#: app/helper.py:177
+msgid "Yesterday"
+msgstr "hier"
+
+#: app/helper.py:179
+#, python-format
+msgid "%(int)s days ago"
+msgstr "il y a %(int)s jours"
+
+#: app/helper.py:181
+#, python-format
+msgid "%(int)s weeks ago"
+msgstr "il y a %(int)s semaines"
+
+#: app/helper.py:183
+#, python-format
+msgid "%(int)s months ago"
+msgstr "il y a %(int)s mois"
+
+#: app/helper.py:184
+#, python-format
+msgid "%(int)s years ago"
+msgstr "il y a %(int)s ans"
+
+#: app/views.py:81
+msgid "Unable to connect to PMS. Please check your settings"
+msgstr "impossible de connecter PMS. Merci de vérifier votre paramétrage."
+
+#: app/views.py:131 app/templates/layout.html:61
+msgid "Statistics"
+msgstr "statistiques"
+
+#: app/views.py:138
+#, python-format
+msgid "User %(username)s created"
+msgstr "%(username)s utilisateurs de crées"
+
+#: app/views.py:146
+msgid "Setup"
+msgstr "Installation"
+
+#: app/views.py:166 app/views.py:195
+#, python-format
+msgid "Successfully connected to Hue Bridge with ip %(ip)s"
+msgstr "Connexion à Hue Bridge réussie avec l'IP %(ip)s"
+
+#: app/views.py:185
+msgid "Successfully disconnected from Hue Bridge"
+msgstr "Déconnexion de Hue Bridge réussie"
+
+#: app/views.py:211 app/templates/layout.html:63
+msgid "Charts"
+msgstr "hit-parade"
+
+#: app/views.py:232
+msgid "Info"
+msgstr "Info"
+
+#: app/views.py:243
+#, python-format
+msgid "you are now logged in as: '%(username)s'"
+msgstr "Vous êtes désormais connecté sous '%(username)s'"
+
+#: app/views.py:246
+msgid "username/password missmatch or no such user in database"
+msgstr "utilisateur et/ou mot de passe incorrect ou introuvable."
+
+#: app/views.py:247
+msgid "login"
+msgstr "Connexion"
+
+#: app/views.py:254 app/templates/layout.html:60
+msgid "History"
+msgstr "histoire"
+
+#: app/views.py:261
+msgid "Logged out"
+msgstr "Déconnexion "
+
+#: app/views.py:283 app/templates/layout.html:62
+msgid "Users"
+msgstr "utilisateurs"
+
+#: app/views.py:318
+msgid "Settings saved!"
+msgstr "Paramètres sauvés !"
+
+#: app/views.py:331 app/templates/layout.html:59
+msgid "Settings"
+msgstr "paramètres"
+
+#: app/templates/charts.html:9
+msgid "Top 10 (All Time)"
+msgstr "Top 10 (De tous les temps)"
+
+#: app/templates/charts.html:20 app/templates/charts.html:30
+#: app/templates/charts.html:53 app/templates/charts.html:75
+#: app/templates/charts.html:97
+#, python-format
+msgid "%(count)s views"
+msgstr "%(count)s vues"
+
+#: app/templates/charts.html:30 app/templates/info.html:25
+#: app/templates/info.html:155 app/templates/user.html:67
+#, python-format
+msgid "Season %(sn)s, Episode %(ep)s"
+msgstr "Saison %(sn)s, Episode %(ep)s"
+
+#: app/templates/charts.html:43
+msgid "Top 10 Movies (All Time)"
+msgstr "Top 10 des films (de tous les temps)"
+
+#: app/templates/charts.html:65
+msgid "Top 10 TV-Shows (All Time)"
+msgstr "Top 10 des Séries TV (De tous les temps)"
+
+#: app/templates/charts.html:87
+msgid "Top 10 TV-Episodes (All Time)"
+msgstr "Top 10 des épisodes TV (De tous les temps)"
+
+#: app/templates/hue.html:8
+msgid "Connect to Hue"
+msgstr "Connecté à Hue"
+
+#: app/templates/hue.html:17
+msgid ""
+"Please press the Push Button on your Hue Bridge and press the button below"
+msgstr "Merci de presser sur le bouton-poussoir sur votre Hue Bridge et d’appuyer sur le bouton ci-dessous"
+
+#: app/templates/hue.html:18
+msgid "Push Button Pressed"
+msgstr ""
+
+#: app/templates/hue.html:27
+#, python-format
+msgid "Already linked to Hue Bridge at \"%(bridge_ip)s\"."
+msgstr "Déjà lié à Hue Bridge à \"%(bridge_ip)s\"."
+
+#: app/templates/hue.html:28
+msgid "Reset Hue Connection"
+msgstr "Réinitialiser la connexion Hue"
+
+#: app/templates/hue_settings.html:20
+msgid "All available lights"
+msgstr "Tous les voyants disponibles"
+
+#: app/templates/info.html:33 app/templates/info.html:37
+msgid "Directed by"
+msgstr "dirigé par"
+
+#: app/templates/info.html:33 app/templates/info.html:37
+#: app/templates/info.html:73 app/templates/info.html:83
+#: app/templates/info.html:95
+msgid "n/a"
+msgstr "n/a"
+
+#: app/templates/info.html:34 app/templates/info.html:38
+#: app/templates/info.html:42 app/templates/info.html:46
+msgid "Rated"
+msgstr "Noté"
+
+#: app/templates/info.html:35 app/templates/info.html:39
+#: app/templates/info.html:43 app/templates/info.html:47
+msgid "Runtime"
+msgstr "Runtime"
+
+#: app/templates/info.html:35 app/templates/info.html:39
+#: app/templates/info.html:43 app/templates/info.html:47
+msgid "Minutes"
+msgstr "Minutes"
+
+#: app/templates/info.html:41 app/templates/info.html:45
+msgid "Studio"
+msgstr "Studio"
+
+#: app/templates/info.html:123
+#, python-format
+msgid "Episode %(ep)s"
+msgstr "Episode %(ep)s"
+
+#: app/templates/info.html:138
+#, python-format
+msgid "The most watched episodes of \"%(showname)s\" are"
+msgstr "Les épisodes les pus regardés de \"%(showname)s\" sont"
+
+#: app/templates/layout.html:4
+msgid "plexivity"
+msgstr "plexivity"
+
+#: app/templates/layout.html:49
+msgid "Toggle navigation"
+msgstr "Basculer la navigation"
+
+#: app/templates/layout.html:64
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: app/templates/layout.html:66 app/templates/login.html:23
+#: app/templates/login.html:26
+msgid "Login"
+msgstr "Connexion"
+
+#: app/templates/layout.html:107
+msgid "No data available in table"
+msgstr "Pas de données disponibles dans la table"
+
+#: app/templates/layout.html:108
+msgid "Showing _START_ to _END_ of _TOTAL_ entries"
+msgstr "Showing _START_ to _END_ of _TOTAL_ entries"
+
+#: app/templates/layout.html:109
+msgid "Showing 0 to 0 of 0 entries"
+msgstr "Vue 0 de 0 sur 0 entrées"
+
+#: app/templates/layout.html:110
+msgid "(filtered from _MAX_ total entries)"
+msgstr "(filtered from _MAX_ total entries)"
+
+#: app/templates/layout.html:113
+msgid "Show _MENU_ entries"
+msgstr "Show _MENU_ entries"
+
+#: app/templates/layout.html:114
+msgid "Loading..."
+msgstr "Chargement..."
+
+#: app/templates/layout.html:115
+msgid "Processing..."
+msgstr "Traitement en cours..."
+
+#: app/templates/layout.html:116
+msgid "Search:"
+msgstr "Rechercher : "
+
+#: app/templates/layout.html:117
+msgid "No matching records found"
+msgstr "Aucun enregistrements correspondants trouvés"
+
+#: app/templates/layout.html:119
+msgid "First"
+msgstr "Premier"
+
+#: app/templates/layout.html:120
+msgid "Last"
+msgstr "Dernier"
+
+#: app/templates/layout.html:121
+msgid "Next"
+msgstr "Suivant"
+
+#: app/templates/layout.html:122
+msgid "Previous"
+msgstr "Précédent "
+
+#: app/templates/layout.html:125
+msgid ": activate to sort column ascending"
+msgstr ": activer le trie ascendant de la colonne"
+
+#: app/templates/layout.html:126
+msgid ": activate to sort column descending"
+msgstr ": activer le trie descendant de la colonne"
+
+#: app/templates/login.html:11
+msgid "Username"
+msgstr "nom d'utilisateur"
+
+#: app/templates/settings.html:8
+msgid "Save settings"
+msgstr "Sauver les paramètres "
+
+#: app/templates/settings.html:11
+msgid "The following Options are available for Message formating:"
+msgstr "Les options suivantes sont disponibles pour le formatage du message :"
+
+#: app/templates/settings.html:15
+msgid "Username of current user"
+msgstr "Nom d'utilisateur de l'utilisateur actuel"
+
+#: app/templates/settings.html:17
+msgid "Processed title of currently playing media"
+msgstr ""
+
+#: app/templates/settings.html:19
+msgid ""
+"the platform from which the media is played back (ex. Plexweb (Chrome))"
+msgstr ""
+
+#: app/templates/settings.html:21
+msgid "the type of media: \"episode\" or \"movie\""
+msgstr ""
+
+#: app/templates/settings.html:23
+msgid "a string of genres (if available) in format \"Horror|Fantasy\""
+msgstr ""
+
+#: app/templates/settings.html:25
+msgid "PMS user id"
+msgstr ""
+
+#: app/templates/settings.html:27
+msgid "Original, unprocessed username"
+msgstr ""
+
+#: app/templates/settings.html:29
+msgid "unprocessed original title of currently playing media"
+msgstr ""
+
+#: app/templates/settings.html:31
+msgid "unprocessed original title of currently playing episode"
+msgstr ""
+
+#: app/templates/settings.html:33
+msgid "current season"
+msgstr ""
+
+#: app/templates/settings.html:35
+msgid "current episode"
+msgstr ""
+
+#: app/templates/settings.html:37
+msgid "playback time in seconds"
+msgstr ""
+
+#: app/templates/settings.html:39
+msgid "time the playback started"
+msgstr ""
+
+#: app/templates/settings.html:41
+msgid "time the playback stopped"
+msgstr ""
+
+#: app/templates/settings.html:43
+msgid "Media content rating"
+msgstr ""
+
+#: app/templates/settings.html:45
+msgid "Media distribution year"
+msgstr ""
+
+#: app/templates/settings.html:47
+msgid "Summary of the currently playing media"
+msgstr ""
+
+#: app/templates/settings.html:49
+msgid "duration in seconds"
+msgstr ""
+
+#: app/templates/settings.html:51
+msgid "notification type, can be start, stop, pause or resume"
+msgstr ""
+
+#: app/templates/settings.html:53
+msgid "the view offset in seconds"
+msgstr ""
+
+#: app/templates/settings.html:55
+msgid "view offset in percent"
+msgstr ""
+
+#: app/templates/settings.html:57
+msgid "how much playback time left"
+msgstr ""
+
+#: app/templates/settings.html:59
+msgid "if the media is transcoded this will be 1 else 0"
+msgstr ""
+
+#: app/templates/settings.html:61
+msgid "information about the transcode"
+msgstr ""
+
+#: app/templates/settings.html:63
+msgid "T for transcode or D for direct play"
+msgstr ""
+
+#: app/templates/settings.html:65
+msgid "Audio and Video informations on Transcode else \"Direct Play\""
+msgstr ""
+
+#: app/templates/settings.html:67
+msgid "the machine identifier"
+msgstr ""
+
+#: app/templates/settings.html:70
+msgid "Example"
+msgstr ""
+
+#: app/templates/settings.html:116
+msgid "Connect Hue"
+msgstr ""
+
+#: app/templates/setup.html:9
+msgid "Create Account"
+msgstr ""
+
+#: app/templates/stats.html:9
+msgid "Hourly Plays"
+msgstr ""
+
+#: app/templates/stats.html:9
+msgid "Last 24 Hours"
+msgstr ""
+
+#: app/templates/stats.html:17
+msgid "Max Hourly Plays"
+msgstr ""
+
+#: app/templates/stats.html:28
+msgid "Daily Plays"
+msgstr ""
+
+#: app/templates/stats.html:37
+msgid "Monthly Plays"
+msgstr ""
+
+#: app/templates/user.html:34
+msgid "Platform Stats"
+msgstr ""
+
+#: app/templates/user.html:57
+msgid "Recently watched"
+msgstr ""
+
+#: app/templates/users.html:9 app/templates/include/history.html:9
+msgid "User"
+msgstr ""
+
+#: app/templates/users.html:10
+msgid "Last Seen"
+msgstr ""
+
+#: app/templates/users.html:11
+msgid "Total Plays"
+msgstr ""
+
+#: app/templates/include/activity.html:1
+msgid "Currently playing"
+msgstr ""
+
+#: app/templates/include/activity.html:29
+#, python-format
+msgid "%(user)s is watching"
+msgstr ""
+
+#: app/templates/include/activity.html:31
+#, python-format
+msgid "%(user)s has paused"
+msgstr ""
+
+#: app/templates/include/activity.html:33
+#, python-format
+msgid "%(user)s is buffering"
+msgstr ""
+
+#: app/templates/include/activity.html:57
+msgid "Nothing is currently playing"
+msgstr ""
+
+#: app/templates/include/history.html:8
+msgid "Date"
+msgstr ""
+
+#: app/templates/include/history.html:10
+msgid "Platform"
+msgstr ""
+
+#: app/templates/include/history.html:11
+msgid "Title"
+msgstr ""
+
+#: app/templates/include/history.html:12
+msgid "Type"
+msgstr ""
+
+#: app/templates/include/history.html:13
+msgid "Stream Info"
+msgstr ""
+
+#: app/templates/include/history.html:14
+msgid "Started"
+msgstr ""
+
+#: app/templates/include/history.html:15
+msgid "Paused"
+msgstr ""
+
+#: app/templates/include/history.html:16
+msgid "Stopped"
+msgstr ""
+
+#: app/templates/include/history.html:17
+msgid "Duration"
+msgstr ""
+
+#: app/templates/include/history.html:18
+msgid "Completed"
+msgstr ""
+
+#: app/templates/include/history.html:26
+msgid "Currently watching..."
+msgstr ""
+
+#: app/templates/include/recently_added.html:1
+msgid "Recently Added"
+msgstr "récemment Ajouté"

@@ -79,4 +79,4 @@ class RegisterForm(Form):
     email = StringField(lazy_gettext('E-Mail'), validators=[DataRequired(), Email()])
     password = PasswordField(lazy_gettext('Password'), validators=[DataRequired(),EqualTo("password2")])
     password2 = PasswordField(lazy_gettext('Retype password'), validators=[DataRequired(),EqualTo("password")])
-    locale = SelectField(lazy_gettext('Language'), choices=[('en', 'English'), ('de', 'Deutsch')])
+    locale = SelectField(lazy_gettext('Language'), choices=[('en', 'English'), ('de', 'Deutsch'), ('fr', u'Français')])

@@ -55,11 +55,11 @@ def get_locale():
     # if a user is logged in, use the locale from the user settings
     user = getattr(g, 'user', None)
     if user is not None and hasattr(user, "locale"):
-         return user.locale
+        return user.locale
     # otherwise try to guess the language from the user accept
     # header the browser transmits.  We support de/fr/en in this
     # example.  The best match wins.
-    return request.accept_languages.best_match(['de', "en"])
+    return request.accept_languages.best_match(['de', "en", "fr"])
 
 @babel.timezoneselector
 def get_timezone():
@@ -77,6 +77,7 @@ def before_request():
 def index():
     #check for plex connection else redirect to settings page and show a error message!
     if not g.plex.test():
+        # NOTE: Test2
         flash(_("Unable to connect to PMS. Please check your settings"), "error")
         return redirect(url_for("settings"))
     if config.SHOW_LIBRARY_STATS:

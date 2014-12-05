@@ -57,4 +57,7 @@ On default this will fire up a webserver on 127.0.0.1 and port 5000 if you like 
 
     python manage.py runserver -h 0.0.0.0 -p 12345
 
+you can find a short installation video here:
+https://asciinema.org/a/12778
+
 PS: i hardly recommend you to run it in development mode instead of useing the (still littlebit buggy) plexivitiy.py

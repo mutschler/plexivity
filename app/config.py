@@ -2,10 +2,46 @@
 # -*- coding: utf-8 -*-
 
 import os
+import platform
 from configobj import ConfigObj
 
+def getUserDir():
+    try:
+        import pwd
+        os.environ['HOME'] = pwd.getpwuid(os.geteuid()).pw_dir
+    except:
+        pass
 
-CONFIG_FILE= os.path.join(os.getcwd(), "config.ini")
+    return os.path.expanduser('~')
+
+def getDataDir():
+
+    # Windows
+    if os.name == 'nt':
+        return os.path.join(os.environ['APPDATA'], 'plexivity')
+
+    user_dir = getUserDir()
+
+    # OSX
+    if 'darwin' in platform.platform().lower():
+        return os.path.join(user_dir, 'Library', 'Application Support', 'plexivity')
+
+    # FreeBSD
+    if 'freebsd' in sys.platform:
+        return os.path.join('/usr/local/', 'plexivity', 'data')
+
+    # Linux
+    return os.path.join(user_dir, '.plexivity')
+
+if "PLEXIVITY_DATA" in os.environ:
+    data_dir = os.environ["PLEXIVITY_DATA"]
+else:
+    data_dir = getDataDir()
+
+if not os.path.isdir(data_dir):
+    os.makedirs(data_dir)
+
+CONFIG_FILE= os.path.join(data_dir, "config.ini")
 CFG = ConfigObj(CONFIG_FILE, interpolation=False)
 
 def CheckSection(sec):
@@ -43,7 +79,7 @@ def check_setting_int(config, cfg_name, item_name, def_val):
     return my_val
 
 CheckSection('General')
-DATA_DIR = check_setting_str(CFG, 'General', 'DATA_DIR', os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+DATA_DIR = check_setting_str(CFG, 'General', 'DATA_DIR', data_dir)
 PORT = check_setting_int(CFG, 'General', 'PORT', 8080)
 START_MESSAGE = check_setting_str(CFG, 'General', 'START_MESSAGE', "%(user)s is currently watching %(title)s")
 NOTIFY_START = check_setting_int(CFG, 'General', 'NOTIFY_START', 1)

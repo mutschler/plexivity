@@ -62,8 +62,8 @@ class Settings(Form):
     MAIL_PORT = IntegerField(lazy_gettext('SMTP Mail Port'), validators=[RequiredIf("NOTIFY_MAIL"), NumberRange()], default=config.MAIL_PORT)
     MAIL_FROM = StringField(lazy_gettext('Sender Mail Information'), validators=[RequiredIf("NOTIFY_MAIL")], default=config.MAIL_FROM)
 
-    DATA_DIR = StringField(lazy_gettext('plexivity data directory'), validators=[DataRequired()], default=config.DATA_DIR)
-    #PORT = IntegerField(lazy_gettext('plexivity port'), validators=[DataRequired(), NumberRange()], default=config.PORT)
+    #DATA_DIR = StringField(lazy_gettext('plexivity data directory'), validators=[DataRequired()], default=config.DATA_DIR)
+    PORT = IntegerField(lazy_gettext('plexivity port'), validators=[DataRequired(), NumberRange()], default=config.PORT)
     NOTIFY_START =  BooleanField(lazy_gettext('Send notification on start'), default=config.NOTIFY_START)
     START_MESSAGE = StringField(lazy_gettext('String for watching notification'), validators=[DataRequired()], default=config.START_MESSAGE)
     NOTIFY_STOP =  BooleanField(lazy_gettext('Send notification on stop'), default=config.NOTIFY_STOP)

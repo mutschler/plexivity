@@ -42,6 +42,33 @@ plexivity uses the following Projects/Librarys:
 - [requests](https://github.com/kennethreitz/requests)
 - [Bootstrap](http://getbootstrap.com/)
 
+##Data Path
+
+Data direcotrys can be found in this locations:
+
+**Windows**
+
+`C:\Users\yourname\AppData\Roaming\plexivity`
+
+or
+
+`C:\Documents and Settings\yourname\Application Data\plexivity`
+
+**OSX**
+
+`~/Library/Applications Settings/plexivity`
+
+**FreeBSD**
+
+`/usr/local/plexivity/data`
+
+**Linux**
+
+`~/.plexivity`
+
+if you like to use a different Direcotry you can set one by useing the `PLEXIVITY_DATA environment variable
+
+
 ### development install:
 
 plexivity still in development

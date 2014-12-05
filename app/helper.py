@@ -27,7 +27,7 @@ def startScheduler():
     try:
         import tzlocal
 
-        tz = tzlocal.get_localzone().zone
+        tz = tzlocal.get_localzone()
         logger.info("local timezone: %s" % tz)
     except:
         logger.error("Unable to find locale timezone useing UTC as Fallback!")
@@ -41,7 +41,7 @@ def startScheduler():
     #DONT run flask in auto reload mode when testing this!
     scheduler = BackgroundScheduler(logger=sched_logger, timezone=tz)
     scheduler.add_job(notify.task, 'interval', seconds=config.SCAN_INTERVAL, max_instances=1,
-                      start_date=datetime.datetime.now() + datetime.timedelta(seconds=2))
+                      start_date=datetime.datetime.now(tz) + datetime.timedelta(seconds=2))
     scheduler.start()
     #notify.task()
 

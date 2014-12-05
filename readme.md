@@ -53,4 +53,8 @@ Install virtualenvwrapper: http://virtualenvwrapper.readthedocs.org/en/latest/in
     python manage.py db upgrade
     python manage.py runserver
 
+On default this will fire up a webserver on 127.0.0.1 and port 5000 if you like to change that, just give an host and port with -h and -p like this:
+
+    python manage.py runserver -h 0.0.0.0 -p 12345
+
 PS: i hardly recommend you to run it in development mode instead of useing the (still littlebit buggy) plexivitiy.py

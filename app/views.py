@@ -143,7 +143,7 @@ def setup():
         login_user(user)
         return redirect(url_for('settings'))
     if not db.session.query(models.User).first():
-        return render_template('setup.html', form=form, title=_('Setup'))
+        return render_template('setup.html', form=form, title=_('Setup'), data_dir=config.DATA_DIR)
     else:
         return redirect(url_for("index"))
 

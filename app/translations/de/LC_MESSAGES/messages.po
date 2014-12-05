@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plexivity\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-12-05 15:22+0100\n"
-"PO-Revision-Date: 2014-12-05 14:28+0000\n"
+"POT-Creation-Date: 2014-12-05 16:20+0100\n"
+"PO-Revision-Date: 2014-12-05 15:24+0000\n"
 "Last-Translator: Raphael\n"
 "Language-Team: German (http://www.transifex.com/projects/p/plexivity/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -185,6 +185,7 @@ msgstr "vor %(int)s Monaten"
 msgid "%(int)s years ago"
 msgstr "vor %(int)s Jahren"
 
+#. NOTE: Test2
 #: app/views.py:81
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr "Verbindung zum PMS nicht möglich. Bitte Einstellungen überprüfen."
@@ -553,6 +554,17 @@ msgid "Connect Hue"
 msgstr "Mit Hue verbinden"
 
 #: app/templates/setup.html:9
+#, python-format
+msgid "Data will be saved to \"%(data_dir)s\""
+msgstr "Daten werden unter \"%(data_dir)s\" gespeichert"
+
+#: app/templates/setup.html:10
+msgid ""
+"If you already had a runnig installation please copy \"config.ini\" and "
+"\"plexivity.db\" to this directory and restart plexivity"
+msgstr "Wenn Sie bereits eine Installation durchgeführt haben, kopieren Sie bitte \"config.ini\" und \"plexivity.db\" in dieses Verzeichnis und starten Sie plexivity anschließend neu"
+
+#: app/templates/setup.html:13
 msgid "Create Account"
 msgstr "Account erstellen"
 

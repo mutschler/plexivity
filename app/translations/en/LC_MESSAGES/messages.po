@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-12-05 15:22+0100\n"
+"POT-Creation-Date: 2014-12-05 16:20+0100\n"
 "PO-Revision-Date: 2014-12-05 15:22+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -181,6 +181,7 @@ msgstr ""
 msgid "%(int)s years ago"
 msgstr ""
 
+#. NOTE: Test2
 #: app/views.py:81
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr ""
@@ -547,6 +548,17 @@ msgid "Connect Hue"
 msgstr ""
 
 #: app/templates/setup.html:9
+#, python-format
+msgid "Data will be saved to \"%(data_dir)s\""
+msgstr ""
+
+#: app/templates/setup.html:10
+msgid ""
+"If you already had a runnig installation please copy \"config.ini\" and "
+"\"plexivity.db\" to this directory and restart plexivity"
+msgstr ""
+
+#: app/templates/setup.html:13
 msgid "Create Account"
 msgstr ""
 

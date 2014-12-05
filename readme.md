@@ -66,7 +66,7 @@ or
 
 `~/.plexivity`
 
-if you like to use a different Direcotry you can set one by useing the `PLEXIVITY_DATA environment variable
+if you like to use a different Direcotry you can set one by useing the `PLEXIVITY_DATA` environment variable
 
 
 ### development install:

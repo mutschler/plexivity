@@ -1,26 +1,26 @@
-# English translations for .
+# English translations for PROJECT.
 # Copyright (C) 2014 ORGANIZATION
-# This file is distributed under the same license as the  project.
-#
+# This file is distributed under the same license as the PROJECT project.
+# 
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 # Raphael, 2014
+# Raphael, 2014
+# Aleszandro <transifex@freecooki.es>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: plexivity\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-10-31 17:07+0100\n"
-"PO-Revision-Date: 2014-10-31 17:08+0100\n"
+"POT-Creation-Date: 2014-12-05 15:22+0100\n"
+"PO-Revision-Date: 2014-12-05 14:28+0000\n"
 "Last-Translator: Raphael\n"
-"Language-Team: German (http://www.transifex.com/projects/p/plexivity/"
-"language/de/)\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Team: German (http://www.transifex.com/projects/p/plexivity/language/de/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 "Language: de\n"
-"X-Generator: Poedit 1.6.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/forms.py:37
 msgid "Hue Bridge IP"
@@ -185,72 +185,70 @@ msgstr "vor %(int)s Monaten"
 msgid "%(int)s years ago"
 msgstr "vor %(int)s Jahren"
 
-#: app/views.py:80
+#: app/views.py:81
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr "Verbindung zum PMS nicht möglich. Bitte Einstellungen überprüfen."
 
-#: app/views.py:130 app/templates/layout.html:61
+#: app/views.py:131 app/templates/layout.html:61
 msgid "Statistics"
 msgstr "Statistik"
 
-#: app/views.py:137
+#: app/views.py:138
 #, python-format
 msgid "User %(username)s created"
 msgstr "Benutzer %(username)s angelegt"
 
-#: app/views.py:145
+#: app/views.py:146
 msgid "Setup"
-msgstr "Setup"
+msgstr "Einrichtung"
 
-#: app/views.py:165 app/views.py:194
+#: app/views.py:166 app/views.py:195
 #, python-format
 msgid "Successfully connected to Hue Bridge with ip %(ip)s"
 msgstr "Verbindung zur Bridge hergestellt: %(ip)s"
 
-#: app/views.py:184
+#: app/views.py:185
 msgid "Successfully disconnected from Hue Bridge"
 msgstr "Verbindung von Hue Bridge getrennt"
 
-#: app/views.py:210 app/templates/layout.html:63
+#: app/views.py:211 app/templates/layout.html:63
 msgid "Charts"
 msgstr "Charts"
 
-#: app/views.py:231
+#: app/views.py:232
 msgid "Info"
 msgstr "Info"
 
-#: app/views.py:242
+#: app/views.py:243
 #, python-format
 msgid "you are now logged in as: '%(username)s'"
 msgstr "Eingeloggt als: '%(username)s'"
 
-#: app/views.py:245
-msgid "username/password missmatch or no such user in database"
-msgstr ""
-"Benutzername/Passwort stimmt nicht überein oder ist nicht in der Datenbank "
-"vorhanden"
-
 #: app/views.py:246
+msgid "username/password missmatch or no such user in database"
+msgstr "Benutzername/Passwort stimmt nicht überein oder ist nicht in der Datenbank vorhanden"
+
+#: app/views.py:247
 msgid "login"
 msgstr "Anmelden"
 
-#: app/views.py:253 app/templates/layout.html:60
+#: app/views.py:254 app/templates/layout.html:60
 msgid "History"
 msgstr "Verlauf"
 
-#: app/views.py:260
+#: app/views.py:261
 msgid "Logged out"
 msgstr "Abgemeldet"
 
-#: app/views.py:282 app/templates/layout.html:62
+#: app/views.py:283 app/templates/layout.html:62
 msgid "Users"
 msgstr "Benutzer"
 
-#: app/views.py:317
+#: app/views.py:318
 msgid "Settings saved!"
 msgstr "Einstellungen gespeichert!"
 
-#: app/views.py:330 app/templates/layout.html:59
+#: app/views.py:331 app/templates/layout.html:59
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -290,9 +288,7 @@ msgstr "Mit Hue verbinden"
 #: app/templates/hue.html:17
 msgid ""
 "Please press the Push Button on your Hue Bridge and press the button below"
-msgstr ""
-"Bitte drücken sie den Push Button an ihrer Hue Bridge und im Anschluss den "
-"Knopf unten"
+msgstr "Bitte drücken sie den Push Button an ihrer Hue Bridge und im Anschluss den Knopf unten"
 
 #: app/templates/hue.html:18
 msgid "Push Button Pressed"
@@ -437,9 +433,7 @@ msgstr "Einstellungen speichern"
 
 #: app/templates/settings.html:11
 msgid "The following Options are available for Message formating:"
-msgstr ""
-"Die folgenden Optionen sind verfügbar um eine Benachrichtigung zu "
-"formatieren:"
+msgstr "Die folgenden Optionen sind verfügbar um eine Benachrichtigung zu formatieren:"
 
 #: app/templates/settings.html:15
 msgid "Username of current user"
@@ -450,7 +444,8 @@ msgid "Processed title of currently playing media"
 msgstr "Titel des Films/Episode"
 
 #: app/templates/settings.html:19
-msgid "the platform from which the media is played back (ex. Plexweb (Chrome))"
+msgid ""
+"the platform from which the media is played back (ex. Plexweb (Chrome))"
 msgstr "Wiedergabe Platform zb: Plexweb (Chrome)"
 
 #: app/templates/settings.html:21
@@ -467,7 +462,7 @@ msgstr "PMS Benutzer ID"
 
 #: app/templates/settings.html:27
 msgid "Original, unprocessed username"
-msgstr "Benutzername\t"
+msgstr "Benutzername"
 
 #: app/templates/settings.html:29
 msgid "unprocessed original title of currently playing media"
@@ -475,7 +470,7 @@ msgstr "Original Titel"
 
 #: app/templates/settings.html:31
 msgid "unprocessed original title of currently playing episode"
-msgstr "Original Episoden Titel\t"
+msgstr "Original Episoden Titel"
 
 #: app/templates/settings.html:33
 msgid "current season"
@@ -499,7 +494,7 @@ msgstr "Stoßzeit der Wiedergabe"
 
 #: app/templates/settings.html:43
 msgid "Media content rating"
-msgstr ""
+msgstr "Inhaltsbewertung (FSK)"
 
 #: app/templates/settings.html:45
 msgid "Media distribution year"
@@ -546,9 +541,8 @@ msgid "Audio and Video informations on Transcode else \"Direct Play\""
 msgstr "Audio und Video Informationen bei Transcode sonst: \"Direct Play\""
 
 #: app/templates/settings.html:67
-#, fuzzy
 msgid "the machine identifier"
-msgstr "Plex Machine Identifier"
+msgstr "das Machinenkennzeichen"
 
 #: app/templates/settings.html:70
 msgid "Example"
@@ -638,53 +632,37 @@ msgid "Title"
 msgstr "Titel"
 
 #: app/templates/include/history.html:12
+msgid "Type"
+msgstr "Typ"
+
+#: app/templates/include/history.html:13
 msgid "Stream Info"
 msgstr "Stream Info"
 
-#: app/templates/include/history.html:13
+#: app/templates/include/history.html:14
 msgid "Started"
 msgstr "Start"
 
-#: app/templates/include/history.html:14
+#: app/templates/include/history.html:15
 msgid "Paused"
 msgstr "Pausiert"
 
-#: app/templates/include/history.html:15
+#: app/templates/include/history.html:16
 msgid "Stopped"
 msgstr "Stop"
 
-#: app/templates/include/history.html:16
+#: app/templates/include/history.html:17
 msgid "Duration"
 msgstr "Dauer"
 
-#: app/templates/include/history.html:17
+#: app/templates/include/history.html:18
 msgid "Completed"
 msgstr "Vollendet"
 
-#: app/templates/include/history.html:25
+#: app/templates/include/history.html:26
 msgid "Currently watching..."
 msgstr "Momentan abgespielt..."
 
 #: app/templates/include/recently_added.html:1
 msgid "Recently Added"
 msgstr "Kürzlich hinzugefügt"
-
-#~ msgid "Use SSL encryption"
-#~ msgstr "SSL Verschlüsselung nutzen"
-
-#~ msgid "plexivity port"
-#~ msgstr "plexivity Port"
-
-#~ msgid "Global Stats"
-#~ msgstr "Globale Statistik"
-
-#~ msgid "%(num)d plays"
-#~ msgstr "%(num)d wiedergaben"
-
-#~ msgid "%(num)d day"
-#~ msgid_plural "%(num)d days"
-#~ msgstr[0] "%(num)d Tag"
-#~ msgstr[1] ""
-
-#~ msgid "%(num)d mins"
-#~ msgstr "%(num)d Tage"

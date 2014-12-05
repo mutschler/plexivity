@@ -30,10 +30,9 @@ def startScheduler():
         tz = tzlocal.get_localzone()
         logger.info("local timezone: %s" % tz)
     except:
-        logger.error("Unable to find locale timezone useing UTC as Fallback!")
-        tz = pytz.utc
+        tz = None
 
-    if not tz or tz == "local":
+    if not tz or tz.zone == "local":
         logger.error('Local timezone name could not be determined. Scheduler will display times in UTC for any log'
                  'messages. To resolve this set up /etc/timezone with correct time zone name.')
         tz = pytz.utc

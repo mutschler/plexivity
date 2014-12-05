@@ -10,6 +10,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 from app import logger
 from app import config, plex, notify
+import pytz
 
 sched_logger = logging.getLogger("apscheduler")
 sched_logger.addHandler(logger.rotation)
@@ -29,8 +30,13 @@ def startScheduler():
         tz = tzlocal.get_localzone().zone
         logger.info("local timezone: %s" % tz)
     except:
-        logger.error("Unable to find locale timezone useing Europe/Berlin as Fallback!")
-        tz = 'Europe/Berlin'
+        logger.error("Unable to find locale timezone useing UTC as Fallback!")
+        tz = pytz.utc
+
+    if not tz or tz == "local":
+        logger.error('Local timezone name could not be determined. Scheduler will display times in UTC for any log'
+                 'messages. To resolve this set up /etc/timezone with correct time zone name.')
+        tz = pytz.utc
     #in debug mode this is executed twice :(
     #DONT run flask in auto reload mode when testing this!
     scheduler = BackgroundScheduler(logger=sched_logger, timezone=tz)

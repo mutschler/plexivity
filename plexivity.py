@@ -9,11 +9,6 @@ from lib.daemon import Daemon
 
 
 def run_app():
-    from subprocess import call
-    #make sure database is most recent version!
-    filedir = os.path.dirname(os.path.abspath(__file__))
-    manage = os.path.join(filedir, "manage.py")
-    call(["env", "python", manage, "db", "upgrade"])
     app.run(host="0.0.0.0", port=config.PORT, debug=False)
 
 

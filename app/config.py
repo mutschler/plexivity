@@ -79,7 +79,7 @@ def check_setting_int(config, cfg_name, item_name, def_val):
     return my_val
 
 CheckSection('General')
-DATA_DIR = check_setting_str(CFG, 'General', 'DATA_DIR', data_dir)
+DATA_DIR = data_dir
 PORT = check_setting_int(CFG, 'General', 'PORT', 8080)
 START_MESSAGE = check_setting_str(CFG, 'General', 'START_MESSAGE', "%(user)s is currently watching %(title)s")
 NOTIFY_START = check_setting_int(CFG, 'General', 'NOTIFY_START', 1)
@@ -131,7 +131,6 @@ BOXCAR_TOKEN = check_setting_str(CFG, 'Boxcar', 'BOXCAR_TOKEN', "")
 SYS_ENCODING="UTF-8"
 
 configval={}
-configval["DATA_DIR"] = DATA_DIR
 configval["PORT"] = PORT
 configval["DEBUG"] = DEBUG
 configval["SHOW_LIBRARY_STATS"] = SHOW_LIBRARY_STATS
@@ -172,7 +171,6 @@ def save_config(configval):
     new_config = ConfigObj(interpolation=False)
     new_config.filename = CONFIG_FILE
     new_config['General'] = {}
-    new_config['General']['DATA_DIR'] = configval["DATA_DIR"]
     new_config['General']['PORT'] = configval["PORT"]
     new_config['General']['START_MESSAGE'] = configval["START_MESSAGE"]
     new_config['General']['STOP_MESSAGE'] = configval["STOP_MESSAGE"]

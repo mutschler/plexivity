@@ -7,7 +7,7 @@ from wtforms.validators import DataRequired, Email, EqualTo, NumberRange, IPAddr
 
 from flask.ext.babel import lazy_gettext
 
-from app import config
+from app import config, babel
 import requests
 
 class RequiredIf(DataRequired):
@@ -76,7 +76,11 @@ class Settings(Form):
 
 
 class RegisterForm(Form):
+    all_locales = [('en', 'English')]
+    for x in babel.list_translations():
+        all_locales.append( (x.language, x.display_name) )
+
     email = StringField(lazy_gettext('E-Mail'), validators=[DataRequired(), Email()])
     password = PasswordField(lazy_gettext('Password'), validators=[DataRequired(),EqualTo("password2")])
     password2 = PasswordField(lazy_gettext('Retype password'), validators=[DataRequired(),EqualTo("password")])
-    locale = SelectField(lazy_gettext('Language'), choices=[('en', 'English'), ('de', 'Deutsch'), ('fr', u'Français')])
+    locale = SelectField(lazy_gettext('Language'), choices=all_locales)

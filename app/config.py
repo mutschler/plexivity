@@ -3,6 +3,7 @@
 
 import os
 import platform
+import sys
 from configobj import ConfigObj
 
 def getUserDir():

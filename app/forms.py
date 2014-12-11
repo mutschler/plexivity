@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 
 from flask_wtf import Form
-from wtforms import StringField, PasswordField, BooleanField, IntegerField, SelectField
+from wtforms import StringField, PasswordField, BooleanField, IntegerField, SelectField, TextField
 from wtforms.validators import DataRequired, Email, EqualTo, NumberRange, IPAddress
 
 from flask.ext.babel import lazy_gettext
+from flask_security.forms import RegisterForm, LoginForm
 
 from app import config, babel
 import requests
@@ -36,10 +37,11 @@ class HueForm(Form):
         ip = config.BRIDGE_IP
     HUE_IP = StringField(lazy_gettext('Hue Bridge IP'), validators=[IPAddress()], default=ip)
 
-class Login(Form):
+class Login(LoginForm):
     email = StringField(lazy_gettext('E-Mail'), validators=[DataRequired(), Email()])
     password = PasswordField(lazy_gettext('Password'), validators=[DataRequired()])
-    remember_me = BooleanField(lazy_gettext('Remember password'))
+    remember = BooleanField(lazy_gettext('Remember password'))
+    submit = None
 
 
 class Settings(Form):
@@ -74,13 +76,24 @@ class Settings(Form):
     RESUME_MESSAGE = StringField(lazy_gettext('String for resume notification'), validators=[DataRequired()], default=config.RESUME_MESSAGE)
 
 
-
-class RegisterForm(Form):
+class ExtendedRegisterForm2(Form):
     all_locales = [('en', 'English')]
     for x in babel.list_translations():
         all_locales.append( (x.language, x.display_name) )
 
     email = StringField(lazy_gettext('E-Mail'), validators=[DataRequired(), Email()])
-    password = PasswordField(lazy_gettext('Password'), validators=[DataRequired(),EqualTo("password2")])
-    password2 = PasswordField(lazy_gettext('Retype password'), validators=[DataRequired(),EqualTo("password")])
+    password = PasswordField(lazy_gettext('Password'), validators=[DataRequired(),EqualTo("password_confirm")])
+    password_confirm = PasswordField(lazy_gettext('Retype password'), validators=[DataRequired(),EqualTo("password")])
     locale = SelectField(lazy_gettext('Language'), choices=all_locales)
+    submit = None
+
+class ExtendedRegisterForm(RegisterForm):
+    all_locales = [('en', 'English')]
+    for x in babel.list_translations():
+        all_locales.append( (x.language, x.display_name) )
+
+    email = StringField(lazy_gettext('E-Mail'), validators=[DataRequired(), Email()])
+    password = PasswordField(lazy_gettext('Password'), validators=[DataRequired(),EqualTo("password_confirm")])
+    password_confirm = PasswordField(lazy_gettext('Retype password'), validators=[DataRequired(),EqualTo("password")])
+    locale = SelectField(lazy_gettext('Language'), choices=all_locales)
+    submit = None

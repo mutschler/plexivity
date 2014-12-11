@@ -2,18 +2,25 @@
 # -*- coding: utf-8 -*-
 
 import os
+import json
+import datetime
 
-from app import app, db, models, forms, lm, babel
+from app import app, db, models, forms, lm
 from app import helper, plex, config
 
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask.ext.login import login_required, current_user, logout_user, login_user
+from flask.ext.login import login_required, current_user, logout_user
 from flask import url_for, render_template, g, redirect, flash, request, send_from_directory, send_file
 from flask.ext.babel import gettext as _
 from babel.dates import format_timedelta
-import json
 
-import datetime
+from flask.ext.security import SQLAlchemyUserDatastore, url_for_security
+from flask.ext.security.decorators import roles_required
+from flask.ext.security.utils import encrypt_password, login_user
+
+user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
+
+
 
 p = plex.Server(config.PMS_HOST, config.PMS_PORT)
 
@@ -28,49 +35,20 @@ def initialize():
     db.create_all()
     helper.startScheduler()
 
-class MyAnonymousUser(object):
-    def __init__(self):
-        self.random_books = 1
-
-    def is_active(self):
-        return False
-
-    def is_authenticated(self):
-        return False
-
-    def is_anonymous(self):
-        return True
-
-    def get_id(self):
-        return unicode(self.id)
-
-lm.anonymous_user = MyAnonymousUser
 
 @lm.user_loader
 def load_user(id):
     return db.session.query(models.User).filter(models.User.id == int(id)).first()
 
-@babel.localeselector
-def get_locale():
-    # if a user is logged in, use the locale from the user settings
-    user = getattr(g, 'user', None)
-    if user is not None and hasattr(user, "locale"):
-        return user.locale
-    # otherwise try to guess the language from the user accept
-    # header the browser transmits.  We support de/fr/en in this
-    # example.  The best match wins.
-    return request.accept_languages.best_match(['de', "en", "fr"])
-
-@babel.timezoneselector
-def get_timezone():
-    user = getattr(g, 'user', None)
-    if user is not None:
-        return user.timezone
 
 @app.before_request
 def before_request():
     g.user = current_user
     g.plex = p
+
+    if not db.session.query(models.User).first() and not (request.url_rule.endpoint in ["setup", "static"]):
+        return redirect(url_for("setup"))
+
 
 @app.route("/")
 @login_required
@@ -133,14 +111,15 @@ def stats():
 
 @app.route("/setup", methods=("GET", "POST"))
 def setup():
-    form = forms.RegisterForm()
+    form = forms.ExtendedRegisterForm()
     if form.validate_on_submit():
         flash(_("User %(username)s created", username=form.email.data), "success")
-        user = models.User(password=generate_password_hash(form.password.data), email=form.email.data)
-        user.locale = form.locale.data
-        db.session.add(user)
-        db.session.commit()
-        login_user(user)
+
+        admin_role = user_datastore.find_or_create_role('admin')
+        user_role = user_datastore.find_or_create_role('user')
+        user = user_datastore.create_user(email=form.email.data, password=encrypt_password(form.password.data), locale=form.locale.data, active=1, roles=[admin_role, user_role])
+        user_datastore.commit()
+        #login_user(user)
         return redirect(url_for('settings'))
     if not db.session.query(models.User).first():
         return render_template('setup.html', form=form, title=_('Setup'), data_dir=config.DATA_DIR)
@@ -231,20 +210,21 @@ def info(id):
 
     return render_template('info.html', info=info, history=views, parent=parent, episodes=episodes, title=_('Info'))
 
-@app.route("/login", methods=("GET", "POST"))
-def login():
-    if not db.session.query(models.User).first():
-        return redirect(url_for("setup"))
-    form = forms.Login()
-    if form.validate_on_submit():
-        user = db.session.query(models.User).filter(models.User.email == form.email.data).first()
-        if user and check_password_hash(user.password, form.password.data):
-            login_user(user, remember = form.remember_me.data)
-            flash(_("you are now logged in as: '%(username)s'", username=user.email), category="success")
-            return redirect(request.args.get("next") or url_for("index"))
-        else:
-            flash(_("username/password missmatch or no such user in database"), "error")
-    return render_template('login.html', form=form, title=_('login'))
+# @app.route("/login", methods=("GET", "POST"))
+# def login():
+#     if not db.session.query(models.User).first():
+#         return redirect(url_for("setup"))
+#     return redirect(url_for_security('login'))
+#     form = forms.Login()
+#     if form.validate_on_submit():
+#         user = db.session.query(models.User).filter(models.User.email == form.email.data).first()
+#         if user and check_password_hash(user.password, form.password.data):
+#             login_user(user, remember = form.remember_me.data)
+#             flash(_("you are now logged in as: '%(username)s'", username=user.email), category="success")
+#             return redirect(request.args.get("next") or url_for("index"))
+#         else:
+#             flash(_("username/password missmatch or no such user in database"), "error")
+#     return render_template('login.html', form=form, title=_('login'))
 
 
 @app.route("/history")
@@ -277,6 +257,7 @@ def cache(filename):
         return send_from_directory(cache_dir, filename + ".jpg")
 
 @app.route('/users')
+@roles_required('admin')
 @login_required
 def users():
     users = db.session.query(db.func.count(models.Processed.user), models.Processed).group_by(models.Processed.user).all()

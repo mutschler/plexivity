@@ -8,10 +8,11 @@ from flask import Flask, g, request, redirect, url_for
 from flask.ext.sqlalchemy import SQLAlchemy
 
 from flask.ext.babel import Babel
+from flask.ext.babel import lazy_gettext
 from flask.ext.login import LoginManager, login_user, logout_user, current_user
 
 from flask.ext.mail import Mail
-
+from flask.ext.security import Security
 
 app = Flask(__name__)
 app.debug = True
@@ -23,19 +24,43 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///%s' % os.path.join(config.DAT
 db = SQLAlchemy(app)
 babel = Babel(app)
 
+@babel.localeselector
+def get_locale():
+    # if a user is logged in, use the locale from the user settings
+    user = getattr(g, 'user', None)
+    if user is not None and hasattr(user, "locale"):
+        return user.locale
+
+    return request.accept_languages.best_match(['de', "en", "fr"])
+
+@babel.timezoneselector
+def get_timezone():
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.timezone
+
 app.config['MAIL_SERVER'] = config.MAIL_SERVER
 app.config['MAIL_PORT'] = config.MAIL_PORT
 app.config['MAIL_USERNAME'] = config.MAIL_LOGIN
 app.config['MAIL_PASSWORD'] = config.MAIL_PASSWORD
 app.config['DEFAULT_MAIL_SENDER'] = config.MAIL_FROM
 app.config['MAIL_DEBUG'] = False
+
+app.config['SECURITY_CONFIRMABLE'] = False
+app.config['DEFAULT_MAIL_SENDER'] = 'info@site.com'
+app.config['SECURITY_REGISTERABLE'] = True
+app.config['SECURITY_TRACKABLE'] = True
+
 mail = Mail(app)
 
 lm = LoginManager(app)
 lm.init_app(app)
 lm.login_view = 'login'
 
-from app import views, models
+from app import views, models, forms
+
+security = Security(app, views.user_datastore, register_form=forms.ExtendedRegisterForm2, login_form=forms.Login)
+
 
 ## try import admin view and functions if module is not there, just skip this for now
 try:

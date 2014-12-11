@@ -63,7 +63,7 @@
               <li><a href="{{url_for('charts')}}"><span class="glyphicon glyphicon-stats"></span> {{ _('Charts') }}</a></li>
               <li><a href="{{url_for('logout', next=request.path)}}"><span class="glyphicon glyphicon-log-out"></span> {{_('Logout')}} </a></li>
               {% else %}
-              <li><a href="{{url_for('login', next=request.path)}}"><span class="glyphicon glyphicon-log-in"></span> {{_('Login')}} </a></li>
+              <li><a href="{{url_for_security('login')}}"><span class="glyphicon glyphicon-log-in"></span> {{_('Login')}} </a></li>
               {% endif %}
           </ul>
         </div><!--/.nav-collapse -->

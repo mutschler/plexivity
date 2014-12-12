@@ -48,8 +48,46 @@ app.config['MAIL_DEBUG'] = False
 
 app.config['SECURITY_CONFIRMABLE'] = False
 app.config['DEFAULT_MAIL_SENDER'] = 'info@site.com'
-app.config['SECURITY_REGISTERABLE'] = True
+app.config['SECURITY_REGISTERABLE'] = False
 app.config['SECURITY_TRACKABLE'] = True
+app.config['SECURITY_PASSWORD_SALT'] = "holy-fuck"
+
+#make security messages translatabel
+app.config['SECURITY_MSG_UNAUTHORIZED'] = (lazy_gettext('You do not have permission to view this resource.'), 'error')
+app.config['SECURITY_MSG_CONFIRM_REGISTRATION'] = (lazy_gettext('Thank you. Confirmation instructions have been sent to %(email)s.'), 'success')
+app.config['SECURITY_MSG_EMAIL_CONFIRMED'] = (lazy_gettext('Thank you. Your email has been confirmed.'), 'success')
+app.config['SECURITY_MSG_ALREADY_CONFIRMED'] = (lazy_gettext('Your email has already been confirmed.'), 'info')
+app.config['SECURITY_MSG_INVALID_CONFIRMATION_TOKEN'] = (lazy_gettext('Invalid confirmation token.'), 'error')
+app.config['SECURITY_MSG_EMAIL_ALREADY_ASSOCIATED'] = (lazy_gettext('%(email)s is already associated with an account.'), 'error')
+app.config['SECURITY_MSG_PASSWORD_MISMATCH'] = (lazy_gettext('Password does not match'), 'error')
+app.config['SECURITY_MSG_RETYPE_PASSWORD_MISMATCH'] = (lazy_gettext('Passwords do not match'), 'error')
+app.config['SECURITY_MSG_INVALID_REDIRECT'] = (lazy_gettext('Redirections outside the domain are forbidden'), 'error')
+app.config['SECURITY_MSG_PASSWORD_RESET_REQUEST'] = (lazy_gettext('Instructions to reset your password have been sent to %(email)s.'), 'info')
+app.config['SECURITY_MSG_PASSWORD_RESET_EXPIRED'] = (lazy_gettext('You did not reset your password within %(within)s. New instructions have been sent to %(email)s.'), 'error')
+app.config['SECURITY_MSG_INVALID_RESET_PASSWORD_TOKEN'] = (lazy_gettext('Invalid reset password token.'), 'error')
+app.config['SECURITY_MSG_CONFIRMATION_REQUIRED'] = (lazy_gettext('Email requires confirmation.'), 'error')
+app.config['SECURITY_MSG_CONFIRMATION_REQUEST'] = (lazy_gettext('Confirmation instructions have been sent to %(email)s.'), 'info')
+app.config['SECURITY_MSG_CONFIRMATION_EXPIRED'] = (lazy_gettext('You did not confirm your email within %(within)s. New instructions to confirm your email have been sent to %(email)s.'), 'error')
+app.config['SECURITY_MSG_LOGIN_EXPIRED'] = (lazy_gettext('You did not login within %(within)s. New instructions to login have been sent to %(email)s.'), 'error')
+app.config['SECURITY_MSG_LOGIN_EMAIL_SENT'] = (lazy_gettext('Instructions to login have been sent to %(email)s.'), 'success')
+app.config['SECURITY_MSG_INVALID_LOGIN_TOKEN'] = (lazy_gettext('Invalid login token.'), 'error')
+app.config['SECURITY_MSG_DISABLED_ACCOUNT'] = (lazy_gettext('Account is disabled.'), 'error')
+app.config['SECURITY_MSG_EMAIL_NOT_PROVIDED'] = (lazy_gettext('Email not provided'), 'error')
+app.config['SECURITY_MSG_INVALID_EMAIL_ADDRESS'] = (lazy_gettext('Invalid email address'), 'error')
+app.config['SECURITY_MSG_PASSWORD_NOT_PROVIDED'] = (lazy_gettext('Password not provided'), 'error')
+app.config['SECURITY_MSG_PASSWORD_NOT_SET'] = (lazy_gettext('No password is set for this user'), 'error')
+app.config['SECURITY_MSG_PASSWORD_INVALID_LENGTH'] = (lazy_gettext('Password must be at least 6 characters'), 'error')
+app.config['SECURITY_MSG_USER_DOES_NOT_EXIST'] = (lazy_gettext('Specified user does not exist'), 'error')
+app.config['SECURITY_MSG_INVALID_PASSWORD'] = (lazy_gettext('Invalid password'), 'error')
+app.config['SECURITY_MSG_PASSWORDLESS_LOGIN_SUCCESSFUL'] = (lazy_gettext('You have successfuly logged in.'), 'success')
+app.config['SECURITY_MSG_PASSWORD_RESET'] = (lazy_gettext('You successfully reset your password and you have been logged in automatically.'), 'success')
+app.config['SECURITY_MSG_PASSWORD_IS_THE_SAME'] = (lazy_gettext('Your new password must be different than your previous password.'), 'error')
+app.config['SECURITY_MSG_PASSWORD_CHANGE'] = (lazy_gettext('You successfully changed your password.'), 'success')
+app.config['SECURITY_MSG_LOGIN'] = (lazy_gettext('Please log in to access this page.'), 'info')
+app.config['SECURITY_MSG_REFRESH'] = (lazy_gettext('Please reauthenticate to access this page.'), 'info')
+
+# uncomment for productional use
+app.config['SECURITY_PASSWORD_HASH'] = 'pbkdf2_sha512'
 
 mail = Mail(app)
 
@@ -61,6 +99,18 @@ from app import views, models, forms
 
 security = Security(app, views.user_datastore, register_form=forms.ExtendedRegisterForm2, login_form=forms.Login)
 
+#fix lazy_gettext json encoding ...
+from flask.json import JSONEncoder as BaseEncoder
+from speaklater import _LazyString
+
+class JSONEncoder(BaseEncoder):
+    def default(self, o):
+        if isinstance(o, _LazyString):
+            return str(o)
+
+        return BaseEncoder.default(self, o)
+
+app.json_encoder = JSONEncoder
 
 ## try import admin view and functions if module is not there, just skip this for now
 try:

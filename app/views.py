@@ -20,8 +20,6 @@ from flask.ext.security.utils import encrypt_password, login_user
 
 user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
 
-
-
 p = plex.Server(config.PMS_HOST, config.PMS_PORT)
 
 app.jinja_env.globals.update(helper=helper)
@@ -210,22 +208,6 @@ def info(id):
 
     return render_template('info.html', info=info, history=views, parent=parent, episodes=episodes, title=_('Info'))
 
-# @app.route("/login", methods=("GET", "POST"))
-# def login():
-#     if not db.session.query(models.User).first():
-#         return redirect(url_for("setup"))
-#     return redirect(url_for_security('login'))
-#     form = forms.Login()
-#     if form.validate_on_submit():
-#         user = db.session.query(models.User).filter(models.User.email == form.email.data).first()
-#         if user and check_password_hash(user.password, form.password.data):
-#             login_user(user, remember = form.remember_me.data)
-#             flash(_("you are now logged in as: '%(username)s'", username=user.email), category="success")
-#             return redirect(request.args.get("next") or url_for("index"))
-#         else:
-#             flash(_("username/password missmatch or no such user in database"), "error")
-#     return render_template('login.html', form=form, title=_('login'))
-
 
 @app.route("/history")
 @login_required
@@ -257,7 +239,7 @@ def cache(filename):
         return send_from_directory(cache_dir, filename + ".jpg")
 
 @app.route('/users')
-@roles_required('admin')
+# @roles_required('admin')
 @login_required
 def users():
     users = db.session.query(db.func.count(models.Processed.user), models.Processed).group_by(models.Processed.user).all()

@@ -118,53 +118,56 @@ class JSONEncoder(BaseEncoder):
 
 app.json_encoder = JSONEncoder
 
-## try import admin view and functions if module is not there, just skip this for now
-try:
-    from flask.ext.admin import Admin, AdminIndexView
-    from flask.ext.admin.contrib.sqla import ModelView
-    from flask.ext.admin.contrib import fileadmin
-    from flask.ext.admin import expose
+#try import admin view and functions if module is not there, just skip this for now
 
-    # Create customized model view class
-    class MyModelView(ModelView):
+from flask.ext.admin import Admin, AdminIndexView
+from flask.ext.admin.contrib.sqla import ModelView
+from flask.ext.admin.contrib import fileadmin
+from flask.ext.admin import expose
 
-        def is_accessible(self):
-            return current_user.is_authenticated()
+# Create customized model view class
+class MyModelView(ModelView):
 
-
-    # Create customized index view class that handles login
-    class MyAdminIndexView(AdminIndexView):
-
-        @expose('/')
-        def index(self):
-            if not current_user.is_authenticated():
-                return redirect(url_for('login'))
-            return super(MyAdminIndexView, self).index()
-
-    class UserView(ModelView):
-        can_create = False
-
-        # Override displayed fields
-        column_list = ('email', 'locale')
-
-        def __init__(self, session, **kwargs):
-            # You can pass name and other parameters if you want to
-            super(UserView, self).__init__(models.User, db.session, **kwargs)
+    def is_accessible(self):
+        return current_user.has_role('admin')
 
 
-    class HistoryView(ModelView):
-        can_create = False
-        column_list = ('time', 'user', 'title', 'platform', 'notified', 'stopped', 'paused', 'duration', 'view_offset')
-        column_searchable_list = ('user', 'title', 'platform')
+# Create customized index view class that handles login
+class MyAdminIndexView(AdminIndexView):
 
-        def __init__(self, session, **kwargs):
-            # You can pass name and other parameters if you want to
-            super(HistoryView, self).__init__(models.Processed, db.session, **kwargs)
+    @expose('/')
+    def index(self):
+        if not current_user.has_role('admin'):
+            return redirect(url_for('security.login'))
+        return super(MyAdminIndexView, self).index()
 
-    admin = Admin(app, name="plexivity", index_view=MyAdminIndexView())
+class UserView(MyModelView):
+    can_create = False
 
-    admin.add_view(UserView(db.session))
-    admin.add_view(HistoryView(db.session, name="History"))
-    admin.add_view(fileadmin.FileAdmin(config.DATA_DIR + '/cache/', name='Cached Files'))
-except:
-    pass
+    # Override displayed fields
+    column_list = ('email', 'locale')
+
+    def __init__(self, session, **kwargs):
+        # You can pass name and other parameters if you want to
+        super(UserView, self).__init__(models.User, db.session, **kwargs)
+
+class MyFileAdmin(fileadmin.FileAdmin):
+
+    def is_accessible_path(self, path):
+        return current_user.has_role('admin')
+
+
+class HistoryView(MyModelView):
+    can_create = False
+    column_list = ('time', 'user', 'title', 'platform', 'notified', 'stopped', 'paused', 'duration', 'view_offset')
+    column_searchable_list = ('user', 'title', 'platform')
+
+    def __init__(self, session, **kwargs):
+        # You can pass name and other parameters if you want to
+        super(HistoryView, self).__init__(models.Processed, db.session, **kwargs)
+
+admin = Admin(app, name="plexivity", index_view=MyAdminIndexView())
+
+admin.add_view(UserView(db.session))
+admin.add_view(HistoryView(db.session, name="History"))
+admin.add_view(MyFileAdmin(config.DATA_DIR + '/cache/', name='Cached Files'))

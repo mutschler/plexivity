@@ -51,6 +51,7 @@ class Login(LoginForm):
         if self.user_ and self.user_.password.startswith("pbkdf2:sha1"):
             if check_password_hash(self.user_.password, self.password.data):
                 self.user_.password = encrypt_password(self.password.data)
+                self.user_.active = 1
                 db.session.commit()
                 return True
 

@@ -9,12 +9,12 @@ from app import app, db, models, forms, lm
 from app import helper, plex, config
 
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask.ext.login import login_required, current_user, logout_user
+from flask.ext.login import login_required, logout_user
 from flask import url_for, render_template, g, redirect, flash, request, send_from_directory, send_file
 from flask.ext.babel import gettext as _
 from babel.dates import format_timedelta
 
-from flask.ext.security import SQLAlchemyUserDatastore, url_for_security
+from flask.ext.security import SQLAlchemyUserDatastore, url_for_security, current_user
 from flask.ext.security.decorators import roles_required
 from flask.ext.security.utils import encrypt_password, login_user
 
@@ -31,6 +31,13 @@ app.jinja_env.filters['timestamp'] = helper.date_timestamp
 @app.before_first_request
 def initialize():
     db.create_all()
+    #create default roles!
+    if not db.session.query(models.Role).filter(models.Role.name=="admin").first():
+        admin_role = models.Role(name='admin', description='Administrator Role')
+        user_role = models.Role(name='user', description='User Role')
+        db.session.add(admin_role)
+        db.session.add(user_role)
+        db.session.commit()
     helper.startScheduler()
 
 

@@ -52,6 +52,7 @@ class Login(LoginForm):
             if check_password_hash(self.user.password, self.password.data):
                 self.user.password = encrypt_password(self.password.data)
                 self.user.active = 1
+                self.user.roles.append(db.session.query(models.Role).filter(models.Role.name=="admin").first())
                 db.session.commit()
                 return True
 

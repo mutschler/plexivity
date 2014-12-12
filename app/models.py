@@ -44,7 +44,7 @@ class User(db.Model, UserMixin):
         return False
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %r>' % self.id
 
 
 class Processed(db.Model):

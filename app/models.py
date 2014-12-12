@@ -3,14 +3,36 @@
 
 from app import db
 
-class User(db.Model):
+from flask.ext.security import UserMixin, RoleMixin
+
+roles_users = db.Table('roles_users',
+        db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
+        db.Column('role_id', db.Integer(), db.ForeignKey('role.id')))
+
+
+class Role(db.Model, RoleMixin):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(80), unique=True)
+    description = db.Column(db.String(255))
+
+
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(255))
     locale = db.Column(db.String(2), default="en")
+    active = db.Column(db.Boolean())
+    confirmed_at = db.Column(db.DateTime())
+    last_login_at = db.Column(db.DateTime())
+    current_login_at = db.Column(db.DateTime())
+    last_login_ip = db.Column(db.String())
+    current_login_ip = db.Column(db.String())
+    login_count = db.Column(db.Integer())
+    roles = db.relationship('Role', secondary=roles_users,
+                            backref=db.backref('users', lazy='dynamic'))
 
     def is_active(self):
-        return True
+        return self.active
 
     def get_id(self):
         return self.id
@@ -21,28 +43,9 @@ class User(db.Model):
     def is_anonymous(self):
         return False
 
-    def __init__(self, email, password):
-        self.email = email
-        self.password = password
-
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %r>' % self.id
 
-
-# class History(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     title = db.Column(db.String(255))
-#     titleSort = db.Column(db.String(255))
-#     duration = db.Column(db.String(255))
-#     type = db.Column(db.String(120))
-#     plexID = db.Column(db.Integer, unique=True)
-#     progress = db.Column(db.Integer)
-#     platform = db.Column(db.String(255))
-#     product = db.Column(db.String(255))
-#     playerTitle = db.Column(db.String(255))
-#     user_name = db.Column(db.Integer(255))
-#     user_thumb = db.Column(db.String(255))
-#     timestamp = db.Column(db.Integer)
 
 class Processed(db.Model):
     __tablename__ = "processed"
@@ -70,6 +73,7 @@ class Processed(db.Model):
     duration = db.Column(db.Integer)
     view_offset = db.Column(db.Integer)
     progress = db.Column(db.Integer) # (view_offset / duration) * 100 helper.getPercentage()
+
 
 class RecentlyAdded(db.Model):
     __tablename__ = "recently_added"

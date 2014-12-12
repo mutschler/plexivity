@@ -9,6 +9,18 @@ from lib.daemon import Daemon
 
 
 def run_app():
+    from subprocess import Popen
+    import sys
+    path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "manage.py")
+    args = [sys.executable, path, "db"]
+    if not os.path.exists(os.path.join(config.DATA_DIR, "plexivity.db")):
+        from app import db
+        db.create_all()
+        args.append("stamp", "head")
+    else:
+        args.append("upgrade")
+
+    Popen(args)
     app.run(host="0.0.0.0", port=config.PORT, debug=False)
 
 

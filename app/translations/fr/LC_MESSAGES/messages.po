@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  plexivity\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-12-05 16:20+0100\n"
+"POT-Creation-Date: 2014-12-12 19:07+0100\n"
 "PO-Revision-Date: 2014-12-05 14:28+0000\n"
 "Last-Translator: Raphael\n"
 "Language-Team: French "
@@ -20,119 +20,266 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: app/forms.py:37
+#: app/__init__.py:62
+msgid "You do not have permission to view this resource."
+msgstr ""
+
+#: app/__init__.py:63
+#, python-format
+msgid "Thank you. Confirmation instructions have been sent to %(email)s."
+msgstr ""
+
+#: app/__init__.py:64
+msgid "Thank you. Your email has been confirmed."
+msgstr ""
+
+#: app/__init__.py:65
+msgid "Your email has already been confirmed."
+msgstr ""
+
+#: app/__init__.py:66
+msgid "Invalid confirmation token."
+msgstr ""
+
+#: app/__init__.py:67
+#, python-format
+msgid "%(email)s is already associated with an account."
+msgstr ""
+
+#: app/__init__.py:68
+msgid "Password does not match"
+msgstr ""
+
+#: app/__init__.py:69
+msgid "Passwords do not match"
+msgstr ""
+
+#: app/__init__.py:70
+msgid "Redirections outside the domain are forbidden"
+msgstr ""
+
+#: app/__init__.py:71
+#, python-format
+msgid "Instructions to reset your password have been sent to %(email)s."
+msgstr ""
+
+#: app/__init__.py:72
+#, python-format
+msgid ""
+"You did not reset your password within %(within)s. New instructions have "
+"been sent to %(email)s."
+msgstr ""
+
+#: app/__init__.py:73
+msgid "Invalid reset password token."
+msgstr ""
+
+#: app/__init__.py:74
+msgid "Email requires confirmation."
+msgstr ""
+
+#: app/__init__.py:75
+#, python-format
+msgid "Confirmation instructions have been sent to %(email)s."
+msgstr ""
+
+#: app/__init__.py:76
+#, python-format
+msgid ""
+"You did not confirm your email within %(within)s. New instructions to "
+"confirm your email have been sent to %(email)s."
+msgstr ""
+
+#: app/__init__.py:77
+#, python-format
+msgid ""
+"You did not login within %(within)s. New instructions to login have been "
+"sent to %(email)s."
+msgstr ""
+
+#: app/__init__.py:78
+#, python-format
+msgid "Instructions to login have been sent to %(email)s."
+msgstr ""
+
+#: app/__init__.py:79
+msgid "Invalid login token."
+msgstr ""
+
+#: app/__init__.py:80
+msgid "Account is disabled."
+msgstr ""
+
+#: app/__init__.py:81
+msgid "Email not provided"
+msgstr ""
+
+#: app/__init__.py:82
+msgid "Invalid email address"
+msgstr ""
+
+#: app/__init__.py:83
+msgid "Password not provided"
+msgstr ""
+
+#: app/__init__.py:84
+msgid "No password is set for this user"
+msgstr ""
+
+#: app/__init__.py:85
+msgid "Password must be at least 6 characters"
+msgstr ""
+
+#: app/__init__.py:86
+msgid "Specified user does not exist"
+msgstr ""
+
+#: app/__init__.py:87
+#, fuzzy
+msgid "Invalid password"
+msgstr "Mot de passe Plex"
+
+#: app/__init__.py:88
+msgid "You have successfuly logged in."
+msgstr ""
+
+#: app/__init__.py:89
+msgid ""
+"You successfully reset your password and you have been logged in "
+"automatically."
+msgstr ""
+
+#: app/__init__.py:90
+msgid "Your new password must be different than your previous password."
+msgstr ""
+
+#: app/__init__.py:91
+msgid "You successfully changed your password."
+msgstr ""
+
+#: app/__init__.py:92
+msgid "Please log in to access this page."
+msgstr ""
+
+#: app/__init__.py:93
+msgid "Please reauthenticate to access this page."
+msgstr ""
+
+#: app/forms.py:40
 msgid "Hue Bridge IP"
 msgstr "Hue Bridge IP"
 
-#: app/forms.py:40 app/forms.py:79
+#: app/forms.py:43 app/forms.py:102 app/forms.py:113
 msgid "E-Mail"
 msgstr "email"
 
-#: app/forms.py:41 app/forms.py:80 app/templates/login.html:15
+#: app/forms.py:44 app/forms.py:103 app/forms.py:114
+#: app/templates/login.html:15
 msgid "Password"
 msgstr "mot de passe"
 
-#: app/forms.py:42 app/templates/login.html:20
+#: app/forms.py:45 app/templates/login.html:20
 msgid "Remember password"
 msgstr "n'oubliez pas le mot de passe"
 
-#: app/forms.py:46
+#: app/forms.py:66
 msgid "Plex Media Server Settings"
 msgstr "Paramètres de Plex Media Serveur"
 
-#: app/forms.py:48
+#: app/forms.py:68
 msgid "Plex Media Server Host"
 msgstr "Host de Plex Media Server"
 
-#: app/forms.py:49
+#: app/forms.py:69
 msgid "Plex Media Server Port"
 msgstr "Port de Plex Media Serveur"
 
-#: app/forms.py:50
+#: app/forms.py:70
 msgid "Plex Username"
 msgstr "Nom d'utilisateur Plex"
 
-#: app/forms.py:51
+#: app/forms.py:71
 msgid "Plex Password"
 msgstr "Mot de passe Plex"
 
-#: app/forms.py:54
+#: app/forms.py:74
 msgid "use pushover for notifications"
 msgstr "Utiliser le pushover pour les notifications"
 
-#: app/forms.py:55
+#: app/forms.py:75
 msgid "Pushover User-Token"
 msgstr ""
 
-#: app/forms.py:56
+#: app/forms.py:76
 msgid "Pushover App-Token"
 msgstr ""
 
-#: app/forms.py:58
+#: app/forms.py:78
 msgid "use mail for notifications"
 msgstr "Utiliser les notifications par email"
 
-#: app/forms.py:59
+#: app/forms.py:79
 msgid "SMTP Mail Server"
 msgstr "Serveur de mail SMTP"
 
-#: app/forms.py:60
+#: app/forms.py:80
 msgid "SMTP Server login"
 msgstr "Login du serveur SMTP"
 
-#: app/forms.py:61
+#: app/forms.py:81
 msgid "SMTP Server password"
 msgstr "Mot de passe du serveur SMTP"
 
-#: app/forms.py:62
+#: app/forms.py:82
 msgid "SMTP Mail Port"
 msgstr "Port du serveur de mail SMTP"
 
-#: app/forms.py:63
+#: app/forms.py:83
 msgid "Sender Mail Information"
 msgstr "Informations sur l'expéditeur du mail"
 
-#: app/forms.py:65
-msgid "plexivity data directory"
-msgstr "répertoire de données plexivity"
+#: app/forms.py:86
+#, fuzzy
+msgid "plexivity port"
+msgstr "plexivity"
 
-#: app/forms.py:67
+#: app/forms.py:87
 msgid "Send notification on start"
 msgstr "Envoyer une notification au démarrage"
 
-#: app/forms.py:68
+#: app/forms.py:88
 msgid "String for watching notification"
 msgstr "Chaîne pour regarder la notification"
 
-#: app/forms.py:69
+#: app/forms.py:89
 msgid "Send notification on stop"
 msgstr "Envoyer une notification à l'arrêt"
 
-#: app/forms.py:70
+#: app/forms.py:90
 msgid "String for stoped watching notification"
 msgstr ""
 
-#: app/forms.py:71
+#: app/forms.py:91
 msgid "Send notification on pause"
 msgstr "Envoyer une notification sur pause"
 
-#: app/forms.py:72
+#: app/forms.py:92
 msgid "String for paused notification"
 msgstr ""
 
-#: app/forms.py:73
+#: app/forms.py:93
 msgid "Send notification on resume"
 msgstr "Envoyer une notification lors de la reprise"
 
-#: app/forms.py:74
+#: app/forms.py:94
 msgid "String for resume notification"
 msgstr ""
 
-#: app/forms.py:81
+#: app/forms.py:104 app/forms.py:115
 msgid "Retype password"
 msgstr "Retaper le mot de passe"
 
-#: app/forms.py:82
+#: app/forms.py:105 app/forms.py:116
 msgid "Language"
 msgstr "Language"
 
@@ -184,70 +331,57 @@ msgid "%(int)s years ago"
 msgstr "il y a %(int)s ans"
 
 #. NOTE: Test2
-#: app/views.py:81
+#: app/views.py:64
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr "impossible de connecter PMS. Merci de vérifier votre paramétrage."
 
-#: app/views.py:131 app/templates/layout.html:61
+#: app/views.py:114 app/templates/layout.html:61
 msgid "Statistics"
 msgstr "statistiques"
 
-#: app/views.py:138
+#: app/views.py:121
 #, python-format
 msgid "User %(username)s created"
 msgstr "%(username)s utilisateurs de crées"
 
-#: app/views.py:146
+#: app/views.py:130
 msgid "Setup"
 msgstr "Installation"
 
-#: app/views.py:166 app/views.py:195
+#: app/views.py:150 app/views.py:179
 #, python-format
 msgid "Successfully connected to Hue Bridge with ip %(ip)s"
 msgstr "Connexion à Hue Bridge réussie avec l'IP %(ip)s"
 
-#: app/views.py:185
+#: app/views.py:169
 msgid "Successfully disconnected from Hue Bridge"
 msgstr "Déconnexion de Hue Bridge réussie"
 
-#: app/views.py:211 app/templates/layout.html:63
+#: app/views.py:195 app/templates/layout.html:63
 msgid "Charts"
 msgstr "hit-parade"
 
-#: app/views.py:232
+#: app/views.py:216
 msgid "Info"
 msgstr "Info"
 
-#: app/views.py:243
-#, python-format
-msgid "you are now logged in as: '%(username)s'"
-msgstr "Vous êtes désormais connecté sous '%(username)s'"
-
-#: app/views.py:246
-msgid "username/password missmatch or no such user in database"
-msgstr "utilisateur et/ou mot de passe incorrect ou introuvable."
-
-#: app/views.py:247
-msgid "login"
-msgstr "Connexion"
-
-#: app/views.py:254 app/templates/layout.html:60
+#: app/views.py:223 app/templates/layout.html:60
 msgid "History"
 msgstr "histoire"
 
-#: app/views.py:261
+#: app/views.py:230
 msgid "Logged out"
 msgstr "Déconnexion "
 
-#: app/views.py:283 app/templates/layout.html:62
+#: app/views.py:253 app/templates/layout.html:62
 msgid "Users"
 msgstr "utilisateurs"
 
-#: app/views.py:318
+#: app/views.py:287
 msgid "Settings saved!"
 msgstr "Paramètres sauvés !"
 
-#: app/views.py:331 app/templates/layout.html:59
+#: app/views.py:298 app/templates/layout.html:59
 msgid "Settings"
 msgstr "paramètres"
 
@@ -354,72 +488,76 @@ msgstr "plexivity"
 msgid "Toggle navigation"
 msgstr "Basculer la navigation"
 
-#: app/templates/layout.html:64
+#: app/templates/layout.html:65
+msgid "Admin"
+msgstr ""
+
+#: app/templates/layout.html:67
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: app/templates/layout.html:66 app/templates/login.html:23
-#: app/templates/login.html:26
+#: app/templates/layout.html:69 app/templates/login.html:23
+#: app/templates/login.html:26 app/templates/security/login_user.html:9
 msgid "Login"
 msgstr "Connexion"
 
-#: app/templates/layout.html:107
+#: app/templates/layout.html:110
 msgid "No data available in table"
 msgstr "Pas de données disponibles dans la table"
 
-#: app/templates/layout.html:108
+#: app/templates/layout.html:111
 msgid "Showing _START_ to _END_ of _TOTAL_ entries"
 msgstr "Showing _START_ to _END_ of _TOTAL_ entries"
 
-#: app/templates/layout.html:109
+#: app/templates/layout.html:112
 msgid "Showing 0 to 0 of 0 entries"
 msgstr "Vue 0 de 0 sur 0 entrées"
 
-#: app/templates/layout.html:110
+#: app/templates/layout.html:113
 msgid "(filtered from _MAX_ total entries)"
 msgstr "(filtered from _MAX_ total entries)"
 
-#: app/templates/layout.html:113
+#: app/templates/layout.html:116
 msgid "Show _MENU_ entries"
 msgstr "Show _MENU_ entries"
 
-#: app/templates/layout.html:114
+#: app/templates/layout.html:117
 msgid "Loading..."
 msgstr "Chargement..."
 
-#: app/templates/layout.html:115
+#: app/templates/layout.html:118
 msgid "Processing..."
 msgstr "Traitement en cours..."
 
-#: app/templates/layout.html:116
+#: app/templates/layout.html:119
 msgid "Search:"
 msgstr "Rechercher : "
 
-#: app/templates/layout.html:117
+#: app/templates/layout.html:120
 msgid "No matching records found"
 msgstr "Aucun enregistrements correspondants trouvés"
 
-#: app/templates/layout.html:119
+#: app/templates/layout.html:122
 msgid "First"
 msgstr "Premier"
 
-#: app/templates/layout.html:120
+#: app/templates/layout.html:123
 msgid "Last"
 msgstr "Dernier"
 
-#: app/templates/layout.html:121
+#: app/templates/layout.html:124
 msgid "Next"
 msgstr "Suivant"
 
-#: app/templates/layout.html:122
+#: app/templates/layout.html:125
 msgid "Previous"
 msgstr "Précédent "
 
-#: app/templates/layout.html:125
+#: app/templates/layout.html:128
 msgid ": activate to sort column ascending"
 msgstr ": activer le trie ascendant de la colonne"
 
-#: app/templates/layout.html:126
+#: app/templates/layout.html:129
 msgid ": activate to sort column descending"
 msgstr ": activer le trie descendant de la colonne"
 
@@ -562,7 +700,7 @@ msgid ""
 "\"plexivity.db\" to this directory and restart plexivity"
 msgstr ""
 
-#: app/templates/setup.html:13
+#: app/templates/setup.html:13 app/templates/security/register_user.html:9
 msgid "Create Account"
 msgstr ""
 
@@ -676,4 +814,16 @@ msgstr ""
 #: app/templates/include/recently_added.html:1
 msgid "Recently Added"
 msgstr "récemment Ajouté"
+
+#~ msgid "plexivity data directory"
+#~ msgstr "répertoire de données plexivity"
+
+#~ msgid "you are now logged in as: '%(username)s'"
+#~ msgstr "Vous êtes désormais connecté sous '%(username)s'"
+
+#~ msgid "username/password missmatch or no such user in database"
+#~ msgstr "utilisateur et/ou mot de passe incorrect ou introuvable."
+
+#~ msgid "login"
+#~ msgstr "Connexion"
 

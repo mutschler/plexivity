@@ -129,6 +129,10 @@ CheckSection('Boxcar')
 NOTIFY_BOXCAR = check_setting_int(CFG, 'Boxcar', 'NOTIFY_BOXCAR', 0)
 BOXCAR_TOKEN = check_setting_str(CFG, 'Boxcar', 'BOXCAR_TOKEN', "")
 
+CheckSection('Flask')
+PASSWORD_SALT = check_setting_str(CFG, 'Flask', 'PASSWORD_SALT', os.urandom(20).encode('base_64').strip())
+SECRET_KEY = check_setting_str(CFG, 'Flask', 'SECRET_KEY', os.urandom(20).encode('base_64').strip())
+
 SYS_ENCODING="UTF-8"
 
 configval={}
@@ -167,6 +171,8 @@ configval["HUE_USERNAME"] = HUE_USERNAME
 configval["NOTIFY_HUE"] = NOTIFY_HUE
 configval["BOXCAR_TOKEN"] = BOXCAR_TOKEN
 configval["NOTIFY_BOXCAR"] = NOTIFY_BOXCAR
+configval["PASSWORD_SALT"] = PASSWORD_SALT
+configval["SECRET_KEY"] = SECRET_KEY
 
 def save_config(configval):
     new_config = ConfigObj(interpolation=False)
@@ -213,6 +219,9 @@ def save_config(configval):
     new_config['Boxcar'] = {}
     new_config['Boxcar']['BOXCAR_TOKEN'] = configval["BOXCAR_TOKEN"]
     new_config['Boxcar']['NOTIFY_BOXCAR'] = int(configval["NOTIFY_BOXCAR"])
+    new_config['Flask'] = {}
+    new_config['Flask']['PASSWORD_SALT'] = configval["PASSWORD_SALT"]
+    new_config['Flask']['SECRET_KEY'] = configval["SECRET_KEY"]
 
     new_config.write()
 

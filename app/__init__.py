@@ -3,6 +3,7 @@
 import os
 
 from app import config, plex
+from app.logger import flask_rotation
 
 from flask import Flask, g, request, redirect, url_for
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -46,11 +47,16 @@ app.config['MAIL_PASSWORD'] = config.MAIL_PASSWORD
 app.config['DEFAULT_MAIL_SENDER'] = config.MAIL_FROM
 app.config['MAIL_DEBUG'] = False
 
+app.config["LOGGER_NAME"] = "flask"
+app.logger.addHandler(flask_rotation)
+
+app.config['SECRET_KEY'] = config.SECRET_KEY
+
 app.config['SECURITY_CONFIRMABLE'] = False
 app.config['DEFAULT_MAIL_SENDER'] = 'info@site.com'
 app.config['SECURITY_REGISTERABLE'] = False
 app.config['SECURITY_TRACKABLE'] = True
-app.config['SECURITY_PASSWORD_SALT'] = "holy-fuck"
+app.config['SECURITY_PASSWORD_SALT'] = config.PASSWORD_SALT
 
 #make security messages translatabel
 app.config['SECURITY_MSG_UNAUTHORIZED'] = (lazy_gettext('You do not have permission to view this resource.'), 'error')

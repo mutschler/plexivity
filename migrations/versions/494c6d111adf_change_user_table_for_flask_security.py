@@ -1,14 +1,14 @@
 """Change user table for Flask-Security
 
 Revision ID: 494c6d111adf
-Revises: 9a2a0fe0240
+Revises: None
 Create Date: 2014-12-11 18:26:09.427964
 
 """
 
 # revision identifiers, used by Alembic.
 revision = '494c6d111adf'
-down_revision = '9a2a0fe0240'
+down_revision = None
 
 from alembic import op
 import sqlalchemy as sa

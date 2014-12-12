@@ -4,11 +4,13 @@
 from flask_wtf import Form
 from wtforms import StringField, PasswordField, BooleanField, IntegerField, SelectField, TextField
 from wtforms.validators import DataRequired, Email, EqualTo, NumberRange, IPAddress
+from werkzeug.security import check_password_hash
 
 from flask.ext.babel import lazy_gettext
 from flask_security.forms import RegisterForm, LoginForm
+from flask.ext.security.utils import encrypt_password
 
-from app import config, babel
+from app import config, babel, db, models
 import requests
 
 class RequiredIf(DataRequired):
@@ -43,6 +45,20 @@ class Login(LoginForm):
     remember = BooleanField(lazy_gettext('Remember password'))
     submit = None
 
+    def validate(self):
+        #check for old pw hash and upadte password if needed
+        self.user_ = db.session.query(models.User).filter(models.User.email == self.email.data).first()
+        if self.user_ and self.user_.password.startswith("pbkdf2:sha1"):
+            if check_password_hash(self.user_.password, self.password.data):
+                self.user_.password = encrypt_password(self.password.data)
+                db.session.commit()
+                return True
+
+        #do the flask-security checks
+        if not super(Login, self).validate():
+            return False
+
+        return True
 
 class Settings(Form):
     __title__ = lazy_gettext("Plex Media Server Settings")

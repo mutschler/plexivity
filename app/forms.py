@@ -47,11 +47,11 @@ class Login(LoginForm):
 
     def validate(self):
         #check for old pw hash and upadte password if needed
-        self.user_ = db.session.query(models.User).filter(models.User.email == self.email.data).first()
-        if self.user_ and self.user_.password.startswith("pbkdf2:sha1"):
-            if check_password_hash(self.user_.password, self.password.data):
-                self.user_.password = encrypt_password(self.password.data)
-                self.user_.active = 1
+        self.user = db.session.query(models.User).filter(models.User.email == self.email.data).first()
+        if self.user and self.user.password.startswith("pbkdf2:sha1"):
+            if check_password_hash(self.user.password, self.password.data):
+                self.user.password = encrypt_password(self.password.data)
+                self.user.active = 1
                 db.session.commit()
                 return True
 

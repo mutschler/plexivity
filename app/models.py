@@ -9,10 +9,12 @@ roles_users = db.Table('roles_users',
         db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
         db.Column('role_id', db.Integer(), db.ForeignKey('role.id')))
 
+
 class Role(db.Model, RoleMixin):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(80), unique=True)
     description = db.Column(db.String(255))
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -45,21 +47,6 @@ class User(db.Model, UserMixin):
         return '<User %r>' % self.username
 
 
-# class History(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     title = db.Column(db.String(255))
-#     titleSort = db.Column(db.String(255))
-#     duration = db.Column(db.String(255))
-#     type = db.Column(db.String(120))
-#     plexID = db.Column(db.Integer, unique=True)
-#     progress = db.Column(db.Integer)
-#     platform = db.Column(db.String(255))
-#     product = db.Column(db.String(255))
-#     playerTitle = db.Column(db.String(255))
-#     user_name = db.Column(db.Integer(255))
-#     user_thumb = db.Column(db.String(255))
-#     timestamp = db.Column(db.Integer)
-
 class Processed(db.Model):
     __tablename__ = "processed"
 
@@ -86,6 +73,7 @@ class Processed(db.Model):
     duration = db.Column(db.Integer)
     view_offset = db.Column(db.Integer)
     progress = db.Column(db.Integer) # (view_offset / duration) * 100 helper.getPercentage()
+
 
 class RecentlyAdded(db.Model):
     __tablename__ = "recently_added"

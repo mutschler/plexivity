@@ -295,3 +295,17 @@ def settings():
             form[x].data = config.configval[x]
 
     return render_template('settings.html', form=form, title=_('Settings'))
+
+@app.route("/test-notify")
+@login_required
+def notify():
+    from app import notify
+    info = {
+        "ntype": "test"
+    }
+    if notify.notify(info):
+        flash(_("Test notification successfully send"), "success")
+    else:
+        flash(_("unable to send test notification"), "error")
+
+    return redirect(url_for("settings"))

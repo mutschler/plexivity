@@ -318,6 +318,8 @@ def notify(info):
             message = config.RESUME_MESSAGE % info
         except KeyError:
             logger.error("Unable to map info to your resume notification string. Please check your settings!")
+    elif info["ntype"] == "test":
+        message = "plexivity notification test"
     else:
         message = False
 

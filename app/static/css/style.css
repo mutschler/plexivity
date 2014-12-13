@@ -292,10 +292,15 @@ a:hover {
 .stats-wrapper li {
   text-align: center;
 }
-.platform-activity img {
+@media (min-width: 480px) and (max-width: 767px) {
+  .current-activity-object {
+    margin-bottom: 10px;
+  }
+}
+.current-activity-object .platform-activity img {
   border-radius: 5px;
 }
-.title-activity {
+.current-activity-object .title-activity {
   white-space: nowrap;
   text-overflow: ellipsis;
   width: 100%;

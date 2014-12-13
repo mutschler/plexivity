@@ -5,7 +5,7 @@
                     <div class="wrapper">
 
                         {% for play in activity %}
-                            <div class="col-sm-3">
+                            <div class="col-sm-3 current-activity-object">
                                 <div class="poster">
                                     <div class="poster-activity">
                                         <a href="{{ url_for('info', id=play.get("ratingKey")) }}">

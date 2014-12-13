@@ -32,12 +32,12 @@
 {% if platforms %}
 <section class="platforms" id="platforms">
   <h2 class="title">{{_('Platform Stats')}}</h2>
-  <div class="row">
+  <div class="row isotope">
     {% for stat in platforms %}
-    <div class="col-sm-2 clearfix">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 clearfix platform-wrapper item">
       {% set xml = helper.load_xml(stat[1].xml) %}
       <img style="float: left; margin-right: 10px; width: 70px" class=" img-responsive" src="{{ url_for('static', filename=helper.playerImage(xml.find('Player').get('platform')) ) }}"/>
-      <p>{{ stat[1].platform }}</p>
+      <p class="platform-title">{{ stat[1].platform }}</p>
       <p><span class="orange">{{ stat[0] }}</span> plays</p>
     </div>
     {% endfor %}
@@ -58,9 +58,9 @@
 
 
     {% for group in recently|batch(6) %}
-    <div class="row">
+    <div class="row isotope">
     {% for row in group %}
-    <div class="col-xs-6 col-sm-4 col-md-2 recently-added-cover">
+    <div class="col-xs-6 col-sm-4 col-md-2 recently-added-cover item">
       {% set xml = helper.load_xml(row.xml) %}
       {% if xml.get("type") == "episode" %}
         <a href="{{ url_for('info', id=xml.get('ratingKey')) }}"><img class="poster-face img-responsive" src="{{ url_for('cache', filename=xml.get('parentThumb')|replace('/','', 1) ) }}"/></a>

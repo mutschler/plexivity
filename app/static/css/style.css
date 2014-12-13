@@ -308,6 +308,7 @@ a:hover {
 }
 .recently-added-cover {
   text-align: center;
+  padding-bottom: 20px;
 }
 .recently-added-cover a {
   display: block;
@@ -448,6 +449,13 @@ a:hover {
   border-radius: 5px;
   position: absolute;
   padding: 5px;
+}
+.platforms .platform-wrapper {
+  padding-bottom: 20px;
+}
+.platforms .platform-wrapper .platform-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 input[type='text'],
 input[type='number'],

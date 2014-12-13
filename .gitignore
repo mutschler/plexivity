@@ -4,3 +4,4 @@ config.ini
 plexivity.db
 cache
 hue.conf
+.idea

@@ -1,9 +1,9 @@
 <h2 class="title">{{ _('Recently Added') }}</h2>
 
-<div class="row">
+<div class="row isotope">
 
     {% for object in new %}
-        <div class="col-xs-6 col-lg-2 col-sm-2 recently-added-cover">
+        <div class="col-xs-6 col-lg-2 col-sm-2 recently-added-cover item">
             <a href="{{ url_for('info', id=object.get("ratingKey")) }}">
                 <img src="{{ url_for('cache', filename=object.get('thumb')|replace('/','', 1)) }}" class="poster-face img-responsive"/>
             </a>

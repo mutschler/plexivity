@@ -8,7 +8,6 @@ import datetime
 from app import app, db, models, forms, lm
 from app import helper, plex, config
 
-from werkzeug.security import generate_password_hash, check_password_hash
 from flask.ext.login import login_required, logout_user
 from flask import url_for, render_template, g, redirect, flash, request, send_from_directory, send_file
 from flask.ext.babel import gettext as _
@@ -32,7 +31,7 @@ app.jinja_env.filters['timestamp'] = helper.date_timestamp
 def initialize():
     db.create_all()
     #create default roles!
-    if not db.session.query(models.Role).filter(models.Role.name=="admin").first():
+    if not db.session.query(models.Role).filter(models.Role.name == "admin").first():
         admin_role = models.Role(name='admin', description='Administrator Role')
         user_role = models.Role(name='user', description='User Role')
         db.session.add(admin_role)
@@ -124,7 +123,7 @@ def setup():
         user_role = user_datastore.find_or_create_role('user')
         user = user_datastore.create_user(email=form.email.data, password=encrypt_password(form.password.data), locale=form.locale.data, active=1, roles=[admin_role, user_role])
         user_datastore.commit()
-        #login_user(user)
+        login_user(user)
         return redirect(url_for('settings'))
     if not db.session.query(models.User).first():
         return render_template('setup.html', form=form, title=_('Setup'), data_dir=config.DATA_DIR)

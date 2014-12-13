@@ -165,9 +165,9 @@ $(document).ready(function() {
 	if($('#activity').length){
 		setInterval('currentActivity()', 15000);
 	}
-  if($('#recentlyAdded').length){
-    setInterval('recentlyAdded()', 300000);
-  }
+    if($('#recentlyAdded').length){
+        setInterval('recentlyAdded()', 300000);
+    }
 
             if($('#globalHistory').length){
                 $('#globalHistory').dataTable( {
@@ -184,4 +184,11 @@ $(document).ready(function() {
         if($('#history-charts-wrapper').length){
         renderCharts()
         }
+
+    $('body').imagesLoaded( function() {
+        $('.isotope').isotope({
+            "layoutMode": "fitRows",
+            "itemSelector": ".item"
+        })
+    });
 } );

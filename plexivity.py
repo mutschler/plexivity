@@ -16,7 +16,8 @@ def run_app():
     if not os.path.exists(os.path.join(config.DATA_DIR, "plexivity.db")):
         from app import db
         db.create_all()
-        args.append("stamp", "head")
+        args.append("stamp")
+        args.append("head")
     else:
         args.append("upgrade")
 

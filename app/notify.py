@@ -17,9 +17,8 @@ def task():
     started = get_started()
     playing = dict()
 
-    if not live:
-        logger.debug("no connection to PMS")
-        return False
+    if not len(live):
+        logger.debug("seems like nothing is currently played")
 
     for session in live:
         logger.debug(session)

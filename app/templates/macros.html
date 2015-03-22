@@ -88,6 +88,8 @@
                     {{ render_checkbox_field(f) }}
                 {% elif f.type == 'RadioField' %}
                     {{ render_radio_field(f) }}
+                {%  elif f.id == "PMS_PASS" %}
+                    {{ render_field(f, type="password") }}
                 {% elif f.type != "CSRFTokenField" %}
                     {{ render_field(f) }}
                 {% endif %}

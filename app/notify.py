@@ -98,6 +98,10 @@ def task():
     was_started = dict()
     for k in live:
 
+        if k.get('type') == "clip":
+            logger.info("Skipping Video-Clip like trailers, specials, scenes, interviews etc..")
+            continue
+
         start_epoch = datetime.datetime.now()
         stop_epoch = "" #not stopped yet
         xml_string = ET.tostring(k)

@@ -107,7 +107,7 @@ def jsonhistory():
         ("streaminfo", lambda i: '<a href="{0}" class="orange" data-target="#streamModal" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a>'.format(url_for('streaminfo',id=i.id))),
         ("time",lambda i: "{}".format(i.time.strftime('%H:%M'))),
         ("paused_counter", lambda i: "{} min".format(int(i.paused_counter)/60) if i.paused_counter else "0 min" ),
-        ("stopped", lambda i: "{}".format(i.stopped.strftime('%H:%M')) if stopped else "n/a"),
+        ("stopped", lambda i: "{}".format(i.stopped.strftime('%H:%M')) if i.stopped else "n/a"),
         ("duration", lambda i: "{} min".format(int((((i.stopped - i.time).total_seconds() - (int(i.paused_counter))) /60))) if i.paused_counter else "{} min".format(int((i.stopped - i.time).total_seconds()))),
         ("completed", lambda i: '<span class="badge badge-warning">{}%</span>'.format(helper.getPercentage(i.get_xml_value("viewOffset"), i.get_xml_value("duration")))),
     ])

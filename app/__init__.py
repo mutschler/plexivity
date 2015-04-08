@@ -15,6 +15,8 @@ from flask.ext.login import LoginManager, login_user, logout_user, current_user
 from flask.ext.mail import Mail
 from flask.ext.security import Security
 
+from flask.ext.restless import APIManager, ProcessingException
+
 app = Flask(__name__)
 app.debug = True
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
@@ -103,6 +105,17 @@ lm.init_app(app)
 lm.login_view = 'login'
 
 from app import views, models, forms
+
+def auth_func(*args, **kw):
+    if not current_user.is_authenticated():
+        raise ProcessingException(description='Not authenticated!', code=401)
+
+apimanager = APIManager(app, flask_sqlalchemy_db=db, preprocessors=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func]))
+
+# Create API endpoints, which will be available at /api/<tablename> by
+# default. Allowed HTTP methods can be specified as well.
+apimanager.create_api(models.User, methods=['GET', 'POST', 'DELETE'], exclude_columns=['password'])
+apimanager.create_api(models.Processed, methods=['GET', 'DELETE'], collection_name='history')
 
 security = Security(app, views.user_datastore, register_form=forms.ExtendedRegisterForm2, login_form=forms.Login)
 

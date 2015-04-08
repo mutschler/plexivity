@@ -1,3 +1,5 @@
+[![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=296X2XQXKQDD6) 
+
 #plexivity
 
 plexivity is a simple to use WebApp for your Plex Media Server Statistics. It can be seen as an alternative for [plexWatch](https://github.com/ljunkie/plexWatch) with [plexWatchWeb](https://github.com/ecleese/plexWatchWeb/). It connects with your Plex Media Server and is able to notify you on activity.

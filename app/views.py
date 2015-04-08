@@ -108,7 +108,7 @@ def jsonhistory():
         ("time",lambda i: "{}".format(i.time.strftime('%H:%M'))),
         ("paused_counter", lambda i: "{} min".format(int(i.paused_counter)/60) if i.paused_counter else "0 min" ),
         ("stopped", lambda i: "{}".format(i.stopped.strftime('%H:%M')) if i.stopped else "n/a"),
-        ("duration", lambda i: "{} min".format(int((((i.stopped - i.time).total_seconds() - (int(i.paused_counter))) /60))) if i.paused_counter else "{} min".format(int((i.stopped - i.time).total_seconds())) if i.stopped else "n/a"),
+        ("duration", lambda i: "{} min".format(int((((i.stopped - i.time).total_seconds() - (int(i.paused_counter))) /60))) if i.stopped else "n/a"),
         ("completed", lambda i: '<span class="badge badge-warning">{}%</span>'.format(helper.getPercentage(i.get_xml_value("viewOffset"), i.get_xml_value("duration")))),
     ])
     #table.searchable(lambda queryset, user_input: perform_some_search(queryset, user_input))

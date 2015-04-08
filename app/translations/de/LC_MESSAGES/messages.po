@@ -1,169 +1,175 @@
-# English translations for PROJECT.
+# English translations for .
 # Copyright (C) 2014 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
-# 
+# This file is distributed under the same license as the  project.
+#
 # Translators:
 # Aleszandro <transifex@freecooki.es>, 2014
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 # Raphael, 2014
-# Raphael, 2014
-# Aleszandro <transifex@freecooki.es>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: plexivity\n"
+"Project-Id-Version:  plexivity\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-12-12 19:07+0100\n"
+"POT-Creation-Date: 2015-04-08 14:07+0200\n"
 "PO-Revision-Date: 2014-12-12 18:09+0000\n"
 "Last-Translator: Raphael\n"
-"Language-Team: German (http://www.transifex.com/projects/p/plexivity/language/de/)\n"
+"Language-Team: German "
+"(http://www.transifex.com/projects/p/plexivity/language/de/)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
-"Language: de\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/__init__.py:62
+#: app/__init__.py:63
 msgid "You do not have permission to view this resource."
 msgstr "Sie haben nicht die nötigen Rechte um diese Seite zu sehen."
 
-#: app/__init__.py:63
+#: app/__init__.py:64
 #, python-format
 msgid "Thank you. Confirmation instructions have been sent to %(email)s."
 msgstr ""
 
-#: app/__init__.py:64
+#: app/__init__.py:65
 msgid "Thank you. Your email has been confirmed."
 msgstr ""
 
-#: app/__init__.py:65
+#: app/__init__.py:66
 msgid "Your email has already been confirmed."
 msgstr ""
 
-#: app/__init__.py:66
+#: app/__init__.py:67
 msgid "Invalid confirmation token."
 msgstr ""
 
-#: app/__init__.py:67
+#: app/__init__.py:68
 #, python-format
 msgid "%(email)s is already associated with an account."
 msgstr "%(email)s wird bereits verwendet."
 
-#: app/__init__.py:68
+#: app/__init__.py:69
 msgid "Password does not match"
 msgstr "Passwort stimmt nicht überein"
 
-#: app/__init__.py:69
+#: app/__init__.py:70
 msgid "Passwords do not match"
 msgstr "Passwörter stimmen nicht überein"
 
-#: app/__init__.py:70
+#: app/__init__.py:71
 msgid "Redirections outside the domain are forbidden"
 msgstr ""
 
-#: app/__init__.py:71
-#, python-format
-msgid "Instructions to reset your password have been sent to %(email)s."
-msgstr ""
-
 #: app/__init__.py:72
+#, fuzzy
+msgid "Instructions to reset your password have been sent to the given mail."
+msgstr "Login-Instruktionen wurde an %(email)s gesendet."
+
+#: app/__init__.py:73
 #, python-format
 msgid ""
 "You did not reset your password within %(within)s. New instructions have "
 "been sent to %(email)s."
-msgstr "Sie haben Ihr Passwort nicht innerhalb %(within)s zurückgesetzt. Neue Instruktionen wurden an %(email)s gesendet."
+msgstr ""
+"Sie haben Ihr Passwort nicht innerhalb %(within)s zurückgesetzt. Neue "
+"Instruktionen wurden an %(email)s gesendet."
 
-#: app/__init__.py:73
+#: app/__init__.py:74
 msgid "Invalid reset password token."
 msgstr "Ungültiger Passwort-Reset-Token"
 
-#: app/__init__.py:74
+#: app/__init__.py:75
 msgid "Email requires confirmation."
 msgstr "E-Mail muss noch bestätigt werden."
 
-#: app/__init__.py:75
+#: app/__init__.py:76
 #, python-format
 msgid "Confirmation instructions have been sent to %(email)s."
 msgstr "Bestätigungs-Instruktionen wurden an %(email)s gesendet."
 
-#: app/__init__.py:76
+#: app/__init__.py:77
 #, python-format
 msgid ""
 "You did not confirm your email within %(within)s. New instructions to "
 "confirm your email have been sent to %(email)s."
-msgstr "Sie haben nicht innerhalb %(within)s bestätigt. Neue Instruktionen wurden an %(email)s gesendet."
+msgstr ""
+"Sie haben nicht innerhalb %(within)s bestätigt. Neue Instruktionen wurden"
+" an %(email)s gesendet."
 
-#: app/__init__.py:77
+#: app/__init__.py:78
 #, python-format
 msgid ""
 "You did not login within %(within)s. New instructions to login have been "
 "sent to %(email)s."
-msgstr "Sie haben sich nicht innerhalb %(within)s angemeldet. Neue Instruktionen wurden an %(email)s gesendet."
+msgstr ""
+"Sie haben sich nicht innerhalb %(within)s angemeldet. Neue Instruktionen "
+"wurden an %(email)s gesendet."
 
-#: app/__init__.py:78
+#: app/__init__.py:79
 #, python-format
 msgid "Instructions to login have been sent to %(email)s."
 msgstr "Login-Instruktionen wurde an %(email)s gesendet."
 
-#: app/__init__.py:79
+#: app/__init__.py:80
 msgid "Invalid login token."
 msgstr "Ungültiger Login-Token."
 
-#: app/__init__.py:80
+#: app/__init__.py:81
 msgid "Account is disabled."
 msgstr "Account deaktiviert."
 
-#: app/__init__.py:81
+#: app/__init__.py:82
 msgid "Email not provided"
 msgstr "E-Mail nicht angegeben"
 
-#: app/__init__.py:82
+#: app/__init__.py:83
 msgid "Invalid email address"
 msgstr "Ungültige E-Mail"
 
-#: app/__init__.py:83
+#: app/__init__.py:84
 msgid "Password not provided"
 msgstr "Passwort nicht angegeben"
 
-#: app/__init__.py:84
+#: app/__init__.py:85
 msgid "No password is set for this user"
 msgstr "Für diesen Benutzer ist kein Passwort vorhanden"
 
-#: app/__init__.py:85
+#: app/__init__.py:86
 msgid "Password must be at least 6 characters"
 msgstr "Das Passwort muss mindestens 6 Zeichen haben."
 
-#: app/__init__.py:86
+#: app/__init__.py:87
 msgid "Specified user does not exist"
 msgstr "Der angegebene Benutzer existiert nicht"
 
-#: app/__init__.py:87
+#: app/__init__.py:88
 msgid "Invalid password"
 msgstr "Ungültiges Passwort"
 
-#: app/__init__.py:88
+#: app/__init__.py:89
 msgid "You have successfuly logged in."
 msgstr "Sie haben sich erfolgreich eingeloggt."
 
-#: app/__init__.py:89
+#: app/__init__.py:90
 msgid ""
 "You successfully reset your password and you have been logged in "
 "automatically."
-msgstr "Sie haben Ihr Passwort erfolgreich zurückgesetzt und wurden automatisch eingeloggt."
+msgstr ""
+"Sie haben Ihr Passwort erfolgreich zurückgesetzt und wurden automatisch "
+"eingeloggt."
 
-#: app/__init__.py:90
+#: app/__init__.py:91
 msgid "Your new password must be different than your previous password."
 msgstr "Das neue Passwort muss sich vom alten unterscheiden."
 
-#: app/__init__.py:91
+#: app/__init__.py:92
 msgid "You successfully changed your password."
 msgstr "Passwort erfolgreich geändert."
 
-#: app/__init__.py:92
+#: app/__init__.py:93
 msgid "Please log in to access this page."
 msgstr "Bitte melden Sie sich an um diese Seite zu sehen."
 
-#: app/__init__.py:93
+#: app/__init__.py:94
 msgid "Please reauthenticate to access this page."
 msgstr "Bitte loggen Sie sich erneut ein, um diese Seite zu sehen."
 
@@ -332,59 +338,68 @@ msgid "%(int)s years ago"
 msgstr "vor %(int)s Jahren"
 
 #. NOTE: Test2
-#: app/views.py:64
+#: app/views.py:63
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr "Verbindung zum PMS nicht möglich. Bitte Einstellungen überprüfen."
 
-#: app/views.py:114 app/templates/layout.html:61
+#: app/views.py:113 app/templates/layout.html:61
 msgid "Statistics"
 msgstr "Statistik"
 
-#: app/views.py:121
+#: app/views.py:120
 #, python-format
 msgid "User %(username)s created"
 msgstr "Benutzer %(username)s angelegt"
 
-#: app/views.py:130
+#: app/views.py:129
 msgid "Setup"
 msgstr "Einrichtung"
 
-#: app/views.py:150 app/views.py:179
+#: app/views.py:149 app/views.py:178
 #, python-format
 msgid "Successfully connected to Hue Bridge with ip %(ip)s"
 msgstr "Verbindung zur Bridge hergestellt: %(ip)s"
 
-#: app/views.py:169
+#: app/views.py:168
 msgid "Successfully disconnected from Hue Bridge"
 msgstr "Verbindung von Hue Bridge getrennt"
 
-#: app/views.py:195 app/templates/layout.html:63
+#: app/views.py:194 app/templates/layout.html:63
 msgid "Charts"
 msgstr "Charts"
 
-#: app/views.py:216
+#: app/views.py:215
 msgid "Info"
 msgstr "Info"
 
-#: app/views.py:223 app/templates/layout.html:60
+#: app/views.py:222 app/templates/layout.html:60
 msgid "History"
 msgstr "Verlauf"
 
-#: app/views.py:230
+#: app/views.py:229
 msgid "Logged out"
 msgstr "Abgemeldet"
 
-#: app/views.py:253 app/templates/layout.html:62
+#: app/views.py:252 app/templates/layout.html:62
 msgid "Users"
 msgstr "Benutzer"
 
-#: app/views.py:287
+#: app/views.py:286
 msgid "Settings saved!"
 msgstr "Einstellungen gespeichert!"
 
-#: app/views.py:298 app/templates/layout.html:59
+#: app/views.py:297 app/templates/layout.html:59
 msgid "Settings"
 msgstr "Einstellungen"
+
+#: app/views.py:307
+#, fuzzy
+msgid "Test notification successfully send"
+msgstr "Fortsetzung Benachrichtigungen aktivieren"
+
+#: app/views.py:309
+msgid "unable to send test notification"
+msgstr ""
 
 #: app/templates/charts.html:9
 msgid "Top 10 (All Time)"
@@ -420,9 +435,10 @@ msgid "Connect to Hue"
 msgstr "Mit Hue verbinden"
 
 #: app/templates/hue.html:17
-msgid ""
-"Please press the Push Button on your Hue Bridge and press the button below"
-msgstr "Bitte drücken sie den Push Button an ihrer Hue Bridge und im Anschluss den Knopf unten"
+msgid "Please press the Push Button on your Hue Bridge and press the button below"
+msgstr ""
+"Bitte drücken sie den Push Button an ihrer Hue Bridge und im Anschluss "
+"den Knopf unten"
 
 #: app/templates/hue.html:18
 msgid "Push Button Pressed"
@@ -501,63 +517,63 @@ msgstr "Abmelden"
 msgid "Login"
 msgstr "Anmelden"
 
-#: app/templates/layout.html:110
+#: app/templates/layout.html:111
 msgid "No data available in table"
 msgstr "Keine Daten in der Tabelle vorhanden"
 
-#: app/templates/layout.html:111
+#: app/templates/layout.html:112
 msgid "Showing _START_ to _END_ of _TOTAL_ entries"
 msgstr "_START_ bis _END_ von _TOTAL_ Einträgen"
 
-#: app/templates/layout.html:112
+#: app/templates/layout.html:113
 msgid "Showing 0 to 0 of 0 entries"
 msgstr "0 bis 0 von 0 Einträgen"
 
-#: app/templates/layout.html:113
+#: app/templates/layout.html:114
 msgid "(filtered from _MAX_ total entries)"
 msgstr "(gefiltert von _MAX_ Einträgen)"
 
-#: app/templates/layout.html:116
+#: app/templates/layout.html:117
 msgid "Show _MENU_ entries"
 msgstr "_MENU_ Einträge anzeigen"
 
-#: app/templates/layout.html:117
+#: app/templates/layout.html:118
 msgid "Loading..."
 msgstr "Wird geladen..."
 
-#: app/templates/layout.html:118
+#: app/templates/layout.html:119
 msgid "Processing..."
 msgstr "Bitte warten..."
 
-#: app/templates/layout.html:119
+#: app/templates/layout.html:120
 msgid "Search:"
 msgstr "Suchen"
 
-#: app/templates/layout.html:120
+#: app/templates/layout.html:121
 msgid "No matching records found"
 msgstr "Keine Einträge vorhanden"
 
-#: app/templates/layout.html:122
+#: app/templates/layout.html:123
 msgid "First"
 msgstr "Erste"
 
-#: app/templates/layout.html:123
+#: app/templates/layout.html:124
 msgid "Last"
 msgstr "Letzte"
 
-#: app/templates/layout.html:124
+#: app/templates/layout.html:125
 msgid "Next"
 msgstr "Nächste"
 
-#: app/templates/layout.html:125
+#: app/templates/layout.html:126
 msgid "Previous"
 msgstr "Zurück"
 
-#: app/templates/layout.html:128
+#: app/templates/layout.html:129
 msgid ": activate to sort column ascending"
 msgstr ": aktivieren, um Spalte aufsteigend zu sortieren"
 
-#: app/templates/layout.html:129
+#: app/templates/layout.html:130
 msgid ": activate to sort column descending"
 msgstr ": aktivieren, um Spalte absteigend zu sortieren"
 
@@ -569,124 +585,130 @@ msgstr "Benutzername"
 msgid "Save settings"
 msgstr "Einstellungen speichern"
 
-#: app/templates/settings.html:11
+#: app/templates/settings.html:12
 msgid "The following Options are available for Message formating:"
-msgstr "Die folgenden Optionen sind verfügbar um eine Benachrichtigung zu formatieren:"
+msgstr ""
+"Die folgenden Optionen sind verfügbar um eine Benachrichtigung zu "
+"formatieren:"
 
-#: app/templates/settings.html:15
+#: app/templates/settings.html:17
 msgid "Username of current user"
 msgstr "Benutzername"
 
-#: app/templates/settings.html:17
+#: app/templates/settings.html:19
 msgid "Processed title of currently playing media"
 msgstr "Titel des Films/Episode"
 
-#: app/templates/settings.html:19
-msgid ""
-"the platform from which the media is played back (ex. Plexweb (Chrome))"
+#: app/templates/settings.html:21
+msgid "the platform from which the media is played back (ex. Plexweb (Chrome))"
 msgstr "Wiedergabe Platform zb: Plexweb (Chrome)"
 
-#: app/templates/settings.html:21
+#: app/templates/settings.html:23
 msgid "the type of media: \"episode\" or \"movie\""
 msgstr "Medientyp: \"episode\" oder \"movie\""
 
-#: app/templates/settings.html:23
+#: app/templates/settings.html:25
 msgid "a string of genres (if available) in format \"Horror|Fantasy\""
 msgstr "Genre wenn vorhanden \"Horror|Fantasy\""
 
-#: app/templates/settings.html:25
+#: app/templates/settings.html:27
 msgid "PMS user id"
 msgstr "PMS Benutzer ID"
 
-#: app/templates/settings.html:27
+#: app/templates/settings.html:29
 msgid "Original, unprocessed username"
 msgstr "Benutzername"
 
-#: app/templates/settings.html:29
+#: app/templates/settings.html:31
 msgid "unprocessed original title of currently playing media"
 msgstr "Original Titel"
 
-#: app/templates/settings.html:31
+#: app/templates/settings.html:33
 msgid "unprocessed original title of currently playing episode"
 msgstr "Original Episoden Titel"
 
-#: app/templates/settings.html:33
+#: app/templates/settings.html:35
 msgid "current season"
 msgstr "Staffel Nummer"
 
-#: app/templates/settings.html:35
+#: app/templates/settings.html:37
 msgid "current episode"
 msgstr "Episoden Nummer"
 
-#: app/templates/settings.html:37
+#: app/templates/settings.html:39
 msgid "playback time in seconds"
 msgstr "Wiedergabezeit in Sekunden"
 
-#: app/templates/settings.html:39
+#: app/templates/settings.html:41
 msgid "time the playback started"
 msgstr "Startzeit der Wiedergabe"
 
-#: app/templates/settings.html:41
+#: app/templates/settings.html:43
 msgid "time the playback stopped"
 msgstr "Stoßzeit der Wiedergabe"
 
-#: app/templates/settings.html:43
+#: app/templates/settings.html:45
 msgid "Media content rating"
 msgstr "Inhaltsbewertung (FSK)"
 
-#: app/templates/settings.html:45
+#: app/templates/settings.html:47
 msgid "Media distribution year"
 msgstr "Jahr der Veröffentlichung"
 
-#: app/templates/settings.html:47
+#: app/templates/settings.html:49
 msgid "Summary of the currently playing media"
 msgstr "Film/Episoden Beschreibung"
 
-#: app/templates/settings.html:49
+#: app/templates/settings.html:51
 msgid "duration in seconds"
 msgstr "Dauer in Sekunden"
 
-#: app/templates/settings.html:51
+#: app/templates/settings.html:53
 msgid "notification type, can be start, stop, pause or resume"
 msgstr "Benachrichtigungs Typ: start, stop, pause oder resume"
 
-#: app/templates/settings.html:53
+#: app/templates/settings.html:55
 msgid "the view offset in seconds"
 msgstr "fortschritt in Sekunden"
 
-#: app/templates/settings.html:55
+#: app/templates/settings.html:57
 msgid "view offset in percent"
 msgstr "fortschritt in Prozent "
 
-#: app/templates/settings.html:57
+#: app/templates/settings.html:59
 msgid "how much playback time left"
 msgstr "Verbleibende Wiedergabezeit"
 
-#: app/templates/settings.html:59
+#: app/templates/settings.html:61
 msgid "if the media is transcoded this will be 1 else 0"
 msgstr "Wenn direkte Wiedergabe 0 sonst 1"
 
-#: app/templates/settings.html:61
+#: app/templates/settings.html:63
 msgid "information about the transcode"
 msgstr "Informationen über die Transcodierung"
 
-#: app/templates/settings.html:63
+#: app/templates/settings.html:65
 msgid "T for transcode or D for direct play"
 msgstr "T bei Transcodierung D bei direkt Wiedergabe "
 
-#: app/templates/settings.html:65
+#: app/templates/settings.html:67
 msgid "Audio and Video informations on Transcode else \"Direct Play\""
 msgstr "Audio und Video Informationen bei Transcode sonst: \"Direct Play\""
 
-#: app/templates/settings.html:67
+#: app/templates/settings.html:69
 msgid "the machine identifier"
 msgstr "das Machinenkennzeichen"
 
-#: app/templates/settings.html:70
+#: app/templates/settings.html:74
 msgid "Example"
 msgstr "Beispiel"
 
-#: app/templates/settings.html:116
+#: app/templates/settings.html:120
+#, fuzzy
+msgid "Test Notifications"
+msgstr "Stop Benachrichtigungen aktivieren"
+
+#: app/templates/settings.html:123
 msgid "Connect Hue"
 msgstr "Mit Hue verbinden"
 
@@ -699,7 +721,10 @@ msgstr "Daten werden unter \"%(data_dir)s\" gespeichert"
 msgid ""
 "If you already had a runnig installation please copy \"config.ini\" and "
 "\"plexivity.db\" to this directory and restart plexivity"
-msgstr "Wenn Sie bereits eine Installation durchgeführt haben, kopieren Sie bitte \"config.ini\" und \"plexivity.db\" in dieses Verzeichnis und starten Sie plexivity anschließend neu"
+msgstr ""
+"Wenn Sie bereits eine Installation durchgeführt haben, kopieren Sie bitte"
+" \"config.ini\" und \"plexivity.db\" in dieses Verzeichnis und starten "
+"Sie plexivity anschließend neu"
 
 #: app/templates/setup.html:13 app/templates/security/register_user.html:9
 msgid "Create Account"
@@ -816,6 +841,21 @@ msgstr "Momentan abgespielt..."
 msgid "Recently Added"
 msgstr "Kürzlich hinzugefügt"
 
+#: app/templates/security/forgot_password.html:8
+msgid "Send password reset instructions"
+msgstr ""
+
+#: app/templates/security/forgot_password.html:9
+#, fuzzy
+msgid "Recover Password"
+msgstr "Passwort merken"
+
+#: app/templates/security/reset_password.html:8
+#: app/templates/security/reset_password.html:9
+#, fuzzy
+msgid "Reset Password"
+msgstr "Passwort wiederholen"
+
 #~ msgid "plexivity data directory"
 #~ msgstr ""
 
@@ -827,3 +867,7 @@ msgstr "Kürzlich hinzugefügt"
 
 #~ msgid "login"
 #~ msgstr ""
+
+#~ msgid "Instructions to reset your password have been sent to %(email)s."
+#~ msgstr ""
+

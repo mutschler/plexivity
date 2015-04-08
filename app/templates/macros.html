@@ -92,7 +92,7 @@
                     {{ render_field(f, type="password") }}
                 {%  elif f.id == "MAIL_PASSWORD" %}
                     {{ render_field(f, type="password") }}
-                {% elif f.type != "CSRFTokenField" %}
+                {% elif f.type != "CSRFTokenField"  and f.type != "SubmitField" %}
                     {{ render_field(f) }}
                 {% endif %}
             {% endfor %}

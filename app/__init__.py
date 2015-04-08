@@ -57,6 +57,7 @@ app.config['DEFAULT_MAIL_SENDER'] = 'info@site.com'
 app.config['SECURITY_REGISTERABLE'] = False
 app.config['SECURITY_TRACKABLE'] = True
 app.config['SECURITY_PASSWORD_SALT'] = config.PASSWORD_SALT
+app.config['SECURITY_RECOVERABLE'] = True
 
 #make security messages translatabel
 app.config['SECURITY_MSG_UNAUTHORIZED'] = (lazy_gettext('You do not have permission to view this resource.'), 'error')
@@ -68,7 +69,7 @@ app.config['SECURITY_MSG_EMAIL_ALREADY_ASSOCIATED'] = (lazy_gettext('%(email)s i
 app.config['SECURITY_MSG_PASSWORD_MISMATCH'] = (lazy_gettext('Password does not match'), 'error')
 app.config['SECURITY_MSG_RETYPE_PASSWORD_MISMATCH'] = (lazy_gettext('Passwords do not match'), 'error')
 app.config['SECURITY_MSG_INVALID_REDIRECT'] = (lazy_gettext('Redirections outside the domain are forbidden'), 'error')
-app.config['SECURITY_MSG_PASSWORD_RESET_REQUEST'] = (lazy_gettext('Instructions to reset your password have been sent to %(email)s.'), 'info')
+app.config['SECURITY_MSG_PASSWORD_RESET_REQUEST'] = (lazy_gettext('Instructions to reset your password have been sent to the given mail.'), 'info')
 app.config['SECURITY_MSG_PASSWORD_RESET_EXPIRED'] = (lazy_gettext('You did not reset your password within %(within)s. New instructions have been sent to %(email)s.'), 'error')
 app.config['SECURITY_MSG_INVALID_RESET_PASSWORD_TOKEN'] = (lazy_gettext('Invalid reset password token.'), 'error')
 app.config['SECURITY_MSG_CONFIRMATION_REQUIRED'] = (lazy_gettext('Email requires confirmation.'), 'error')

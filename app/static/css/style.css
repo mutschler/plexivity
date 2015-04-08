@@ -457,6 +457,17 @@ a:hover {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.panel.panel-default {
+  border-color: #3c3c3c;
+}
+.panel.panel-default .panel-heading {
+  background: #000000;
+  border-color: #3c3c3c;
+  color: #f9aa03;
+}
+.panel.panel-default .panel-body {
+  background: #1f1f1f;
+}
 input[type='text'],
 input[type='number'],
 input[type='password'],

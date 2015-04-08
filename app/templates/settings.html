@@ -7,65 +7,69 @@
             <div class="col-sm-6 col-sm-offset-3">
             {{ render_form(form, action_url='/settings', action_text=_('Save settings'), btn_class='btn btn-plex') }}
 
-            <!-- <div class="format-helper" style="margin-top: 20px; margin-bottom: 20px">
-                <p>{{_('The following Options are available for Message formating:')}}</p>
+            <div class="format-helper" style="margin-top: 20px; margin-bottom: 20px">
+              <div class="panel panel-default">
+                <div class="panel-heading">{{_('The following Options are available for Message formating:')}}</div>
 
-                <dl class="dl-horizontal">
-                  <dt>%(user)s</dt>
-                  <dd>{{_('Username of current user')}}</dd>
-                  <dt>%(title)s</dt>
-                  <dd>{{_('Processed title of currently playing media')}}</dd>
-                  <dt>%(platform)s</dt>
-                  <dd>{{_('the platform from which the media is played back (ex. Plexweb (Chrome))')}}</dd>
-                  <dt>%(type)s</dt>
-                  <dd>{{_('the type of media: "episode" or "movie"')}}</dd>
-                  <dt>%(genre)s</dt>
-                  <dd>{{_('a string of genres (if available) in format "Horror|Fantasy"')}}</dd>
-                  <dt>%(userID)s</dt>
-                  <dd>{{_('PMS user id')}}</dd>
-                  <dt>%(orig_user)s</dt>
-                  <dd>{{_('Original, unprocessed username')}}</dd>
-                  <dt>%(orig_title)s</dt>
-                  <dd>{{_('unprocessed original title of currently playing media')}}</dd>
-                  <dt>%(orig_title_ep)s</dt>
-                  <dd>{{_('unprocessed original title of currently playing episode')}}</dd>
-                  <dt>%(season)s</dt>
-                  <dd>{{_('current season')}}</dd>
-                  <dt>%(episode)s</dt>
-                  <dd>{{_('current episode')}}</dd>
-                  <dt>%(time)s</dt>
-                  <dd>{{_('playback time in seconds')}}</dd>
-                  <dt>%(start_time)s</dt>
-                  <dd>{{_('time the playback started')}}</dd>
-                  <dt>%(stop_time)s</dt>
-                  <dd>{{_('time the playback stopped')}}</dd>
-                  <dt>%(rating)s</dt>
-                  <dd>{{_('Media content rating')}}</dd>
-                  <dt>%(year)s</dt>
-                  <dd>{{_('Media distribution year')}}</dd>
-                  <dt>%(summary)s</dt>
-                  <dd>{{_('Summary of the currently playing media')}}</dd>
-                  <dt>%(duration)s</dt>
-                  <dd>{{_('duration in seconds')}}</dd>
-                  <dt>%(ntype)s</dt>
-                  <dd>{{_('notification type, can be start, stop, pause or resume')}}</dd>
-                  <dt>%(progress)s</dt>
-                  <dd>{{_('the view offset in seconds')}}</dd>
-                  <dt>%(percent_complete)s</dt>
-                  <dd>{{_('view offset in percent')}}</dd>
-                  <dt>%(time_left)s</dt>
-                  <dd>{{_('how much playback time left')}}</dd>
-                  <dt>%(transcoded)d</dt>
-                  <dd>{{_('if the media is transcoded this will be 1 else 0')}}</dd>
-                  <dt>%(transInfo)s</dt>
-                  <dd>{{_('information about the transcode')}}</dd>
-                  <dt>%(streamtype)s</dt>
-                  <dd>{{_('T for transcode or D for direct play')}}</dd>
-                  <dt>%(streamtype_extended)s</dt>
-                  <dd>{{_('Audio and Video informations on Transcode else "Direct Play"')}}</dd>
-                  <dt>%(machineIdentifier)s</dt>
-                  <dd>{{_('the machine identifier')}}</dd>
-                </dl>
+                <div class="panel-body">
+                  <dl class="dl-horizontal">
+                   <dt>%(user)s</dt>
+                   <dd>{{_('Username of current user')}}</dd>
+                   <dt>%(title)s</dt>
+                   <dd>{{_('Processed title of currently playing media')}}</dd>
+                   <dt>%(platform)s</dt>
+                   <dd>{{_('the platform from which the media is played back (ex. Plexweb (Chrome))')}}</dd>
+                   <dt>%(type)s</dt>
+                   <dd>{{_('the type of media: "episode" or "movie"')}}</dd>
+                   <dt>%(genre)s</dt>
+                   <dd>{{_('a string of genres (if available) in format "Horror|Fantasy"')}}</dd>
+                   <dt>%(userID)s</dt>
+                   <dd>{{_('PMS user id')}}</dd>
+                   <dt>%(orig_user)s</dt>
+                   <dd>{{_('Original, unprocessed username')}}</dd>
+                   <dt>%(orig_title)s</dt>
+                   <dd>{{_('unprocessed original title of currently playing media')}}</dd>
+                   <dt>%(orig_title_ep)s</dt>
+                   <dd>{{_('unprocessed original title of currently playing episode')}}</dd>
+                   <dt>%(season)s</dt>
+                   <dd>{{_('current season')}}</dd>
+                   <dt>%(episode)s</dt>
+                   <dd>{{_('current episode')}}</dd>
+                   <dt>%(time)s</dt>
+                   <dd>{{_('playback time in seconds')}}</dd>
+                   <dt>%(start_time)s</dt>
+                   <dd>{{_('time the playback started')}}</dd>
+                   <dt>%(stop_time)s</dt>
+                   <dd>{{_('time the playback stopped')}}</dd>
+                   <dt>%(rating)s</dt>
+                   <dd>{{_('Media content rating')}}</dd>
+                   <dt>%(year)s</dt>
+                   <dd>{{_('Media distribution year')}}</dd>
+                   <dt>%(summary)s</dt>
+                   <dd>{{_('Summary of the currently playing media')}}</dd>
+                   <dt>%(duration)s</dt>
+                   <dd>{{_('duration in seconds')}}</dd>
+                   <dt>%(ntype)s</dt>
+                   <dd>{{_('notification type, can be start, stop, pause or resume')}}</dd>
+                   <dt>%(progress)s</dt>
+                   <dd>{{_('the view offset in seconds')}}</dd>
+                   <dt>%(percent_complete)s</dt>
+                   <dd>{{_('view offset in percent')}}</dd>
+                   <dt>%(time_left)s</dt>
+                   <dd>{{_('how much playback time left')}}</dd>
+                   <dt>%(transcoded)d</dt>
+                   <dd>{{_('if the media is transcoded this will be 1 else 0')}}</dd>
+                   <dt>%(transInfo)s</dt>
+                   <dd>{{_('information about the transcode')}}</dd>
+                   <dt>%(streamtype)s</dt>
+                   <dd>{{_('T for transcode or D for direct play')}}</dd>
+                   <dt>%(streamtype_extended)s</dt>
+                   <dd>{{_('Audio and Video informations on Transcode else "Direct Play"')}}</dd>
+                   <dt>%(machineIdentifier)s</dt>
+                   <dd>{{_('the machine identifier')}}</dd>
+                  </dl>
+                </div>
+              </div>
 
 <p>{{_('Example')}}</p>
 <pre>
@@ -79,7 +83,7 @@
 'ratingKey': '8894',
 'duration': datetime.timedelta(0, 0, 1057),
 'streamtype_extended': 'Direct Play',
-'user': 'xoxovpa',
+'user': 'xoxoxo',
 'transInfo': '',
 'year': '2009',
 'genre': 'Horror',
@@ -99,14 +103,14 @@
 'platform': 'Plex Web (Chrome)',
 'length': 5318,
 'stop_time': '',
-'orig_user': 'xoxovpa',
+'orig_user': 'xoxoxo',
 'season': '',
 'progress': 1878,
 'machineIdentifier': 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx',
 'type': 'movie'
 </pre>
 
-            </div> -->
+            </div>
             </div>
         </div>
     {% endif %}

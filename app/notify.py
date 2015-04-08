@@ -298,6 +298,11 @@ def process_update(xml, session_id):
     return status_change
 
 def notify(info):
+
+    if info["orig_user"] in config.EXCLUDE_USERS:
+        logger.info("'%s' is set as an EXCLUDE_USER, i'm not sending a notification!" % info["orig_user"])
+        return False
+
     #notify all providers with the given stuff...
     logger.debug("notify called with args: %s" % info)
 
@@ -348,8 +353,6 @@ def notify(info):
             boxcar.send_notification(message)
 
         return True
-
-
 
     return False
 

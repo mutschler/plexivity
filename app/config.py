@@ -95,6 +95,9 @@ CACHE_IMAGES = check_setting_int(CFG, 'General', 'CACHE_IMAGES', 1)
 DEBUG = check_setting_int(CFG, 'General', 'DEBUG', 0)
 SHOW_LIBRARY_STATS = check_setting_int(CFG, 'General', 'SHOW_LIBRARY_STATS', 1)
 
+CheckSection('Advanced')
+EXCLUDE_USERS = check_setting_str(CFG, 'Advanced', 'EXCLUDE_USERS', 'user1,user2,etc')
+
 CheckSection('PMS')
 PMS_HOST = check_setting_str(CFG, 'PMS', 'PMS_HOST', 'localhost')
 PMS_PORT = check_setting_int(CFG, 'PMS', 'PMS_PORT', 32400)
@@ -173,6 +176,7 @@ configval["BOXCAR_TOKEN"] = BOXCAR_TOKEN
 configval["NOTIFY_BOXCAR"] = NOTIFY_BOXCAR
 configval["PASSWORD_SALT"] = PASSWORD_SALT
 configval["SECRET_KEY"] = SECRET_KEY
+configval["EXCLUDE_USERS"] = EXCLUDE_USERS.split(',')
 
 def save_config(configval):
     new_config = ConfigObj(interpolation=False)
@@ -191,6 +195,8 @@ def save_config(configval):
     new_config['General']['CACHE_IMAGES'] = int(configval["CACHE_IMAGES"])
     new_config['General']['DEBUG'] = int(configval["DEBUG"])
     new_config['General']['SHOW_LIBRARY_STATS'] = int(configval["SHOW_LIBRARY_STATS"])
+    new_config['Advanced'] = {}
+    new_config['Advanced']['EXCLUDE_USERS'] = ','.join(configval["EXCLUDE_USERS"])
     new_config['Mail'] = {}
     new_config['Mail']['MAIL_PORT'] = int(configval["MAIL_PORT"])
     new_config['Mail']['MAIL_SERVER'] = configval["MAIL_SERVER"]

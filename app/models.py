@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from app import db
+import xml.etree.ElementTree as ET
 
 from flask.ext.security import UserMixin, RoleMixin
 
@@ -80,6 +81,12 @@ class Processed(db.Model):
     view_offset = db.Column(db.Integer)
     progress = db.Column(db.Integer) # (view_offset / duration) * 100 helper.getPercentage()
 
+    def get_xml_value(self, value):
+        xml = ET.fromstring(self.xml)
+        try:
+            return xml.get(value)
+        except:
+            return None
 
 class RecentlyAdded(db.Model):
     __tablename__ = "recently_added"

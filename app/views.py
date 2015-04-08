@@ -17,6 +17,8 @@ from flask.ext.security import SQLAlchemyUserDatastore, url_for_security, curren
 from flask.ext.security.decorators import roles_required
 from flask.ext.security.utils import encrypt_password, login_user
 
+from datatables import DataTable
+
 user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
 
 p = plex.Server(config.PMS_HOST, config.PMS_PORT)
@@ -83,6 +85,35 @@ def overview():
 @login_required
 def recently_added():
     return render_template('include/recently_added.html', new=g.plex.recentlyAdded())
+
+@app.route("/load/streaminfo/<id>")
+@login_required
+def streaminfo(id):
+    item = db.session.query(models.Processed).filter(models.Processed.id == id).first()
+    xml = helper.load_xml(item.xml)
+    return render_template('include/stream_info.html', id=item.id, xml=xml)
+
+@app.route("/load/histroy")
+@login_required
+def jsonhistory():
+    history = db.session.query(models.Processed)
+    print request.args
+    table = DataTable(request.args, models.Processed, history, [
+        ("date", "time", lambda i: "{}".format(i.time.strftime('%Y/%m/%d')) if i.stopped else '<span class="orange">{}</span>'.format(_("Currently watching..."))),
+        ("user", lambda i: '<a href="{0}" class="invert-link">{1}</a>'.format(url_for('user', name=i.user), i.user)),
+        ("platform"),
+        ("title", lambda i: u'<a class="invert-link" href="{0}">{1}</a>'.format(url_for('info', id=i.get_xml_value('ratingKey')), i.title)),
+        ("type", lambda i: "{}".format(i.get_xml_value("type"))),
+        ("streaminfo", lambda i: '<a href="{0}" class="orange" data-target="#streamModal" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a>'.format(url_for('streaminfo',id=i.id))),
+        ("time",lambda i: "{}".format(i.time.strftime('%H:%M'))),
+        ("paused_counter", lambda i: "{} min".format(int(i.paused_counter)/60) if i.paused_counter else "0 min" ),
+        ("stopped", lambda i: "{}".format(i.stopped.strftime('%H:%M'))),
+        ("duration", lambda i: "{} min".format(int((((i.stopped - i.time).total_seconds() - (int(i.paused_counter))) /60))) if i.paused_counter else "{} min".format(int((i.stopped - i.time).total_seconds()))),
+        ("completed", lambda i: '<span class="badge badge-warning">{}%</span>'.format(helper.getPercentage(i.get_xml_value("viewOffset"), i.get_xml_value("duration")))),
+    ])
+    #table.searchable(lambda queryset, user_input: perform_some_search(queryset, user_input))
+
+    return json.dumps(table.json())
 
 @app.route("/stats")
 @login_required
@@ -218,8 +249,17 @@ def info(id):
 @app.route("/history")
 @login_required
 def history():
-    history = db.session.query(models.Processed).order_by(models.Processed.time.desc()).all()
-    return render_template('history.html', history=history, title=_('History'))
+    history = db.session.query(models.Processed).order_by(models.Processed.time.desc())
+    table = DataTable(request.args.__dict__, models.Processed, history, [
+        "id",
+        ("date", "time"),
+        ("user"),
+    ])
+    table.searchable(lambda queryset, user_input: perform_some_search(queryset, user_input))
+
+    print table.json()
+    #return table.json()
+    return render_template('history.html', title=_('History'))
 
 @app.route('/logout')
 @login_required

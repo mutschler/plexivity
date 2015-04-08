@@ -175,10 +175,40 @@ $(document).ready(function() {
             	"responsive": true,
             	"sPaginationType": "bootstrap",
             	"iDisplayLength": 25,
+              "start": 0,
             	"bAutoWidth": true,
             	"aaSorting": [[ 0, "desc" ]],
-            	"language": tableLanguage
-	   } );
+              "serverSide": true,
+              "processing": true,
+              "ajax": "/load/histroy",
+            	"language": tableLanguage,
+              columns: [
+                { data: "date" },
+                { data: "user" },
+                { data: "platform" },
+                { data: "title" },
+                { data: "type", sortable: false },
+                { data: "streaminfo", sortable: false },
+                { data: "time" },
+                { data: "paused_counter" },
+                { data: "stopped" },
+                { data: "duration" },
+                { data: "completed", sortable: false },
+              ]
+	     });
+            }
+
+            if($('#History').length){
+                $('#History').dataTable( {
+              "paging": true,
+              "responsive": true,
+              "sPaginationType": "bootstrap",
+              "iDisplayLength": 25,
+              "start": 0,
+              "bAutoWidth": true,
+              "aaSorting": [[ 0, "desc" ]],
+              "language": tableLanguage,
+              });
             }
 
         if($('#history-charts-wrapper').length){
@@ -192,3 +222,9 @@ $(document).ready(function() {
         })
     });
 } );
+
+
+$('#streamModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  $('#streamModal').load(button.attr("href"));
+})

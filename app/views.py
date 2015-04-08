@@ -97,7 +97,6 @@ def streaminfo(id):
 @login_required
 def jsonhistory():
     history = db.session.query(models.Processed)
-    print request.args
     table = DataTable(request.args, models.Processed, history, [
         ("date", "time", lambda i: "{}".format(i.time.strftime('%Y/%m/%d')) if i.stopped else '<span class="orange">{}</span>'.format(_("Currently watching..."))),
         ("user", lambda i: '<a href="{0}" class="invert-link">{1}</a>'.format(url_for('user', name=i.user), i.user)),
@@ -249,16 +248,6 @@ def info(id):
 @app.route("/history")
 @login_required
 def history():
-    history = db.session.query(models.Processed).order_by(models.Processed.time.desc())
-    table = DataTable(request.args.__dict__, models.Processed, history, [
-        "id",
-        ("date", "time"),
-        ("user"),
-    ])
-    table.searchable(lambda queryset, user_input: perform_some_search(queryset, user_input))
-
-    print table.json()
-    #return table.json()
     return render_template('history.html', title=_('History'))
 
 @app.route('/logout')

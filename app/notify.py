@@ -459,7 +459,7 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
             title = "%s - s%02de%02d" % (title, int(season), int(episode))
 
     info = {
-        "user": orig_user,
+        "user": config.USER_NAME_MAP[orig_user] if orig_user in config.USER_NAME_MAP else orig_user,
         "type": xml.get("type"),
         "genre": genre,
         "userID": userID,

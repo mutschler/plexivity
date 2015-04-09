@@ -5,6 +5,7 @@ import os
 import platform
 import sys
 from configobj import ConfigObj
+import json
 
 def getUserDir():
     try:
@@ -96,7 +97,8 @@ DEBUG = check_setting_int(CFG, 'General', 'DEBUG', 0)
 SHOW_LIBRARY_STATS = check_setting_int(CFG, 'General', 'SHOW_LIBRARY_STATS', 1)
 
 CheckSection('Advanced')
-EXCLUDE_USERS = check_setting_str(CFG, 'Advanced', 'EXCLUDE_USERS', 'user1,user2,etc')
+EXCLUDE_USERS = check_setting_str(CFG, 'Advanced', 'EXCLUDE_USERS', ['user1','user2'])
+USER_NAME_MAP = json.loads(check_setting_str(CFG, 'Advanced', 'USER_NAME_MAP', json.dumps({'Local':'MyName', 'anotheruser': 'AnotherName'})))
 
 CheckSection('PMS')
 PMS_HOST = check_setting_str(CFG, 'PMS', 'PMS_HOST', 'localhost')
@@ -176,7 +178,8 @@ configval["BOXCAR_TOKEN"] = BOXCAR_TOKEN
 configval["NOTIFY_BOXCAR"] = NOTIFY_BOXCAR
 configval["PASSWORD_SALT"] = PASSWORD_SALT
 configval["SECRET_KEY"] = SECRET_KEY
-configval["EXCLUDE_USERS"] = EXCLUDE_USERS.split(',')
+configval["EXCLUDE_USERS"] = EXCLUDE_USERS
+configval["USER_NAME_MAP"] =json.dumps(USER_NAME_MAP)
 
 def save_config(configval):
     new_config = ConfigObj(interpolation=False)
@@ -196,7 +199,8 @@ def save_config(configval):
     new_config['General']['DEBUG'] = int(configval["DEBUG"])
     new_config['General']['SHOW_LIBRARY_STATS'] = int(configval["SHOW_LIBRARY_STATS"])
     new_config['Advanced'] = {}
-    new_config['Advanced']['EXCLUDE_USERS'] = ','.join(configval["EXCLUDE_USERS"])
+    new_config['Advanced']['EXCLUDE_USERS'] = configval["EXCLUDE_USERS"]
+    new_config['Advanced']['USER_NAME_MAP'] = configval["USER_NAME_MAP"]
     new_config['Mail'] = {}
     new_config['Mail']['MAIL_PORT'] = int(configval["MAIL_PORT"])
     new_config['Mail']['MAIL_SERVER'] = configval["MAIL_SERVER"]

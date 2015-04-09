@@ -17,7 +17,6 @@ sched_logger.addHandler(logger.rotation)
 sched_logger.setLevel(logging.DEBUG)
 logger = logger.logger.getChild('helper')
 
-
 def startScheduler():
     try:
         import tzlocal

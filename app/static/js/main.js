@@ -156,6 +156,38 @@ function renderCharts(){
       }
     };
     var myChart = new xChart('line-dotted', mdata, '#playChartMonthly', mopts);
+
+
+    //plays per user
+     var udata = {
+      "xScale": "ordinal",
+      "yScale": "linear",
+      "main": [
+        {
+          "className": ".playcount",
+          "data": usersPlayFinal
+        }
+      ]
+    };
+    var uopts = {
+      //"dataFormatX": function (x) { return d3.time.format('%Y-%m-%d').parse(x); },
+      //"tickFormatX": function (x) { return x; },
+      "paddingLeft": ('35'),
+      "paddingRight": ('35'),
+      "paddingTop": ('10'),
+      "tickHintY": ('5'),
+      "mouseover": function (d, i) {
+        var pos = $(this).offset();
+        $(tt).text(d.x + ': ' + d.y + ' play(s)')
+          .css({top: topOffset + pos.top, left: pos.left + leftOffset})
+          .show();
+      },
+      "mouseout": function (x) {
+        $(tt).hide();
+      }
+    };
+    var myChart = new xChart('bar', udata, '#playChartUser', uopts);
+
 }
 
 

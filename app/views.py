@@ -133,14 +133,17 @@ def stats():
     for hour in hourly:
         hourlyJSON.append({"y": hour[0], "x": hour[1].time.strftime("%Y-%m-%d %H")})
 
-
-
     maxhourly = db.session.query(db.func.count(db.extract('hour', models.Processed.time)), models.Processed).group_by(db.extract('hour', models.Processed.time)).order_by(db.extract('hour', models.Processed.time).desc()).all()
     maxhourlyJSON = list()
     for hour in maxhourly:
         maxhourlyJSON.append({"y": hour[0], "x": hour[1].time.strftime("%H")})
 
-    return render_template('stats.html', hourly=hourlyJSON, daily=dailyJSON, monthly=monthlyJSON, maxhourly=maxhourlyJSON, title=_('Statistics'))
+    playperuser = db.session.query(db.func.count(models.Processed.title), models.Processed).filter(models.Processed.time >= datetime.datetime.now() - datetime.timedelta(days=360)).group_by(models.Processed.user).order_by(db.func.count(models.Processed.title).desc()).all()
+    playperuserJSON = list()
+    for play in playperuser:
+        playperuserJSON.append({"y": play[0], "x": play[1].user})
+
+    return render_template('stats.html', hourly=hourlyJSON, daily=dailyJSON, monthly=monthlyJSON, maxhourly=maxhourlyJSON, userplays=playperuserJSON, title=_('Statistics'))
 
 
 @app.route("/setup", methods=("GET", "POST"))

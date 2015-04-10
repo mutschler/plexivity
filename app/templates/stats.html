@@ -6,7 +6,7 @@
   <div class="col-sm-6">
     <section class='wellbg'>
       <div class='history-charts-header'>
-        <strong>{{_('Hourly Plays')}} </strong>({{_('Last 24 Hours')}})<br>
+        <strong>{{_('Hourly Plays')}} </strong>({{_('Last 24 Hours')}})
       </div>
       <div class='history-charts-instance-chart' id='playChartHourly' style="height: 200px"></div>
     </section>
@@ -14,7 +14,7 @@
   <div class="col-sm-6">
     <section>
     <div class='history-charts-header'>
-        <strong>{{_('Max Hourly Plays')}}<br>
+        <strong>{{_('Max Hourly Plays')}}</strong>
       </div>
       <div class='history-charts-instance-chart' id='playChartMaxHourly' style="height: 200px"></div>
       </section>
@@ -25,7 +25,7 @@
   <div class="col-sm-6">
     <section>
     <div class='history-charts-header'>
-        <strong>{{_('Daily Plays')}}<br>
+        <strong>{{_('Daily Plays')}}</strong>
       </div>
       <div class='history-charts-instance-chart' id='playChartDaily' style="height: 200px"></div>
       </section>
@@ -34,9 +34,20 @@
   <div class="col-sm-6">
     <section>
     <div class='history-charts-header'>
-        <strong>{{_('Monthly Plays')}}<br>
+        <strong>{{_('Monthly Plays')}}</strong>
       </div>
       <div class='history-charts-instance-chart' id='playChartMonthly' style="height: 200px"></div>
+      </section>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <section>
+      <div class='history-charts-header'>
+        <strong>{{_('Plays by user')}} </strong>({{_('Last 30 days')}})
+      </div>
+      <div class='history-charts-instance-chart' id='playChartUser' style="height: 200px"></div>
       </section>
   </div>
 </div>
@@ -46,6 +57,7 @@ var dailyPlayFinal = {{daily|tojson|safe}}
 var monthlyPlayFinal = {{monthly|tojson|safe}}
 var maxhourlyPlayFinal = {{maxhourly|tojson|safe}}
 var hourlyPlayFinal = {{hourly|tojson|safe}}
+var usersPlayFinal = {{userplays|tojson|safe}}
 </script>
 
 {% endblock %}

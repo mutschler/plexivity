@@ -141,7 +141,7 @@ def stats():
     for hour in maxhourly:
         maxhourlyJSON.append({"y": hour[0], "x": hour[1].time.strftime("%H")})
 
-    playperuser = db.session.query(db.func.count(models.Processed.title), models.Processed).filter(models.Processed.time >= datetime.datetime.now() - datetime.timedelta(days=360)).group_by(models.Processed.user).order_by(db.func.count(models.Processed.title).desc()).all()
+    playperuser = db.session.query(db.func.count(models.Processed.title), models.Processed).filter(models.Processed.time >= datetime.datetime.now() - datetime.timedelta(days=30)).group_by(models.Processed.user).order_by(db.func.count(models.Processed.title).desc()).all()
     playperuserJSON = list()
     for play in playperuser:
         playperuserJSON.append({"y": play[0], "x": play[1].user})

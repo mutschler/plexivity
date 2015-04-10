@@ -219,7 +219,7 @@ def process_start(xml_string, db_key, info):
     new.session_id = db_key
     new.title = info["title"]
     new.platform = info["platform"]
-    new.user = info["user"]
+    new.user = info["orig_user"]
     new.orig_title = info["orig_title"]
     new.orig_title_ep = info["orig_title_ep"]
     new.duration = info["raw_length"]

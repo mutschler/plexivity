@@ -92,6 +92,8 @@ class Settings(Form):
     PAUSE_MESSAGE = StringField(lazy_gettext('String for paused notification'), validators=[DataRequired()], default=config.PAUSE_MESSAGE)
     NOTIFY_RESUME = BooleanField(lazy_gettext('Send notification on resume'), default=config.NOTIFY_RESUME)
     RESUME_MESSAGE = StringField(lazy_gettext('String for resume notification'), validators=[DataRequired()], default=config.RESUME_MESSAGE)
+    NOTIFY_RECENTLYADDED = BooleanField(lazy_gettext('Send notification for recently added media'), default=config.NOTIFY_RECENTLYADDED)
+    RECENTLYADDED_MESSAGE = StringField(lazy_gettext('String for recently added notification'), validators=[DataRequired()], default=config.RECENTLYADDED_MESSAGE)
 
 
 class ExtendedRegisterForm2(Form):

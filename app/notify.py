@@ -17,6 +17,42 @@ def task():
     started = get_started()
     playing = dict()
 
+    recentlyAdded = p.recentlyAdded()
+
+    if len(recentlyAdded):
+        logger.debug("processing recently added media")
+
+    for x in recentlyAdded:
+        check = db.session.query(models.RecentlyAdded).filter(models.RecentlyAdded.item_id == x.get("ratingKey")).first()
+        if check:
+            logger.debug("already notified for recently added '%s'" % check.title)
+            continue
+
+        if x.get("type") == "season" or x.get("type") == "epsiode":
+            fullseason = p.episodes(x.get("ratingKey"))
+            for ep in fullseason:
+                if x.get("addedAt") == ep.get("addedAt"):
+                    xml = p.getInfo(ep.get("ratingKey")).find("Video")
+        else:
+            xml = p.getInfo(x.get('ratingKey')).find("Video")
+
+        if not xml:
+            logger.error("error loading xml for recently added entry")
+            continue
+
+        info = info_from_xml(xml, "recentlyadded", 1, 1, 0)
+        info["added"] = datetime.datetime.fromtimestamp(float(x.get("addedAt"))).strftime("%Y-%m-%d %H:%M")
+
+        notify(info)
+        new = models.RecentlyAdded()
+        new.item_id = x.get("ratingKey")
+        new.time = datetime.datetime.now()
+        new.filename = xml.find("Media").find("Part").get("file")
+        new.title = info["title"]
+        new.debug = "%s" % info
+        db.session.merge(new)
+        db.session.commit()
+
     if not len(live):
         logger.debug("seems like nothing is currently played")
 
@@ -306,7 +342,12 @@ def notify(info):
     #notify all providers with the given stuff...
     logger.debug("notify called with args: %s" % info)
 
-    if info["ntype"] == "start" and config.NOTIFY_START:
+    if info["ntype"] == "recentlyadded" and config.NOTIFY_RECENTLYADDED:
+        try:
+            message = config.RECENTLYADDED_MESSAGE % info
+        except KeyError:
+            logger.error("Unable to map info to your recently added notification string. Please check your settings!")
+    elif info["ntype"] == "start" and config.NOTIFY_START:
         try:
             message = config.START_MESSAGE % info
         except KeyError:
@@ -364,12 +405,18 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
     state = "unknown"
     if "watched" in ntype or "stop" in ntype:
         state = "stopped"
+    elif "recentlyadded" in ntype:
+        state = "recentlyadded"
     else:
         state = xml.find("Player").get("state")
         if "buffering" in state:
             state = "playing"
 
-    ma_id = xml.find('Player').get('machineIdentifier')
+    try:
+        ma_id = xml.find('Player').get('machineIdentifier')
+    except:
+        ma_id = "n/a"
+
     ratingKey = xml.get("ratingKey")
     parentRatingKey = xml.get("parentRatingKey")
 
@@ -415,23 +462,34 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
     if paused:
         duration = duration - datetime.timedelta(seconds=paused)
 
-    percent_complete = "%.0f" % float( float(xml.get("viewOffset")) / float(xml.get("duration")) * 100 )
+    if not ntype == "recentlyadded":
+        percent_complete = "%.0f" % float( float(xml.get("viewOffset")) / float(xml.get("duration")) * 100 )
+    else:
+        percent_complete = "n/a"
 
     title = xml.get("title")
-    if xml.find("Player").get("title"):
+    if xml.find("Player") and xml.find("Player").get("title"):
         platform = xml.find("Player").get("title")
-    else:
+    elif xml.find("Player"):
         platform = xml.find("Player").get("platform")
+    else:
+        platform = "n/a"
 
-    length = int(xml.get("duration")) / 1000
-    orig_user = xml.find("User").get("title")
-    if not orig_user:
-        orig_user = "Local"
+    if not ntype == "recentlyadded":
+        raw_length = int(xml.get("duration"))
+        orig_user = xml.find("User").get("title")
+        if not orig_user:
+            orig_user = "Local"
 
-    userID = xml.find("User").get("id")
-    if not userID:
-        userID = "Local"
+        userID = xml.find("User").get("id")
+        if not userID:
+            userID = "Local"
+    else:
+        orig_user = "n/a"
+        userID = "n/a"
+        raw_length = int(xml.find("Media").get("duration")) if len(xml.find("Media")) else 0
 
+    length = "%d %s" % ((raw_length / 1000) / 60 , "min")
     year = xml.get("year")
     rating = xml.get("contentRating")
     summary = xml.get("summary")
@@ -459,41 +517,42 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
             title = "%s - s%02de%02d" % (title, int(season), int(episode))
 
     info = {
+        "added": datetime.datetime.fromtimestamp(float(xml.get("addedAt"))).strftime("%Y-%m-%d %H:%M") if xml.get("addedAt") else "n/a",
         "user": config.USER_NAME_MAP[orig_user] if orig_user in config.USER_NAME_MAP else orig_user,
         "type": xml.get("type"),
-        "genre": genre,
-        "userID": userID,
-        "orig_user": orig_user,
-        "title": title,
-        "orig_title": orig_title,
-        "orig_title_ep": orig_title_ep,
-        "episode": episode,
-        "season": season,
-        "platform": platform,
-        "time": time,
-        "stop_time": stop_time,
-        "start_time": start_time,
-        "rating": rating,
-        "year": year,
-        "platform": platform,
-        "summary": summary,
-        "duration": duration,
-        "length": length,
-        "raw_length": int(xml.get("duration")),
+        "genre": genre or "n/a",
+        "userID": userID or "n/a",
+        "orig_user": orig_user or "n/a",
+        "title": title or "n/a",
+        "orig_title": orig_title or "n/a",
+        "orig_title_ep": orig_title_ep or "n/a",
+        "episode": episode or "n/a",
+        "season": season or "n/a",
+        "platform": platform or "n/a",
+        "time": time if time > 1 else "n/a",
+        "stop_time": stop_time or "n/a",
+        "start_time": start_time or "n/a",
+        "rating": rating or "n/a",
+        "year": year or "n/a",
+        "platform": platform or "n/a",
+        "summary": summary or "n/a",
+        "duration": duration or "n/a",
+        "length": length or "n/a",
+        "raw_length": raw_length or "n/a",
         "ntype": ntype,
-        "progress": viewOffset,
-        "percent_complete": percent_complete,
-        "time_left": time_left,
-        "viewOffset": xml.get("viewOffset"),
+        "progress": viewOffset or "n/a",
+        "percent_complete": percent_complete or "n/a",
+        "time_left": time_left or "n/a",
+        "viewOffset": xml.get("viewOffset") or "n/a",
         "state": state,
-        "transcoded": isTranscoded,
-        "streamtype": streamType,
-        "streamtype_extended": streamTypeExtended,
-        "transInfo": transInfo,
-        "machineIdentifier": ma_id,
-        "ratingKey": ratingKey,
-        "parentRatingKey": parentRatingKey,
-        "grandparentRatingKey": grandparentRatingKey
+        "transcoded": isTranscoded or "n/a",
+        "streamtype": streamType or "n/a",
+        "streamtype_extended": streamTypeExtended or "n/a",
+        "transInfo": transInfo or "n/a",
+        "machineIdentifier": ma_id or "n/a",
+        "ratingKey": ratingKey or "n/a",
+        "parentRatingKey": parentRatingKey or "n/a",
+        "grandparentRatingKey": grandparentRatingKey or "n/a"
     }
 
     return info

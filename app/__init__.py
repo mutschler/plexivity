@@ -34,7 +34,8 @@ def get_locale():
     if user is not None and hasattr(user, "locale"):
         return user.locale
 
-    return request.accept_languages.best_match(['de', "en", "fr", "es", "nl"])
+    translations = [str(translation) for translation in babel.list_translations()]
+    return request.accept_languages.best_match(translations)
 
 @babel.timezoneselector
 def get_timezone():
@@ -170,6 +171,14 @@ class MyFileAdmin(fileadmin.FileAdmin):
     def is_accessible_path(self, path):
         return current_user.has_role('admin')
 
+class RecentlyAddedView(MyModelView):
+    can_create = False
+    column_list = ('item_id', 'time', 'title')
+    column_searchable_list = ('debug', 'filename', 'title')
+
+    def __init__(self, session, **kwargs):
+        # You can pass name and other parameters if you want to
+        super(RecentlyAddedView, self).__init__(models.RecentlyAdded, db.session, **kwargs)
 
 class HistoryView(MyModelView):
     can_create = False
@@ -184,4 +193,5 @@ admin = Admin(app, name="plexivity", index_view=MyAdminIndexView())
 
 admin.add_view(UserView(db.session))
 admin.add_view(HistoryView(db.session, name="History"))
+admin.add_view(RecentlyAddedView(db.session, name="Recently Added"))
 admin.add_view(MyFileAdmin(config.DATA_DIR + '/cache/', name='Cached Files'))

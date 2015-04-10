@@ -94,15 +94,8 @@ class RecentlyAdded(db.Model):
     item_id = db.Column(db.Text, primary_key=True)
     time = db.Column(db.DateTime)
     debug = db.Column(db.Text)
-    file = db.Column(db.Integer)
-    twitter = db.Column(db.Integer)
-    growl = db.Column(db.Integer)
-    prowl = db.Column(db.Integer)
-    GNTP = db.Column(db.Integer)
-    EMAIL = db.Column(db.Integer)
-    pushover = db.Column(db.Integer)
-    boxcar = db.Column(db.Integer)
-    boxcar_v2 = db.Column(db.Integer)
+    filename = db.Column(db.Text)
+    title = db.Column(db.Text)
 
 
 class Grouped(db.Model):

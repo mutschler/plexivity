@@ -34,7 +34,7 @@ def get_locale():
     if user is not None and hasattr(user, "locale"):
         return user.locale
 
-    return request.accept_languages.best_match(['de', "en", "fr"])
+    return request.accept_languages.best_match(['de', "en", "fr", "es", "nl"])
 
 @babel.timezoneselector
 def get_timezone():

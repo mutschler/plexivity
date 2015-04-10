@@ -1,0 +1,869 @@
+# English translations for PROJECT.
+# Copyright (C) 2014 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# 
+# Translators:
+# Alberto Peset <psiete@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: plexivity\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2015-04-09 16:20+0200\n"
+"PO-Revision-Date: 2015-04-09 14:20+0000\n"
+"Last-Translator: Raphael\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/plexivity/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: app/__init__.py:65
+msgid "You do not have permission to view this resource."
+msgstr ""
+
+#: app/__init__.py:66
+#, python-format
+msgid "Thank you. Confirmation instructions have been sent to %(email)s."
+msgstr ""
+
+#: app/__init__.py:67
+msgid "Thank you. Your email has been confirmed."
+msgstr ""
+
+#: app/__init__.py:68
+msgid "Your email has already been confirmed."
+msgstr ""
+
+#: app/__init__.py:69
+msgid "Invalid confirmation token."
+msgstr ""
+
+#: app/__init__.py:70
+#, python-format
+msgid "%(email)s is already associated with an account."
+msgstr ""
+
+#: app/__init__.py:71
+msgid "Password does not match"
+msgstr ""
+
+#: app/__init__.py:72
+msgid "Passwords do not match"
+msgstr ""
+
+#: app/__init__.py:73
+msgid "Redirections outside the domain are forbidden"
+msgstr ""
+
+#: app/__init__.py:74
+msgid "Instructions to reset your password have been sent to the given mail."
+msgstr ""
+
+#: app/__init__.py:75
+#, python-format
+msgid ""
+"You did not reset your password within %(within)s. New instructions have "
+"been sent to %(email)s."
+msgstr ""
+
+#: app/__init__.py:76
+msgid "Invalid reset password token."
+msgstr ""
+
+#: app/__init__.py:77
+msgid "Email requires confirmation."
+msgstr ""
+
+#: app/__init__.py:78
+#, python-format
+msgid "Confirmation instructions have been sent to %(email)s."
+msgstr ""
+
+#: app/__init__.py:79
+#, python-format
+msgid ""
+"You did not confirm your email within %(within)s. New instructions to "
+"confirm your email have been sent to %(email)s."
+msgstr ""
+
+#: app/__init__.py:80
+#, python-format
+msgid ""
+"You did not login within %(within)s. New instructions to login have been "
+"sent to %(email)s."
+msgstr ""
+
+#: app/__init__.py:81
+#, python-format
+msgid "Instructions to login have been sent to %(email)s."
+msgstr ""
+
+#: app/__init__.py:82
+msgid "Invalid login token."
+msgstr ""
+
+#: app/__init__.py:83
+msgid "Account is disabled."
+msgstr ""
+
+#: app/__init__.py:84
+msgid "Email not provided"
+msgstr ""
+
+#: app/__init__.py:85
+msgid "Invalid email address"
+msgstr ""
+
+#: app/__init__.py:86
+msgid "Password not provided"
+msgstr ""
+
+#: app/__init__.py:87
+msgid "No password is set for this user"
+msgstr ""
+
+#: app/__init__.py:88
+msgid "Password must be at least 6 characters"
+msgstr ""
+
+#: app/__init__.py:89
+msgid "Specified user does not exist"
+msgstr ""
+
+#: app/__init__.py:90
+msgid "Invalid password"
+msgstr ""
+
+#: app/__init__.py:91
+msgid "You have successfuly logged in."
+msgstr ""
+
+#: app/__init__.py:92
+msgid ""
+"You successfully reset your password and you have been logged in "
+"automatically."
+msgstr ""
+
+#: app/__init__.py:93
+msgid "Your new password must be different than your previous password."
+msgstr ""
+
+#: app/__init__.py:94
+msgid "You successfully changed your password."
+msgstr ""
+
+#: app/__init__.py:95
+msgid "Please log in to access this page."
+msgstr ""
+
+#: app/__init__.py:96
+msgid "Please reauthenticate to access this page."
+msgstr ""
+
+#: app/forms.py:40
+msgid "Hue Bridge IP"
+msgstr ""
+
+#: app/forms.py:43 app/forms.py:102 app/forms.py:113
+msgid "E-Mail"
+msgstr ""
+
+#: app/forms.py:44 app/forms.py:103 app/forms.py:114
+#: app/templates/login.html:15
+msgid "Password"
+msgstr "Contraseña"
+
+#: app/forms.py:45 app/templates/login.html:20
+msgid "Remember password"
+msgstr "Recordar contraseña"
+
+#: app/forms.py:66
+msgid "Plex Media Server Settings"
+msgstr ""
+
+#: app/forms.py:68
+msgid "Plex Media Server Host"
+msgstr ""
+
+#: app/forms.py:69
+msgid "Plex Media Server Port"
+msgstr ""
+
+#: app/forms.py:70
+msgid "Plex Username"
+msgstr ""
+
+#: app/forms.py:71
+msgid "Plex Password"
+msgstr ""
+
+#: app/forms.py:74
+msgid "use pushover for notifications"
+msgstr ""
+
+#: app/forms.py:75
+msgid "Pushover User-Token"
+msgstr ""
+
+#: app/forms.py:76
+msgid "Pushover App-Token"
+msgstr ""
+
+#: app/forms.py:78
+msgid "use mail for notifications"
+msgstr ""
+
+#: app/forms.py:79
+msgid "SMTP Mail Server"
+msgstr ""
+
+#: app/forms.py:80
+msgid "SMTP Server login"
+msgstr ""
+
+#: app/forms.py:81
+msgid "SMTP Server password"
+msgstr ""
+
+#: app/forms.py:82
+msgid "SMTP Mail Port"
+msgstr ""
+
+#: app/forms.py:83
+msgid "Sender Mail Information"
+msgstr ""
+
+#: app/forms.py:86
+msgid "plexivity port"
+msgstr ""
+
+#: app/forms.py:87
+msgid "Send notification on start"
+msgstr ""
+
+#: app/forms.py:88
+msgid "String for watching notification"
+msgstr ""
+
+#: app/forms.py:89
+msgid "Send notification on stop"
+msgstr ""
+
+#: app/forms.py:90
+msgid "String for stoped watching notification"
+msgstr ""
+
+#: app/forms.py:91
+msgid "Send notification on pause"
+msgstr ""
+
+#: app/forms.py:92
+msgid "String for paused notification"
+msgstr ""
+
+#: app/forms.py:93
+msgid "Send notification on resume"
+msgstr ""
+
+#: app/forms.py:94
+msgid "String for resume notification"
+msgstr ""
+
+#: app/forms.py:104 app/forms.py:115
+msgid "Retype password"
+msgstr ""
+
+#: app/forms.py:105 app/forms.py:116
+msgid "Language"
+msgstr "Idioma"
+
+#: app/helper.py:164
+msgid "just now"
+msgstr "ahora mismo"
+
+#: app/helper.py:166
+#, python-format
+msgid "%(int)s seconds ago"
+msgstr ""
+
+#: app/helper.py:170
+#, python-format
+msgid "%(int)s minuten ago"
+msgstr ""
+
+#: app/helper.py:172
+msgid "an hour ago"
+msgstr "hace una hora"
+
+#: app/helper.py:174
+#, python-format
+msgid "%(int)s hours ago"
+msgstr "hace %(int)s horas"
+
+#: app/helper.py:176
+msgid "Yesterday"
+msgstr "Ayer"
+
+#: app/helper.py:178
+#, python-format
+msgid "%(int)s days ago"
+msgstr ""
+
+#: app/helper.py:180
+#, python-format
+msgid "%(int)s weeks ago"
+msgstr ""
+
+#: app/helper.py:182
+#, python-format
+msgid "%(int)s months ago"
+msgstr ""
+
+#: app/helper.py:183
+#, python-format
+msgid "%(int)s years ago"
+msgstr ""
+
+#. NOTE: Test2
+#: app/views.py:65
+msgid "Unable to connect to PMS. Please check your settings"
+msgstr ""
+
+#: app/views.py:101 app/templates/include/history.html:26
+msgid "Currently watching..."
+msgstr ""
+
+#: app/views.py:143 app/templates/layout.html:61
+msgid "Statistics"
+msgstr "Estadísticas"
+
+#: app/views.py:150
+#, python-format
+msgid "User %(username)s created"
+msgstr "Creado el usuario %(username)s"
+
+#: app/views.py:159
+msgid "Setup"
+msgstr "Configuración"
+
+#: app/views.py:179 app/views.py:208
+#, python-format
+msgid "Successfully connected to Hue Bridge with ip %(ip)s"
+msgstr ""
+
+#: app/views.py:198
+msgid "Successfully disconnected from Hue Bridge"
+msgstr ""
+
+#: app/views.py:224 app/templates/layout.html:63
+msgid "Charts"
+msgstr "Gráficas"
+
+#: app/views.py:245
+msgid "Info"
+msgstr "Información"
+
+#: app/views.py:251 app/templates/layout.html:60
+msgid "History"
+msgstr "Historial"
+
+#: app/views.py:258
+msgid "Logged out"
+msgstr ""
+
+#: app/views.py:281 app/templates/layout.html:62
+msgid "Users"
+msgstr "Usuarios"
+
+#: app/views.py:315
+msgid "Settings saved!"
+msgstr "Ajustes guardados!"
+
+#: app/views.py:326 app/templates/layout.html:59
+msgid "Settings"
+msgstr "Ajustes"
+
+#: app/views.py:336
+msgid "Test notification successfully send"
+msgstr ""
+
+#: app/views.py:338
+msgid "unable to send test notification"
+msgstr ""
+
+#: app/templates/charts.html:9
+msgid "Top 10 (All Time)"
+msgstr ""
+
+#: app/templates/charts.html:20 app/templates/charts.html:30
+#: app/templates/charts.html:53 app/templates/charts.html:75
+#: app/templates/charts.html:97
+#, python-format
+msgid "%(count)s views"
+msgstr ""
+
+#: app/templates/charts.html:30 app/templates/info.html:25
+#: app/templates/info.html:155 app/templates/user.html:67
+#, python-format
+msgid "Season %(sn)s, Episode %(ep)s"
+msgstr ""
+
+#: app/templates/charts.html:43
+msgid "Top 10 Movies (All Time)"
+msgstr ""
+
+#: app/templates/charts.html:65
+msgid "Top 10 TV-Shows (All Time)"
+msgstr ""
+
+#: app/templates/charts.html:87
+msgid "Top 10 TV-Episodes (All Time)"
+msgstr ""
+
+#: app/templates/hue.html:8
+msgid "Connect to Hue"
+msgstr ""
+
+#: app/templates/hue.html:17
+msgid ""
+"Please press the Push Button on your Hue Bridge and press the button below"
+msgstr ""
+
+#: app/templates/hue.html:18
+msgid "Push Button Pressed"
+msgstr ""
+
+#: app/templates/hue.html:27
+#, python-format
+msgid "Already linked to Hue Bridge at \"%(bridge_ip)s\"."
+msgstr ""
+
+#: app/templates/hue.html:28
+msgid "Reset Hue Connection"
+msgstr ""
+
+#: app/templates/hue_settings.html:20
+msgid "All available lights"
+msgstr ""
+
+#: app/templates/info.html:33 app/templates/info.html:37
+msgid "Directed by"
+msgstr "Dirigido por"
+
+#: app/templates/info.html:33 app/templates/info.html:37
+#: app/templates/info.html:73 app/templates/info.html:83
+#: app/templates/info.html:95
+msgid "n/a"
+msgstr ""
+
+#: app/templates/info.html:34 app/templates/info.html:38
+#: app/templates/info.html:42 app/templates/info.html:46
+msgid "Rated"
+msgstr ""
+
+#: app/templates/info.html:35 app/templates/info.html:39
+#: app/templates/info.html:43 app/templates/info.html:47
+msgid "Runtime"
+msgstr ""
+
+#: app/templates/info.html:35 app/templates/info.html:39
+#: app/templates/info.html:43 app/templates/info.html:47
+msgid "Minutes"
+msgstr "Minutos"
+
+#: app/templates/info.html:41 app/templates/info.html:45
+msgid "Studio"
+msgstr "Estudio"
+
+#: app/templates/info.html:123
+#, python-format
+msgid "Episode %(ep)s"
+msgstr ""
+
+#: app/templates/info.html:138
+#, python-format
+msgid "The most watched episodes of \"%(showname)s\" are"
+msgstr ""
+
+#: app/templates/layout.html:4
+msgid "plexivity"
+msgstr ""
+
+#: app/templates/layout.html:49
+msgid "Toggle navigation"
+msgstr ""
+
+#: app/templates/layout.html:65
+msgid "Admin"
+msgstr ""
+
+#: app/templates/layout.html:67
+msgid "Logout"
+msgstr "Cerrar sesión"
+
+#: app/templates/layout.html:69 app/templates/login.html:23
+#: app/templates/login.html:26 app/templates/security/login_user.html:9
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#: app/templates/layout.html:111
+msgid "No data available in table"
+msgstr ""
+
+#: app/templates/layout.html:112
+msgid "Showing _START_ to _END_ of _TOTAL_ entries"
+msgstr ""
+
+#: app/templates/layout.html:113
+msgid "Showing 0 to 0 of 0 entries"
+msgstr ""
+
+#: app/templates/layout.html:114
+msgid "(filtered from _MAX_ total entries)"
+msgstr ""
+
+#: app/templates/layout.html:117
+msgid "Show _MENU_ entries"
+msgstr ""
+
+#: app/templates/layout.html:118
+msgid "Loading..."
+msgstr "Cargando..."
+
+#: app/templates/layout.html:119
+msgid "Processing..."
+msgstr ""
+
+#: app/templates/layout.html:120
+msgid "Search:"
+msgstr ""
+
+#: app/templates/layout.html:121
+msgid "No matching records found"
+msgstr ""
+
+#: app/templates/layout.html:123
+msgid "First"
+msgstr "Primero"
+
+#: app/templates/layout.html:124
+msgid "Last"
+msgstr "Último"
+
+#: app/templates/layout.html:125
+msgid "Next"
+msgstr "Siguiente"
+
+#: app/templates/layout.html:126
+msgid "Previous"
+msgstr "Anterior"
+
+#: app/templates/layout.html:129
+msgid ": activate to sort column ascending"
+msgstr ""
+
+#: app/templates/layout.html:130
+msgid ": activate to sort column descending"
+msgstr ""
+
+#: app/templates/login.html:11
+msgid "Username"
+msgstr ""
+
+#: app/templates/settings.html:8
+msgid "Save settings"
+msgstr "Guardar ajustes"
+
+#: app/templates/settings.html:12
+msgid "The following Options are available for Message formating:"
+msgstr ""
+
+#: app/templates/settings.html:17
+msgid "Processed username based on USER_NAME_MAP"
+msgstr ""
+
+#: app/templates/settings.html:19
+msgid "Processed title of currently playing media"
+msgstr ""
+
+#: app/templates/settings.html:21
+msgid ""
+"the platform from which the media is played back (ex. Plexweb (Chrome))"
+msgstr ""
+
+#: app/templates/settings.html:23
+msgid "the type of media: \"episode\" or \"movie\""
+msgstr ""
+
+#: app/templates/settings.html:25
+msgid "a string of genres (if available) in format \"Horror|Fantasy\""
+msgstr ""
+
+#: app/templates/settings.html:27
+msgid "PMS user id"
+msgstr ""
+
+#: app/templates/settings.html:29
+msgid "Original, unprocessed username"
+msgstr ""
+
+#: app/templates/settings.html:31
+msgid "unprocessed original title of currently playing media"
+msgstr ""
+
+#: app/templates/settings.html:33
+msgid "unprocessed original title of currently playing episode"
+msgstr ""
+
+#: app/templates/settings.html:35
+msgid "current season"
+msgstr ""
+
+#: app/templates/settings.html:37
+msgid "current episode"
+msgstr ""
+
+#: app/templates/settings.html:39
+msgid "playback time in seconds"
+msgstr ""
+
+#: app/templates/settings.html:41
+msgid "time the playback started"
+msgstr ""
+
+#: app/templates/settings.html:43
+msgid "time the playback stopped"
+msgstr ""
+
+#: app/templates/settings.html:45
+msgid "Media content rating"
+msgstr ""
+
+#: app/templates/settings.html:47
+msgid "Media distribution year"
+msgstr ""
+
+#: app/templates/settings.html:49
+msgid "Summary of the currently playing media"
+msgstr ""
+
+#: app/templates/settings.html:51
+msgid "duration in seconds"
+msgstr ""
+
+#: app/templates/settings.html:53
+msgid "notification type, can be start, stop, pause or resume"
+msgstr ""
+
+#: app/templates/settings.html:55
+msgid "the view offset in seconds"
+msgstr ""
+
+#: app/templates/settings.html:57
+msgid "view offset in percent"
+msgstr ""
+
+#: app/templates/settings.html:59
+msgid "how much playback time left"
+msgstr ""
+
+#: app/templates/settings.html:61
+msgid "if the media is transcoded this will be 1 else 0"
+msgstr ""
+
+#: app/templates/settings.html:63
+msgid "information about the transcode"
+msgstr ""
+
+#: app/templates/settings.html:65
+msgid "T for transcode or D for direct play"
+msgstr ""
+
+#: app/templates/settings.html:67
+msgid "Audio and Video informations on Transcode else \"Direct Play\""
+msgstr ""
+
+#: app/templates/settings.html:69
+msgid "the machine identifier"
+msgstr ""
+
+#: app/templates/settings.html:74
+msgid "Example"
+msgstr "Ejemplo"
+
+#: app/templates/settings.html:120
+msgid "Test Notifications"
+msgstr ""
+
+#: app/templates/settings.html:123
+msgid "Connect Hue"
+msgstr ""
+
+#: app/templates/setup.html:9
+#, python-format
+msgid "Data will be saved to \"%(data_dir)s\""
+msgstr ""
+
+#: app/templates/setup.html:10
+msgid ""
+"If you already had a runnig installation please copy \"config.ini\" and "
+"\"plexivity.db\" to this directory and restart plexivity"
+msgstr ""
+
+#: app/templates/setup.html:13 app/templates/security/register_user.html:9
+msgid "Create Account"
+msgstr ""
+
+#: app/templates/stats.html:9
+msgid "Hourly Plays"
+msgstr ""
+
+#: app/templates/stats.html:9
+msgid "Last 24 Hours"
+msgstr ""
+
+#: app/templates/stats.html:17
+msgid "Max Hourly Plays"
+msgstr ""
+
+#: app/templates/stats.html:28
+msgid "Daily Plays"
+msgstr ""
+
+#: app/templates/stats.html:37
+msgid "Monthly Plays"
+msgstr ""
+
+#: app/templates/user.html:34
+msgid "Platform Stats"
+msgstr ""
+
+#: app/templates/user.html:57
+msgid "Recently watched"
+msgstr ""
+
+#: app/templates/users.html:9 app/templates/include/history.html:9
+#: app/templates/include/history_new.html:9
+msgid "User"
+msgstr "Usuario"
+
+#: app/templates/users.html:10
+msgid "Last Seen"
+msgstr ""
+
+#: app/templates/users.html:11
+msgid "Total Plays"
+msgstr ""
+
+#: app/templates/include/activity.html:1
+msgid "Currently playing"
+msgstr ""
+
+#: app/templates/include/activity.html:29
+#, python-format
+msgid "%(user)s is watching"
+msgstr ""
+
+#: app/templates/include/activity.html:31
+#, python-format
+msgid "%(user)s has paused"
+msgstr ""
+
+#: app/templates/include/activity.html:33
+#, python-format
+msgid "%(user)s is buffering"
+msgstr ""
+
+#: app/templates/include/activity.html:57
+msgid "Nothing is currently playing"
+msgstr ""
+
+#: app/templates/include/history.html:8
+#: app/templates/include/history_new.html:8
+msgid "Date"
+msgstr "Fecha"
+
+#: app/templates/include/history.html:10
+#: app/templates/include/history_new.html:10
+msgid "Platform"
+msgstr "Plataforma"
+
+#: app/templates/include/history.html:11
+#: app/templates/include/history_new.html:11
+msgid "Title"
+msgstr "Título"
+
+#: app/templates/include/history.html:12
+#: app/templates/include/history_new.html:12
+msgid "Type"
+msgstr ""
+
+#: app/templates/include/history.html:13
+#: app/templates/include/history_new.html:13
+msgid "Stream Info"
+msgstr ""
+
+#: app/templates/include/history.html:14
+#: app/templates/include/history_new.html:14
+msgid "Started"
+msgstr ""
+
+#: app/templates/include/history.html:15
+#: app/templates/include/history_new.html:15
+msgid "Paused"
+msgstr ""
+
+#: app/templates/include/history.html:16
+#: app/templates/include/history_new.html:16
+msgid "Stopped"
+msgstr ""
+
+#: app/templates/include/history.html:17
+#: app/templates/include/history_new.html:17
+msgid "Duration"
+msgstr "Duración"
+
+#: app/templates/include/history.html:18
+#: app/templates/include/history_new.html:18
+msgid "Completed"
+msgstr "Completado"
+
+#: app/templates/include/recently_added.html:1
+msgid "Recently Added"
+msgstr "Añadido recientemente"
+
+#: app/templates/security/forgot_password.html:8
+msgid "Send password reset instructions"
+msgstr ""
+
+#: app/templates/security/forgot_password.html:9
+msgid "Recover Password"
+msgstr ""
+
+#: app/templates/security/reset_password.html:8
+#: app/templates/security/reset_password.html:9
+msgid "Reset Password"
+msgstr ""
+
+#~ msgid "plexivity data directory"
+#~ msgstr ""
+
+#~ msgid "you are now logged in as: '%(username)s'"
+#~ msgstr ""
+
+#~ msgid "username/password missmatch or no such user in database"
+#~ msgstr ""
+
+#~ msgid "login"
+#~ msgstr ""
+
+#~ msgid "Instructions to reset your password have been sent to %(email)s."
+#~ msgstr ""
+
+#~ msgid "Instructions to reset your password have been sent to %s."
+#~ msgstr ""
+
+#~ msgid "Username of current user"
+#~ msgstr ""

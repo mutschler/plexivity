@@ -11,6 +11,7 @@ from lib.daemon import Daemon
 def run_app():
     from subprocess import Popen
     import sys
+    os.chdir(os.path.abspath(os.path.dirname(__file__)))
     path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "manage.py")
     args = [sys.executable, path, "db"]
     if not os.path.exists(os.path.join(config.DATA_DIR, "plexivity.db")):

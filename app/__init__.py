@@ -117,6 +117,7 @@ apimanager = APIManager(app, flask_sqlalchemy_db=db, preprocessors=dict(GET_SING
 # default. Allowed HTTP methods can be specified as well.
 apimanager.create_api(models.User, methods=['GET', 'POST', 'DELETE'], exclude_columns=['password'])
 apimanager.create_api(models.Processed, methods=['GET', 'DELETE'], collection_name='history')
+apimanager.create_api(models.RecentlyAdded, methods=['GET', 'DELETE'], collection_name='recently-added')
 
 security = Security(app, views.user_datastore, register_form=forms.ExtendedRegisterForm2, login_form=forms.Login)
 

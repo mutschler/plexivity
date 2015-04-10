@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plexivity\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-04-09 16:20+0200\n"
-"PO-Revision-Date: 2015-04-09 14:20+0000\n"
+"POT-Creation-Date: 2015-04-10 18:18+0200\n"
+"PO-Revision-Date: 2015-04-10 16:19+0000\n"
 "Last-Translator: Raphael\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/plexivity/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -19,146 +19,146 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/__init__.py:65
+#: app/__init__.py:66
 msgid "You do not have permission to view this resource."
 msgstr ""
 
-#: app/__init__.py:66
+#: app/__init__.py:67
 #, python-format
 msgid "Thank you. Confirmation instructions have been sent to %(email)s."
 msgstr ""
 
-#: app/__init__.py:67
+#: app/__init__.py:68
 msgid "Thank you. Your email has been confirmed."
 msgstr ""
 
-#: app/__init__.py:68
+#: app/__init__.py:69
 msgid "Your email has already been confirmed."
 msgstr ""
 
-#: app/__init__.py:69
+#: app/__init__.py:70
 msgid "Invalid confirmation token."
 msgstr ""
 
-#: app/__init__.py:70
+#: app/__init__.py:71
 #, python-format
 msgid "%(email)s is already associated with an account."
 msgstr ""
 
-#: app/__init__.py:71
+#: app/__init__.py:72
 msgid "Password does not match"
 msgstr ""
 
-#: app/__init__.py:72
+#: app/__init__.py:73
 msgid "Passwords do not match"
 msgstr ""
 
-#: app/__init__.py:73
+#: app/__init__.py:74
 msgid "Redirections outside the domain are forbidden"
 msgstr ""
 
-#: app/__init__.py:74
+#: app/__init__.py:75
 msgid "Instructions to reset your password have been sent to the given mail."
 msgstr ""
 
-#: app/__init__.py:75
+#: app/__init__.py:76
 #, python-format
 msgid ""
 "You did not reset your password within %(within)s. New instructions have "
 "been sent to %(email)s."
 msgstr ""
 
-#: app/__init__.py:76
+#: app/__init__.py:77
 msgid "Invalid reset password token."
 msgstr ""
 
-#: app/__init__.py:77
+#: app/__init__.py:78
 msgid "Email requires confirmation."
 msgstr ""
 
-#: app/__init__.py:78
+#: app/__init__.py:79
 #, python-format
 msgid "Confirmation instructions have been sent to %(email)s."
 msgstr ""
 
-#: app/__init__.py:79
+#: app/__init__.py:80
 #, python-format
 msgid ""
 "You did not confirm your email within %(within)s. New instructions to "
 "confirm your email have been sent to %(email)s."
 msgstr ""
 
-#: app/__init__.py:80
+#: app/__init__.py:81
 #, python-format
 msgid ""
 "You did not login within %(within)s. New instructions to login have been "
 "sent to %(email)s."
 msgstr ""
 
-#: app/__init__.py:81
+#: app/__init__.py:82
 #, python-format
 msgid "Instructions to login have been sent to %(email)s."
 msgstr ""
 
-#: app/__init__.py:82
+#: app/__init__.py:83
 msgid "Invalid login token."
 msgstr ""
 
-#: app/__init__.py:83
+#: app/__init__.py:84
 msgid "Account is disabled."
 msgstr ""
 
-#: app/__init__.py:84
+#: app/__init__.py:85
 msgid "Email not provided"
 msgstr ""
 
-#: app/__init__.py:85
+#: app/__init__.py:86
 msgid "Invalid email address"
 msgstr ""
 
-#: app/__init__.py:86
+#: app/__init__.py:87
 msgid "Password not provided"
 msgstr ""
 
-#: app/__init__.py:87
+#: app/__init__.py:88
 msgid "No password is set for this user"
 msgstr ""
 
-#: app/__init__.py:88
+#: app/__init__.py:89
 msgid "Password must be at least 6 characters"
 msgstr ""
 
-#: app/__init__.py:89
+#: app/__init__.py:90
 msgid "Specified user does not exist"
 msgstr ""
 
-#: app/__init__.py:90
+#: app/__init__.py:91
 msgid "Invalid password"
 msgstr ""
 
-#: app/__init__.py:91
+#: app/__init__.py:92
 msgid "You have successfuly logged in."
 msgstr ""
 
-#: app/__init__.py:92
+#: app/__init__.py:93
 msgid ""
 "You successfully reset your password and you have been logged in "
 "automatically."
 msgstr ""
 
-#: app/__init__.py:93
+#: app/__init__.py:94
 msgid "Your new password must be different than your previous password."
 msgstr ""
 
-#: app/__init__.py:94
+#: app/__init__.py:95
 msgid "You successfully changed your password."
 msgstr ""
 
-#: app/__init__.py:95
+#: app/__init__.py:96
 msgid "Please log in to access this page."
 msgstr ""
 
-#: app/__init__.py:96
+#: app/__init__.py:97
 msgid "Please reauthenticate to access this page."
 msgstr ""
 
@@ -166,11 +166,11 @@ msgstr ""
 msgid "Hue Bridge IP"
 msgstr "Hue Bridge IP"
 
-#: app/forms.py:43 app/forms.py:102 app/forms.py:113
+#: app/forms.py:43 app/forms.py:104 app/forms.py:115
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: app/forms.py:44 app/forms.py:103 app/forms.py:114
+#: app/forms.py:44 app/forms.py:105 app/forms.py:116
 #: app/templates/login.html:15
 msgid "Password"
 msgstr "Wachtwoord"
@@ -271,11 +271,19 @@ msgstr ""
 msgid "String for resume notification"
 msgstr ""
 
-#: app/forms.py:104 app/forms.py:115
+#: app/forms.py:95
+msgid "Send notification for recently added media"
+msgstr ""
+
+#: app/forms.py:96
+msgid "String for recently added notification"
+msgstr ""
+
+#: app/forms.py:106 app/forms.py:117
 msgid "Retype password"
 msgstr "Geef nogmaals het wachtwoord"
 
-#: app/forms.py:105 app/forms.py:116
+#: app/forms.py:107 app/forms.py:118
 msgid "Language"
 msgstr "Taal"
 
@@ -326,70 +334,75 @@ msgstr ""
 msgid "%(int)s years ago"
 msgstr ""
 
+#: app/views.py:56
+#, python-format
+msgid "You are useing an incomplete translation please help! %(link)s"
+msgstr ""
+
 #. NOTE: Test2
-#: app/views.py:65
+#: app/views.py:68
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr ""
 
-#: app/views.py:101 app/templates/include/history.html:26
+#: app/views.py:104 app/templates/include/history.html:26
 msgid "Currently watching..."
 msgstr "Wordt momenteel bekeken"
 
-#: app/views.py:143 app/templates/layout.html:61
+#: app/views.py:149 app/templates/layout.html:61
 msgid "Statistics"
 msgstr "statistieken"
 
-#: app/views.py:150
+#: app/views.py:156
 #, python-format
 msgid "User %(username)s created"
 msgstr "Gebruiker %(username)s aangemaakt"
 
-#: app/views.py:159
+#: app/views.py:165
 msgid "Setup"
 msgstr ""
 
-#: app/views.py:179 app/views.py:208
+#: app/views.py:185 app/views.py:214
 #, python-format
 msgid "Successfully connected to Hue Bridge with ip %(ip)s"
 msgstr ""
 
-#: app/views.py:198
+#: app/views.py:204
 msgid "Successfully disconnected from Hue Bridge"
 msgstr ""
 
-#: app/views.py:224 app/templates/layout.html:63
+#: app/views.py:230 app/templates/layout.html:63
 msgid "Charts"
 msgstr ""
 
-#: app/views.py:245
+#: app/views.py:251
 msgid "Info"
 msgstr "Info"
 
-#: app/views.py:251 app/templates/layout.html:60
+#: app/views.py:257 app/templates/layout.html:60
 msgid "History"
 msgstr "geschiedenis"
 
-#: app/views.py:258
+#: app/views.py:264
 msgid "Logged out"
 msgstr "Log uit"
 
-#: app/views.py:281 app/templates/layout.html:62
+#: app/views.py:287 app/templates/layout.html:62
 msgid "Users"
 msgstr "Gebruikers "
 
-#: app/views.py:315
+#: app/views.py:321
 msgid "Settings saved!"
 msgstr "Instellingen opgeslagen"
 
-#: app/views.py:326 app/templates/layout.html:59
+#: app/views.py:332 app/templates/layout.html:59
 msgid "Settings"
 msgstr "Instellingen"
 
-#: app/views.py:336
+#: app/views.py:342
 msgid "Test notification successfully send"
 msgstr ""
 
-#: app/views.py:338
+#: app/views.py:344
 msgid "unable to send test notification"
 msgstr ""
 
@@ -598,106 +611,110 @@ msgid "the type of media: \"episode\" or \"movie\""
 msgstr ""
 
 #: app/templates/settings.html:25
-msgid "a string of genres (if available) in format \"Horror|Fantasy\""
+msgid "length of the mediafile: 20 min"
 msgstr ""
 
 #: app/templates/settings.html:27
-msgid "PMS user id"
+msgid "a string of genres (if available) in format \"Horror|Fantasy\""
 msgstr ""
 
 #: app/templates/settings.html:29
-msgid "Original, unprocessed username"
+msgid "PMS user id"
 msgstr ""
 
 #: app/templates/settings.html:31
-msgid "unprocessed original title of currently playing media"
+msgid "Original, unprocessed username"
 msgstr ""
 
 #: app/templates/settings.html:33
-msgid "unprocessed original title of currently playing episode"
+msgid "unprocessed original title of currently playing media"
 msgstr ""
 
 #: app/templates/settings.html:35
-msgid "current season"
+msgid "unprocessed original title of currently playing episode"
 msgstr ""
 
 #: app/templates/settings.html:37
-msgid "current episode"
+msgid "current season"
 msgstr ""
 
 #: app/templates/settings.html:39
-msgid "playback time in seconds"
+msgid "current episode"
 msgstr ""
 
 #: app/templates/settings.html:41
-msgid "time the playback started"
+msgid "playback time in seconds"
 msgstr ""
 
 #: app/templates/settings.html:43
-msgid "time the playback stopped"
+msgid "time the playback started"
 msgstr ""
 
 #: app/templates/settings.html:45
-msgid "Media content rating"
+msgid "time the playback stopped"
 msgstr ""
 
 #: app/templates/settings.html:47
-msgid "Media distribution year"
+msgid "Media content rating"
 msgstr ""
 
 #: app/templates/settings.html:49
-msgid "Summary of the currently playing media"
+msgid "Media distribution year"
 msgstr ""
 
 #: app/templates/settings.html:51
-msgid "duration in seconds"
+msgid "Summary of the currently playing media"
 msgstr ""
 
 #: app/templates/settings.html:53
-msgid "notification type, can be start, stop, pause or resume"
+msgid "duration in seconds"
 msgstr ""
 
 #: app/templates/settings.html:55
-msgid "the view offset in seconds"
+msgid "notification type, can be start, stop, pause or resume"
 msgstr ""
 
 #: app/templates/settings.html:57
-msgid "view offset in percent"
+msgid "the view offset in seconds"
 msgstr ""
 
 #: app/templates/settings.html:59
-msgid "how much playback time left"
+msgid "view offset in percent"
 msgstr ""
 
 #: app/templates/settings.html:61
-msgid "if the media is transcoded this will be 1 else 0"
+msgid "how much playback time left"
 msgstr ""
 
 #: app/templates/settings.html:63
-msgid "information about the transcode"
+msgid "if the media is transcoded this will be 1 else 0"
 msgstr ""
 
 #: app/templates/settings.html:65
-msgid "T for transcode or D for direct play"
+msgid "information about the transcode"
 msgstr ""
 
 #: app/templates/settings.html:67
-msgid "Audio and Video informations on Transcode else \"Direct Play\""
+msgid "T for transcode or D for direct play"
 msgstr ""
 
 #: app/templates/settings.html:69
+msgid "Audio and Video informations on Transcode else \"Direct Play\""
+msgstr ""
+
+#: app/templates/settings.html:71
 msgid "the machine identifier"
 msgstr ""
 
-#: app/templates/settings.html:74
+#: app/templates/settings.html:76
 msgid "Example"
 msgstr "Voorbeeld"
 
-#: app/templates/settings.html:120
+#: app/templates/settings.html:122
 msgid "Test Notifications"
 msgstr ""
 
-#: app/templates/settings.html:123
+#: app/templates/settings.html:125
 msgid "Connect Hue"
 msgstr "Verbind Hue"
 
@@ -735,6 +752,14 @@ msgstr "Dagelijks afgespeeld"
 #: app/templates/stats.html:37
 msgid "Monthly Plays"
 msgstr "Maandelijkse afgespeeld"
+
+#: app/templates/stats.html:48
+msgid "Plays by user"
+msgstr ""
+
+#: app/templates/stats.html:48
+msgid "Last 30 days"
+msgstr ""
 
 #: app/templates/user.html:34
 msgid "Platform Stats"

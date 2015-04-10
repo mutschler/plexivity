@@ -52,6 +52,9 @@ def before_request():
     g.user = current_user
     g.plex = p
 
+    if current_user is not None and hasattr(current_user, "locale") and current_user.locale not in ['de','en']:
+        flash(_("You are useing an incomplete translation please help! %(link)s", link="https://www.transifex.com/projects/p/plexivity/"), "info")
+
     if not db.session.query(models.User).first() and not (request.url_rule.endpoint in ["setup", "static"]):
         return redirect(url_for("setup"))
 

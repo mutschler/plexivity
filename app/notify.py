@@ -468,16 +468,16 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
         percent_complete = "n/a"
 
     title = xml.get("title")
-    if xml.find("Player") and xml.find("Player").get("title"):
-        platform = xml.find("Player").get("title")
-    elif xml.find("Player"):
-        platform = xml.find("Player").get("platform")
-    else:
-        platform = "n/a"
 
     if not ntype == "recentlyadded":
         raw_length = int(xml.get("duration"))
         orig_user = xml.find("User").get("title")
+
+        if xml.find("Player").get("title"):
+            platform = xml.find("Player").get("title")
+        else:
+            platform = xml.find("Player").get("platform")
+
         if not orig_user:
             orig_user = "Local"
 
@@ -487,6 +487,7 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
     else:
         orig_user = "n/a"
         userID = "n/a"
+        platform = "n/a"
         raw_length = int(xml.find("Media").get("duration")) if len(xml.find("Media")) else 0
 
     length = "%d %s" % ((raw_length / 1000) / 60 , "min")
@@ -528,8 +529,7 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
         "orig_title_ep": orig_title_ep or "n/a",
         "episode": episode or "n/a",
         "season": season or "n/a",
-        "platform": platform or "n/a",
-        "time": time if time > 1 else "n/a",
+        "time": time if time else "n/a",
         "stop_time": stop_time or "n/a",
         "start_time": start_time or "n/a",
         "rating": rating or "n/a",

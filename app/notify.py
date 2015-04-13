@@ -43,15 +43,16 @@ def task():
         info = info_from_xml(xml, "recentlyadded", 1, 1, 0)
         info["added"] = datetime.datetime.fromtimestamp(float(x.get("addedAt"))).strftime("%Y-%m-%d %H:%M")
 
-        notify(info)
-        new = models.RecentlyAdded()
-        new.item_id = x.get("ratingKey")
-        new.time = datetime.datetime.now()
-        new.filename = xml.find("Media").find("Part").get("file")
-        new.title = info["title"]
-        new.debug = "%s" % info
-        db.session.merge(new)
-        db.session.commit()
+        if notify(info):
+            logger.info(u"adding %s to recently added table" % info["title"])
+            new = models.RecentlyAdded()
+            new.item_id = x.get("ratingKey")
+            new.time = datetime.datetime.now()
+            new.filename = xml.find("Media").find("Part").get("file")
+            new.title = info["title"]
+            new.debug = "%s" % info
+            db.session.merge(new)
+            db.session.commit()
 
     if not len(live):
         logger.debug("seems like nothing is currently played")
@@ -89,8 +90,8 @@ def task():
             logger.debug("sending notification for: %s : %s" % (info["user"], info["orig_title_ep"]))
 
             #TODO: fix this.... for now just dont notify again!
-            notify(info)
-            k.notified = 1
+            if notify(info):
+                k.notified = 1
 
             #make sure we have a stop time if we are not playing this anymore!
             if ntype == "stop":
@@ -127,8 +128,8 @@ def task():
                 #https://github.com/ljunkie/plexWatch/blob/master/plexWatch.pl#L552
 
                 info["decoded"] = 1
-                notify(info)
-                k.notified = 1
+                if notify(info):
+                    k.notified = 1
                 db.session.merge(k)
                 db.session.commit()
 
@@ -204,8 +205,8 @@ def task():
             logger.info("seems like this is a new entry: %s" % db_key)
             #unnotified insert to db and notify
             process_start(xml_string, db_key, info)
-            notify(info)
-            set_notified(db_key)
+            if notify(info):
+                set_notified(db_key)
 
 def set_notified(db_key):
     logger.debug("setting %s to notified" % db_key)
@@ -337,7 +338,7 @@ def notify(info):
 
     if "orig_user" in info and info["orig_user"] in config.EXCLUDE_USERS:
         logger.info("'%s' is set as an EXCLUDE_USER, i'm not sending a notification!" % info["orig_user"])
-        return False
+        return True
 
     #notify all providers with the given stuff...
     logger.debug("notify called with args: %s" % info)
@@ -372,28 +373,30 @@ def notify(info):
     else:
         message = False
 
+    status = False
+
     if config.NOTIFY_HUE:
         from app.providers import hue
-        hue.send_notification(info)
+        status = hue.send_notification(info)
 
     if message:
         if config.NOTIFY_PUSHOVER:
             from app.providers import pushover
-            pushover.send_notification(message)
+            status = pushover.send_notification(message)
 
         if config.NOTIFY_PUSHBULLET:
             from app.providers import pushbullet
-            pushbullet.send_notification(message)
+            status = pushbullet.send_notification(message)
 
         if config.NOTIFY_MAIL:
             from app.providers import mail
-            mail.send_notification(message)
+            status = mail.send_notification(message)
 
         if config.NOTIFY_BOXCAR:
             from app.providers import boxcar
-            boxcar.send_notification(message)
+            status = boxcar.send_notification(message)
 
-        return True
+        return status
 
     return False
 
@@ -523,36 +526,36 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
         "type": xml.get("type"),
         "genre": genre or "n/a",
         "userID": userID or "n/a",
-        "orig_user": orig_user or "n/a",
+        "orig_user": orig_user,
         "title": title or "n/a",
         "orig_title": orig_title or "n/a",
         "orig_title_ep": orig_title_ep or "n/a",
-        "episode": episode or "n/a",
-        "season": season or "n/a",
-        "time": time if time else "n/a",
-        "stop_time": stop_time or "n/a",
-        "start_time": start_time or "n/a",
+        "episode": episode,
+        "season": season,
+        "time": time,
+        "stop_time": stop_time,
+        "start_time": start_time,
         "rating": rating or "n/a",
-        "year": year or "n/a",
+        "year": year,
         "platform": platform or "n/a",
         "summary": summary or "n/a",
-        "duration": duration or "n/a",
+        "duration": duration,
         "length": length or "n/a",
-        "raw_length": raw_length or "n/a",
+        "raw_length": raw_length,
         "ntype": ntype,
-        "progress": viewOffset or "n/a",
-        "percent_complete": percent_complete or "n/a",
-        "time_left": time_left or "n/a",
-        "viewOffset": xml.get("viewOffset") or "n/a",
+        "progress": viewOffset,
+        "percent_complete": percent_complete,
+        "time_left": time_left,
+        "viewOffset": xml.get("viewOffset"),
         "state": state,
         "transcoded": isTranscoded or "n/a",
         "streamtype": streamType or "n/a",
         "streamtype_extended": streamTypeExtended or "n/a",
         "transInfo": transInfo or "n/a",
         "machineIdentifier": ma_id or "n/a",
-        "ratingKey": ratingKey or "n/a",
-        "parentRatingKey": parentRatingKey or "n/a",
-        "grandparentRatingKey": grandparentRatingKey or "n/a"
+        "ratingKey": ratingKey,
+        "parentRatingKey": parentRatingKey,
+        "grandparentRatingKey": grandparentRatingKey
     }
 
     return info

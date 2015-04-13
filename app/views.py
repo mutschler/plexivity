@@ -9,7 +9,7 @@ from app import app, db, models, forms, lm
 from app import helper, plex, config
 
 from flask.ext.login import login_required, logout_user
-from flask import url_for, render_template, g, redirect, flash, request, send_from_directory, send_file
+from flask import url_for, render_template, g, redirect, flash, request, send_from_directory, send_file, session
 from flask.ext.babel import gettext as _
 from babel.dates import format_timedelta
 
@@ -19,6 +19,8 @@ from flask.ext.security.utils import encrypt_password, login_user
 
 from datatables import DataTable
 
+import tweepy
+
 user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
 
 p = plex.Server(config.PMS_HOST, config.PMS_PORT)
@@ -26,6 +28,8 @@ p = plex.Server(config.PMS_HOST, config.PMS_PORT)
 app.jinja_env.globals.update(helper=helper)
 app.jinja_env.filters['timeago'] = helper.pretty_date
 app.jinja_env.filters['timestamp'] = helper.date_timestamp
+
+
 
 #workaround to load scheduler only once through debug time
 #TODO: remove this
@@ -39,6 +43,7 @@ def initialize():
         db.session.add(admin_role)
         db.session.add(user_role)
         db.session.commit()
+
     helper.startScheduler()
 
 
@@ -58,7 +63,6 @@ def before_request():
     if not db.session.query(models.User).first() and not (request.url_rule.endpoint in ["setup", "static"]):
         return redirect(url_for("setup"))
 
-
 @app.route("/")
 @login_required
 def index():
@@ -72,6 +76,34 @@ def index():
     else:
         stats = None
     return render_template('index.html', stats=stats, activity=g.plex.currentlyPlaying(), new=g.plex.recentlyAdded())
+
+@app.route("/twitter")
+def twitter():
+    auth = tweepy.OAuthHandler("T4NRPcEtUrCEU58FesRmRtkdW", "zmpbytgPpSbro6RZcXsKgYQoz24zLH3vYZHOHAAs5j33P4eoRg",  "http://"+ request.environ["HTTP_HOST"] + "/auth/twitter")
+    auth.set_access_token(config.TWITTER_ACCESS_TOKEN, config.TWITTER_ACCESS_TOKEN_SECRET)
+
+    api = tweepy.API(auth)
+    try:
+         if api.me().name:
+             return redirect(url_for('index'))
+    except tweepy.TweepError:
+        pass
+
+    redirect_url = auth.get_authorization_url()
+    session["request_token"] = auth.request_token
+    return redirect(redirect_url)
+
+@app.route("/auth/twitter")
+def auth_twitter():
+    verifier = request.args.get('oauth_verifier')
+    auth = tweepy.OAuthHandler("T4NRPcEtUrCEU58FesRmRtkdW", "zmpbytgPpSbro6RZcXsKgYQoz24zLH3vYZHOHAAs5j33P4eoRg")
+    token = session["request_token"]
+    auth.request_token = token
+    config.TWITTER_ACCESS_TOKEN, config.TWITTER_ACCESS_TOKEN_SECRET = auth.get_access_token(verifier)
+    config.configval["TWITTER_ACCESS_TOKEN"] = config.TWITTER_ACCESS_TOKEN
+    config.configval["TWITTER_ACCESS_TOKEN_SECRET"] = config.TWITTER_ACCESS_TOKEN_SECRET
+    config.save_config(config.configval)
+    return redirect(url_for('index'))
 
 #reload stuff
 @app.route("/load/activity")

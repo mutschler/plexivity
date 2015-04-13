@@ -396,6 +396,10 @@ def notify(info):
             from app.providers import boxcar
             status = boxcar.send_notification(message)
 
+        if config.NOTIFY_TWITTER:
+            from app.providers import twitter
+            status = twitter.send_notification(message)
+
         return status
 
     return False

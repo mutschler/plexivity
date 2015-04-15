@@ -138,7 +138,7 @@ def jsonhistory():
         ("platform"),
         ("title", lambda i: u'<a class="invert-link" href="{0}">{1}</a>'.format(url_for('info', id=i.get_xml_value('ratingKey')), i.title)),
         ("type", lambda i: "{}".format(i.get_xml_value("type"))),
-        ("streaminfo", lambda i: '<a href="{0}" class="orange" data-target="#streamModal" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a>'.format(url_for('streaminfo',id=i.id))),
+        ("streaminfo", lambda i: '<a href="#" data-link="{0}" class="orange" data-target="#streamModal" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a>'.format(url_for('streaminfo',id=i.id))),
         ("time",lambda i: "{}".format(i.time.strftime('%H:%M'))),
         ("paused_counter", lambda i: "{} min".format(int(i.paused_counter)/60) if i.paused_counter else "0 min" ),
         ("stopped", lambda i: "{}".format(i.stopped.strftime('%H:%M')) if i.stopped else "n/a"),

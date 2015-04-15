@@ -17,6 +17,7 @@ function recentlyAdded(){
                     while (!(stop).test(curnode.nodeName)) {
                         curnode=curnode.parentNode;
                     }
+
                     // Condidions to do this only on links to your own app
                     // if you want all links, use if('href' in curnode) instead.
                     if('href' in curnode && ( curnode.href.indexOf('http') || ~curnode.href.indexOf(location.host) ) ) {
@@ -258,5 +259,5 @@ $(document).ready(function() {
 
 $('#streamModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
-  $('#streamModal').load(button.attr("href"));
+  $('#streamModal').load(button.data("link"));
 })

@@ -176,7 +176,8 @@ class RecentlyAddedView(MyModelView):
     can_create = False
     column_list = ('item_id', 'time', 'title')
     column_searchable_list = ('debug', 'filename', 'title')
-
+    column_default_sort = ('time', True)
+    
     def __init__(self, session, **kwargs):
         # You can pass name and other parameters if you want to
         super(RecentlyAddedView, self).__init__(models.RecentlyAdded, db.session, **kwargs)
@@ -186,6 +187,7 @@ class HistoryView(MyModelView):
     column_list = ('time', 'user', 'title', 'platform', 'notified', 'stopped', 'paused', 'duration', 'view_offset')
     column_searchable_list = ('user', 'title', 'platform')
     column_filters = ('time', 'user', 'title', 'platform', 'notified', 'stopped', 'paused', 'duration', 'orig_title', 'season', 'episode', 'year')
+    column_default_sort = ('time', True)
 
     def __init__(self, session, **kwargs):
         # You can pass name and other parameters if you want to

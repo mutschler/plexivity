@@ -101,6 +101,7 @@ SHOW_LIBRARY_STATS = check_setting_int(CFG, 'General', 'SHOW_LIBRARY_STATS', 1)
 CheckSection('Advanced')
 EXCLUDE_USERS = check_setting_str(CFG, 'Advanced', 'EXCLUDE_USERS', ['user1','user2'])
 USER_NAME_MAP = json.loads(check_setting_str(CFG, 'Advanced', 'USER_NAME_MAP', json.dumps({'Local':'MyName', 'anotheruser': 'AnotherName'})))
+EXCLUDE_SECTIONS =  check_setting_str(CFG, 'Advanced', 'EXCLUDE_SECTIONS', [100,200])
 
 CheckSection('PMS')
 PMS_HOST = check_setting_str(CFG, 'PMS', 'PMS_HOST', 'localhost')
@@ -196,6 +197,7 @@ configval["TWITTER_ACCESS_TOKEN"] = TWITTER_ACCESS_TOKEN
 configval["TWITTER_ACCESS_TOKEN_SECRET"] = TWITTER_ACCESS_TOKEN_SECRET
 configval["TWITTER_USE_DM"] = TWITTER_USE_DM
 configval["TWITTER_DM_USER"] = TWITTER_DM_USER
+configval["EXCLUDE_SECTIONS"] = EXCLUDE_SECTIONS
 
 def save_config(configval):
     new_config = ConfigObj(interpolation=False)
@@ -219,6 +221,7 @@ def save_config(configval):
     new_config['Advanced'] = {}
     new_config['Advanced']['EXCLUDE_USERS'] = configval["EXCLUDE_USERS"]
     new_config['Advanced']['USER_NAME_MAP'] = configval["USER_NAME_MAP"]
+    new_config['Advanced']['EXCLUDE_SECTIONS'] = configval["EXCLUDE_SECTIONS"]
     new_config['Mail'] = {}
     new_config['Mail']['MAIL_PORT'] = int(configval["MAIL_PORT"])
     new_config['Mail']['MAIL_SERVER'] = configval["MAIL_SERVER"]

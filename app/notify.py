@@ -138,6 +138,10 @@ def task():
     was_started = dict()
     for k in live:
 
+        if k.get('librarySectionID') in config.EXCLUDE_SECTIONS:
+            logger.info("Watching something from section: %s which is in EXCLUDE_SECTIONS: %s" % (k.get('librarySectionID'), config.EXCLUDE_SECTIONS))
+            continue
+
         if k.get('type') == "clip":
             logger.info("Skipping Video-Clip like trailers, specials, scenes, interviews etc..")
             continue

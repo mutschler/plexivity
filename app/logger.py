@@ -9,11 +9,15 @@ WARNING = logging.WARNING
 MESSAGE = logging.INFO
 DEBUG = logging.DEBUG
 
+#log warnings for urllib3
+logging.captureWarnings(True)
+
 logger = logging.getLogger('plexivity')
 formatter = logging.Formatter('%(asctime)s %(name)s\t %(levelname)-8s: %(message)s', '%d.%m.%Y %H:%M:%S')
 rotation = logging.handlers.RotatingFileHandler(os.path.join(config.DATA_DIR, "plexivity.log"), maxBytes=2 * 1024 * 1024, backupCount=5)
 rotation.setFormatter(formatter)
 logger.addHandler(rotation)
+
 
 flask_logger = logging.getLogger('flask')
 flask_formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')

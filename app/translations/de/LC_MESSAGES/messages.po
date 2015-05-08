@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plexivity\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-04-10 18:18+0200\n"
-"PO-Revision-Date: 2015-04-10 16:23+0000\n"
+"POT-Creation-Date: 2015-05-08 15:10+0200\n"
+"PO-Revision-Date: 2015-05-08 13:11+0000\n"
 "Last-Translator: Raphael\n"
 "Language-Team: German (http://www.transifex.com/projects/p/plexivity/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -338,75 +338,75 @@ msgstr "vor %(int)s Monaten"
 msgid "%(int)s years ago"
 msgstr "vor %(int)s Jahren"
 
-#: app/views.py:56
+#: app/views.py:61
 #, python-format
 msgid "You are useing an incomplete translation please help! %(link)s"
 msgstr "unvollständige Übersetzung, bitte hilf mit! %(link)s"
 
 #. NOTE: Test2
-#: app/views.py:68
+#: app/views.py:72
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr "Verbindung zum PMS nicht möglich. Bitte Einstellungen überprüfen."
 
-#: app/views.py:104 app/templates/include/history.html:26
+#: app/views.py:136 app/templates/include/history.html:26
 msgid "Currently watching..."
 msgstr "Momentan abgespielt..."
 
-#: app/views.py:149 app/templates/layout.html:61
+#: app/views.py:181 app/templates/layout.html:61
 msgid "Statistics"
 msgstr "Statistik"
 
-#: app/views.py:156
+#: app/views.py:188
 #, python-format
 msgid "User %(username)s created"
 msgstr "Benutzer %(username)s angelegt"
 
-#: app/views.py:165
+#: app/views.py:197
 msgid "Setup"
 msgstr "Einrichtung"
 
-#: app/views.py:185 app/views.py:214
+#: app/views.py:217 app/views.py:246
 #, python-format
 msgid "Successfully connected to Hue Bridge with ip %(ip)s"
 msgstr "Verbindung zur Bridge hergestellt: %(ip)s"
 
-#: app/views.py:204
+#: app/views.py:236
 msgid "Successfully disconnected from Hue Bridge"
 msgstr "Verbindung von Hue Bridge getrennt"
 
-#: app/views.py:230 app/templates/layout.html:63
+#: app/views.py:262 app/templates/layout.html:63
 msgid "Charts"
 msgstr "Charts"
 
-#: app/views.py:251
+#: app/views.py:283
 msgid "Info"
 msgstr "Info"
 
-#: app/views.py:257 app/templates/layout.html:60
+#: app/views.py:289 app/templates/layout.html:60
 msgid "History"
 msgstr "Verlauf"
 
-#: app/views.py:264
+#: app/views.py:296
 msgid "Logged out"
 msgstr "Abgemeldet"
 
-#: app/views.py:287 app/templates/layout.html:62
+#: app/views.py:319 app/templates/layout.html:62
 msgid "Users"
 msgstr "Benutzer"
 
-#: app/views.py:321
+#: app/views.py:353
 msgid "Settings saved!"
 msgstr "Einstellungen gespeichert!"
 
-#: app/views.py:332 app/templates/layout.html:59
+#: app/views.py:364 app/templates/layout.html:59
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: app/views.py:342
+#: app/views.py:374
 msgid "Test notification successfully send"
 msgstr "Test-Benachrichtigung erfolgreich versendet."
 
-#: app/views.py:344
+#: app/views.py:376
 msgid "unable to send test notification"
 msgstr "Konnte Test-Benachrichtigung nicht senden."
 
@@ -721,6 +721,10 @@ msgstr "Teste Benachrichtigungen"
 #: app/templates/settings.html:125
 msgid "Connect Hue"
 msgstr "Mit Hue verbinden"
+
+#: app/templates/settings.html:128
+msgid "Connect Twitter"
+msgstr "Twitter Account Verknüpfen"
 
 #: app/templates/setup.html:9
 #, python-format

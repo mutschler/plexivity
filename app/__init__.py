@@ -56,7 +56,7 @@ app.logger.addHandler(flask_rotation)
 app.config['SECRET_KEY'] = config.SECRET_KEY
 
 app.config['SECURITY_CONFIRMABLE'] = False
-app.config['DEFAULT_MAIL_SENDER'] = 'info@site.com'
+app.config['DEFAULT_MAIL_SENDER'] = config.MAIL_FROM
 app.config['SECURITY_REGISTERABLE'] = False
 app.config['SECURITY_TRACKABLE'] = True
 app.config['SECURITY_PASSWORD_SALT'] = config.PASSWORD_SALT
@@ -198,4 +198,6 @@ admin = Admin(app, name="plexivity", index_view=MyAdminIndexView())
 admin.add_view(UserView(db.session))
 admin.add_view(HistoryView(db.session, name="History"))
 admin.add_view(RecentlyAddedView(db.session, name="Recently Added"))
-admin.add_view(MyFileAdmin(config.DATA_DIR + '/cache/', name='Cached Files'))
+
+if config.CACHE_IMAGES and os.path.exists(os.path.join(config.DATA_DIR, "cache")):
+    admin.add_view(MyFileAdmin(config.DATA_DIR + '/cache/', name='Cached Files'))

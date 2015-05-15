@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 
 from flask_wtf import Form
-from wtforms import StringField, PasswordField, BooleanField, IntegerField, SelectField, TextField
-from wtforms.validators import DataRequired, Email, EqualTo, NumberRange, IPAddress
+from wtforms import StringField, PasswordField, BooleanField, IntegerField, SelectField, TextField, Field
+from wtforms.widgets import TextInput, TextArea
+from wtforms.validators import DataRequired, Email, EqualTo, NumberRange, IPAddress, ValidationError
 from werkzeug.security import check_password_hash
 
 from flask.ext.babel import lazy_gettext
@@ -12,6 +13,45 @@ from flask.ext.security.utils import encrypt_password
 
 from app import config, babel, db, models
 import requests
+import json
+
+class TagListField(Field):
+    widget = TextInput()
+
+    def _value(self):
+        if self.data:
+            return u', '.join(self.data)
+        else:
+            return u''
+
+    def process_formdata(self, valuelist):
+        if valuelist:
+            self.data = [x.strip() for x in valuelist[0].split(',')]
+        else:
+            self.data = []
+
+def valid_json_check(form, field):
+    if type(field.data) != "dict":
+        try:
+            json_object = json.loads(field.data)
+        except ValueError, e:
+            raise ValidationError('Field must be valid JSON')
+    
+
+class JSONField(Field):
+    widget = TextArea()
+
+    def _value(self):
+        if self.data and json.loads(self.data):
+            return json.dumps(json.loads(self.data), sort_keys=True, indent=4, separators=(',', ': '))
+        else:
+            return u''
+
+    def process_formdata(self, value):
+        if value:
+            self.data = json.dumps(json.loads(value[0]))
+        else:
+            self.data = '{}'
 
 class RequiredIf(DataRequired):
     # a validator which makes a field required if
@@ -95,6 +135,9 @@ class Settings(Form):
     NOTIFY_RECENTLYADDED = BooleanField(lazy_gettext('Send notification for recently added media'), default=config.NOTIFY_RECENTLYADDED)
     RECENTLYADDED_MESSAGE = StringField(lazy_gettext('String for recently added notification'), validators=[DataRequired()], default=config.RECENTLYADDED_MESSAGE)
 
+    EXCLUDE_USERS = TagListField(lazy_gettext('Comma seperated list of plex usernames to exclude from notifications'), default=','.join(config.EXCLUDE_USERS))
+    EXCLUDE_SECTIONS = TagListField(lazy_gettext('Comma seperated list of plex section ids to exclude from notifications'), default=','.join(config.EXCLUDE_SECTIONS))
+    USER_NAME_MAP = JSONField(lazy_gettext('Map plex usernames to this names'), validators=[valid_json_check], default=config.USER_NAME_MAP)
 
 class ExtendedRegisterForm2(Form):
     all_locales = [('en', 'English')]

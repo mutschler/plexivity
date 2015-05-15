@@ -49,9 +49,12 @@ class JSONField(Field):
 
     def process_formdata(self, value):
         if value:
-            self.data = json.dumps(json.loads(value[0]))
+            if value[0] != "":
+                self.data = json.dumps(json.loads(value[0]))
+            else:
+                self.data = json.dumps(dict())
         else:
-            self.data = '{}'
+            self.data = json.dumps(dict())
 
 class RequiredIf(DataRequired):
     # a validator which makes a field required if
@@ -137,7 +140,7 @@ class Settings(Form):
 
     EXCLUDE_USERS = TagListField(lazy_gettext('Comma seperated list of plex usernames to exclude from notifications'), default=','.join(config.EXCLUDE_USERS))
     EXCLUDE_SECTIONS = TagListField(lazy_gettext('Comma seperated list of plex section ids to exclude from notifications'), default=','.join(config.EXCLUDE_SECTIONS))
-    USER_NAME_MAP = JSONField(lazy_gettext('Map plex usernames to this names'), validators=[valid_json_check], default=config.USER_NAME_MAP)
+    USER_NAME_MAP = JSONField(lazy_gettext('JSON Map of plex usernames and push names'), validators=[valid_json_check], default=config.USER_NAME_MAP)
 
 class ExtendedRegisterForm2(Form):
     all_locales = [('en', 'English')]

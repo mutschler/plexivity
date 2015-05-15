@@ -128,6 +128,16 @@ def streaminfo(id):
     xml = helper.load_xml(item.xml)
     return render_template('include/stream_info.html', id=item.id, xml=xml)
 
+
+def perform_some_search(queryset, user_input):
+    return queryset.filter(
+        db.or_(
+            models.Processed.title.like('%'+user_input+'%'), 
+            models.Processed.user.like('%'+user_input+'%'),
+            models.Processed.platform.like('%'+user_input+'%')
+            )
+        )
+
 @app.route("/load/histroy")
 @login_required
 def jsonhistory():
@@ -145,7 +155,7 @@ def jsonhistory():
         ("duration", lambda i: "{} min".format(int((((i.stopped - i.time).total_seconds() - (int(i.paused_counter or 0))) /60))) if i.stopped else "n/a"),
         ("completed", lambda i: '<span class="badge badge-warning">{}%</span>'.format(helper.getPercentage(i.get_xml_value("viewOffset"), i.get_xml_value("duration")))),
     ])
-    #table.searchable(lambda queryset, user_input: perform_some_search(queryset, user_input))
+    table.searchable(lambda queryset, user_input: perform_some_search(queryset, user_input))
 
     return json.dumps(table.json())
 

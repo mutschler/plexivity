@@ -1,9 +1,9 @@
 function currentActivity() {
-	$('#activity').load('/load/activity');
+	$('#activity').load(load_activity);
 }
 
 function recentlyAdded(){
-  $('#recentlyAdded').load('/load/recentlyAdded');
+  $('#recentlyAdded').load(load_recentlyAdded);
 }
 
 
@@ -213,7 +213,7 @@ $(document).ready(function() {
             	"aaSorting": [[ 0, "desc" ]],
               "serverSide": true,
               "processing": true,
-              "ajax": "/load/histroy",
+              "ajax": load_history,
             	"language": tableLanguage,
               columns: [
                 { data: "date" },

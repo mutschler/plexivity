@@ -130,6 +130,10 @@
             "sSortDescending": '{{_(": activate to sort column descending")}}'
         }
     }
+    var load_history = '{{ url_for("jsonhistory") }}';
+    var load_activity = '{{ url_for("activity") }}';
+    var load_recentlyAdded = '{{ url_for("recently_added") }}';
+    var load_overview = '{{ url_for("overview") }}';
     </script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   </body>

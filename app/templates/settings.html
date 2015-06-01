@@ -5,7 +5,7 @@
     {% if form %}
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
-            {{ render_form(form, action_url='/settings', action_text=_('Save settings'), btn_class='btn btn-plex') }}
+            {{ render_form(form, action_url=url_for('settings'), action_text=_('Save settings'), btn_class='btn btn-plex') }}
 
             <div class="format-helper" style="margin-top: 20px; margin-bottom: 20px">
               <div class="panel panel-default">

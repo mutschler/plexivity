@@ -10,7 +10,7 @@
         	<small class="small">{{_('If you already had a runnig installation please copy "config.ini" and "plexivity.db" to this directory and restart plexivity')}}</small>
         </p>
 
-        {{ render_form(form, action_url='/setup', action_text=_('Create Account'), btn_class='btn btn-plex') }}
+        {{ render_form(form, action_url=url_for('setup'), action_text=_('Create Account'), btn_class='btn btn-plex') }}
 
     </div>
   </div>

@@ -56,11 +56,11 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right" id="main-nav">
               {% if g.user.is_authenticated() %}
-              <li><a href="{{url_for('settings')}}"><span class="glyphicon glyphicon-wrench"></span> {{ _('Settings') }}</a></li>
               <li><a href="{{url_for('history')}}"><span class="glyphicon glyphicon-calendar"></span> {{ _('History') }}</a></li>
+              <li><a href="{{url_for('charts')}}"><span class="glyphicon glyphicon-stats"></span> {{ _('Charts') }}</a></li>
               <li><a href="{{url_for('stats')}}"><span class="glyphicon glyphicon-tasks"></span> {{ _('Statistics') }}</a></li>
               <li><a href="{{url_for('users')}}"><span class="glyphicon glyphicon-user"></span> {{ _('Users') }}</a></li>
-              <li><a href="{{url_for('charts')}}"><span class="glyphicon glyphicon-stats"></span> {{ _('Charts') }}</a></li>
+              <li><a href="{{url_for('settings')}}"><span class="glyphicon glyphicon-wrench"></span> {{ _('Settings') }}</a></li>
               {% if g.user.has_role('admin') %}
                 <li><a href="{{url_for('admin.index')}}" target="blank">{{_('Admin')}}</a></li>
               {% endif %}

@@ -101,7 +101,7 @@ SHOW_LIBRARY_STATS = check_setting_int(CFG, 'General', 'SHOW_LIBRARY_STATS', 1)
 CheckSection('Advanced')
 EXCLUDE_USERS = check_setting_str(CFG, 'Advanced', 'EXCLUDE_USERS', ['user1','user2'])
 USER_NAME_MAP = json.loads(check_setting_str(CFG, 'Advanced', 'USER_NAME_MAP', json.dumps({'Local':'MyName', 'anotheruser': 'AnotherName'})))
-EXCLUDE_SECTIONS =  check_setting_str(CFG, 'Advanced', 'EXCLUDE_SECTIONS', [100,200])
+EXCLUDE_SECTIONS =  check_setting_str(CFG, 'Advanced', 'EXCLUDE_SECTIONS', ["100","200"])
 
 CheckSection('PMS')
 PMS_HOST = check_setting_str(CFG, 'PMS', 'PMS_HOST', 'localhost')

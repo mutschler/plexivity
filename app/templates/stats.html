@@ -50,6 +50,15 @@
       <div class='history-charts-instance-chart' id='playChartUser' style="height: 200px"></div>
       </section>
   </div>
+
+  <div class="col-sm-6">
+    <section>
+      <div class='history-charts-header'>
+        <strong>{{_('Plays by user')}} </strong>({{_('All Time')}})
+      </div>
+      <div class='history-charts-instance-chart' id='playChartAlltimeUser' style="height: 200px"></div>
+      </section>
+  </div>
 </div>
 </div>
 <script type="text/javascript">
@@ -58,6 +67,7 @@ var monthlyPlayFinal = {{monthly|tojson|safe}}
 var maxhourlyPlayFinal = {{maxhourly|tojson|safe}}
 var hourlyPlayFinal = {{hourly|tojson|safe}}
 var usersPlayFinal = {{userplays|tojson|safe}}
+var usersPlayAlltimeFinal = {{userplaysalltime|tojson|safe}}
 </script>
 
 {% endblock %}

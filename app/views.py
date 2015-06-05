@@ -188,7 +188,12 @@ def stats():
     for play in playperuser:
         playperuserJSON.append({"y": play[0], "x": play[1].user})
 
-    return render_template('stats.html', hourly=hourlyJSON, daily=dailyJSON, monthly=monthlyJSON, maxhourly=maxhourlyJSON, userplays=playperuserJSON, title=_('Statistics'))
+    playperuserEver = db.session.query(db.func.count(models.Processed.title), models.Processed).group_by(models.Processed.user).order_by(db.func.count(models.Processed.title).desc()).all()
+    playperuserEverJSON = list()
+    for cplay in playperuserEver:
+        playperuserEverJSON.append({"y": cplay[0], "x": cplay[1].user})
+
+    return render_template('stats.html', hourly=hourlyJSON, daily=dailyJSON, monthly=monthlyJSON, maxhourly=maxhourlyJSON, userplays=playperuserJSON, userplaysalltime=playperuserEverJSON, title=_('Statistics'))
 
 
 @app.route("/setup", methods=("GET", "POST"))

@@ -223,7 +223,7 @@ class RecentlyAddedView(MyModelView):
 
 class HistoryView(MyModelView):
     can_create = False
-    column_list = ('time', 'user', 'title', 'platform', 'notified', 'stopped', 'paused', 'duration', 'view_offset')
+    column_list = ('time', 'user', 'title', 'platform', 'notified', 'stopped', 'paused', 'progress')
     column_searchable_list = ('user', 'title', 'platform')
     column_filters = ('time', 'user', 'title', 'platform', 'notified', 'stopped', 'paused', 'duration', 'orig_title', 'season', 'episode', 'year')
     column_default_sort = ('time', True)

@@ -58,19 +58,20 @@ def task():
         logger.debug("seems like nothing is currently played")
 
     for session in live:
-        logger.debug(session)
+        #logger.debug(session.tostring())
         userID = session.find('User').get('id')
         if not userID:
             userID = "Local"
 
         db_key = "%(id)s_%(key)s_%(userid)s" % { "id": session.get('sessionKey'), "key": session.get('key'), "userid": userID }
         playing[db_key] = 1
+        logger.debug(playing)
 
     did_unnotify = 0
     un_done = get_unnotified()
 
     if un_done:
-        logger.debug("processing unnitified entrys")
+        logger.debug("processing unnotified entrys")
 
         for k in un_done:
             start_epoch = k.time
@@ -96,9 +97,12 @@ def task():
             #make sure we have a stop time if we are not playing this anymore!
             if ntype == "stop":
                 k.stopped = stop_epoch
+
+            k.progress = int(info["percent_complete"])
             db.session.merge(k)
             set_notified(k.session_id)
-
+            
+        did_unnotify = 1
     else:
         did_unnotify = 1
 
@@ -130,6 +134,7 @@ def task():
                 info["decoded"] = 1
                 if notify(info):
                     k.notified = 1
+                k.progress = info['percent_complete']    
                 db.session.merge(k)
                 db.session.commit()
 
@@ -147,7 +152,7 @@ def task():
             continue
 
         start_epoch = datetime.datetime.now()
-        stop_epoch = "" #not stopped yet
+        stop_epoch = None #not stopped yet
         xml_string = ET.tostring(k)
         info = info_from_xml(k, "start", start_epoch, stop_epoch, 0)
         info["decoded"] = 1
@@ -235,7 +240,7 @@ def process_start(xml_string, db_key, info):
     new.summary = info["summary"]
     new.rating = info["rating"]
     new.year = info["year"]
-    new.progress = info["progress"]
+    new.progress = info["percent_complete"]
     new.ratingKey = info["ratingKey"]
     new.parentRatingKey = info["parentRatingKey"]
     new.grandparentRatingKey = info["grandparentRatingKey"]
@@ -333,6 +338,7 @@ def process_update(xml, session_id):
         logger.debug("total paused duration: %s [p_counter seconds]" % p_counter)
 
         cur.xml = ET.tostring(xml)
+        cur.progress = "%.0f" % float( float(xml.get("viewOffset")) / float(xml.get("duration")) * 100 )
         db.session.merge(cur)
         db.session.commit()
 
@@ -382,6 +388,10 @@ def notify(info):
     if config.NOTIFY_HUE:
         from app.providers import hue
         status = hue.send_notification(info)
+
+    if config.USE_PPSCRIPTS:
+        from app.providers import scripts
+        scripts.run_scripts(info, message)
 
     if message:
         if config.NOTIFY_PUSHOVER:
@@ -598,7 +608,6 @@ def get_unnotified():
 def get_started():
     logger.info(u"getting recently started entrys from database")
     result = db.session.query(models.Processed).filter(models.Processed.time != None).filter(models.Processed.stopped == None).all()
-    logger.debug(result)
     return result
 
 def getSessions():

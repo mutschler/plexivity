@@ -124,6 +124,11 @@ NOTIFY_PUSHOVER = check_setting_int(CFG, 'Pushover', 'NOTIFY_PUSHOVER', 0)
 PUSHOVER_USER = check_setting_str(CFG, 'Pushover', 'PUSHOVER_USER', "")
 PUSHOVER_TOKEN = check_setting_str(CFG, 'Pushover', 'PUSHOVER_TOKEN', "")
 
+CheckSection('Scripts')
+USE_PPSCRIPTS = check_setting_int(CFG, 'Scripts', 'USE_PPSCRIPTS', 0)
+PP_SCRIPTS = check_setting_str(CFG, 'Scripts', 'PP_SCRIPTS', ["/path/to/scirpt.sh"])
+PP_SCRIPTS_LOGGING = check_setting_int(CFG, 'Scripts', 'PP_SCRIPTS_LOGGING', 1)
+
 CheckSection('Pushbullet')
 NOTIFY_PUSHBULLET = check_setting_int(CFG, 'Pushbullet', 'NOTIFY_PUSHBULLET', 0)
 PUSHBULLET_KEY = check_setting_str(CFG, 'Pushbullet', 'PUSHBULLET_KEY', "")
@@ -198,6 +203,9 @@ configval["TWITTER_ACCESS_TOKEN_SECRET"] = TWITTER_ACCESS_TOKEN_SECRET
 configval["TWITTER_USE_DM"] = TWITTER_USE_DM
 configval["TWITTER_DM_USER"] = TWITTER_DM_USER
 configval["EXCLUDE_SECTIONS"] = EXCLUDE_SECTIONS
+configval["USE_PPSCRIPTS"] = USE_PPSCRIPTS
+configval["PP_SCRIPTS"] = PP_SCRIPTS
+configval["PP_SCRIPTS_LOGGING"] = PP_SCRIPTS_LOGGING
 
 def save_config(configval):
     new_config = ConfigObj(interpolation=False)
@@ -259,7 +267,10 @@ def save_config(configval):
     new_config['Flask'] = {}
     new_config['Flask']['PASSWORD_SALT'] = configval["PASSWORD_SALT"]
     new_config['Flask']['SECRET_KEY'] = configval["SECRET_KEY"]
-
+    new_config['Scripts'] = {}
+    new_config['Scripts']['PP_SCRIPTS'] = configval["PP_SCRIPTS"]
+    new_config['Scripts']['USE_PPSCRIPTS'] = int(configval["USE_PPSCRIPTS"])
+    new_config['Scripts']['PP_SCRIPTS_LOGGING'] = int(configval["PP_SCRIPTS_LOGGING"])
     new_config.write()
 
 save_config(configval)

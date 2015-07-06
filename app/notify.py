@@ -389,7 +389,7 @@ def notify(info):
         from app.providers import hue
         status = hue.send_notification(info)
 
-    if config.USE_PPSCRIPTS:
+    if message and config.USE_PPSCRIPTS:
         from app.providers import scripts
         scripts.run_scripts(info, message)
 

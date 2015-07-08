@@ -100,6 +100,44 @@ class Server(object):
     def getSections(self):
         return self._request("library/sections")
 
+
+    def getViewedMovies(self):
+        allMovies = []
+        for section in self.getSections():
+            if section.get("id") in config.EXCLUDE_SECTIONS or section.get("type") != "movie":
+                continue
+
+            items = self._request("library/sections/%s/all" % section.get("key"))
+            for item in items:
+                if item.get("viewCount") and item.get("viewCount") >= 1 and item.get("lastViewedAt"):
+                    allMovies.append(item)
+
+        return allMovies
+
+
+    def everythingViewed(self):
+        import datetime
+        for section in self.getSections():
+            if section.get("id") in config.EXCLUDE_SECTIONS:
+                continue
+            
+            if section.get("type") == "show":
+                # do the show stuff....
+                pass
+            
+            if section.get("type") == "movie":
+                items = self._request("library/sections/%s/all" % section.get("key"))
+                for item in items:
+                    if item.get("viewCount") and item.get("viewCount") >= 1:
+                        print item.get("title")
+                        print item.get("viewCount")
+                        print datetime.datetime.fromtimestamp(float(item.get("lastViewedAt")))
+                    else:
+                        items.remove(item)
+
+                
+
+
     def episodes(self, mediaId):
         return self._request("library/metadata/%s/children" % mediaId)
 

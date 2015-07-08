@@ -5,7 +5,7 @@
 <div class="col-sm-12">
 {% set uxml = helper.load_xml(user.xml) %}
 <div class="users-poster-face">
-    {% if uxml.find("User").get("thumb") %}
+    {% if uxml.find("User") and uxml.find("User").get("thumb") %}
     <img class="" onerror=\"this.src='{{ url_for('static' , filename="images/gravatar-default-80x80.png") }}'\" src="{{ uxml.find("User").get("thumb") }}" />
     {% else %}
     <img src="{{ url_for('static' , filename='images/gravatar-default-80x80.png') }}" />
@@ -36,9 +36,11 @@
     {% for stat in platforms %}
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 clearfix platform-wrapper item">
       {% set xml = helper.load_xml(stat[1].xml) %}
+      {% if xml.find('Player') %}
       <img style="float: left; margin-right: 10px; width: 70px" class=" img-responsive" src="{{ url_for('static', filename=helper.playerImage(xml.find('Player').get('platform')) ) }}"/>
       <p class="platform-title">{{ stat[1].platform }}</p>
       <p><span class="orange">{{ stat[0] }}</span> plays</p>
+      {% endif %}
     </div>
     {% endfor %}
   </div>

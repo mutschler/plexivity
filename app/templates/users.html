@@ -18,7 +18,7 @@
 <tr>
   <td width="50">
     <div class="users-poster-face">
-    {% if xml.find("User").get("thumb") %}
+    {% if xml.find("User") and xml.find("User").get("thumb") %}
     <img class="img-responsive" onerror=\"this.src='{{ url_for('static' , filename="images/gravatar-default-80x80.png") }}'\" src="{{ xml.find("User").get("thumb") }}" />
     {% else %}
     <img class="img-responsive" src="{{ url_for('static' , filename='images/gravatar-default-80x80.png') }}" />

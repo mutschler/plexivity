@@ -9,7 +9,7 @@ from flask.ext.babel import gettext as _
 from apscheduler.schedulers.background import BackgroundScheduler
 
 from app import logger
-from app import config, plex, notify
+from app import config, plex, notify, db, models
 import pytz
 
 sched_logger = logging.getLogger("apscheduler")
@@ -37,6 +37,33 @@ def startScheduler():
                       start_date=datetime.datetime.now(tz) + datetime.timedelta(seconds=2))
     scheduler.start()
     #notify.task()
+
+
+def importFromPlex(plex, db):
+    viewedMovies = plex.getViewedMovies()
+
+    for movie in viewedMovies:
+        if db.session.query(models.Processed).filter(models.Processed.session_id == "im_%s_pt" % movie.get('key')).first():
+            continue
+
+        el = models.Processed()
+        el.time = datetime.datetime.fromtimestamp(int(movie.get("lastViewedAt"))) - datetime.timedelta(seconds=(int(movie.get("duration")) / 1000))
+        el.stopped = datetime.datetime.fromtimestamp(int(movie.get("lastViewedAt")))
+        el.user = "Local"
+        el.platform = "Imported"
+        el.title = movie.get("title")
+        el.orig_title = movie.get("title")
+        el.year = movie.get("year")
+        el.summary = movie.get("summary")
+        el.notified = 1
+        el.profress = 100
+        el.duration = movie.get("duration")
+        el.xml = xml_to_string(movie)
+        el.session_id = "im_%s_pt" % movie.get('key') 
+        db.session.merge(el)
+        db.session.commit()
+        
+    return True
 
 
 def calculate_plays(db, models, username):

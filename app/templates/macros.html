@@ -103,6 +103,7 @@
 
 
 {% macro render_stream_info(xml, row_count=0) -%}
+    {% if xml.find('User') %}
     {% if row_count %}
     <div id="streamDetailsModal{{row_count}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" >
     {% endif %}
@@ -239,4 +240,5 @@
  {% if row_count %}
                             </div>
                             {%endif%}
+                            {% endif %}
 {%- endmacro %}

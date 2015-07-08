@@ -77,6 +77,16 @@ def index():
         stats = None
     return render_template('index.html', stats=stats, activity=g.plex.currentlyPlaying(), new=g.plex.recentlyAdded())
 
+@app.route("/import")
+def importer():
+    if not g.plex.test():
+        flash(_("Unable to connect to PMS. Please check your settings"), "error")
+    else:
+        success = helper.importFromPlex(g.plex, db)
+        if success:
+            flash(_("Successfully imported viewed Media from PMS"), "success")
+    return  redirect(url_for('index'))
+
 @app.route("/twitter")
 def twitter():
     auth = tweepy.OAuthHandler("T4NRPcEtUrCEU58FesRmRtkdW", "zmpbytgPpSbro6RZcXsKgYQoz24zLH3vYZHOHAAs5j33P4eoRg",  "http://"+ request.environ["HTTP_HOST"] + "/auth/twitter")
@@ -125,6 +135,9 @@ def recently_added():
 @login_required
 def streaminfo(id):
     item = db.session.query(models.Processed).filter(models.Processed.id == id).first()
+    if item.platform == "Imported":
+        return render_template('include/stream_info.html', id=item.id, xml=None)
+
     xml = helper.load_xml(item.xml)
     return render_template('include/stream_info.html', id=item.id, xml=xml)
 
@@ -148,12 +161,12 @@ def jsonhistory():
         ("platform"),
         ("title", lambda i: u'<a class="invert-link" href="{0}">{1}</a>'.format(url_for('info', id=i.get_xml_value('ratingKey')), i.title)),
         ("type", lambda i: "{}".format(i.get_xml_value("type"))),
-        ("streaminfo", lambda i: '<a href="#" data-link="{0}" class="orange" data-target="#streamModal" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a>'.format(url_for('streaminfo',id=i.id))),
+        ("streaminfo", lambda i: '<a href="#" data-link="{0}" class="orange" data-target="#streamModal" data-toggle="modal"><i class="glyphicon glyphicon glyphicon-info-sign"></i></a>'.format(url_for('streaminfo',id=i.id)) if i.platform != "Imported" else ''),
         ("time",lambda i: "{}".format(i.time.strftime('%H:%M'))),
         ("paused_counter", lambda i: "{} min".format(int(i.paused_counter)/60) if i.paused_counter else "0 min" ),
         ("stopped", lambda i: "{}".format(i.stopped.strftime('%H:%M')) if i.stopped else "n/a"),
         ("duration", lambda i: "{} min".format(int((((i.stopped - i.time).total_seconds() - (int(i.paused_counter or 0))) /60))) if i.stopped else "n/a"),
-        ("completed", lambda i: '<span class="badge badge-warning">{}%</span>'.format(helper.getPercentage(i.get_xml_value("viewOffset"), i.get_xml_value("duration")))),
+        ("completed", lambda i: '<span class="badge badge-warning">{}%</span>'.format(helper.getPercentage(i.get_xml_value("duration") if i.platform == "Imported" else i.get_xml_value("viewOffset"), i.get_xml_value("duration")))),
     ])
     table.searchable(lambda queryset, user_input: perform_some_search(queryset, user_input))
 

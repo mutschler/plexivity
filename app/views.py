@@ -82,9 +82,10 @@ def importer():
     if not g.plex.test():
         flash(_("Unable to connect to PMS. Please check your settings"), "error")
     else:
-        success = helper.importFromPlex(g.plex, db)
-        if success:
-            flash(_("Successfully imported viewed Media from PMS"), "success")
+        import threading
+        importer = threading.Thread(target=helper.importFromPlex, args=(g.plex, db))
+        importer.start()
+        flash(_("Successfully started import of viewed Media from PMS"), "success")
     return  redirect(url_for('index'))
 
 @app.route("/twitter")

@@ -17,6 +17,7 @@ sched_logger.addHandler(logger.rotation)
 sched_logger.setLevel(logging.DEBUG)
 logger = logger.logger.getChild('helper')
 
+
 def startScheduler():
     try:
         import tzlocal
@@ -36,14 +37,17 @@ def startScheduler():
     scheduler.add_job(notify.task, 'interval', seconds=config.SCAN_INTERVAL, max_instances=1,
                       start_date=datetime.datetime.now(tz) + datetime.timedelta(seconds=2))
     scheduler.start()
+    sched = scheduler
     #notify.task()
 
 
 def importFromPlex(plex, db):
+    logger.info("Importing viewed Movies from PMS")
     viewedMovies = plex.getViewedMovies()
 
     for movie in viewedMovies:
-        if db.session.query(models.Processed).filter(models.Processed.session_id == "im_%s_pt" % movie.get('key')).first():
+        if db.session.query(models.Processed).filter(models.Processed.session_id.like("%" + movie.get('key') + "%")).first():
+            logger.debug("skipping import of '%s' because there already is a entry in database" % movie.get("title"))
             continue
 
         el = models.Processed()
@@ -56,10 +60,37 @@ def importFromPlex(plex, db):
         el.year = movie.get("year")
         el.summary = movie.get("summary")
         el.notified = 1
-        el.profress = 100
+        el.progress = 100
         el.duration = movie.get("duration")
         el.xml = xml_to_string(movie)
         el.session_id = "im_%s_pt" % movie.get('key') 
+        db.session.merge(el)
+        db.session.commit()
+
+    logger.info("Importing viewed Episodes from PMS")
+    for episode in plex.getViewedEpisodes():
+        if db.session.query(models.Processed).filter(models.Processed.session_id.like("%" + episode.get('key') + "%")).first():
+            eptitle = "%s - %s - s%02de%02d" % (episode.get("grandparentTitle"), episode.get("title"), int(episode.get('parentIndex')), int(episode.get('index')))
+            logger.debug("skipping import of '%s' because there already is a entry in database" % eptitle)
+            continue
+
+        el = models.Processed()
+        el.time = datetime.datetime.fromtimestamp(int(episode.get("lastViewedAt"))) - datetime.timedelta(seconds=(int(episode.get("duration")) / 1000))
+        el.stopped = datetime.datetime.fromtimestamp(int(episode.get("lastViewedAt")))
+        el.user = "Local"
+        el.platform = "Imported"
+        el.title = eptitle
+        el.orig_title = episode.get("grandparentTitle")
+        el.orig_title_ep = episode.get("title")
+        el.year = episode.get("year")
+        el.summary = episode.get("summary")
+        el.episode = episode.get('index')
+        el.season = episode.get('parentIndex')
+        el.notified = 1
+        el.progress = 100
+        el.duration = episode.get("duration")
+        el.xml = xml_to_string(episode)
+        el.session_id = "im_%s_pt" % episode.get('key') 
         db.session.merge(el)
         db.session.commit()
         

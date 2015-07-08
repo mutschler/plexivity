@@ -100,6 +100,22 @@ class Server(object):
     def getSections(self):
         return self._request("library/sections")
 
+    def getViewedEpisodes(self):
+        allEpisodes = []
+        for section in self.getSections():
+            if section.get("id") in config.EXCLUDE_SECTIONS or section.get("type") != "show":
+                continue
+
+            shows = self._request("library/sections/%s/all" % section.get("key"))
+            for show in shows:
+                if show.get("viewedLeafCount") and show.get("viewedLeafCount") >= 1:
+                    episodes = self._request('library/metadata/%s/allLeaves' % show.get('ratingKey'))
+                    for episode in episodes:
+                        if episode.get('viewCount') and episode.get('viewCount') >= 1 and episode.get('lastViewedAt'):
+                            allEpisodes.append(episode)
+
+        return allEpisodes
+
 
     def getViewedMovies(self):
         allMovies = []

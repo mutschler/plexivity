@@ -12,10 +12,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plexivity\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-15 18:29+0200\n"
-"PO-Revision-Date: 2015-05-15 16:32+0000\n"
+"POT-Creation-Date: 2015-07-09 19:30+0200\n"
+"PO-Revision-Date: 2015-07-09 17:40+0000\n"
 "Last-Translator: Raphael\n"
-"Language-Team: German (http://www.transifex.com/projects/p/plexivity/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/p/plexivity/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,146 +23,146 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/__init__.py:66
+#: app/__init__.py:105
 msgid "You do not have permission to view this resource."
 msgstr "Sie haben nicht die nötigen Rechte um diese Seite zu sehen."
 
-#: app/__init__.py:67
+#: app/__init__.py:106
 #, python-format
 msgid "Thank you. Confirmation instructions have been sent to %(email)s."
 msgstr "Bestätigungs-Instruktionen wurden an %(email)s gesendet."
 
-#: app/__init__.py:68
+#: app/__init__.py:107
 msgid "Thank you. Your email has been confirmed."
 msgstr "Ihre E-Mail wurde bestätigt."
 
-#: app/__init__.py:69
+#: app/__init__.py:108
 msgid "Your email has already been confirmed."
 msgstr "Ihre E-Mail wurde bereits bestätigt."
 
-#: app/__init__.py:70
+#: app/__init__.py:109
 msgid "Invalid confirmation token."
 msgstr "Ungültiger Bestätigungs-Token."
 
-#: app/__init__.py:71
+#: app/__init__.py:110
 #, python-format
 msgid "%(email)s is already associated with an account."
 msgstr "%(email)s wird bereits verwendet."
 
-#: app/__init__.py:72
+#: app/__init__.py:111
 msgid "Password does not match"
 msgstr "Passwort stimmt nicht überein"
 
-#: app/__init__.py:73
+#: app/__init__.py:112
 msgid "Passwords do not match"
 msgstr "Passwörter stimmen nicht überein"
 
-#: app/__init__.py:74
+#: app/__init__.py:113
 msgid "Redirections outside the domain are forbidden"
 msgstr "Weiterleitungen außerhalb der Domain sind verboten."
 
-#: app/__init__.py:75
+#: app/__init__.py:114
 msgid "Instructions to reset your password have been sent to the given mail."
 msgstr "Instruktionen zum zurücksetzen Ihrers Passworts wurden an Ihre E-Mail gesendet."
 
-#: app/__init__.py:76
+#: app/__init__.py:115
 #, python-format
 msgid ""
 "You did not reset your password within %(within)s. New instructions have "
 "been sent to %(email)s."
 msgstr "Sie haben Ihr Passwort nicht innerhalb %(within)s zurückgesetzt. Neue Instruktionen wurden an %(email)s gesendet."
 
-#: app/__init__.py:77
+#: app/__init__.py:116
 msgid "Invalid reset password token."
 msgstr "Ungültiger Passwort-Reset-Token"
 
-#: app/__init__.py:78
+#: app/__init__.py:117
 msgid "Email requires confirmation."
 msgstr "E-Mail muss noch bestätigt werden."
 
-#: app/__init__.py:79
+#: app/__init__.py:118
 #, python-format
 msgid "Confirmation instructions have been sent to %(email)s."
 msgstr "Bestätigungs-Instruktionen wurden an %(email)s gesendet."
 
-#: app/__init__.py:80
+#: app/__init__.py:119
 #, python-format
 msgid ""
 "You did not confirm your email within %(within)s. New instructions to "
 "confirm your email have been sent to %(email)s."
 msgstr "Sie haben nicht innerhalb %(within)s bestätigt. Neue Instruktionen wurden an %(email)s gesendet."
 
-#: app/__init__.py:81
+#: app/__init__.py:120
 #, python-format
 msgid ""
 "You did not login within %(within)s. New instructions to login have been "
 "sent to %(email)s."
 msgstr "Sie haben sich nicht innerhalb %(within)s angemeldet. Neue Instruktionen wurden an %(email)s gesendet."
 
-#: app/__init__.py:82
+#: app/__init__.py:121
 #, python-format
 msgid "Instructions to login have been sent to %(email)s."
 msgstr "Login-Instruktionen wurde an %(email)s gesendet."
 
-#: app/__init__.py:83
+#: app/__init__.py:122
 msgid "Invalid login token."
 msgstr "Ungültiger Login-Token."
 
-#: app/__init__.py:84
+#: app/__init__.py:123
 msgid "Account is disabled."
 msgstr "Account deaktiviert."
 
-#: app/__init__.py:85
+#: app/__init__.py:124
 msgid "Email not provided"
 msgstr "E-Mail nicht angegeben"
 
-#: app/__init__.py:86
+#: app/__init__.py:125
 msgid "Invalid email address"
 msgstr "Ungültige E-Mail"
 
-#: app/__init__.py:87
+#: app/__init__.py:126
 msgid "Password not provided"
 msgstr "Passwort nicht angegeben"
 
-#: app/__init__.py:88
+#: app/__init__.py:127
 msgid "No password is set for this user"
 msgstr "Für diesen Benutzer ist kein Passwort vorhanden"
 
-#: app/__init__.py:89
+#: app/__init__.py:128
 msgid "Password must be at least 6 characters"
 msgstr "Das Passwort muss mindestens 6 Zeichen haben."
 
-#: app/__init__.py:90
+#: app/__init__.py:129
 msgid "Specified user does not exist"
 msgstr "Der angegebene Benutzer existiert nicht"
 
-#: app/__init__.py:91
+#: app/__init__.py:130
 msgid "Invalid password"
 msgstr "Ungültiges Passwort"
 
-#: app/__init__.py:92
+#: app/__init__.py:131
 msgid "You have successfuly logged in."
 msgstr "Sie haben sich erfolgreich eingeloggt."
 
-#: app/__init__.py:93
+#: app/__init__.py:132
 msgid ""
 "You successfully reset your password and you have been logged in "
 "automatically."
 msgstr "Sie haben Ihr Passwort erfolgreich zurückgesetzt und wurden automatisch eingeloggt."
 
-#: app/__init__.py:94
+#: app/__init__.py:133
 msgid "Your new password must be different than your previous password."
 msgstr "Das neue Passwort muss sich vom alten unterscheiden."
 
-#: app/__init__.py:95
+#: app/__init__.py:134
 msgid "You successfully changed your password."
 msgstr "Passwort erfolgreich geändert."
 
-#: app/__init__.py:96
+#: app/__init__.py:135
 msgid "Please log in to access this page."
 msgstr "Bitte melden Sie sich an um diese Seite zu sehen."
 
-#: app/__init__.py:97
+#: app/__init__.py:136
 msgid "Please reauthenticate to access this page."
 msgstr "Bitte loggen Sie sich erneut ein, um diese Seite zu sehen."
 
@@ -303,49 +303,65 @@ msgstr "Passwort wiederholen"
 msgid "Language"
 msgstr "Sprache"
 
-#: app/helper.py:164
+#: app/helper.py:143
+msgid "Today"
+msgstr "Heute"
+
+#: app/helper.py:144
+msgid "Last Week"
+msgstr "Letzte Woche"
+
+#: app/helper.py:145
+msgid "Last Month"
+msgstr "Letzen Monat"
+
+#: app/helper.py:146 app/templates/stats.html:57
+msgid "All Time"
+msgstr "Ewig"
+
+#: app/helper.py:225
 msgid "just now"
 msgstr "gerade eben"
 
-#: app/helper.py:166
+#: app/helper.py:227
 #, python-format
 msgid "%(int)s seconds ago"
 msgstr "vor %(int)s Sekunden"
 
-#: app/helper.py:170
+#: app/helper.py:231
 #, python-format
 msgid "%(int)s minuten ago"
 msgstr "vor %(int)s Minuten"
 
-#: app/helper.py:172
+#: app/helper.py:233
 msgid "an hour ago"
 msgstr "vor 1 Stunde"
 
-#: app/helper.py:174
+#: app/helper.py:235
 #, python-format
 msgid "%(int)s hours ago"
 msgstr "vor %(int)s Stunden"
 
-#: app/helper.py:176
+#: app/helper.py:237
 msgid "Yesterday"
 msgstr "Gestern"
 
-#: app/helper.py:178
+#: app/helper.py:239
 #, python-format
 msgid "%(int)s days ago"
 msgstr "vor %(int)s Tagen"
 
-#: app/helper.py:180
+#: app/helper.py:241
 #, python-format
 msgid "%(int)s weeks ago"
 msgstr "vor %(int)s Wochen"
 
-#: app/helper.py:182
+#: app/helper.py:243
 #, python-format
 msgid "%(int)s months ago"
 msgstr "vor %(int)s Monaten"
 
-#: app/helper.py:183
+#: app/helper.py:244
 #, python-format
 msgid "%(int)s years ago"
 msgstr "vor %(int)s Jahren"
@@ -356,69 +372,73 @@ msgid "You are useing an incomplete translation please help! %(link)s"
 msgstr "unvollständige Übersetzung, bitte hilf mit! %(link)s"
 
 #. NOTE: Test2
-#: app/views.py:72
+#: app/views.py:72 app/views.py:83
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr "Verbindung zum PMS nicht möglich. Bitte Einstellungen überprüfen."
 
-#: app/views.py:146 app/templates/include/history.html:26
+#: app/views.py:88
+msgid "Successfully started import of viewed Media from PMS"
+msgstr "Import bereits gesehener Medien von PMS gestartet"
+
+#: app/views.py:160 app/templates/include/history.html:28
 msgid "Currently watching..."
 msgstr "Momentan abgespielt..."
 
-#: app/views.py:191 app/templates/layout.html:61
+#: app/views.py:210 app/templates/layout.html:61
 msgid "Statistics"
 msgstr "Statistik"
 
-#: app/views.py:198
+#: app/views.py:217
 #, python-format
 msgid "User %(username)s created"
 msgstr "Benutzer %(username)s angelegt"
 
-#: app/views.py:207
+#: app/views.py:226
 msgid "Setup"
 msgstr "Einrichtung"
 
-#: app/views.py:227 app/views.py:256
+#: app/views.py:246 app/views.py:275
 #, python-format
 msgid "Successfully connected to Hue Bridge with ip %(ip)s"
 msgstr "Verbindung zur Bridge hergestellt: %(ip)s"
 
-#: app/views.py:246
+#: app/views.py:265
 msgid "Successfully disconnected from Hue Bridge"
 msgstr "Verbindung von Hue Bridge getrennt"
 
-#: app/views.py:272 app/templates/layout.html:63
+#: app/views.py:291 app/templates/layout.html:60
 msgid "Charts"
 msgstr "Charts"
 
-#: app/views.py:293
+#: app/views.py:312
 msgid "Info"
 msgstr "Info"
 
-#: app/views.py:299 app/templates/layout.html:60
+#: app/views.py:318 app/templates/layout.html:59
 msgid "History"
 msgstr "Verlauf"
 
-#: app/views.py:306
+#: app/views.py:325
 msgid "Logged out"
 msgstr "Abgemeldet"
 
-#: app/views.py:329 app/templates/layout.html:62
+#: app/views.py:348 app/templates/layout.html:62
 msgid "Users"
 msgstr "Benutzer"
 
-#: app/views.py:363
+#: app/views.py:382
 msgid "Settings saved!"
 msgstr "Einstellungen gespeichert!"
 
-#: app/views.py:374 app/templates/layout.html:59
+#: app/views.py:393 app/templates/layout.html:63
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: app/views.py:384
+#: app/views.py:403
 msgid "Test notification successfully send"
 msgstr "Test-Benachrichtigung erfolgreich versendet."
 
-#: app/views.py:386
+#: app/views.py:405
 msgid "unable to send test notification"
 msgstr "Konnte Test-Benachrichtigung nicht senden."
 
@@ -434,7 +454,7 @@ msgid "%(count)s views"
 msgstr "%(count)s mal angesehen"
 
 #: app/templates/charts.html:30 app/templates/info.html:25
-#: app/templates/info.html:155 app/templates/user.html:67
+#: app/templates/info.html:155 app/templates/user.html:73
 #, python-format
 msgid "Season %(sn)s, Episode %(ep)s"
 msgstr "Staffel %(sn)s, Episode %(ep)s"
@@ -773,7 +793,7 @@ msgstr "Wiedergaben nach Tagen"
 msgid "Monthly Plays"
 msgstr "Wiedergaben pro Monat"
 
-#: app/templates/stats.html:48
+#: app/templates/stats.html:48 app/templates/stats.html:57
 msgid "Plays by user"
 msgstr "Wiedergaben nach Benutzern"
 
@@ -781,11 +801,31 @@ msgstr "Wiedergaben nach Benutzern"
 msgid "Last 30 days"
 msgstr "letzte 30 Tage"
 
-#: app/templates/user.html:34
+#: app/templates/user.html:20
+msgid "Global Stats"
+msgstr "Globale Statistik"
+
+#: app/templates/user.html:26 app/templates/user.html:46
+msgid "plays"
+msgstr "Wiedergaben"
+
+#: app/templates/user.html:27
+msgid "days"
+msgstr "Tage"
+
+#: app/templates/user.html:28
+msgid "hours"
+msgstr "Stunden"
+
+#: app/templates/user.html:29
+msgid "min"
+msgstr "Minuten"
+
+#: app/templates/user.html:39
 msgid "Platform Stats"
 msgstr "Platform Statistik"
 
-#: app/templates/user.html:57
+#: app/templates/user.html:63
 msgid "Recently watched"
 msgstr "Kürzlich angesehen"
 

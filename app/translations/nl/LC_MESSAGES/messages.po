@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plexivity\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-15 18:29+0200\n"
-"PO-Revision-Date: 2015-06-05 12:53+0000\n"
+"POT-Creation-Date: 2015-07-09 19:30+0200\n"
+"PO-Revision-Date: 2015-07-09 17:31+0000\n"
 "Last-Translator: Raphael\n"
-"Language-Team: Dutch (http://www.transifex.com/projects/p/plexivity/language/nl/)\n"
+"Language-Team: Dutch (http://www.transifex.com/p/plexivity/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,146 +20,146 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/__init__.py:66
+#: app/__init__.py:105
 msgid "You do not have permission to view this resource."
 msgstr "U heeft geen rechten om deze bron te bekijken."
 
-#: app/__init__.py:67
+#: app/__init__.py:106
 #, python-format
 msgid "Thank you. Confirmation instructions have been sent to %(email)s."
 msgstr "Dank u wel. Bevestiging instructies zijn gestuurd naar %(email)s."
 
-#: app/__init__.py:68
+#: app/__init__.py:107
 msgid "Thank you. Your email has been confirmed."
 msgstr "Dank u wel. Uw email is bevestigd"
 
-#: app/__init__.py:69
+#: app/__init__.py:108
 msgid "Your email has already been confirmed."
 msgstr "Uw email is al bevestigd"
 
-#: app/__init__.py:70
+#: app/__init__.py:109
 msgid "Invalid confirmation token."
 msgstr "Niet geldige bevestigingtoken."
 
-#: app/__init__.py:71
+#: app/__init__.py:110
 #, python-format
 msgid "%(email)s is already associated with an account."
 msgstr "%(email)s is al geregistreerd voor een account."
 
-#: app/__init__.py:72
+#: app/__init__.py:111
 msgid "Password does not match"
 msgstr "Wachtwoord komt niet overeen"
 
-#: app/__init__.py:73
+#: app/__init__.py:112
 msgid "Passwords do not match"
 msgstr "Wachtwoorden komen niet overeen"
 
-#: app/__init__.py:74
+#: app/__init__.py:113
 msgid "Redirections outside the domain are forbidden"
 msgstr "Omleidingen buiten het domein zijn verboden"
 
-#: app/__init__.py:75
+#: app/__init__.py:114
 msgid "Instructions to reset your password have been sent to the given mail."
 msgstr "Instructies om je wachtwoord te resetten zijn gestuurd naar het bekende emailadres."
 
-#: app/__init__.py:76
+#: app/__init__.py:115
 #, python-format
 msgid ""
 "You did not reset your password within %(within)s. New instructions have "
 "been sent to %(email)s."
 msgstr "Uw heeft niet uw wachtwoord gereset binnen %(within)s. Nieuwe instructies zijn gestuurd naar %(email)s."
 
-#: app/__init__.py:77
+#: app/__init__.py:116
 msgid "Invalid reset password token."
 msgstr "Niet geldige wachtwoord reset token."
 
-#: app/__init__.py:78
+#: app/__init__.py:117
 msgid "Email requires confirmation."
 msgstr "Email vereist bevestiging."
 
-#: app/__init__.py:79
+#: app/__init__.py:118
 #, python-format
 msgid "Confirmation instructions have been sent to %(email)s."
 msgstr "Bevestiging instructies  zijn gestuurd naar %(email)s."
 
-#: app/__init__.py:80
+#: app/__init__.py:119
 #, python-format
 msgid ""
 "You did not confirm your email within %(within)s. New instructions to "
 "confirm your email have been sent to %(email)s."
 msgstr "Uw heeft niet uw email geconfirmeerd binnen %(within)s. Nieuwe instructies zijn gestuurd naar %(email)s."
 
-#: app/__init__.py:81
+#: app/__init__.py:120
 #, python-format
 msgid ""
 "You did not login within %(within)s. New instructions to login have been "
 "sent to %(email)s."
 msgstr "Uw heeft niet ingelogd binnen %(within)s. Nieuwe instructies om in te loggen zijn gestuurd naar %(email)s."
 
-#: app/__init__.py:82
+#: app/__init__.py:121
 #, python-format
 msgid "Instructions to login have been sent to %(email)s."
 msgstr "Instructies om in te loggen zijn gestuurd naar %(email)s."
 
-#: app/__init__.py:83
+#: app/__init__.py:122
 msgid "Invalid login token."
 msgstr "Niet geldig login token."
 
-#: app/__init__.py:84
+#: app/__init__.py:123
 msgid "Account is disabled."
 msgstr "Account is uitgeschakeld."
 
-#: app/__init__.py:85
+#: app/__init__.py:124
 msgid "Email not provided"
 msgstr "Email niet ingevuld"
 
-#: app/__init__.py:86
+#: app/__init__.py:125
 msgid "Invalid email address"
 msgstr "Niet geldig email adres"
 
-#: app/__init__.py:87
+#: app/__init__.py:126
 msgid "Password not provided"
 msgstr "Wachtwoord niet ingevuld"
 
-#: app/__init__.py:88
+#: app/__init__.py:127
 msgid "No password is set for this user"
 msgstr "Er is geen wachtwoord ingesteld voor deze gebruiker"
 
-#: app/__init__.py:89
+#: app/__init__.py:128
 msgid "Password must be at least 6 characters"
 msgstr "Wachtwoord moet minimaal 6 characters lang zijn"
 
-#: app/__init__.py:90
+#: app/__init__.py:129
 msgid "Specified user does not exist"
 msgstr "Gespecificeerde gebruiker bestaat niet"
 
-#: app/__init__.py:91
+#: app/__init__.py:130
 msgid "Invalid password"
 msgstr "Niet geldig wachtwoord"
 
-#: app/__init__.py:92
+#: app/__init__.py:131
 msgid "You have successfuly logged in."
 msgstr "Uw heeft succesvol ingelogd."
 
-#: app/__init__.py:93
+#: app/__init__.py:132
 msgid ""
 "You successfully reset your password and you have been logged in "
 "automatically."
 msgstr "U heeft succesvol uw wachtwoord gereset en bent automatisch ingelogd."
 
-#: app/__init__.py:94
+#: app/__init__.py:133
 msgid "Your new password must be different than your previous password."
 msgstr "Uw nieuwe wachtwoord moet anders zijn dan uw vorige wachtwoord."
 
-#: app/__init__.py:95
+#: app/__init__.py:134
 msgid "You successfully changed your password."
 msgstr "U heeft succesvol uw wachtwoord gewijzigd."
 
-#: app/__init__.py:96
+#: app/__init__.py:135
 msgid "Please log in to access this page."
 msgstr "Log in om deze pagina te bekijken."
 
-#: app/__init__.py:97
+#: app/__init__.py:136
 msgid "Please reauthenticate to access this page."
 msgstr "Log opnieuw in om deze pagina te bekijken."
 
@@ -300,49 +300,65 @@ msgstr "Geef nogmaals het wachtwoord"
 msgid "Language"
 msgstr "Taal"
 
-#: app/helper.py:164
+#: app/helper.py:143
+msgid "Today"
+msgstr ""
+
+#: app/helper.py:144
+msgid "Last Week"
+msgstr ""
+
+#: app/helper.py:145
+msgid "Last Month"
+msgstr ""
+
+#: app/helper.py:146 app/templates/stats.html:57
+msgid "All Time"
+msgstr "Altijd"
+
+#: app/helper.py:225
 msgid "just now"
 msgstr "zojuis"
 
-#: app/helper.py:166
+#: app/helper.py:227
 #, python-format
 msgid "%(int)s seconds ago"
 msgstr "%(int)s secondes geleden "
 
-#: app/helper.py:170
+#: app/helper.py:231
 #, python-format
 msgid "%(int)s minuten ago"
 msgstr "%(int)s minuten geleden"
 
-#: app/helper.py:172
+#: app/helper.py:233
 msgid "an hour ago"
 msgstr "an hour ago"
 
-#: app/helper.py:174
+#: app/helper.py:235
 #, python-format
 msgid "%(int)s hours ago"
 msgstr "%(int)s uren geleden"
 
-#: app/helper.py:176
+#: app/helper.py:237
 msgid "Yesterday"
 msgstr "Gisteren"
 
-#: app/helper.py:178
+#: app/helper.py:239
 #, python-format
 msgid "%(int)s days ago"
 msgstr "%(int)s dagen geleden "
 
-#: app/helper.py:180
+#: app/helper.py:241
 #, python-format
 msgid "%(int)s weeks ago"
 msgstr "%(int)s weken geleden"
 
-#: app/helper.py:182
+#: app/helper.py:243
 #, python-format
 msgid "%(int)s months ago"
 msgstr "%(int)s maanden geleden"
 
-#: app/helper.py:183
+#: app/helper.py:244
 #, python-format
 msgid "%(int)s years ago"
 msgstr "%(int)s jaren geleden"
@@ -353,69 +369,73 @@ msgid "You are useing an incomplete translation please help! %(link)s"
 msgstr "Je gebruikt een incomplete vertaling, help ons! %(link)s"
 
 #. NOTE: Test2
-#: app/views.py:72
+#: app/views.py:72 app/views.py:83
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr "Niet mogelijk om te verbinden met PMS. Controleer je instellingen"
 
-#: app/views.py:146 app/templates/include/history.html:26
+#: app/views.py:88
+msgid "Successfully started import of viewed Media from PMS"
+msgstr ""
+
+#: app/views.py:160 app/templates/include/history.html:28
 msgid "Currently watching..."
 msgstr "Wordt momenteel bekeken"
 
-#: app/views.py:191 app/templates/layout.html:61
+#: app/views.py:210 app/templates/layout.html:61
 msgid "Statistics"
 msgstr "statistieken"
 
-#: app/views.py:198
+#: app/views.py:217
 #, python-format
 msgid "User %(username)s created"
 msgstr "Gebruiker %(username)s aangemaakt"
 
-#: app/views.py:207
+#: app/views.py:226
 msgid "Setup"
 msgstr "Instellen"
 
-#: app/views.py:227 app/views.py:256
+#: app/views.py:246 app/views.py:275
 #, python-format
 msgid "Successfully connected to Hue Bridge with ip %(ip)s"
 msgstr "Succesvol verbonden met Hue Bridge met ip %(ip)s"
 
-#: app/views.py:246
+#: app/views.py:265
 msgid "Successfully disconnected from Hue Bridge"
 msgstr "Verbinding succesvol verbroken met de Huge Bridge"
 
-#: app/views.py:272 app/templates/layout.html:63
+#: app/views.py:291 app/templates/layout.html:60
 msgid "Charts"
 msgstr "Diagram"
 
-#: app/views.py:293
+#: app/views.py:312
 msgid "Info"
 msgstr "Info"
 
-#: app/views.py:299 app/templates/layout.html:60
+#: app/views.py:318 app/templates/layout.html:59
 msgid "History"
 msgstr "geschiedenis"
 
-#: app/views.py:306
+#: app/views.py:325
 msgid "Logged out"
 msgstr "Log uit"
 
-#: app/views.py:329 app/templates/layout.html:62
+#: app/views.py:348 app/templates/layout.html:62
 msgid "Users"
 msgstr "Gebruikers "
 
-#: app/views.py:363
+#: app/views.py:382
 msgid "Settings saved!"
 msgstr "Instellingen opgeslagen"
 
-#: app/views.py:374 app/templates/layout.html:59
+#: app/views.py:393 app/templates/layout.html:63
 msgid "Settings"
 msgstr "Instellingen"
 
-#: app/views.py:384
+#: app/views.py:403
 msgid "Test notification successfully send"
 msgstr "Test notificatie is succesvol verzonden"
 
-#: app/views.py:386
+#: app/views.py:405
 msgid "unable to send test notification"
 msgstr "niet mogelijk om test notificatie te versturen"
 
@@ -431,7 +451,7 @@ msgid "%(count)s views"
 msgstr "%(count)s bekeken"
 
 #: app/templates/charts.html:30 app/templates/info.html:25
-#: app/templates/info.html:155 app/templates/user.html:67
+#: app/templates/info.html:155 app/templates/user.html:73
 #, python-format
 msgid "Season %(sn)s, Episode %(ep)s"
 msgstr "Seizoen %(sn)s, Aflevering %(ep)s"
@@ -770,7 +790,7 @@ msgstr "Dagelijks afgespeeld"
 msgid "Monthly Plays"
 msgstr "Maandelijkse afgespeeld"
 
-#: app/templates/stats.html:48
+#: app/templates/stats.html:48 app/templates/stats.html:57
 msgid "Plays by user"
 msgstr "Per gebruiker afgespeeld"
 
@@ -778,11 +798,31 @@ msgstr "Per gebruiker afgespeeld"
 msgid "Last 30 days"
 msgstr "Laatste 30 dagen"
 
-#: app/templates/user.html:34
+#: app/templates/user.html:20
+msgid "Global Stats"
+msgstr ""
+
+#: app/templates/user.html:26 app/templates/user.html:46
+msgid "plays"
+msgstr ""
+
+#: app/templates/user.html:27
+msgid "days"
+msgstr ""
+
+#: app/templates/user.html:28
+msgid "hours"
+msgstr ""
+
+#: app/templates/user.html:29
+msgid "min"
+msgstr ""
+
+#: app/templates/user.html:39
 msgid "Platform Stats"
 msgstr "Platform Statistieken"
 
-#: app/templates/user.html:57
+#: app/templates/user.html:63
 msgid "Recently watched"
 msgstr "Recent bekeken"
 

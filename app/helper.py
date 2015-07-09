@@ -53,7 +53,7 @@ def importFromPlex(plex, db):
         el = models.Processed()
         el.time = datetime.datetime.fromtimestamp(int(movie.get("lastViewedAt"))) - datetime.timedelta(seconds=(int(movie.get("duration")) / 1000))
         el.stopped = datetime.datetime.fromtimestamp(int(movie.get("lastViewedAt")))
-        el.user = "Local"
+        el.user = config.IMPORT_USERNAME
         el.platform = "Imported"
         el.title = movie.get("title")
         el.orig_title = movie.get("title")
@@ -69,15 +69,16 @@ def importFromPlex(plex, db):
 
     logger.info("Importing viewed Episodes from PMS")
     for episode in plex.getViewedEpisodes():
+        eptitle = "%s - %s - s%02de%02d" % (episode.get("grandparentTitle"), episode.get("title"), int(episode.get('parentIndex')), int(episode.get('index')))
+
         if db.session.query(models.Processed).filter(models.Processed.session_id.like("%" + episode.get('key') + "%")).first():
-            eptitle = "%s - %s - s%02de%02d" % (episode.get("grandparentTitle"), episode.get("title"), int(episode.get('parentIndex')), int(episode.get('index')))
             logger.debug("skipping import of '%s' because there already is a entry in database" % eptitle)
             continue
 
         el = models.Processed()
         el.time = datetime.datetime.fromtimestamp(int(episode.get("lastViewedAt"))) - datetime.timedelta(seconds=(int(episode.get("duration")) / 1000))
         el.stopped = datetime.datetime.fromtimestamp(int(episode.get("lastViewedAt")))
-        el.user = "Local"
+        el.user = config.IMPORT_USERNAME
         el.platform = "Imported"
         el.title = eptitle
         el.orig_title = episode.get("grandparentTitle")

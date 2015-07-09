@@ -102,6 +102,7 @@ CheckSection('Advanced')
 EXCLUDE_USERS = check_setting_str(CFG, 'Advanced', 'EXCLUDE_USERS', ['user1','user2'])
 USER_NAME_MAP = json.loads(check_setting_str(CFG, 'Advanced', 'USER_NAME_MAP', json.dumps({'Local':'MyName', 'anotheruser': 'AnotherName'})))
 EXCLUDE_SECTIONS =  check_setting_str(CFG, 'Advanced', 'EXCLUDE_SECTIONS', ["100","200"])
+IMPORT_USERNAME = check_setting_str(CFG, 'Advanced', 'IMPORT_USERNAME', 'Local')
 
 CheckSection('PMS')
 PMS_HOST = check_setting_str(CFG, 'PMS', 'PMS_HOST', 'localhost')
@@ -196,6 +197,7 @@ configval["NOTIFY_BOXCAR"] = NOTIFY_BOXCAR
 configval["PASSWORD_SALT"] = PASSWORD_SALT
 configval["SECRET_KEY"] = SECRET_KEY
 configval["EXCLUDE_USERS"] = EXCLUDE_USERS
+configval["IMPORT_USERNAME"] = IMPORT_USERNAME
 configval["USER_NAME_MAP"] =json.dumps(USER_NAME_MAP)
 configval["NOTIFY_TWITTER"] = NOTIFY_TWITTER
 configval["TWITTER_ACCESS_TOKEN"] = TWITTER_ACCESS_TOKEN
@@ -230,6 +232,7 @@ def save_config(configval):
     new_config['Advanced']['EXCLUDE_USERS'] = configval["EXCLUDE_USERS"]
     new_config['Advanced']['USER_NAME_MAP'] = configval["USER_NAME_MAP"]
     new_config['Advanced']['EXCLUDE_SECTIONS'] = configval["EXCLUDE_SECTIONS"]
+    new_config['Advanced']['IMPORT_USERNAME'] = configval["IMPORT_USERNAME"]
     new_config['Mail'] = {}
     new_config['Mail']['MAIL_PORT'] = int(configval["MAIL_PORT"])
     new_config['Mail']['MAIL_SERVER'] = configval["MAIL_SERVER"]

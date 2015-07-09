@@ -24,7 +24,7 @@
         <div class="col-xs-6 col-sm-3">
           <h3>{{ x["name"] }}</h3>
           <span class="orange text-big">{{ x["plays"] }}</span> {{ _('plays') }} / 
-          <!-- <span class="orange text-big">{{ x["time"].days }}</span> {{ _('day/s') }} -->
+          <span class="orange text-big">{{ x["time"].days }}</span> {{ _('days') }} 
           <span class="orange text-big">{{ x["time"].seconds//3600 }}</span> {{ _('hours') }}
           <span class="orange text-big">{{ (x["time"].seconds//60)%60 }}</span> {{ _('min') }}
           

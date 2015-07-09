@@ -79,6 +79,7 @@ class Processed(db.Model):
     ip_address = db.Column(db.Text)
     duration = db.Column(db.Integer)
     view_offset = db.Column(db.Integer)
+    player_title = db.Column(db.Text)
     progress = db.Column(db.Integer) # (view_offset / duration) * 100 helper.getPercentage()
 
     def get_xml_value(self, value):

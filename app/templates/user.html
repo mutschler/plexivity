@@ -42,7 +42,7 @@
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 clearfix platform-wrapper item">
       {% if stat[1].platform %}
       <img style="float: left; margin-right: 10px; width: 70px" class=" img-responsive" src="{{ url_for('static', filename=helper.playerImage(stat[1].platform) ) }}"/>
-      <p class="platform-title">{{ stat[1].platform }}</p>
+      <p class="platform-title">{% if stat[1].player_title %} {{ stat[1].player_title }} {% else %} {{stat[1].platform}} {% endif %}</p>
       <p><span class="orange text-big">{{ stat[0] }}</span> {{ _('plays') }}</p>
       {% endif %}
     </div>

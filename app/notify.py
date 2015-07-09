@@ -229,6 +229,7 @@ def process_start(xml_string, db_key, info):
     new.session_id = db_key
     new.title = info["title"]
     new.platform = info["platform"]
+    new.player_title = info["player_title"]
     new.user = info["orig_user"]
     new.orig_title = info["orig_title"]
     new.orig_title_ep = info["orig_title_ep"]
@@ -491,9 +492,9 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
         orig_user = xml.find("User").get("title")
 
         if xml.find("Player").get("title"):
-            platform = xml.find("Player").get("title")
-        else:
-            platform = xml.find("Player").get("platform")
+            player_title = xml.find("Player").get("title")
+        
+        platform = xml.find("Player").get("platform")
 
         if not orig_user:
             orig_user = "Local"
@@ -552,6 +553,7 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
         "rating": rating or "n/a",
         "year": year,
         "platform": platform or "n/a",
+        "player_title": player_title or "n/a",
         "summary": summary or "n/a",
         "duration": duration,
         "length": length or "n/a",
@@ -633,7 +635,8 @@ def getSessions():
                     current.session_id = session_id
                     current.time = datetime.datetime.now()
                     current.user = username
-                    current.platform = player_title
+                    current.platform = platform
+                    current.player_title = player_title
                     current.xml = ET.tostring(session)
                     current.notified = 1
                     current.summary = session.get("summary")

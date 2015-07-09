@@ -43,7 +43,7 @@
       {% if stat[1].platform %}
       <img style="float: left; margin-right: 10px; width: 70px" class=" img-responsive" src="{{ url_for('static', filename=helper.playerImage(stat[1].platform) ) }}"/>
       <p class="platform-title">{{ stat[1].platform }}</p>
-      <p><span class="orange">{{ stat[0] }}</span> {{ _('plays') }}</p>
+      <p><span class="orange text-big">{{ stat[0] }}</span> {{ _('plays') }}</p>
       {% endif %}
     </div>
     {% endfor %}

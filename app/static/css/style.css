@@ -61,6 +61,9 @@ body img.poster-face {
 body img.poster-face:hover {
   box-shadow: 0 0 0 2px #f9aa03;
 }
+.text-big {
+  font-size: 26px;
+}
 .modal {
   color: #999999;
 }
@@ -294,7 +297,7 @@ a:hover {
 }
 @media (min-width: 480px) and (max-width: 767px) {
   .current-activity-object {
-    margin-bottom: 10px;
+    margin-bottom: 30px;
   }
 }
 .current-activity-object .platform-activity img {

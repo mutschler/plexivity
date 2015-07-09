@@ -5,10 +5,12 @@
   <div class="col-sm-4 col-sm-offset-4">
     <div class="login-wrapper">
         <img src="{{ url_for('static', filename='images/plexivity.png') }}" class="img-responsive">
+        {% if data_dir %}
         <p class="alert alert-info">
         	{{_('Data will be saved to "%(data_dir)s"', data_dir=data_dir)}}<br />
         	<small class="small">{{_('If you already had a runnig installation please copy "config.ini" and "plexivity.db" to this directory and restart plexivity')}}</small>
         </p>
+        {% endif %}
 
         {{ render_form(form, action_url=url_for('setup'), action_text=_('Create Account'), btn_class='btn btn-plex') }}
 

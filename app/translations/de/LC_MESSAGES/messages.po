@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plexivity\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-07-09 19:30+0200\n"
-"PO-Revision-Date: 2015-07-09 17:40+0000\n"
+"POT-Creation-Date: 2015-07-09 23:56+0200\n"
+"PO-Revision-Date: 2015-07-09 22:01+0000\n"
 "Last-Translator: Raphael\n"
 "Language-Team: German (http://www.transifex.com/p/plexivity/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -166,140 +166,144 @@ msgstr "Bitte melden Sie sich an um diese Seite zu sehen."
 msgid "Please reauthenticate to access this page."
 msgstr "Bitte loggen Sie sich erneut ein, um diese Seite zu sehen."
 
-#: app/forms.py:83
-msgid "Hue Bridge IP"
-msgstr "Hue Bridge IP"
+#: app/forms.py:75
+msgid "Plex Media Server Import"
+msgstr "Plex Media Server Import"
 
-#: app/forms.py:86 app/forms.py:150 app/forms.py:161
+#: app/forms.py:77
+msgid "Plex Username to use for Import"
+msgstr "Plex Bennutzername für den Import"
+
+#: app/forms.py:81 app/forms.py:145 app/forms.py:156
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: app/forms.py:87 app/forms.py:151 app/forms.py:162
+#: app/forms.py:82 app/forms.py:146 app/forms.py:157
 #: app/templates/login.html:15
 msgid "Password"
 msgstr "Passwort"
 
-#: app/forms.py:88 app/templates/login.html:20
+#: app/forms.py:83 app/templates/login.html:20
 msgid "Remember password"
 msgstr "Passwort merken"
 
-#: app/forms.py:109
+#: app/forms.py:104
 msgid "Plex Media Server Settings"
 msgstr "Plex Media Server Einstellungen"
 
-#: app/forms.py:111
+#: app/forms.py:106
 msgid "Plex Media Server Host"
 msgstr "Plex Media Server Host"
 
-#: app/forms.py:112
+#: app/forms.py:107
 msgid "Plex Media Server Port"
 msgstr "Plex Media Server Port"
 
-#: app/forms.py:113
+#: app/forms.py:108
 msgid "Plex Username"
 msgstr "Plex Benutzername"
 
-#: app/forms.py:114
+#: app/forms.py:109
 msgid "Plex Password"
 msgstr "Plex Passwort"
 
-#: app/forms.py:117
+#: app/forms.py:112
 msgid "use pushover for notifications"
 msgstr "Pushover aktivieren"
 
-#: app/forms.py:118
+#: app/forms.py:113
 msgid "Pushover User-Token"
 msgstr "Pushover Benutzer-Token"
 
-#: app/forms.py:119
+#: app/forms.py:114
 msgid "Pushover App-Token"
 msgstr "Pushover Anwendungs-Token"
 
-#: app/forms.py:121
+#: app/forms.py:116
 msgid "use mail for notifications"
 msgstr "E-Mail benachrichtigung aktivieren"
 
-#: app/forms.py:122
+#: app/forms.py:117
 msgid "SMTP Mail Server"
 msgstr "SMTP Server"
 
-#: app/forms.py:123
+#: app/forms.py:118
 msgid "SMTP Server login"
 msgstr "SMTP Server Benutzer"
 
-#: app/forms.py:124
+#: app/forms.py:119
 msgid "SMTP Server password"
 msgstr "SMTP Passwort"
 
-#: app/forms.py:125
+#: app/forms.py:120
 msgid "SMTP Mail Port"
 msgstr "SMTP Port"
 
-#: app/forms.py:126
+#: app/forms.py:121
 msgid "Sender Mail Information"
 msgstr "Absender E-Mail Informationen"
 
-#: app/forms.py:129
+#: app/forms.py:124
 msgid "plexivity port"
 msgstr "plexivity Port"
 
-#: app/forms.py:130
+#: app/forms.py:125
 msgid "Send notification on start"
 msgstr "Start Benachrichtigungen aktivieren"
 
-#: app/forms.py:131
+#: app/forms.py:126
 msgid "String for watching notification"
 msgstr "Nachricht beim starten der Wiedergabe"
 
-#: app/forms.py:132
+#: app/forms.py:127
 msgid "Send notification on stop"
 msgstr "Stop Benachrichtigungen aktivieren"
 
-#: app/forms.py:133
+#: app/forms.py:128
 msgid "String for stoped watching notification"
 msgstr "Nachricht beim stoppen der Wiedergabe"
 
-#: app/forms.py:134
+#: app/forms.py:129
 msgid "Send notification on pause"
 msgstr "Pause Benachrichtigungen aktivieren"
 
-#: app/forms.py:135
+#: app/forms.py:130
 msgid "String for paused notification"
 msgstr "Nachricht beim pausieren der Wiedergabe"
 
-#: app/forms.py:136
+#: app/forms.py:131
 msgid "Send notification on resume"
 msgstr "Fortsetzung Benachrichtigungen aktivieren"
 
-#: app/forms.py:137
+#: app/forms.py:132
 msgid "String for resume notification"
 msgstr "Nachricht beim fortsetzen der Wiedergabe"
 
-#: app/forms.py:138
+#: app/forms.py:133
 msgid "Send notification for recently added media"
 msgstr "Benachrichtigung bei neu hinzugefügten Medien"
 
-#: app/forms.py:139
+#: app/forms.py:134
 msgid "String for recently added notification"
 msgstr "Nachricht für zuletzt hinzugefügte Medien"
 
-#: app/forms.py:141
+#: app/forms.py:136
 msgid "Comma seperated list of plex usernames to exclude from notifications"
 msgstr "Komma getrennte Liste von Plex Nutzern bei denen keine Benachrichtigung erfolgen soll"
 
-#: app/forms.py:142
+#: app/forms.py:137
 msgid "Comma seperated list of plex section ids to exclude from notifications"
 msgstr "Komma getrennte Liste von Plex Video Sektionen bei denen keine Benachrichtigung erfolgen soll"
 
-#: app/forms.py:143
+#: app/forms.py:138
 msgid "JSON Map of plex usernames and push names"
 msgstr "JSON Map von Plex Benutzernamen zu Push Benutzernamen"
 
-#: app/forms.py:152 app/forms.py:163
+#: app/forms.py:147 app/forms.py:158
 msgid "Retype password"
 msgstr "Passwort wiederholen"
 
-#: app/forms.py:153 app/forms.py:164
+#: app/forms.py:148 app/forms.py:159
 msgid "Language"
 msgstr "Sprache"
 
@@ -372,73 +376,72 @@ msgid "You are useing an incomplete translation please help! %(link)s"
 msgstr "unvollständige Übersetzung, bitte hilf mit! %(link)s"
 
 #. NOTE: Test2
-#: app/views.py:72 app/views.py:83
+#: app/views.py:72 app/views.py:222
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr "Verbindung zum PMS nicht möglich. Bitte Einstellungen überprüfen."
 
-#: app/views.py:88
-msgid "Successfully started import of viewed Media from PMS"
-msgstr "Import bereits gesehener Medien von PMS gestartet"
-
-#: app/views.py:160 app/templates/include/history.html:28
+#: app/views.py:149 app/templates/include/history.html:28
 msgid "Currently watching..."
 msgstr "Momentan abgespielt..."
 
-#: app/views.py:210 app/templates/layout.html:61
+#: app/views.py:199 app/templates/layout.html:61
 msgid "Statistics"
 msgstr "Statistik"
 
-#: app/views.py:217
+#: app/views.py:206
 #, python-format
 msgid "User %(username)s created"
 msgstr "Benutzer %(username)s angelegt"
 
-#: app/views.py:226
+#: app/views.py:215
 msgid "Setup"
 msgstr "Einrichtung"
 
-#: app/views.py:246 app/views.py:275
-#, python-format
-msgid "Successfully connected to Hue Bridge with ip %(ip)s"
-msgstr "Verbindung zur Bridge hergestellt: %(ip)s"
+#: app/views.py:229
+msgid "Successfully started import of viewed Media from PMS"
+msgstr "Import bereits gesehener Medien von PMS gestartet"
 
-#: app/views.py:265
-msgid "Successfully disconnected from Hue Bridge"
-msgstr "Verbindung von Hue Bridge getrennt"
+#: app/views.py:231
+msgid "Import"
+msgstr "Importieren"
 
-#: app/views.py:291 app/templates/layout.html:60
+#: app/views.py:231 app/templates/import.html:12
+msgid "Import Media"
+msgstr "Daten importieren"
+
+#: app/views.py:242 app/templates/layout.html:60
 msgid "Charts"
 msgstr "Charts"
 
-#: app/views.py:312
+#: app/views.py:263
 msgid "Info"
 msgstr "Info"
 
-#: app/views.py:318 app/templates/layout.html:59
+#: app/views.py:269 app/templates/layout.html:59
 msgid "History"
 msgstr "Verlauf"
 
-#: app/views.py:325
+#: app/views.py:276
 msgid "Logged out"
 msgstr "Abgemeldet"
 
-#: app/views.py:348 app/templates/layout.html:62
+#: app/views.py:299 app/templates/layout.html:62
 msgid "Users"
 msgstr "Benutzer"
 
-#: app/views.py:382
+#: app/views.py:333
 msgid "Settings saved!"
 msgstr "Einstellungen gespeichert!"
 
-#: app/views.py:393 app/templates/layout.html:63
+#: app/views.py:344 app/templates/layout.html:63
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: app/views.py:403
+#: app/views.py:354
 msgid "Test notification successfully send"
 msgstr "Test-Benachrichtigung erfolgreich versendet."
 
-#: app/views.py:405
+#: app/views.py:356
 msgid "unable to send test notification"
 msgstr "Konnte Test-Benachrichtigung nicht senden."
 
@@ -496,6 +499,16 @@ msgstr "Hue Verbindung zurücksetzen"
 #: app/templates/hue_settings.html:20
 msgid "All available lights"
 msgstr "Alle Lampen"
+
+#: app/templates/import.html:9
+msgid ""
+"Plexivity will try to import already played Media Elements from Plex Media "
+"Server, this may take a while "
+msgstr "Plexivity wird versuchen bereits gesehene Filme und Episoden von Plex Media Server zu importieren, das kann unter umständen eine weile dauern."
+
+#: app/templates/import.html:15
+msgid "Skip Import"
+msgstr "Import überstpringen"
 
 #: app/templates/info.html:33 app/templates/info.html:37
 msgid "Directed by"
@@ -758,18 +771,18 @@ msgstr "Mit Hue verbinden"
 msgid "Connect Twitter"
 msgstr "Twitter Account Verknüpfen"
 
-#: app/templates/setup.html:9
+#: app/templates/setup.html:10
 #, python-format
 msgid "Data will be saved to \"%(data_dir)s\""
 msgstr "Daten werden unter \"%(data_dir)s\" gespeichert"
 
-#: app/templates/setup.html:10
+#: app/templates/setup.html:11
 msgid ""
 "If you already had a runnig installation please copy \"config.ini\" and "
 "\"plexivity.db\" to this directory and restart plexivity"
 msgstr "Wenn Sie bereits eine Installation durchgeführt haben, kopieren Sie bitte \"config.ini\" und \"plexivity.db\" in dieses Verzeichnis und starten Sie plexivity anschließend neu"
 
-#: app/templates/setup.html:13 app/templates/security/register_user.html:9
+#: app/templates/setup.html:15 app/templates/security/register_user.html:9
 msgid "Create Account"
 msgstr "Account erstellen"
 
@@ -951,4 +964,13 @@ msgstr "Passwort zurücksetzen"
 #~ msgstr ""
 
 #~ msgid "Username of current user"
+#~ msgstr ""
+
+#~ msgid "Hue Bridge IP"
+#~ msgstr ""
+
+#~ msgid "Successfully connected to Hue Bridge with ip %(ip)s"
+#~ msgstr ""
+
+#~ msgid "Successfully disconnected from Hue Bridge"
 #~ msgstr ""

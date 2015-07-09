@@ -134,11 +134,6 @@ CheckSection('Pushbullet')
 NOTIFY_PUSHBULLET = check_setting_int(CFG, 'Pushbullet', 'NOTIFY_PUSHBULLET', 0)
 PUSHBULLET_KEY = check_setting_str(CFG, 'Pushbullet', 'PUSHBULLET_KEY', "")
 
-CheckSection('Hue')
-NOTIFY_HUE = check_setting_int(CFG, 'Hue', 'NOTIFY_HUE', 0)
-BRIDGE_IP = check_setting_str(CFG, 'Hue', 'BRIDGE_IP', "")
-HUE_USERNAME = check_setting_str(CFG, 'Hue', 'HUE_USERNAME', "")
-
 CheckSection('Boxcar')
 NOTIFY_BOXCAR = check_setting_int(CFG, 'Boxcar', 'NOTIFY_BOXCAR', 0)
 BOXCAR_TOKEN = check_setting_str(CFG, 'Boxcar', 'BOXCAR_TOKEN', "")
@@ -189,9 +184,6 @@ configval["PUSHOVER_TOKEN"] = PUSHOVER_TOKEN
 configval["NOTIFY_PUSHOVER"] = NOTIFY_PUSHOVER
 configval["NOTIFY_PUSHBULLET"] = NOTIFY_PUSHBULLET
 configval["PUSHBULLET_KEY"] = PUSHBULLET_KEY
-configval["BRIDGE_IP"] = BRIDGE_IP
-configval["HUE_USERNAME"] = HUE_USERNAME
-configval["NOTIFY_HUE"] = NOTIFY_HUE
 configval["BOXCAR_TOKEN"] = BOXCAR_TOKEN
 configval["NOTIFY_BOXCAR"] = NOTIFY_BOXCAR
 configval["PASSWORD_SALT"] = PASSWORD_SALT
@@ -254,10 +246,6 @@ def save_config(configval):
     new_config['Pushbullet'] = {}
     new_config['Pushbullet']['NOTIFY_PUSHBULLET'] = int(configval["NOTIFY_PUSHBULLET"])
     new_config['Pushbullet']['PUSHBULLET_KEY'] = configval["PUSHBULLET_KEY"]
-    new_config['Hue'] = {}
-    new_config['Hue']['BRIDGE_IP'] = configval["BRIDGE_IP"]
-    new_config['Hue']['HUE_USERNAME'] = configval["HUE_USERNAME"]
-    new_config['Hue']['NOTIFY_HUE'] = configval["NOTIFY_HUE"]
     new_config['Boxcar'] = {}
     new_config['Boxcar']['BOXCAR_TOKEN'] = configval["BOXCAR_TOKEN"]
     new_config['Boxcar']['NOTIFY_BOXCAR'] = int(configval["NOTIFY_BOXCAR"])

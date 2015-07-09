@@ -77,17 +77,6 @@ def index():
         stats = None
     return render_template('index.html', stats=stats, activity=g.plex.currentlyPlaying(), new=g.plex.recentlyAdded())
 
-@app.route("/import")
-def importer():
-    if not g.plex.test():
-        flash(_("Unable to connect to PMS. Please check your settings"), "error")
-    else:
-        import threading
-        importer = threading.Thread(target=helper.importFromPlex, args=(g.plex, db))
-        importer.start()
-        flash(_("Successfully started import of viewed Media from PMS"), "success")
-    return  redirect(url_for('index'))
-
 @app.route("/twitter")
 def twitter():
     auth = tweepy.OAuthHandler("T4NRPcEtUrCEU58FesRmRtkdW", "zmpbytgPpSbro6RZcXsKgYQoz24zLH3vYZHOHAAs5j33P4eoRg",  "http://"+ request.environ["HTTP_HOST"] + "/auth/twitter")
@@ -225,59 +214,21 @@ def setup():
     if not db.session.query(models.User).first():
         return render_template('setup.html', form=form, title=_('Setup'), data_dir=config.DATA_DIR)
     else:
-        return redirect(url_for("index"))
+        return redirect(url_for("importer"))
 
-@app.route("/hue", methods=("GET", "POST"))
-@login_required
-def hue(args=False):
-    from app.providers import hue
-
-    if config.BRIDGE_IP and hue.register_bridge(config.BRIDGE_IP):
-        return render_template('hue.html', form=False, bridge_ip=config.BRIDGE_IP)
-
-    form = forms.HueForm()
+@app.route("/import", methods=("GET", "POST"))
+def importer():
+    if not g.plex.test():
+        flash(_("Unable to connect to PMS. Please check your settings"), "error")
+    
+    form = forms.PlexImportForm()
     if form.validate_on_submit():
-
-        check_hue = hue.register_bridge(form.HUE_IP.data)
-        if check_hue:
-            config.BRIDGE_IP = check_hue
-            config.configval["BRIDGE_IP"] = check_hue
-            config.save_config(config.configval)
-            flash(_('Successfully connected to Hue Bridge with ip %(ip)s', ip=check_hue) , "success")
-            return redirect(url_for('index'))
-        else:
-            return render_template('hue.html')
-    return render_template('hue.html', form=form)
-
-@app.route("/hue/settings")
-@login_required
-def hue_settings():
-    from app.providers import hue
-    lights = hue.get_available_lights()
-    return render_template("hue_settings.html", lights=lights)
-
-@app.route("/hue/unlink")
-@login_required
-def hue_unlink():
-    config.BRIDGE_IP = ""
-    config.configval["BRIDGE_IP"] = ""
-    #TODO: Final unlinking, save config remove hue.conf file!
-    flash(_('Successfully disconnected from Hue Bridge'), "success")
-    #return render_template('hue.html')
-    return redirect(url_for("hue"))
-
-@app.route("/hue/push", methods=("GET", "POST"))
-@login_required
-def hue_push():
-    from app.providers import hue
-    check_hue = hue.register_bridge(config.BRIDGE_IP)
-    if check_hue:
-        flash(_('Successfully connected to Hue Bridge with ip %(ip)s', ip=check_hue), "success")
-        return redirect(url_for('index'))
-    else:
-        return redirect(url_for('hue'))
-    return render_template('hue.html')
-
+        import threading
+        importer = threading.Thread(target=helper.importFromPlex, args=(g.plex, db))
+        importer.start()
+        flash(_("Successfully started import of viewed Media from PMS"), "success")
+        return  redirect(url_for('index'))
+    return render_template('import.html', form=form, title=_("Import"), action_text=_('Import Media'))
 
 @app.route("/charts")
 @login_required

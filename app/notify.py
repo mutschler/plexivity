@@ -385,10 +385,6 @@ def notify(info):
 
     status = False
 
-    if config.NOTIFY_HUE:
-        from app.providers import hue
-        status = hue.send_notification(info)
-
     if message and config.USE_PPSCRIPTS:
         from app.providers import scripts
         scripts.run_scripts(info, message)

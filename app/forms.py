@@ -71,16 +71,11 @@ class RequiredIf(DataRequired):
         if bool(other_field.data):
             super(RequiredIf, self).__call__(form, field)
 
-class HueForm(Form):
-    if config.BRIDGE_IP == "":
-        default_ip = requests.get("https://www.meethue.com/api/nupnp")
-        if default_ip.ok and default_ip.json():
-            ip = default_ip.json()[0]["internalipaddress"]
-        else:
-            ip = ""
-    else:
-        ip = config.BRIDGE_IP
-    HUE_IP = StringField(lazy_gettext('Hue Bridge IP'), validators=[IPAddress()], default=ip)
+class PlexImportForm(Form):
+    __title__ = lazy_gettext("Plex Media Server Import")
+
+    IMPORT_USERNAME = StringField(lazy_gettext('Plex Username to use for Import'), default=config.IMPORT_USERNAME)
+    
 
 class Login(LoginForm):
     email = StringField(lazy_gettext('E-Mail'), validators=[DataRequired(), Email()])

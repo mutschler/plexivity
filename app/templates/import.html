@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+{% from 'macros.html' import render_form %}
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4">
+    <div class="login-wrapper">
+        <img src="{{ url_for('static', filename='images/plexivity.png') }}" class="img-responsive">
+        <p class="alert alert-info">
+            {{ _('Plexivity will try to import already played Media Elements from Plex Media Server, this may take a while ') }}<br />
+        </p>
+
+        {{ render_form(form, action_url=url_for('importer'), action_text=_('Import Media'), btn_class='btn btn-plex') }}
+
+        <p>
+            <a class="btn btn-plex" href="{{ url_for('index') }}">{{ _('Skip Import') }}</a>
+        </p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

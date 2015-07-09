@@ -100,6 +100,8 @@ app.config['SECURITY_REGISTERABLE'] = False
 app.config['SECURITY_TRACKABLE'] = True
 app.config['SECURITY_PASSWORD_SALT'] = config.PASSWORD_SALT
 app.config['SECURITY_RECOVERABLE'] = True
+app.config['SECURITY_SEND_REGISTER_EMAIL'] = False
+
 
 #make security messages translatabel
 app.config['SECURITY_MSG_UNAUTHORIZED'] = (lazy_gettext('You do not have permission to view this resource.'), 'error')
@@ -197,7 +199,7 @@ class MyAdminIndexView(AdminIndexView):
         return super(MyAdminIndexView, self).index()
 
 class UserView(MyModelView):
-    can_create = False
+    can_create = True
 
     # Override displayed fields
     column_list = ('email', 'locale')

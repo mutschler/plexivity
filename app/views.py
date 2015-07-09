@@ -217,6 +217,8 @@ def setup():
         return redirect(url_for("importer"))
 
 @app.route("/import", methods=("GET", "POST"))
+@login_required
+@roles_required('admin')
 def importer():
     if not g.plex.test():
         flash(_("Unable to connect to PMS. Please check your settings"), "error")
@@ -311,6 +313,7 @@ def user(name):
 
 @app.route('/logs')
 @login_required
+@roles_required('admin')
 def logs():
     f = open(os.path.join(config.DATA_DIR, "plexivity.log"), "r")
     content = f.readlines()
@@ -320,6 +323,7 @@ def logs():
 
 @app.route("/settings", methods=("GET", "POST"))
 @login_required
+@roles_required('admin')
 def settings():
     form = forms.Settings()
     old_host = config.PMS_HOST
@@ -345,6 +349,7 @@ def settings():
 
 @app.route("/test-notify")
 @login_required
+@roles_required('admin')
 def notify():
     from app import notify
     info = {

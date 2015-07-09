@@ -137,7 +137,7 @@ class Settings(Form):
     EXCLUDE_SECTIONS = TagListField(lazy_gettext('Comma seperated list of plex section ids to exclude from notifications'), default=','.join(config.EXCLUDE_SECTIONS))
     USER_NAME_MAP = JSONField(lazy_gettext('JSON Map of plex usernames and push names'), validators=[valid_json_check], default=config.USER_NAME_MAP)
 
-class ExtendedRegisterForm2(Form):
+class ExtendedRegisterForm2(RegisterForm):
     all_locales = [('en', 'English')]
     for x in babel.list_translations():
         all_locales.append( (x.language, x.display_name) )

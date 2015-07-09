@@ -7,6 +7,10 @@
             <div class="col-sm-6 col-sm-offset-3">
             {{ render_form(form, action_url=url_for('settings'), action_text=_('Save settings'), btn_class='btn btn-plex') }}
 
+            <p>
+              <a href="{{ url_for('importer') }}" class="btn btn-plex">{{ _('Import Media frm PMS') }}</a>
+            </p>
+
             <div class="format-helper" style="margin-top: 20px; margin-bottom: 20px">
               <div class="panel panel-default">
                 <div class="panel-heading">{{_('The following Options are available for Message formating:')}}</div>

@@ -21,7 +21,9 @@
         <tbody>
             {% for entry in history %}
                 {% set xml = helper.load_xml(entry.xml) %}
+                {% if xml.find('User') %}
                 {{ render_stream_info(xml, entry.id) }}
+                {% endif %}
                 <tr>
                     <td align="left" data-order="{{ entry.time|timestamp|int }}">{% if not entry.stopped %} <span class="orange">{{ _('Currently watching...') }}</span> {% else %} {{ entry.time.strftime('%Y/%m/%d') }} {% endif %}</td>
                     <td align="left"><a href="{{ url_for('user', name=entry.user) }}" class="invert-link">{{ entry.user }}</a></td>

@@ -15,19 +15,24 @@
 </div>
 </div>
 
-{#{% if stats %}
+{% if stats %}
 <section class="platforms" id="platforms">
     <h2 class="title">{{ _('Global Stats') }}</h2>
 
     <div class="row">
         {% for x in stats %}
-        <h3>{{ x["name"] }}</h3>
-        {{ _('%(num)d plays', num=x["plays"])}} / {{ x["time"] }}
-        {{ ngettext('%(num)d day', '%(num)d days', 0) }} {{ ngettext('%(num)d hour', '%(num)d hours', 1) }} {{ ngettext('%(num)d min', '%(num)d mins', 4) }}
+        <div class="col-xs-6 col-sm-3">
+          <h3>{{ x["name"] }}</h3>
+          <span class="orange text-big">{{ x["plays"] }}</span> {{ _('plays') }} / 
+          <!-- <span class="orange text-big">{{ x["time"].days }}</span> {{ _('day/s') }} -->
+          <span class="orange text-big">{{ x["time"].seconds//3600 }}</span> {{ _('hours') }}
+          <span class="orange text-big">{{ (x["time"].seconds//60)%60 }}</span> {{ _('min') }}
+          
+      </div>
     {% endfor %}
   </div>
 </section>
-{% endif %}#}
+{% endif %}
 
 {% if platforms %}
 <section class="platforms" id="platforms">
@@ -35,11 +40,10 @@
   <div class="row isotope">
     {% for stat in platforms %}
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 clearfix platform-wrapper item">
-      {% set xml = helper.load_xml(stat[1].xml) %}
-      {% if xml.find('Player') %}
-      <img style="float: left; margin-right: 10px; width: 70px" class=" img-responsive" src="{{ url_for('static', filename=helper.playerImage(xml.find('Player').get('platform')) ) }}"/>
+      {% if stat[1].platform %}
+      <img style="float: left; margin-right: 10px; width: 70px" class=" img-responsive" src="{{ url_for('static', filename=helper.playerImage(stat[1].platform) ) }}"/>
       <p class="platform-title">{{ stat[1].platform }}</p>
-      <p><span class="orange">{{ stat[0] }}</span> plays</p>
+      <p><span class="orange">{{ stat[0] }}</span> {{ _('plays') }}</p>
       {% endif %}
     </div>
     {% endfor %}

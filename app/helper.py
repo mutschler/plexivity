@@ -309,5 +309,9 @@ def playerImage(platform):
         return "images/platforms/default.png"
     elif platform == "Windows-XBMC":
         return "images/platforms/xbmc.png"
+    elif platform == "XboxOne":
+        return "images/platforms/xbox1.png"
+    elif platform == "Imported":
+        return "images/platforms/pms.png"
     else:
         return "images/platforms/default.png"

@@ -37,6 +37,8 @@ app.jinja_env.filters['timestamp'] = helper.date_timestamp
 def initialize():
     helper.startScheduler()
 
+    
+
 
 @lm.user_loader
 def load_user(id):

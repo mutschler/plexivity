@@ -35,15 +35,6 @@ app.jinja_env.filters['timestamp'] = helper.date_timestamp
 #TODO: remove this
 @app.before_first_request
 def initialize():
-    db.create_all()
-    #create default roles!
-    if not db.session.query(models.Role).filter(models.Role.name == "admin").first():
-        admin_role = models.Role(name='admin', description='Administrator Role')
-        user_role = models.Role(name='user', description='User Role')
-        db.session.add(admin_role)
-        db.session.add(user_role)
-        db.session.commit()
-
     helper.startScheduler()
 
 

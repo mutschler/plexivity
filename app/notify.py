@@ -24,6 +24,7 @@ def task():
 
     for x in recentlyAdded:
         check = db.session.query(models.RecentlyAdded).filter(models.RecentlyAdded.item_id == x.get("ratingKey")).first()
+
         if check:
             logger.debug("already notified for recently added '%s'" % check.title)
             continue
@@ -101,7 +102,7 @@ def task():
             k.progress = int(info["percent_complete"])
             db.session.merge(k)
             set_notified(k.session_id)
-            
+
         did_unnotify = 1
     else:
         did_unnotify = 1
@@ -110,7 +111,7 @@ def task():
     ## redo this! currently everything started is set to stopped?
     if did_unnotify:
         logger.info("processing recently started and checking for stopped")
-        started = get_started()
+        #started = get_started()
         for k in started:
             logger.debug("checking if %s is in playling list" % k.session_id)
             if not k.session_id in playing:
@@ -134,7 +135,7 @@ def task():
                 info["decoded"] = 1
                 if notify(info):
                     k.notified = 1
-                k.progress = info['percent_complete']    
+                k.progress = info['percent_complete']
                 db.session.merge(k)
                 db.session.commit()
 
@@ -486,6 +487,7 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
         percent_complete = "n/a"
 
     title = xml.get("title")
+    player_title = "n/a"
 
     if not ntype == "recentlyadded":
         raw_length = int(xml.get("duration"))
@@ -493,7 +495,7 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
 
         if xml.find("Player").get("title"):
             player_title = xml.find("Player").get("title")
-        
+
         platform = xml.find("Player").get("platform")
 
         if not orig_user:
@@ -523,6 +525,7 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
     orig_title_ep = ""
     episode = ""
     season = ""
+
     if xml.get("grandparentTitle"):
         orig_title = xml.get("grandparentTitle")
         orig_title_ep = title

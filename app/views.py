@@ -37,9 +37,6 @@ app.jinja_env.filters['timestamp'] = helper.date_timestamp
 def initialize():
     helper.startScheduler()
 
-    
-
-
 @lm.user_loader
 def load_user(id):
     return db.session.query(models.User).filter(models.User.id == int(id)).first()
@@ -128,7 +125,7 @@ def streaminfo(id):
 def perform_some_search(queryset, user_input):
     return queryset.filter(
         db.or_(
-            models.Processed.title.like('%'+user_input+'%'), 
+            models.Processed.title.like('%'+user_input+'%'),
             models.Processed.user.like('%'+user_input+'%'),
             models.Processed.platform.like('%'+user_input+'%')
             )
@@ -215,7 +212,7 @@ def setup():
 def importer():
     if not g.plex.test():
         flash(_("Unable to connect to PMS. Please check your settings"), "error")
-    
+
     form = forms.PlexImportForm()
     if form.validate_on_submit():
         import threading

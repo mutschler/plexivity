@@ -4,7 +4,7 @@
 import os
 
 
-from app import app
+from app import app, helper
 from lib.daemon import Daemon
 
 
@@ -23,6 +23,9 @@ def run_app():
         args.append("upgrade")
 
     Popen(args)
+
+    helper.startScheduler()
+
     app.run(host="0.0.0.0", port=config.PORT, debug=False)
 
 

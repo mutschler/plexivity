@@ -19,6 +19,15 @@ logger = logger.logger.getChild('helper')
 
 
 def startScheduler():
+    db.create_all()
+    #create default roles!
+    if not db.session.query(models.Role).filter(models.Role.name == "admin").first():
+        admin_role = models.Role(name='admin', description='Administrator Role')
+        user_role = models.Role(name='user', description='User Role')
+        db.session.add(admin_role)
+        db.session.add(user_role)
+        db.session.commit()
+        
     try:
         import tzlocal
 

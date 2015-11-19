@@ -158,7 +158,7 @@ def task():
         info = info_from_xml(k, "start", start_epoch, stop_epoch, 0)
         info["decoded"] = 1
 
-        logger.debug(info)
+        # logger.debug(info)
 
         userID = info["userID"]
         if not userID:
@@ -189,7 +189,8 @@ def task():
                     info["ntype"] = state_change
                     logger.debug("%s: %s: state changed [%s] notify called" % (info["user"], info["title"], info["state"]))
                     notify(info)
-
+        else:
+            logger.debug("all entrys in our database have been set to stopped")
         #also check if there is a element in the db which may be a resumed play from up to 24 hours ago
 
         if not db_key in was_started:
@@ -249,7 +250,7 @@ def process_start(xml_string, db_key, info):
     new.time = datetime.datetime.now()
     new.xml = xml_string
     db.session.add(new)
-    db.session.commit
+    db.session.commit()
 
 
 def set_stopped(session_id, stop_epoch):

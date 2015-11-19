@@ -131,7 +131,7 @@ def perform_some_search(queryset, user_input):
             )
         )
 
-@app.route("/load/histroy")
+@app.route("/load/history")
 @login_required
 def jsonhistory():
     history = db.session.query(models.Processed)

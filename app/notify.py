@@ -489,6 +489,7 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
 
     title = xml.get("title")
     player_title = "n/a"
+    product = "n/a"
 
     if not ntype == "recentlyadded":
         raw_length = int(xml.get("duration"))
@@ -496,6 +497,9 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
 
         if xml.find("Player").get("title"):
             player_title = xml.find("Player").get("title")
+
+        if xml.find("Player").get("platform"):
+            product = xml.find("Player").get("platform")
 
         platform = xml.find("Player").get("platform")
 
@@ -557,6 +561,7 @@ def info_from_xml(xml, ntype, start_epoch, stop_epoch, paused=0):
         "rating": rating or "n/a",
         "year": year,
         "platform": platform or "n/a",
+        "product": product or "n/a",
         "player_title": player_title or "n/a",
         "summary": summary or "n/a",
         "duration": duration,

@@ -5,6 +5,12 @@
     {% if form %}
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
+              <div class="alert alert-info">
+                {{_('Data will be saved to "%(data_dir)s"', data_dir=config.DATA_DIR)}}
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-sm-offset-3">
             {{ render_form(form, action_url=url_for('settings'), action_text=_('Save settings'), btn_class='btn btn-plex') }}
 
             <p>

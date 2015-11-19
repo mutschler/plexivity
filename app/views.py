@@ -335,7 +335,7 @@ def settings():
         if x != "csrf_token":
             form[x].data = config.configval[x]
 
-    return render_template('settings.html', form=form, title=_('Settings'))
+    return render_template('settings.html', form=form, title=_('Settings'), config=config)
 
 @app.route("/test-notify")
 @login_required

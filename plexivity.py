@@ -6,7 +6,7 @@ import os
 
 from app import app, helper
 from lib.daemon import Daemon
-
+from app.logger import logger
 
 def run_app():
     from subprocess import Popen
@@ -26,7 +26,19 @@ def run_app():
 
     helper.startScheduler()
 
-    app.run(host="0.0.0.0", port=config.PORT, debug=False)
+    if config.USE_SSL:
+        helper.generateSSLCert()
+        try:
+            from OpenSSL import SSL
+            context = SSL.Context(SSL.SSLv23_METHOD)
+            context.use_privatekey_file(os.path.join(config.DATA_DIR, "plexivity.key"))
+            context.use_certificate_file(os.path.join(config.DATA_DIR, "plexivity.crt"))
+            app.run(host="0.0.0.0", port=config.PORT, debug=False, ssl_context=context)
+        except:
+            logger.error("plexivity should use SSL but OpenSSL was not found, starting without SSL")
+            app.run(host="0.0.0.0", port=config.PORT, debug=False)
+    else:
+        app.run(host="0.0.0.0", port=config.PORT, debug=False)
 
 
 class PlexivityDaemon(Daemon):

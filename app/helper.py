@@ -17,6 +17,38 @@ sched_logger.addHandler(logger.rotation)
 sched_logger.setLevel(logging.DEBUG)
 logger = logger.logger.getChild('helper')
 
+def generateSSLCert():
+    if not os.path.exists(os.path.join(config.DATA_DIR, 'plexivity.key')) or not os.path.exists(os.path.join(config.DATA_DIR, 'plexivity.crt')):
+        logger.warning("plexivity was started with ssl support but no cert was found, trying to generating cert and key now")
+        try:
+            from OpenSSL import crypto, SSL
+            from socket import gethostname
+
+            
+            # create a key pair
+            k = crypto.PKey()
+            k.generate_key(crypto.TYPE_RSA, 1024)
+    
+            # create a self-signed cert
+            cert = crypto.X509()
+            cert.get_subject().C = "US"
+            cert.get_subject().ST = "plex land"
+            cert.get_subject().L = "plex land"
+            cert.get_subject().O = "plexivity"
+            cert.get_subject().OU = "plexivity"
+            cert.get_subject().CN = gethostname()
+            cert.set_serial_number(1000)
+            cert.gmtime_adj_notBefore(0)
+            cert.gmtime_adj_notAfter(10*365*24*60*60)
+            cert.set_issuer(cert.get_subject())
+            cert.set_pubkey(k)
+            cert.sign(k, 'sha1')
+    
+            open(os.path.join(config.DATA_DIR, 'plexivity.crt'), "wt").write(crypto.dump_certificate(crypto.FILETYPE_PEM, cert))
+            open(os.path.join(config.DATA_DIR, 'plexivity.key'), "wt").write(crypto.dump_privatekey(crypto.FILETYPE_PEM, k))
+            logger.info("ssl cert and key generated and saved to: %s" % config.DATA_DIR)
+        except:
+            logger.error("unable to generate ssl key and cert")
 
 def startScheduler():
     db.create_all()

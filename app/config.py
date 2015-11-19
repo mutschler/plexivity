@@ -97,6 +97,7 @@ SCAN_INTERVAL = check_setting_int(CFG, 'General', 'SCAN_INTERVAL', 120)
 CACHE_IMAGES = check_setting_int(CFG, 'General', 'CACHE_IMAGES', 1)
 DEBUG = check_setting_int(CFG, 'General', 'DEBUG', 0)
 SHOW_LIBRARY_STATS = check_setting_int(CFG, 'General', 'SHOW_LIBRARY_STATS', 1)
+USE_SSL = check_setting_int(CFG, 'General', 'USE_SSL', 0)
 
 CheckSection('Advanced')
 EXCLUDE_USERS = check_setting_str(CFG, 'Advanced', 'EXCLUDE_USERS', ['user1','user2'])
@@ -200,6 +201,7 @@ configval["EXCLUDE_SECTIONS"] = EXCLUDE_SECTIONS
 configval["USE_PPSCRIPTS"] = USE_PPSCRIPTS
 configval["PP_SCRIPTS"] = PP_SCRIPTS
 configval["PP_SCRIPTS_LOGGING"] = PP_SCRIPTS_LOGGING
+configval["USE_SSL"] = USE_SSL
 
 def save_config(configval):
     new_config = ConfigObj(interpolation=False)
@@ -220,6 +222,7 @@ def save_config(configval):
     new_config['General']['CACHE_IMAGES'] = int(configval["CACHE_IMAGES"])
     new_config['General']['DEBUG'] = int(configval["DEBUG"])
     new_config['General']['SHOW_LIBRARY_STATS'] = int(configval["SHOW_LIBRARY_STATS"])
+    new_config['General']['USE_SSL'] = int(configval["USE_SSL"])
     new_config['Advanced'] = {}
     new_config['Advanced']['EXCLUDE_USERS'] = configval["EXCLUDE_USERS"]
     new_config['Advanced']['USER_NAME_MAP'] = configval["USER_NAME_MAP"]

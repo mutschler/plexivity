@@ -34,15 +34,17 @@ you can find some Screenshots here: http://blog.raphaelmutschler.de/plexivity-0-
 plexivity uses the following Projects/Librarys:
 
 - [Flask](http://flask.pocoo.org/)
-- [Flask-Login](https://github.com/maxcountryman/flask-login)
+- [Flask-Security](https://github.com/mattupstate/flask-security)
 - [Flask-SQLAlchemy](https://github.com/mitsuhiko/flask-sqlalchemy)
 - [Flask-Babel](https://github.com/mitsuhiko/flask-babel/)
 - [Flask-Script](https://github.com/smurfix/flask-script)
 - [Flask-Migrate](https://github.com/miguelgrinberg/Flask-Migrate)
 - [Flask-Mail](https://github.com/mattupstate/flask-mail/)
+- [Flask-Admin](https://github.com/mrjoes/flask-admin/)
 - [APScheduler](https://bitbucket.org/agronholm/apscheduler/)
 - [requests](https://github.com/kennethreitz/requests)
 - [Bootstrap](http://getbootstrap.com/)
+- [Datatables](https://github.com/orf/datatables)
 
 ##Data Path
 
@@ -71,6 +73,23 @@ or
 if you like to use a different Direcotry you can set one by useing the `PLEXIVITY_DATA` environment variable
 
 
+### production install:
+
+	pip install -r requirements.txt
+	python plexivity.py 
+
+you can start plexivity as a deamon by adding `--deamon` to the command above
+
+
+### SSL Support:
+
+plexivity supports SSL (since version 0.9.8) but to keep up with some environments which do not ship with openssl support out of the box you'll have to install `pyopenssl` manually by running `pip install pyopenssl` and change the `USE_SSL` value in the config file manually to `1`
+
+If you like to provide a specific cert/key combination make sure to copy `plexivity.crt` and `plexivity.key` to your **Data Path** (see above). When those files are missing, plexivity will create them for you when you first start it with SSL support.
+
+If `pyopenssl` is not installed it will automatically fallback to non SSL mode
+
+
 ### development install:
 
 plexivity still in development
@@ -86,7 +105,5 @@ On default this will fire up a webserver on 127.0.0.1 and port 5000 if you like 
 
     python manage.py runserver -h 0.0.0.0 -p 12345
 
-you can find a short installation video here:
+you can find a short development installation video here:
 https://asciinema.org/a/12778
-
-PS: i hardly recommend you to run it in development mode instead of useing the (still littlebit buggy) plexivitiy.py

@@ -1,165 +1,172 @@
-# English translations for PROJECT.
+# English translations for .
 # Copyright (C) 2014 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
-# 
+# This file is distributed under the same license as the  project.
+#
 # Translators:
 # Ricky Hoots <ricky@hoots.nl>, 2015
 # Tarik Faik <filoor1@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
-"Project-Id-Version: plexivity\n"
+"Project-Id-Version:  plexivity\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-07-09 23:56+0200\n"
+"POT-Creation-Date: 2015-11-20 23:36+0100\n"
 "PO-Revision-Date: 2015-07-09 21:59+0000\n"
 "Last-Translator: Raphael\n"
 "Language-Team: Dutch (http://www.transifex.com/p/plexivity/language/nl/)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
-"Language: nl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/__init__.py:105
+#: app/__init__.py:107
 msgid "You do not have permission to view this resource."
 msgstr "U heeft geen rechten om deze bron te bekijken."
 
-#: app/__init__.py:106
+#: app/__init__.py:108
 #, python-format
 msgid "Thank you. Confirmation instructions have been sent to %(email)s."
 msgstr "Dank u wel. Bevestiging instructies zijn gestuurd naar %(email)s."
 
-#: app/__init__.py:107
+#: app/__init__.py:109
 msgid "Thank you. Your email has been confirmed."
 msgstr "Dank u wel. Uw email is bevestigd"
 
-#: app/__init__.py:108
+#: app/__init__.py:110
 msgid "Your email has already been confirmed."
 msgstr "Uw email is al bevestigd"
 
-#: app/__init__.py:109
+#: app/__init__.py:111
 msgid "Invalid confirmation token."
 msgstr "Niet geldige bevestigingtoken."
 
-#: app/__init__.py:110
+#: app/__init__.py:112
 #, python-format
 msgid "%(email)s is already associated with an account."
 msgstr "%(email)s is al geregistreerd voor een account."
 
-#: app/__init__.py:111
+#: app/__init__.py:113
 msgid "Password does not match"
 msgstr "Wachtwoord komt niet overeen"
 
-#: app/__init__.py:112
+#: app/__init__.py:114
 msgid "Passwords do not match"
 msgstr "Wachtwoorden komen niet overeen"
 
-#: app/__init__.py:113
+#: app/__init__.py:115
 msgid "Redirections outside the domain are forbidden"
 msgstr "Omleidingen buiten het domein zijn verboden"
 
-#: app/__init__.py:114
+#: app/__init__.py:116
 msgid "Instructions to reset your password have been sent to the given mail."
-msgstr "Instructies om je wachtwoord te resetten zijn gestuurd naar het bekende emailadres."
+msgstr ""
+"Instructies om je wachtwoord te resetten zijn gestuurd naar het bekende "
+"emailadres."
 
-#: app/__init__.py:115
+#: app/__init__.py:117
 #, python-format
 msgid ""
 "You did not reset your password within %(within)s. New instructions have "
 "been sent to %(email)s."
-msgstr "Uw heeft niet uw wachtwoord gereset binnen %(within)s. Nieuwe instructies zijn gestuurd naar %(email)s."
+msgstr ""
+"Uw heeft niet uw wachtwoord gereset binnen %(within)s. Nieuwe instructies"
+" zijn gestuurd naar %(email)s."
 
-#: app/__init__.py:116
+#: app/__init__.py:118
 msgid "Invalid reset password token."
 msgstr "Niet geldige wachtwoord reset token."
 
-#: app/__init__.py:117
+#: app/__init__.py:119
 msgid "Email requires confirmation."
 msgstr "Email vereist bevestiging."
 
-#: app/__init__.py:118
+#: app/__init__.py:120
 #, python-format
 msgid "Confirmation instructions have been sent to %(email)s."
 msgstr "Bevestiging instructies  zijn gestuurd naar %(email)s."
 
-#: app/__init__.py:119
+#: app/__init__.py:121
 #, python-format
 msgid ""
 "You did not confirm your email within %(within)s. New instructions to "
 "confirm your email have been sent to %(email)s."
-msgstr "Uw heeft niet uw email geconfirmeerd binnen %(within)s. Nieuwe instructies zijn gestuurd naar %(email)s."
+msgstr ""
+"Uw heeft niet uw email geconfirmeerd binnen %(within)s. Nieuwe "
+"instructies zijn gestuurd naar %(email)s."
 
-#: app/__init__.py:120
+#: app/__init__.py:122
 #, python-format
 msgid ""
 "You did not login within %(within)s. New instructions to login have been "
 "sent to %(email)s."
-msgstr "Uw heeft niet ingelogd binnen %(within)s. Nieuwe instructies om in te loggen zijn gestuurd naar %(email)s."
+msgstr ""
+"Uw heeft niet ingelogd binnen %(within)s. Nieuwe instructies om in te "
+"loggen zijn gestuurd naar %(email)s."
 
-#: app/__init__.py:121
+#: app/__init__.py:123
 #, python-format
 msgid "Instructions to login have been sent to %(email)s."
 msgstr "Instructies om in te loggen zijn gestuurd naar %(email)s."
 
-#: app/__init__.py:122
+#: app/__init__.py:124
 msgid "Invalid login token."
 msgstr "Niet geldig login token."
 
-#: app/__init__.py:123
+#: app/__init__.py:125
 msgid "Account is disabled."
 msgstr "Account is uitgeschakeld."
 
-#: app/__init__.py:124
+#: app/__init__.py:126
 msgid "Email not provided"
 msgstr "Email niet ingevuld"
 
-#: app/__init__.py:125
+#: app/__init__.py:127
 msgid "Invalid email address"
 msgstr "Niet geldig email adres"
 
-#: app/__init__.py:126
+#: app/__init__.py:128
 msgid "Password not provided"
 msgstr "Wachtwoord niet ingevuld"
 
-#: app/__init__.py:127
+#: app/__init__.py:129
 msgid "No password is set for this user"
 msgstr "Er is geen wachtwoord ingesteld voor deze gebruiker"
 
-#: app/__init__.py:128
+#: app/__init__.py:130
 msgid "Password must be at least 6 characters"
 msgstr "Wachtwoord moet minimaal 6 characters lang zijn"
 
-#: app/__init__.py:129
+#: app/__init__.py:131
 msgid "Specified user does not exist"
 msgstr "Gespecificeerde gebruiker bestaat niet"
 
-#: app/__init__.py:130
+#: app/__init__.py:132
 msgid "Invalid password"
 msgstr "Niet geldig wachtwoord"
 
-#: app/__init__.py:131
+#: app/__init__.py:133
 msgid "You have successfuly logged in."
 msgstr "Uw heeft succesvol ingelogd."
 
-#: app/__init__.py:132
+#: app/__init__.py:134
 msgid ""
 "You successfully reset your password and you have been logged in "
 "automatically."
 msgstr "U heeft succesvol uw wachtwoord gereset en bent automatisch ingelogd."
 
-#: app/__init__.py:133
+#: app/__init__.py:135
 msgid "Your new password must be different than your previous password."
 msgstr "Uw nieuwe wachtwoord moet anders zijn dan uw vorige wachtwoord."
 
-#: app/__init__.py:134
+#: app/__init__.py:136
 msgid "You successfully changed your password."
 msgstr "U heeft succesvol uw wachtwoord gewijzigd."
 
-#: app/__init__.py:135
+#: app/__init__.py:137
 msgid "Please log in to access this page."
 msgstr "Log in om deze pagina te bekijken."
 
-#: app/__init__.py:136
+#: app/__init__.py:138
 msgid "Please reauthenticate to access this page."
 msgstr "Log opnieuw in om deze pagina te bekijken."
 
@@ -286,11 +293,15 @@ msgstr "String voor recent toegevoegde notificatie"
 
 #: app/forms.py:136
 msgid "Comma seperated list of plex usernames to exclude from notifications"
-msgstr "Met komma gescheiden lijst van plex gebruikersnamen die uitgesloten moeten worden van notificaties"
+msgstr ""
+"Met komma gescheiden lijst van plex gebruikersnamen die uitgesloten "
+"moeten worden van notificaties"
 
 #: app/forms.py:137
 msgid "Comma seperated list of plex section ids to exclude from notifications"
-msgstr "Met komma gescheiden lijst van plex sectie id's die uitgesloten moeten worden van notificaties"
+msgstr ""
+"Met komma gescheiden lijst van plex sectie id's die uitgesloten moeten "
+"worden van notificaties"
 
 #: app/forms.py:138
 msgid "JSON Map of plex usernames and push names"
@@ -304,141 +315,141 @@ msgstr "Geef nogmaals het wachtwoord"
 msgid "Language"
 msgstr "Taal"
 
-#: app/helper.py:143
+#: app/helper.py:184
 msgid "Today"
 msgstr ""
 
-#: app/helper.py:144
+#: app/helper.py:185
 msgid "Last Week"
 msgstr ""
 
-#: app/helper.py:145
+#: app/helper.py:186
 msgid "Last Month"
 msgstr ""
 
-#: app/helper.py:146 app/templates/stats.html:57
+#: app/helper.py:187 app/templates/stats.html:57
 msgid "All Time"
 msgstr "Altijd"
 
-#: app/helper.py:225
+#: app/helper.py:266
 msgid "just now"
 msgstr "zojuis"
 
-#: app/helper.py:227
+#: app/helper.py:268
 #, python-format
 msgid "%(int)s seconds ago"
 msgstr "%(int)s secondes geleden "
 
-#: app/helper.py:231
-#, python-format
-msgid "%(int)s minuten ago"
+#: app/helper.py:272
+#, fuzzy, python-format
+msgid "%(int)s minutes ago"
 msgstr "%(int)s minuten geleden"
 
-#: app/helper.py:233
+#: app/helper.py:274
 msgid "an hour ago"
 msgstr "an hour ago"
 
-#: app/helper.py:235
+#: app/helper.py:276
 #, python-format
 msgid "%(int)s hours ago"
 msgstr "%(int)s uren geleden"
 
-#: app/helper.py:237
+#: app/helper.py:278
 msgid "Yesterday"
 msgstr "Gisteren"
 
-#: app/helper.py:239
+#: app/helper.py:280
 #, python-format
 msgid "%(int)s days ago"
 msgstr "%(int)s dagen geleden "
 
-#: app/helper.py:241
+#: app/helper.py:282
 #, python-format
 msgid "%(int)s weeks ago"
 msgstr "%(int)s weken geleden"
 
-#: app/helper.py:243
+#: app/helper.py:284
 #, python-format
 msgid "%(int)s months ago"
 msgstr "%(int)s maanden geleden"
 
-#: app/helper.py:244
+#: app/helper.py:285
 #, python-format
 msgid "%(int)s years ago"
 msgstr "%(int)s jaren geleden"
 
-#: app/views.py:61
+#: app/views.py:51
 #, python-format
 msgid "You are useing an incomplete translation please help! %(link)s"
 msgstr "Je gebruikt een incomplete vertaling, help ons! %(link)s"
 
 #. NOTE: Test2
-#: app/views.py:72 app/views.py:222
+#: app/views.py:62 app/views.py:214
 msgid "Unable to connect to PMS. Please check your settings"
 msgstr "Niet mogelijk om te verbinden met PMS. Controleer je instellingen"
 
-#: app/views.py:149 app/templates/include/history.html:28
+#: app/views.py:139 app/templates/include/history.html:28
 msgid "Currently watching..."
 msgstr "Wordt momenteel bekeken"
 
-#: app/views.py:199 app/templates/layout.html:61
+#: app/views.py:189 app/templates/layout.html:61
 msgid "Statistics"
 msgstr "statistieken"
 
-#: app/views.py:206
+#: app/views.py:196
 #, python-format
 msgid "User %(username)s created"
 msgstr "Gebruiker %(username)s aangemaakt"
 
-#: app/views.py:215
+#: app/views.py:205
 msgid "Setup"
 msgstr "Instellen"
 
-#: app/views.py:229
+#: app/views.py:221
 msgid "Successfully started import of viewed Media from PMS"
 msgstr ""
 
-#: app/views.py:231
+#: app/views.py:223
 msgid "Import"
 msgstr ""
 
-#: app/views.py:231 app/templates/import.html:12
+#: app/views.py:223 app/templates/import.html:12
 msgid "Import Media"
 msgstr ""
 
-#: app/views.py:242 app/templates/layout.html:60
+#: app/views.py:234 app/templates/layout.html:60
 msgid "Charts"
 msgstr "Diagram"
 
-#: app/views.py:263
+#: app/views.py:255
 msgid "Info"
 msgstr "Info"
 
-#: app/views.py:269 app/templates/layout.html:59
+#: app/views.py:261 app/templates/layout.html:59
 msgid "History"
 msgstr "geschiedenis"
 
-#: app/views.py:276
+#: app/views.py:268
 msgid "Logged out"
 msgstr "Log uit"
 
-#: app/views.py:299 app/templates/layout.html:62
+#: app/views.py:291 app/templates/layout.html:62
 msgid "Users"
 msgstr "Gebruikers "
 
-#: app/views.py:333
+#: app/views.py:327
 msgid "Settings saved!"
 msgstr "Instellingen opgeslagen"
 
-#: app/views.py:344 app/templates/layout.html:63
+#: app/views.py:338 app/templates/layout.html:64
 msgid "Settings"
 msgstr "Instellingen"
 
-#: app/views.py:354
+#: app/views.py:349
 msgid "Test notification successfully send"
 msgstr "Test notificatie is succesvol verzonden"
 
-#: app/views.py:356
+#: app/views.py:351
 msgid "unable to send test notification"
 msgstr "niet mogelijk om test notificatie te versturen"
 
@@ -476,9 +487,10 @@ msgid "Connect to Hue"
 msgstr "Verbind met Hue"
 
 #: app/templates/hue.html:17
-msgid ""
-"Please press the Push Button on your Hue Bridge and press the button below"
-msgstr "Drukt u op de drukknop op uw Hue Bridge en klik daarna op de knop hier onder"
+msgid "Please press the Push Button on your Hue Bridge and press the button below"
+msgstr ""
+"Drukt u op de drukknop op uw Hue Bridge en klik daarna op de knop hier "
+"onder"
 
 #: app/templates/hue.html:18
 msgid "Push Button Pressed"
@@ -499,8 +511,8 @@ msgstr "Alle beschikbare lichten"
 
 #: app/templates/import.html:9
 msgid ""
-"Plexivity will try to import already played Media Elements from Plex Media "
-"Server, this may take a while "
+"Plexivity will try to import already played Media Elements from Plex "
+"Media Server, this may take a while "
 msgstr ""
 
 #: app/templates/import.html:15
@@ -631,153 +643,168 @@ msgstr ": activeer om de kolom aflopend te sorteren"
 msgid "Username"
 msgstr "Gebruikersnaam"
 
-#: app/templates/settings.html:8
-msgid "Save settings"
-msgstr "Sla instellingen op"
-
-#: app/templates/settings.html:12
-msgid "The following Options are available for Message formating:"
-msgstr "De volgende Opties zijn beschikbaar voor Bericht formatering:"
-
-#: app/templates/settings.html:17
-msgid "Processed username based on USER_NAME_MAP"
-msgstr "Verwerkte gebruikersnaam gebaseerd op USER_NAME_MAP"
-
-#: app/templates/settings.html:19
-msgid "Processed title of currently playing media"
-msgstr "Verwerkte titel van huidig afspelende media"
-
-#: app/templates/settings.html:21
-msgid ""
-"the platform from which the media is played back (ex. Plexweb (Chrome))"
-msgstr "het platform waarvan de media word afgespeeld (bijv. Plex/Web (Chrome))"
-
-#: app/templates/settings.html:23
-msgid "the type of media: \"episode\" or \"movie\""
-msgstr "het type media: \"aflevering\" of \"film\""
-
-#: app/templates/settings.html:25
-msgid "length of the mediafile: 20 min"
-msgstr "lengte van het mediabestand: 20 min"
-
-#: app/templates/settings.html:27
-msgid "a string of genres (if available) in format \"Horror|Fantasy\""
-msgstr "een string van genres (indien beschikbaar) in formaat \"Horror|Fantasie\""
-
-#: app/templates/settings.html:29
-msgid "PMS user id"
-msgstr "PMS gebruiker id"
-
-#: app/templates/settings.html:31
-msgid "Original, unprocessed username"
-msgstr "Originele, niet verwerkte gebruikersnaam"
-
-#: app/templates/settings.html:33
-msgid "unprocessed original title of currently playing media"
-msgstr "niet verwerkte originele titel van huidig afspelend media"
-
-#: app/templates/settings.html:35
-msgid "unprocessed original title of currently playing episode"
-msgstr "niet verwerkte originele titel van huidig afspelende aflevering"
-
-#: app/templates/settings.html:37
-msgid "current season"
-msgstr "huidig seizoen"
-
-#: app/templates/settings.html:39
-msgid "current episode"
-msgstr "huidige aflevering"
-
-#: app/templates/settings.html:41
-msgid "playback time in seconds"
-msgstr "afspeeltijd in seconden"
-
-#: app/templates/settings.html:43
-msgid "time the playback started"
-msgstr "tijd dat afspelen begon"
-
-#: app/templates/settings.html:45
-msgid "time the playback stopped"
-msgstr "tijd dat afspelen stopte"
-
-#: app/templates/settings.html:47
-msgid "Media content rating"
-msgstr "Media inhoud waardering"
-
-#: app/templates/settings.html:49
-msgid "Media distribution year"
-msgstr "Media distributie jaar"
-
-#: app/templates/settings.html:51
-msgid "Summary of the currently playing media"
-msgstr "Overzicht van huidig afspelend media"
-
-#: app/templates/settings.html:53
-msgid "duration in seconds"
-msgstr "duur in seconden"
-
-#: app/templates/settings.html:55
-msgid "notification type, can be start, stop, pause or resume"
-msgstr "notificatie type, can start, stop, pauze of hervatten zijn"
-
-#: app/templates/settings.html:57
-msgid "the view offset in seconds"
-msgstr "het bekeken verschil in seconden"
-
-#: app/templates/settings.html:59
-msgid "view offset in percent"
-msgstr "bekeken verschil in procent"
-
-#: app/templates/settings.html:61
-msgid "how much playback time left"
-msgstr "Hoeveelheid afspeel tijd over is"
-
-#: app/templates/settings.html:63
-msgid "if the media is transcoded this will be 1 else 0"
-msgstr "als de media getranscodeerd is dit een 1 anders 0"
-
-#: app/templates/settings.html:65
-msgid "information about the transcode"
-msgstr "informatie over de transcodatie"
-
-#: app/templates/settings.html:67
-msgid "T for transcode or D for direct play"
-msgstr "T voor transcoderen of D voor direct play"
-
-#: app/templates/settings.html:69
-msgid "Audio and Video informations on Transcode else \"Direct Play\""
-msgstr "Audio en Video informatie van Transcoderen anders \"Direct Play\""
-
-#: app/templates/settings.html:71
-msgid "the machine identifier"
-msgstr "de machine identificatie"
-
-#: app/templates/settings.html:76
-msgid "Example"
-msgstr "Voorbeeld"
-
-#: app/templates/settings.html:122
-msgid "Test Notifications"
-msgstr "Test Notificaties"
-
-#: app/templates/settings.html:125
-msgid "Connect Hue"
-msgstr "Verbind Hue"
-
-#: app/templates/settings.html:128
-msgid "Connect Twitter"
-msgstr "Verbind Twitter"
-
-#: app/templates/setup.html:10
+#: app/templates/settings.html:9 app/templates/setup.html:10
 #, python-format
 msgid "Data will be saved to \"%(data_dir)s\""
 msgstr "Data zal worden opgeslagen in \"%(data_dir)s\""
+
+#: app/templates/settings.html:14
+msgid "Save settings"
+msgstr "Sla instellingen op"
+
+#: app/templates/settings.html:17
+msgid "Import Media from PMS"
+msgstr ""
+
+#: app/templates/settings.html:22
+msgid "The following Options are available for Message formating:"
+msgstr "De volgende Opties zijn beschikbaar voor Bericht formatering:"
+
+#: app/templates/settings.html:27
+msgid "Processed username based on USER_NAME_MAP"
+msgstr "Verwerkte gebruikersnaam gebaseerd op USER_NAME_MAP"
+
+#: app/templates/settings.html:29
+msgid "Processed title of currently playing media"
+msgstr "Verwerkte titel van huidig afspelende media"
+
+#: app/templates/settings.html:31
+msgid "the platform from which the media is played back (ex. Plexweb (Chrome))"
+msgstr "het platform waarvan de media word afgespeeld (bijv. Plex/Web (Chrome))"
+
+#: app/templates/settings.html:33
+#, fuzzy
+msgid ""
+"the title of the player from which the media is played (ex. Xbox 360 "
+"(<uuid>))"
+msgstr "het platform waarvan de media word afgespeeld (bijv. Plex/Web (Chrome))"
+
+#: app/templates/settings.html:35
+#, fuzzy
+msgid ""
+"product name of the player from which the media is played (ex. Plex for "
+"Xbox 360)"
+msgstr "het platform waarvan de media word afgespeeld (bijv. Plex/Web (Chrome))"
+
+#: app/templates/settings.html:37
+msgid "the type of media: \"episode\" or \"movie\""
+msgstr "het type media: \"aflevering\" of \"film\""
+
+#: app/templates/settings.html:39
+msgid "length of the mediafile: 20 min"
+msgstr "lengte van het mediabestand: 20 min"
+
+#: app/templates/settings.html:41
+msgid "a string of genres (if available) in format \"Horror|Fantasy\""
+msgstr "een string van genres (indien beschikbaar) in formaat \"Horror|Fantasie\""
+
+#: app/templates/settings.html:43
+msgid "PMS user id"
+msgstr "PMS gebruiker id"
+
+#: app/templates/settings.html:45
+msgid "Original, unprocessed username"
+msgstr "Originele, niet verwerkte gebruikersnaam"
+
+#: app/templates/settings.html:47
+msgid "unprocessed original title of currently playing media"
+msgstr "niet verwerkte originele titel van huidig afspelend media"
+
+#: app/templates/settings.html:49
+msgid "unprocessed original title of currently playing episode"
+msgstr "niet verwerkte originele titel van huidig afspelende aflevering"
+
+#: app/templates/settings.html:51
+msgid "current season"
+msgstr "huidig seizoen"
+
+#: app/templates/settings.html:53
+msgid "current episode"
+msgstr "huidige aflevering"
+
+#: app/templates/settings.html:55
+msgid "playback time in seconds"
+msgstr "afspeeltijd in seconden"
+
+#: app/templates/settings.html:57
+msgid "time the playback started"
+msgstr "tijd dat afspelen begon"
+
+#: app/templates/settings.html:59
+msgid "time the playback stopped"
+msgstr "tijd dat afspelen stopte"
+
+#: app/templates/settings.html:61
+msgid "Media content rating"
+msgstr "Media inhoud waardering"
+
+#: app/templates/settings.html:63
+msgid "Media distribution year"
+msgstr "Media distributie jaar"
+
+#: app/templates/settings.html:65
+msgid "Summary of the currently playing media"
+msgstr "Overzicht van huidig afspelend media"
+
+#: app/templates/settings.html:67
+msgid "duration in seconds"
+msgstr "duur in seconden"
+
+#: app/templates/settings.html:69
+msgid "notification type, can be start, stop, pause or resume"
+msgstr "notificatie type, can start, stop, pauze of hervatten zijn"
+
+#: app/templates/settings.html:71
+msgid "the view offset in seconds"
+msgstr "het bekeken verschil in seconden"
+
+#: app/templates/settings.html:73
+msgid "view offset in percent"
+msgstr "bekeken verschil in procent"
+
+#: app/templates/settings.html:75
+msgid "how much playback time left"
+msgstr "Hoeveelheid afspeel tijd over is"
+
+#: app/templates/settings.html:77
+msgid "if the media is transcoded this will be 1 else 0"
+msgstr "als de media getranscodeerd is dit een 1 anders 0"
+
+#: app/templates/settings.html:79
+msgid "information about the transcode"
+msgstr "informatie over de transcodatie"
+
+#: app/templates/settings.html:81
+msgid "T for transcode or D for direct play"
+msgstr "T voor transcoderen of D voor direct play"
+
+#: app/templates/settings.html:83
+msgid "Audio and Video informations on Transcode else \"Direct Play\""
+msgstr "Audio en Video informatie van Transcoderen anders \"Direct Play\""
+
+#: app/templates/settings.html:85
+msgid "the machine identifier"
+msgstr "de machine identificatie"
+
+#: app/templates/settings.html:90
+msgid "Example"
+msgstr "Voorbeeld"
+
+#: app/templates/settings.html:136
+msgid "Test Notifications"
+msgstr "Test Notificaties"
+
+#: app/templates/settings.html:139
+msgid "Connect Twitter"
+msgstr "Verbind Twitter"
 
 #: app/templates/setup.html:11
 msgid ""
 "If you already had a runnig installation please copy \"config.ini\" and "
 "\"plexivity.db\" to this directory and restart plexivity"
-msgstr "Als je een bestaande installatie had, kopieer dan \"config.ini\" en \"plexivity.db\" naar deze map en herstart plexivity"
+msgstr ""
+"Als je een bestaande installatie had, kopieer dan \"config.ini\" en "
+"\"plexivity.db\" naar deze map en herstart plexivity"
 
 #: app/templates/setup.html:15 app/templates/security/register_user.html:9
 msgid "Create Account"
@@ -971,3 +998,10 @@ msgstr "Reset Wachtwoord"
 
 #~ msgid "Successfully disconnected from Hue Bridge"
 #~ msgstr ""
+
+#~ msgid "Connect Hue"
+#~ msgstr "Verbind Hue"
+
+#~ msgid "Import Media frm PMS"
+#~ msgstr ""
+

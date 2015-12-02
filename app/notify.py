@@ -341,7 +341,7 @@ def process_update(xml, session_id):
                 cur.paused = None
                 cur.paused_counter = int(p_counter)
 
-        logger.debug("total paused duration: %s [p_counter seconds]" % p_counter)
+        logger.debug("total paused duration: %s [p_counter seconds]" % int(p_counter))
 
         cur.xml = ET.tostring(xml)
         cur.progress = "%.0f" % float( float(xml.get("viewOffset")) / float(xml.get("duration")) * 100 )

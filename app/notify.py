@@ -102,7 +102,6 @@ def task():
                 k.stopped = stop_epoch
 
             k.progress = int(info["percent_complete"])
-            db.session.merge(k)
             db.session.commit()
             set_notified(k.session_id)
 
@@ -221,7 +220,7 @@ def task():
                 process_start(xml_string, db_key, info)
                 if notify(info):
                     set_notified(db_key)
-                    
+
 
 def set_notified(db_key):
     logger.debug("setting %s to notified" % db_key)
@@ -609,7 +608,7 @@ def get_paused(session_id):
     elif type(total) == datetime.timedelta:
         total = total.total_seconds()
 
-    return total
+    return int(total)
 
 def get_unnotified():
     logger.info(u"getting unnotified entrys from database")

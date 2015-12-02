@@ -216,6 +216,7 @@ def importer():
     form = forms.PlexImportForm()
     if form.validate_on_submit():
         import threading
+        config.IMPORT_USERNAME = form.IMPORT_USERNAME.data
         importer = threading.Thread(target=helper.importFromPlex, args=(g.plex, db))
         importer.start()
         flash(_("Successfully started import of viewed Media from PMS"), "success")

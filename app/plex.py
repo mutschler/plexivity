@@ -159,7 +159,10 @@ class Server(object):
 
     def recentlyAdded(self, count=6):
         args = {"X-Plex-Container-Start": 0, "X-Plex-Container-Size": count}
-        return self._request("library/recentlyAdded", args)
+        x = self._request("library/recentlyAdded", args)
+        if x:
+            return x
+        return list()
 
     def getInfo(self, mediaId):
         return self._request("library/metadata/%s" % mediaId)

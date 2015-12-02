@@ -22,38 +22,40 @@ def task():
     if len(recentlyAdded):
         logger.debug("processing recently added media")
 
-    for x in recentlyAdded:
-        check = db.session.query(models.RecentlyAdded).filter(models.RecentlyAdded.item_id == x.get("ratingKey")).first()
+        for x in recentlyAdded:
+            check = db.session.query(models.RecentlyAdded).filter(models.RecentlyAdded.item_id == x.get("ratingKey")).first()
 
-        if check:
-            logger.debug("already notified for recently added '%s'" % check.title)
-            continue
+            if check:
+                logger.debug("already notified for recently added '%s'" % check.title)
+                continue
 
-        if x.get("type") == "season" or x.get("type") == "epsiode":
-            fullseason = p.episodes(x.get("ratingKey"))
-            for ep in fullseason:
-                if x.get("addedAt") == ep.get("addedAt"):
-                    xml = p.getInfo(ep.get("ratingKey")).find("Video")
-        else:
-            xml = p.getInfo(x.get('ratingKey')).find("Video")
+            if x.get("type") == "season" or x.get("type") == "epsiode":
+                fullseason = p.episodes(x.get("ratingKey"))
+                for ep in fullseason:
+                    if x.get("addedAt") == ep.get("addedAt"):
+                        xml = p.getInfo(ep.get("ratingKey")).find("Video")
+            else:
+                xml = p.getInfo(x.get('ratingKey')).find("Video")
 
-        if not xml:
-            logger.error("error loading xml for recently added entry")
-            continue
+            if not xml:
+                logger.error("error loading xml for recently added entry")
+                continue
 
-        info = info_from_xml(xml, "recentlyadded", 1, 1, 0)
-        info["added"] = datetime.datetime.fromtimestamp(float(x.get("addedAt"))).strftime("%Y-%m-%d %H:%M")
+            info = info_from_xml(xml, "recentlyadded", 1, 1, 0)
+            info["added"] = datetime.datetime.fromtimestamp(float(x.get("addedAt"))).strftime("%Y-%m-%d %H:%M")
 
-        if notify(info):
-            logger.info(u"adding %s to recently added table" % info["title"])
-            new = models.RecentlyAdded()
-            new.item_id = x.get("ratingKey")
-            new.time = datetime.datetime.now()
-            new.filename = xml.find("Media").find("Part").get("file")
-            new.title = info["title"]
-            new.debug = "%s" % info
-            db.session.merge(new)
-            db.session.commit()
+            if notify(info):
+                logger.info(u"adding %s to recently added table" % info["title"])
+                new = models.RecentlyAdded()
+                new.item_id = x.get("ratingKey")
+                new.time = datetime.datetime.now()
+                new.filename = xml.find("Media").find("Part").get("file")
+                new.title = info["title"]
+                new.debug = "%s" % info
+                db.session.merge(new)
+                db.session.commit()
+    else:
+        logger.debug("nothing was recently added")
 
     if not len(live):
         logger.debug("seems like nothing is currently played")
@@ -72,7 +74,7 @@ def task():
     un_done = get_unnotified()
 
     if un_done:
-        logger.debug("processing unnotified entrys")
+        logger.debug("processing unnotified entrys from database")
 
         for k in un_done:
             start_epoch = k.time
@@ -101,19 +103,21 @@ def task():
 
             k.progress = int(info["percent_complete"])
             db.session.merge(k)
+            db.session.commit()
             set_notified(k.session_id)
 
         did_unnotify = 1
     else:
+        logger.info("nothing found to send (new) notifications for")
         did_unnotify = 1
 
     ## notify stopped
     ## redo this! currently everything started is set to stopped?
     if did_unnotify:
-        logger.info("processing recently started and checking for stopped")
+        logger.info("processing recently started entrys from db and checking for stopped")
         #started = get_started()
         for k in started:
-            logger.debug("checking if %s is in playling list" % k.session_id)
+            logger.debug("checking if %s is still in playling list" % k.session_id)
             if not k.session_id in playing:
                 logger.debug("%s is stopped!" % k.session_id)
                 start_epoch = k.time
@@ -174,9 +178,9 @@ def task():
 
         #first go through all started stuff and check for status change
         if started:
-            logger.debug("we still have not stopped entrys in our database")
+            logger.debug("we still have not stopped entrys in our database checking for matches")
             for x in started:
-                logger.debug("processing entry %s " % x.session_id)
+                logger.debug("checking if db entry '%s' is in live content " % x.session_id)
                 state_change = False
 
                 if x.session_id == db_key:
@@ -209,15 +213,15 @@ def task():
                 was_started[db_key] = restarted
                 info["ntype"] = "resume"
                 notify(info)
-
-        #if still not processed till now, its a new play!
-        logger.debug("we got those entrys which already where in the database: %s " % was_started)
-        if not db_key in was_started:
-            logger.info("seems like this is a new entry: %s" % db_key)
-            #unnotified insert to db and notify
-            process_start(xml_string, db_key, info)
-            if notify(info):
-                set_notified(db_key)
+            else:
+                #if still not processed till now, its a new play!
+                logger.debug("we got those entrys which already where in the database: %s " % was_started)
+                logger.info("seems like this is a new entry: %s" % db_key)
+                #unnotified insert to db and notify
+                process_start(xml_string, db_key, info)
+                if notify(info):
+                    set_notified(db_key)
+                    
 
 def set_notified(db_key):
     logger.debug("setting %s to notified" % db_key)
@@ -336,7 +340,7 @@ def process_update(xml, session_id):
                 logger.debug("removeing Paused state and setting paused counter to %s seconds [this duration %s sec]" % ( p_counter, sec ) )
                 status_change = "resume"
                 cur.paused = None
-                cur.paused_counter = p_counter
+                cur.paused_counter = int(p_counter)
 
         logger.debug("total paused duration: %s [p_counter seconds]" % p_counter)
 
@@ -354,8 +358,6 @@ def notify(info):
         return True
 
     #notify all providers with the given stuff...
-    logger.debug("notify called with args: %s" % info)
-
     if info["ntype"] == "recentlyadded" and config.NOTIFY_RECENTLYADDED:
         try:
             message = config.RECENTLYADDED_MESSAGE % info
@@ -393,6 +395,8 @@ def notify(info):
         scripts.run_scripts(info, message)
 
     if message:
+        #only log notify args if it actually calls notify!
+        logger.debug("notify called with args: %s" % info)
         if config.NOTIFY_PUSHOVER:
             from app.providers import pushover
             status = pushover.send_notification(message)

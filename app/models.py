@@ -58,7 +58,7 @@ class Processed(db.Model):
     __tablename__ = "processed"
 
     id = db.Column(db.Integer, primary_key=True)
-    session_id = db.Column(db.Text)
+    session_id = db.Column(db.Text, unique=True)
     time = db.Column(db.DateTime)
     user = db.Column(db.Text)
     platform = db.Column(db.Text)

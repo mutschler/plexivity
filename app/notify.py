@@ -57,7 +57,7 @@ def task():
     else:
         logger.debug("nothing was recently added")
 
-    if not len(live):
+    if live and not len(live):
         logger.debug("seems like nothing is currently played")
 
     for session in live:

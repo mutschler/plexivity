@@ -230,7 +230,7 @@ def charts():
     all10 = db.session.query(db.func.count(models.Processed.title), models.Processed).group_by(models.Processed.title).having(db.func.count(models.Processed.title) > 0).order_by(db.func.count(models.Processed.title).desc(), models.Processed.time.desc()).limit(10)
     movie10 = db.session.query(db.func.count(models.Processed.title), models.Processed).filter(db.or_(models.Processed.orig_title_ep == None, models.Processed.orig_title_ep == "", models.Processed.orig_title_ep == "n/a")).group_by(models.Processed.title).having(db.func.count(models.Processed.title) > 0).order_by(db.func.count(models.Processed.title).desc(), models.Processed.time.desc()).limit(10)
     show_top10 = db.session.query(db.func.count(models.Processed.orig_title), models.Processed).group_by(models.Processed.orig_title).having(db.func.count(models.Processed.orig_title) > 0).order_by(db.func.count(models.Processed.orig_title).desc(), models.Processed.time.desc()).limit(10)
-    ep_top10 = db.session.query(db.func.count(models.Processed.title), models.Processed).group_by(models.Processed.title).having(db.func.count(models.Processed.title) > 0).order_by(db.func.count(models.Processed.title).desc(), models.Processed.time.desc()).limit(10)
+    ep_top10 = db.session.query(db.func.count(models.Processed.title), models.Processed).filter(models.Processed.orig_title_ep != "n/a").group_by(models.Processed.title).having(db.func.count(models.Processed.title) > 0).order_by(db.func.count(models.Processed.title).desc(), models.Processed.time.desc()).limit(10)
 
     return render_template('charts.html', all_top10=all10, movie_top10=movie10, show_top10=show_top10, ep_top10=ep_top10, title=_('Charts'))
 

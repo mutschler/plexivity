@@ -7,6 +7,7 @@
             <tr>
                 <th align='left'><i class='glyphicon glyphicon-sort'></i> {{_('Date')}}</th>
                 <th align='left'><i class='glyphicon glyphicon-sort'></i> {{_('User')}} </th>
+                <th align='left'><i class='glyphicon glyphicon-sort'></i> {{_('IP address')}}</th>
                 <th align='left'><i class='glyphicon glyphicon-sort'></i> {{_('Platform')}}</th>
                 <th align='left'><i class='glyphicon glyphicon-sort'></i> {{_('Title')}}</th>
                 <th align='center'><i class='glyphicon glyphicon-sort'></i> {{_('Type')}}</th>
@@ -27,6 +28,7 @@
                 <tr>
                     <td align="left" data-order="{{ entry.time|timestamp|int }}">{% if not entry.stopped %} <span class="orange">{{ _('Currently watching...') }}</span> {% else %} {{ entry.time.strftime('%Y/%m/%d') }} {% endif %}</td>
                     <td align="left"><a href="{{ url_for('user', name=entry.user) }}" class="invert-link">{{ entry.user }}</a></td>
+                    <td align="left">{{xml.find("Player").get("address")}}</td>
                     <td align="left">{{ entry.platform }}</td>
                     <td align="left"><a class="invert-link" href="{{ url_for('info', id=xml.get('ratingKey')) }}">{{ entry.title }}</a></td>
                     <td align="left">{{xml.get("type")}}</td>

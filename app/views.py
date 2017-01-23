@@ -137,6 +137,7 @@ def jsonhistory():
     history = db.session.query(models.Processed)
     table = DataTable(request.args, models.Processed, history, [
         ("date", "time", lambda i: "{}".format(i.time.strftime('%Y/%m/%d')) if i.stopped else '<span class="orange">{}</span>'.format(_("Currently watching..."))),
+        ("ipaddress", lambda i: "{}".format(i.get_xml().find('Player').get("address"))),
         ("user", lambda i: '<a href="{0}" class="invert-link">{1}</a>'.format(url_for('user', name=i.user), i.user)),
         ("platform"),
         ("title", lambda i: u'<a class="invert-link" href="{0}">{1}</a>'.format(url_for('info', id=i.get_xml_value('ratingKey')), i.title)),

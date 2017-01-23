@@ -83,11 +83,14 @@ class Processed(db.Model):
     progress = db.Column(db.Integer) # (view_offset / duration) * 100 helper.getPercentage()
 
     def get_xml_value(self, value):
-        xml = ET.fromstring(self.xml)
+        xml = self.get_xml()
         try:
             return xml.get(value)
         except:
             return None
+
+    def get_xml(self):
+        return ET.fromstring(self.xml)
 
 class RecentlyAdded(db.Model):
     __tablename__ = "recently_added"

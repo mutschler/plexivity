@@ -1,8 +1,11 @@
 [![License](http://img.shields.io/:license-gpl3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0.html)
 
+## Project no longer maintained 
+if you are looking for a replacement checkout [Tautulli](https://github.com/Tautulli/Tautulli)
+
 [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=296X2XQXKQDD6) 
 
-#plexivity
+# plexivity
 
 plexivity is a simple to use WebApp for your Plex Media Server Statistics. It can be seen as an alternative for [plexWatch](https://github.com/ljunkie/plexWatch) with [plexWatchWeb](https://github.com/ecleese/plexWatchWeb/). It connects with your Plex Media Server and is able to notify you on activity.
 
@@ -10,12 +13,12 @@ Sadly plexWatch requires some native compiled 3rd Party extensions wich can not 
 
 you can find some Screenshots here: http://blog.raphaelmutschler.de/plexivity-0-9/
 
-##Requirements:
+## Requirements:
 * PMS 0.9.8.x +
 * PlexPass subscription
 * Python 2.7
 
-##Features
+## Features
 
 * easy web setup guide
 * login protected web interface
